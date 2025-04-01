@@ -1,0 +1,2176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Equality Matters</title>
+    <link rel="icon" type="image" href="img/teo-logo-hex.png">
+
+    <!-- imports for bootstrap - jquery and popper are dependencies -->
+    <script src="https://cdn.jsdelivr.net/gh/jquery/jquery@3.4.1/dist/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/gh/twbs/bootstrap@v4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/FezVrasta/popper.js@v1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/twbs/bootstrap@v4.5.2/dist/js/bootstrap.min.js"></script>
+
+    <!-- fontawesome import -->
+    <script src="https://kit.fontawesome.com/ee3848f0f5.js" crossorigin="anonymous"></script>
+
+    <!-- chart.js and add ons -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/3.0.1/chartjs-plugin-annotation.min.js" integrity="sha512-Hn1w6YiiFw6p6S2lXv6yKeqTk0PLVzeCwWY9n32beuPjQ5HLcvz5l2QsP+KilEr1ws37rCTw3bZpvfvVIeTh0Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+    <link rel ="stylesheet" href ="style.css">
+
+    <!-- <script src = "scripts/cookies_script.js"></script> -->
+
+    <!-- import data for use in charts - needs to be imported in each script -->
+      <!-- only useful here if some data transformations to happen in head section -->
+    <!-- <script type="module">
+      import * as data from './data.js';
+    </script> -->
+  </head>
+
+
+  <body>
+    <div class="wrapper">
+
+      
+      
+      <div class="content-wrapper">
+      <nav class="warning">
+        <div class="col-wide middle" style=" text-align: center;">
+          <p style="margin-bottom: 0px;">This prototype application will be enhanced as further equality indicator data is released.</p>
+          <p style="margin-bottom: 0px;">We welcome feedback from users through our 
+            <a class="survey-link" href="https://dttselfserve.nidirect.gov.uk/NISRA/RateIt#/Equality_Matters" target="_blank"><span style="color: white;">short survey</span>
+              <img class = "new-tab" src = "img/opens-new-tab.svg"></a></p>
+          
+          </div>
+      </nav>
+
+      <!-- <div id="prototype">This prototype application will be enhanced as further equality indicator data is released.</div> -->
+
+      <div id="top-container">
+        <div id="top-menu" class="grid" style="margin: 0;">
+          <div class="nisra-logo-container">
+            <a href="https://www.nisra.gov.uk/" target="_blank"><img id="top-menu-nisra-logo" src="img/nisra-white-bilingual.svg" alt="NISRA logo. Clicking image takes user to NISRA website"></a>
+          </div>
+          <div id="dashboard-title-container">
+            <h1 id="dashboard-title">Equality Matters</h1>
+            <span id="dashboard-subtitle">Access equality data across a range of <br>key measures for Northern Ireland</span>
+          </div>
+          <div id = "about">
+            <div>
+              <span>Search by Grouping or by Measure name:</span>
+              <form class="search-container" style="margin-bottom: 15px;" action="/search" method="get">
+                <input type="text" name="q" placeholder="Search..." />
+                <button type="submit">Search</button>
+              </form>
+              <button class="about-btn" name = "aboutbutton" alt="Home" onclick="window.location.href='about.html';">About Equality Matters</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr style="border-top: 10px solid #cedc20; margin: 0">
+
+      <div id = "dest-scrn">
+        <div id="content-centre">
+          <div id="main-container">
+
+            <aside>
+              <div id ="home-btn">
+                <button name = "backbutton" alt="Home" onclick="window.location.href='index.html';">Back to Home Page</button>
+                <!-- <hr style=" border-top: 3px solid rgba(0, 0, 0, .6); border-radius: 3px;"> -->
+              </div>
+              <h3 style="font-weight: normal; font-size: 14pt; margin-bottom: 0px; margin-top: 20px;">Explore other groups within <p class = "measure_title" style="color:#3878c5; font-weight: bold; margin-bottom: 10px;"></p></h3>
+              <form id = "selection-form" style="list-style-type: none; padding: 0;">
+                <div id="top-buttons-container">
+                  <button name = "s75" value = "age">Age</button>
+                  <button name = "s75" value = "depend">Dependants</button>
+                  <button name = "s75" value = "disab">Disability</button>
+                  <button name = "s75" value = "ethnic">Ethnic Group</button>
+                  <button name = "s75" value = "marital">Marital Status</button>
+                  <button name = "s75" value  = "political">Political Opinion</button>
+                  <button name = "s75" value = "race">Racial Group</button>
+                  <button name = "s75" value = "religion">Religion</button>
+                  <button name = "s75" value = "sex">Sex</button>
+                  <button name = "s75" value = "ori">Sexual Orientation</button>
+                </div>
+              <!-- <hr style=" border-top: 3px solid rgba(0, 0, 0, .6); border-radius: 3px;"> -->
+              <h3 id="domains-title" style="font-weight: normal; font-size: 14pt; margin-bottom: 0px; margin-top: 20px;">Explore other measures by <p class = "eq_grp_name" style="color:#3878c5; font-weight: bold; margin-bottom: 10px;"></p></h3>
+              <div id = "key-metrics-container">
+                <button name = "key" value = "pubt">Active Travel - Public Transport</button>
+                <button name = "key" value = "walk">Active Travel - Walking or Cycling</button>
+                <button name = "key" value = "artc">Arts and Culture activities participation</button>
+                <button name = "key" value = "c500">Census 2021 - Usual Resident Population</button>
+                <button name = "key" value = "c5011">Census 2021 - Economic Activity - In Employment</button>
+                <button name = "key" value = "c5012">Census 2021 - Economic Activity - Unemployed</button>
+                <button name = "key" value = "c5013">Census 2021 - Economically Inactive</button>
+                <button name = "key" value = "c5021">Census 2021 - Agriculture, energy and water employment</button>
+                <button name = "key" value = "c5022">Census 2021 - Manufacturing employment</button>
+                <button name = "key" value = "c5023">Census 2021 - Construction employment</button>
+                <button name = "key" value = "c5024">Census 2021 - Distribution, hotels and restaurants employment</button>
+                <button name = "key" value = "c5025">Census 2021 - Transport and communications employment</button>
+                <button name = "key" value = "c5026">Census 2021 - Financial, Real Estate, Professional and Administrative activities employment</button>
+                <button name = "key" value = "c5027">Census 2021 - Public administration, education and health employment</button>
+                <button name = "key" value = "c5028">Census 2021 - Other employment</button>
+                <button name = "key" value = "c5031">Census 2021 - Part-time: 15 hours or less worked per week</button>
+                <button name = "key" value = "c5032">Census 2021 - Part-time: 16-30 hours worked per week</button>
+                <button name = "key" value = "c5033">Census 2021 - Full-time: 31-48 hours worked per week</button>
+                <button name = "key" value = "c5034">Census 2021 - Full-time: 49+ hours worked per week</button>
+                <button name = "key" value = "comr">Community Relations</button>
+                <button name = "key" value = "cult">Cultural Identity</button>
+                <button name = "key" value = "hsg1">Health Survey - Very Good or Good General Health</button>
+                <button name = "key" value = "hsg2">Health Survey - Very Bad or Bad General Health</button>
+                <button name = "key" value = "hsns">Health Survey - Never Smoked</button>
+                <button name = "key" value = "hssm">Health Survey - Smoking</button>
+                <button name = "key" value = "hsec">Health Survey - Use E-Cigarettes</button>
+                <!-- <button name = "key" value = "sahl">Higher Level Apprenticeships in FE Equality Data</button> --> 
+                <button name = "key" value = "inc1">Income Deprivation and Inequality - Relative poverty</button>
+                <button name = "key" value = "inc2">Income Deprivation and Inequality - Absolute poverty</button>
+                <!-- <button name = "key" value = "life">Life Satisfaction</button> -->
+                <button name = "key" value = "lone">Loneliness</button>
+                <button name = "key" value = "sls1">Qualifications of School Leavers - 3 A-levels (A*-C)</button>
+                <button name = "key" value = "sls2">Qualifications of School Leavers - 3 A-levels (A*-E) </button>
+                <button name = "key" value = "sls3">Qualifications of School Leavers - 2 A-levels (A*-E) </button>
+                <button name = "key" value = "sls4">Qualifications of School Leavers - 5 GCSEs (A*-C) </button>
+                <button name = "key" value = "sls5">Qualifications of School Leavers - 5 GCSEs (A*-C including GCSE English and maths)</button>
+                <button name = "key" value = "slsall">Qualifications of School Leavers - Total Leavers</button>
+                <button name = "key" value = "refw">Refugee Welcome</button>
+                <button name = "key" value = "resp">Respect</button>
+                <button name = "key" value = "safe">Safe Towns and City Centres</button>
+                <button name = "key" value = "self">Self-efficacy</button>
+                <button name = "key" value = "prej">Self-reported prejudice against minority ethnic communities</button>
+                <button name = "key" value = "shar">Shared Communities</button>
+                <button name = "key" value = "spor">Sport and Physical Activity</button>
+                <button name = "key" value = "sar2">Students Achieving Regulated Qualifications at Level 2 in FE Colleges</button>
+                <button name = "key" value = "sar3">Students Achieving Regulated Qualifications at Level 3 in FE Colleges</button>
+              </div>
+            </form>
+            </aside>
+
+            <div id="main-content" class="screen">
+                <h2 id="domains-title" style="width: 100%; text-align: center;"></h2>
+
+                <div class="intro">
+                  <h2 style="margin-bottom: 30px;"><span class = "measure_title"></span> by <span class = "eq_grp_name" style = "color:#3878c5;"></span></h2>
+                  <h3>How do we measure this?</h3>
+                <h5><p id = "how_do_we_measure"></p></h5>
+                </div>
+                <div class="div-style-bar">
+                  
+                  <h3><span class = "measure_title"></span> <span class= "latest_year" style = "color:#3878c5;"></span></h3>
+                  <div id ="barInfoContainer">
+                    <p style="margin-bottom: 0px;">The following bar chart shows data on this measure for <span class= "latest_year" style="color:#3878c5; font-weight: bold;"></span> split by <span class = "eq_grp_name" style="color:#3878c5; font-weight: bold;"></span>.</p>
+                    <p style="margin-bottom: 15px;">The Northern Ireland (NI) value is added for comparison in a blue line.</p>
+                
+                    <!-- <br><hr style="border-top:3px solid rgba(0, 0, 0, .6)"> -->
+
+                    <button class="btn" id="chartBtn">View chart</button>
+                    <button class="btn" id="tableBtn">View table</button>
+
+                  </div>
+
+                  <div id="chartView" class ="chart-container">
+                    <button class="btn" id="downloadButton">Download chart as image</button>
+                    <!-- <div class="chart-container"> -->
+                    <canvas id="bar_line_chart"></canvas>
+                  </div>
+
+                  <div id="tableView" class="table-container">
+                    <button class="copy-button">Copy table</button>
+                    <table id="dataTable">
+                      <thead>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                    </table>
+                  </div>
+                  <button class="accordion-button" style="margin-top: 30px;">Click to show data summary for <span style="font-weight: bold;" class = "measure_title"></span> <span class= "latest_year" style="color:#3878c5; font-weight: bold;"></span></button>
+                  <div class="panel">
+                    <p class="data_summary" style="margin-bottom: 10px; margin-top: 10px;"></p>
+                    <button class="btn" id="copyTextButton" style="margin-bottom: 10px;">Copy Data Summary</button>
+                  </div>
+                </div>
+
+            <div id="chartInfoContainer">
+                <h3 style="margin-top: 30px;"><span class = "measure_title"></span> time trend - <span class="start_year" style = "color:#3878c5;"></span> <span style = "color:#3878c5;">to</span> <span class="latest_year" style = "color:#3878c5;"></span></h3>
+                <p style="margin-bottom: 0px;">The following line chart shows data on this measure from <span class= "start_year" style="color:#3878c5; font-weight: bold;"></span> to <span class= "latest_year" style="color:#3878c5; font-weight: bold;"></span> split by <span class = "eq_grp_name" style="color:#3878c5; font-weight: bold;"></span>.</p>
+                <p style="margin-bottom: 15px;">The Northern Ireland (NI) value is added for comparison in a blue dashed line.</p>
+                      
+                
+              <button class="btn" id="line_chartBtn">View chart</button>
+              <button class="btn" id="line_tableBtn">View table</button>
+              
+              <div id="tableView2" class="table-container" style = "display: none;">
+                <button class="copy-button" id="copy-button2">Copy table</button>        
+                <table id="dataTable2">
+                    <thead>
+                        <tr>
+                            <!-- Dynamically add columns for age groups -->
+                            <tr id="ageGroupHeaders"></tr>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+              </div>
+            </div>
+            <div id="chartContainer" class="grid" style="margin-top: 30px;"></div>
+    
+              <div>
+                <br>
+                <h3> Source</h3>
+                <p style="margin-bottom: 10px;">Data originally collected and presented in:<br> <a class = "source_name" id="sourceId" target="_blank"></a></p>
+                <p> Data presented here has been extracted from the NISRA Data Portal:<br> <a class="dataportal_name" id="portalId" target="_blank"></a></p>
+              </div>
+              
+            <!-- accordion section    -->
+              <h3>Notes</h3>
+            <button class="accordion-button">Click to expand or hide notes section for <span style="font-weight: bold;" class = "measure_title"></span> by <span style="font-weight: bold; color:#3878c5;"class = "eq_grp_name"></span></button>
+              <div class="panel">
+                <p id = "measureNotesParagraph" style="margin-bottom: 0px; font-weight: bold;font-size: 18px;">Notes on <span class = "measure_title" style="font-weight: bold;font-size: 18px;"></span></p>
+                <p id = "notes_in_measure"></p>
+                <p id = "groupNotesParagraph" style="margin-bottom: 0px; font-weight: bold;font-size: 18px;">Notes on <span class = "eq_grp_name" style="font-weight: bold;font-size: 18px;"></span></p>
+                <p id = "notes_in_group"></p>
+              </div> <!--close panel div-->
+  
+            </div> <!--closes main content div-->
+          </div>
+        </div>
+      </div>
+
+      <div id="home-scrn">
+        <h2 style="text-align: center; margin-top: 20px;">Welcome to Equality Matters</h2>
+        <h5 style="text-align: center;">Equality Matters is a tool designed to give you access to many measures collected by NISRA, split by their available Section 75 Equality Groups.</h5>
+        <h5 style="text-align: center;">To get started, please select a pathway from the options below:</h5>
+        <form id = "selection-form-pathway" style="list-style-type: none; padding: 0;">
+          <div id="pathways-container">
+            <button name = "path" value = "s75">Section 75 Group</button>
+            <button name = "path" value = "depart">Department</button>
+          </div>
+        </form>
+        <div style="margin-left: 30px;">
+          <h3>Video guide</h3>
+          <a href="#" target="blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/YouTube_icon_%282013-2017%29.png/200px-YouTube_icon_%282013-2017%29.png" alt="Equality Matters Video Guide" style="width: 150px; height: auto;">
+          </a>
+        </div>
+      </div>
+
+      <div id="s75-scrn">
+        <h2 style="text-align: center; margin-top: 20px;">Select a Section 75 Group to see available measures</h2>
+        <form id = "selection-form-75group" style="list-style-type: none; padding: 0;">
+          <div id="s75-groups-container">
+            <button name = "home" value = "age">Age</button>
+            <button name = "home" value = "depend">Dependants</button>
+            <button name = "home" value = "disab">Disability</button>
+            <button name = "home" value = "ethnic">Ethnic Group</button>
+            <button name = "home" value = "marital">Marital Status</button>
+            <button name = "home" value  = "political">Political Opinion</button>
+            <button name = "home" value = "race">Racial Group</button>
+            <button name = "home" value = "religion">Religion</button>
+            <button name = "home" value = "sex">Sex</button>
+            <button name = "home" value = "ori">Sexual Orientation</button>
+          </div>
+        </form>
+      </div>
+
+      <div id="depart-scrn">
+        <h2 style="text-align: center; margin-top: 20px;">Select a Department to see measures available</h2>
+        <form id = "selection-form-depart" style="list-style-type: none; padding: 0;">
+          <div id="depart-container">
+            <button name = "depart" value = "dfc">Department for Communities</button>
+            <button name = "depart" value = "dfi">Department for Infrastructure</button>
+            <button name = "depart" value = "dfe">Department for the Economy</button>
+            <button name = "depart" value = "daera">Department of Agriculture, Environment and Rural Affairs</button>
+            <button name = "depart" value = "de">Department of Education</button>
+            <button name = "depart" value  = "dof">Department of Finance</button>
+            <button name = "depart" value = "doh">Department of Health</button>
+            <button name = "depart" value = "doj">Department for Justice</button>
+            <button name = "depart" value = "teo">The Executive Office</button>
+          </div>
+        </form>
+      </div>
+
+      <div id="s75-measure-scrn">
+        <h2 style="text-align: center; margin-top: 20px;">Available measures</h2>
+        <form id = "selection-form-measure" style="list-style-type: none; padding: 0;">
+          <div id="key-metrics-container-inter">
+            <button name = "key" value = "pubt">Active Travel - Public Transport</button>
+            <button name = "key" value = "walk">Active Travel - Walking or Cycling</button>
+            <button name = "key" value = "artc">Arts and Culture activities participation</button>
+            <button name = "key" value = "c500">Census 2021 - Usual Resident Population</button>
+            <button name = "key" value = "c5011">Census 2021 - Economic Activity - In Employment</button>
+            <button name = "key" value = "c5012">Census 2021 - Economic Activity - Unemployed</button>
+            <button name = "key" value = "c5013">Census 2021 - Economically Inactive</button>
+            <button name = "key" value = "c5021">Census 2021 - Agriculture, energy and water employment</button>
+            <button name = "key" value = "c5022">Census 2021 - Manufacturing employment</button>
+            <button name = "key" value = "c5023">Census 2021 - Construction employment</button>
+            <button name = "key" value = "c5024">Census 2021 - Distribution, hotels and restaurants employment</button>
+            <button name = "key" value = "c5025">Census 2021 - Transport and communications employment</button>
+            <button name = "key" value = "c5026">Census 2021 - Financial, Real Estate, Professional and Administrative activities employment</button>
+            <button name = "key" value = "c5027">Census 2021 - Public administration, education and health employment</button>
+            <button name = "key" value = "c5028">Census 2021 - Other employment</button>
+            <button name = "key" value = "c5031">Census 2021 - Part-time: 15 hours or less worked per week</button>
+            <button name = "key" value = "c5032">Census 2021 - Part-time: 16-30 hours worked per week</button>
+            <button name = "key" value = "c5033">Census 2021 - Full-time: 31-48 hours worked per week</button>
+            <button name = "key" value = "c5034">Census 2021 - Full-time: 49+ hours worked per week</button>
+            <button name = "key" value = "comr">Community Relations</button>
+            <button name = "key" value = "cult">Cultural Identity</button>
+            <button name = "key" value = "hsg1">Health Survey - Very Good or Good General Health</button>
+            <button name = "key" value = "hsg2">Health Survey - Very Bad or Bad General Health</button>
+            <button name = "key" value = "hsns">Health Survey - Never Smoked</button>
+            <button name = "key" value = "hssm">Health Survey - Smoking</button>
+            <button name = "key" value = "hsec">Health Survey - Use E-Cigarettes</button>
+            <!-- <button name = "key" value = "sahl">Higher Level Apprenticeships in FE Equality Data</button> --> 
+            <button name = "key" value = "inc1">Income Deprivation and Inequality - Relative poverty</button>
+            <button name = "key" value = "inc2">Income Deprivation and Inequality - Absolute poverty</button>
+            <!-- <button name = "key" value = "life">Life Satisfaction</button> -->
+            <button name = "key" value = "lone">Loneliness</button>
+            <button name = "key" value = "sls1">Qualifications of School Leavers - 3 A-levels (A*-C)</button>
+            <button name = "key" value = "sls2">Qualifications of School Leavers - 3 A-levels (A*-E) </button>
+            <button name = "key" value = "sls3">Qualifications of School Leavers - 2 A-levels (A*-E) </button>
+            <button name = "key" value = "sls4">Qualifications of School Leavers - 5 GCSEs (A*-C) </button>
+            <button name = "key" value = "sls5">Qualifications of School Leavers - 5 GCSEs (A*-C including GCSE English and maths)</button>
+            <button name = "key" value = "slsall">Qualifications of School Leavers - Total Leavers</button>
+            <button name = "key" value = "refw">Refugee Welcome</button>
+            <button name = "key" value = "resp">Respect</button>
+            <button name = "key" value = "safe">Safe Towns and City Centres</button>
+            <button name = "key" value = "self">Self-efficacy</button>
+            <button name = "key" value = "prej">Self-reported prejudice against minority ethnic communities</button>
+            <button name = "key" value = "shar">Shared Communities</button>
+            <button name = "key" value = "spor">Sport and Physical Activity</button>
+            <button name = "key" value = "sar2">Students Achieving Regulated Qualifications at Level 2 in FE Colleges</button>
+            <button name = "key" value = "sar3">Students Achieving Regulated Qualifications at Level 3 in FE Colleges</button>
+          </div>
+        </form>
+      </div>
+      </div>
+      <hr style="border-top: 10px solid #cedc20; margin-bottom: 0; margin-top: 25px;">
+      <footer>
+        <div id="footer-container">
+          <div class="row">
+            <div style="height: 170px; width: 350px; margin: 10px;">
+              <h3 style="font-weight: 700; font-size: 18px; color: #ffffff">Links</h3>
+              <a href="https://data.nisra.gov.uk/" target="_blank" rel="noopener noreferrer">NISRA Data
+                Portal</a><br>
+              <a href="https://visual.nisra.gov.uk/" target="_blank" rel="noopener noreferrer">NISRA Interactive
+                Data Visualisation Hub</a><br>
+              <a href="https://www.opendatani.gov.uk/" target="_blank" rel="noopener noreferrer">OpenDataNI</a><br>
+              <a href="https://www.nidirect.gov.uk" target="_blank" rel="noopener noreferrer">NIDirect</a><br>
+              <a href="https://www.gov.uk/" target="_blank" rel="noopener noreferrer">GOV.UK</a><br>
+            </div>
+            <div style="height: 170px; width: 120px; margin: 20px 0px 20px 60px;">
+              <h3 style="font-weight: 700; font-size: 18px; color: #ffffff">Follow NISRA</h3>
+              <i class="fa-brands fa-facebook-f"></i> <a href="https://www.facebook.com/nisra.gov.uk" target="_blank"
+                rel="noopener noreferrer">Facebook</a><br>
+              <i class="fa-brands fa-x-twitter"></i> <a href="https://twitter.com/NISRA" target="_blank"
+                rel="noopener noreferrer">Twitter</a><br>
+              <i class="fa-brands fa-youtube"></i> <a href="https://www.youtube.com/user/nisrastats" target="_blank"
+                rel="noopener noreferrer">YouTube</a><br>
+            </div>
+            <div id="teo-logo-container">
+              <h4 style="margin-right: 20px; font-weight: normal; padding-bottom: 30px;">Funded by:</h4>
+              <a href="https://www.executiveoffice-ni.gov.uk/" target="_blank"><img id="footer-teo-logo" src="img/logo-white-teo.png" alt="The Executive Office logo. Clicking image takes user to TEO website"></a>
+            </div>
+          </div>
+          <div class="flex-list-footer">
+            <ul
+              style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; margin-left: -1px;">
+              <li class="cc-li" style="border-left:0px;"><a href="https://www.nisra.gov.uk/crown-copyright" target="_blank"
+                  rel="noopener noreferrer">© Crown Copyright</a></li>
+              <!--<li class="cc-li"><a href="https://www.nisra.gov.uk/contacts/programme-government-analytics-executive-office"
+                  target="_blank" rel="noopener noreferrer">Contact us</a></li> --> 
+              <li class="cc-li"><a href="https://consultations.nidirect.gov.uk/teo/d8cf2dfc" target="_blank">Leave
+                  feedback</a></li>
+              <li class="cc-li"><a href="https://www.nisra.gov.uk/terms-and-conditions" target="_blank"
+                  rel="noopener noreferrer">Terms and conditions</a></li>
+              <li class="cc-li"><a href="https://www.nisra.gov.uk/cookies" target="_blank"
+                  rel="noopener noreferrer">Cookies</a></li>
+              <li class="cc-li"><a href="https://www.nisra.gov.uk/nisra-privacy-notice" target="_blank"
+                  rel="noopener noreferrer">Privacy</a></li>
+              <li class="cc-li"><a href="https://www.nisra.gov.uk/accessibility-statement-nisra" target="_blank"
+                  rel="noopener noreferrer">Accessibility Statement</a></li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+
+    <script src = "scripts/cookies_script.js"></script>
+    <script>
+      window.onload = showCookieBanner;
+    </script>
+    <!-- <script src = "scripts/data_functions.js"></script>
+    <script src = "scripts/navigation_functions.js"></script> -->
+
+</html>
+
+<script type="module">
+
+  // import data for use in charts - needs to be imported in each script
+  import * as data from './data.js';
+
+  let lookupTableEqCode = data.lookup_table_eq_code;
+  let lookupTableDisplayGrp = data.lookup_table_display_grp;
+  let lookupTableMeasureTitle = data.lookup_table_measure_title;
+  let lookupTableDatasetLong = data.lookup_table_dataset_long;
+
+  function filterVariablesByName(data, matchStrings) {
+    if (!Array.isArray(matchStrings) || matchStrings.length !== 2) {
+        throw new Error("matchStrings must be an array of exactly two strings");
+    }
+
+    const [match1, match2] = matchStrings;
+
+    const filtered = Object.entries(data)
+        .filter(([key]) => key.includes(match1) && key.includes(match2))
+        .map(([, value]) => value); // Extract only the values
+
+    return filtered.flat(); // Flatten the array if the values are arrays
+  }
+
+  // filters the data based on a key and the returned values from a lookup - returns data arrays as an object
+  function filterVariablesByLookup(data, lookupKey, matchString, lookupTable) {
+    if (typeof lookupTable !== 'object' || lookupTable === null) {
+        throw new Error("lookupTable must be a valid object");
+    }
+ 
+    if (!Object.prototype.hasOwnProperty.call(lookupTable, lookupKey)) {
+        throw new Error(`lookupKey "${lookupKey}" not found in lookupTable`);
+    }
+ 
+    const lookupValues = lookupTable[lookupKey];
+    if (!Array.isArray(lookupValues)) {
+        throw new Error(`Value for lookupKey "${lookupKey}" must be an array`);
+    }
+ 
+    // Iterate through `lookupValues` to preserve order from `lookupTable`
+    const filtered = [];
+ 
+    for (const val of lookupValues) {
+        for (const [key, value] of Object.entries(data)) {
+            if (key.includes(matchString) && key.includes(val) && !key.includes("_lci_") && !key.includes("_uci_")) {
+                filtered.push([key, value]);
+                break;  // Move to the next value once a match is found
+            }
+        }
+    }
+    
+    return Object.fromEntries(filtered); // Convert Map back to an object if needed
+  }
+  
+  
+  // filters the lci data based on a key and the returned values from a lookup - returns data arrays as an object
+  function filterLciVariablesByLookup(data, lookupKey, matchString, lookupTable) {
+    if (typeof lookupTable !== 'object' || lookupTable === null) {
+        throw new Error("lookupTable must be a valid object");
+    }
+
+    if (!Object.prototype.hasOwnProperty.call(lookupTable, lookupKey)) {
+        throw new Error(`lookupKey "${lookupKey}" not found in lookupTable`);
+    }
+
+    const lookupValues = lookupTable[lookupKey];
+    if (!Array.isArray(lookupValues)) {
+        throw new Error(`Value for lookupKey "${lookupKey}" must be an array`);
+    }
+
+    // Iterate through `lookupValues` to preserve order from `lookupTable`
+    const lci_filtered = [];
+ 
+    for (const val of lookupValues) {
+        for (const [key, value] of Object.entries(data)) {
+            if (key.includes(matchString) && key.includes(val) && key.includes("_lci_")) {
+              lci_filtered.push([key, value]);
+                break;  // Move to the next value once a match is found
+            }
+        }
+    }
+
+    return Object.fromEntries(lci_filtered);
+  }
+
+  // filters the uci data based on a key and the returned values from a lookup - returns data arrays as an object
+  function filterUciVariablesByLookup(data, lookupKey, matchString, lookupTable) {
+    if (typeof lookupTable !== 'object' || lookupTable === null) {
+        throw new Error("lookupTable must be a valid object");
+    }
+
+    if (!Object.prototype.hasOwnProperty.call(lookupTable, lookupKey)) {
+        throw new Error(`lookupKey "${lookupKey}" not found in lookupTable`);
+    }
+
+    const lookupValues = lookupTable[lookupKey];
+    if (!Array.isArray(lookupValues)) {
+        throw new Error(`Value for lookupKey "${lookupKey}" must be an array`);
+    }
+
+    // Iterate through `lookupValues` to preserve order from `lookupTable`
+    const uci_filtered = [];
+ 
+    for (const val of lookupValues) {
+        for (const [key, value] of Object.entries(data)) {
+            if (key.includes(matchString) && key.includes(val) && key.includes("_uci_")) {
+              uci_filtered.push([key, value]);
+                break;  // Move to the next value once a match is found
+            }
+        }
+    }
+
+    return Object.fromEntries(uci_filtered);
+  }
+
+  // returns a value from a lookup table based on matching a key value supplied
+  function lookupValueByKey(key, lookupTable) {
+    if (typeof lookupTable !== 'object' || lookupTable === null) {
+        throw new Error("lookupTable must be a valid object");
+    }
+
+    if (!Object.prototype.hasOwnProperty.call(lookupTable, key)) {
+        throw new Error(`Key "${key}" not found in lookupTable`);
+    }
+
+    // Return the corresponding value from the lookup table
+    return lookupTable[key];
+  }
+
+  export function filterMetadataFromData(data, keyToMatch, fieldName) {
+    if (typeof data !== 'object' || data === null) {
+        throw new Error("data must be a valid object");
+    }
+
+    // Dynamically construct the key to search in the data object
+    const fullKey = `${keyToMatch}_metadata`;
+
+    if (!Object.prototype.hasOwnProperty.call(data, fullKey)) {
+        throw new Error(`Key "${fullKey}" not found in data`);
+    }
+
+    const metadata = data[fullKey];
+    if (typeof metadata !== 'object' || metadata === null) {
+        throw new Error(`Value for key "${fullKey}" must be a valid object`);
+    }
+
+    if (!Object.prototype.hasOwnProperty.call(metadata, fieldName)) {
+        throw new Error(`Field "${fieldName}" not found in the object for key "${fullKey}"`);
+    }
+
+    // Return the value associated with the fieldName
+    return metadata[fieldName];
+  }
+
+  // accepts the current S75 group value and returns all measures that are split by that group
+  function returnS75CatsByLookup(data ,matchString, lookupTable) {
+    if (typeof lookupTable !== 'object' || lookupTable === null) {
+        throw new Error("lookupTable must be a valid object");
+    }
+
+    if (typeof matchString !== 'string' || matchString.trim() === "") {
+        throw new Error("matchString must be a non-empty string");
+    }
+
+    // Ensure the matchString exists as a key in the lookupTable
+    if (!Object.prototype.hasOwnProperty.call(lookupTable, matchString)) {
+        throw new Error(`Key "${matchString}" not found in lookupTable`);
+    }
+
+    // Get the array of lookup values for the matchString
+    const lookupValues = lookupTable[matchString];
+    if (!Array.isArray(lookupValues) || lookupValues.length === 0) {
+        throw new Error(`Value for key "${matchString}" in lookupTable must be a non-empty array`);
+    }
+
+    // Filter `data` keys that match any value in the lookupValues array
+    const filteredKeys = Object.keys(data).filter(key =>
+        lookupValues.some(val => key.includes(val))
+    );
+
+    // Extract unique prefixes (up to the first '_') from the filtered keys
+    const uniquePrefixes = [...new Set(filteredKeys.map(key => key.split('_')[0]))];
+
+    return uniquePrefixes;
+  }
+
+  // takes the output of returnS75CatsByLookup and matches to another lookup to get full titles
+  function mapPrefixesToLookup(prefixes, lookup) {
+    if (!Array.isArray(prefixes)) {
+        throw new Error("Prefixes must be an array");
+    }
+
+    if (typeof lookup !== 'object' || lookup === null) {
+        throw new Error("Lookup must be a valid object");
+    }
+
+    // Map each prefix to its corresponding value in the lookup
+    const mappedValues = prefixes.map(prefix => {
+        if (Object.prototype.hasOwnProperty.call(lookup, prefix)) {
+            return lookup[prefix];
+        } else {
+            return null; // Return null if the prefix doesn't exist in the lookup
+        }
+    });
+
+    return mappedValues;
+  }
+
+  // inverse lookup
+  const invertObject = (lookupTableEqCode) => {
+    const inverted = {};
+
+    Object.entries(lookupTableEqCode).forEach(([key, values]) => {
+      values.forEach(value => {
+        if (!inverted[value]) {
+          inverted[value] = [];
+        }
+        inverted[value].push(key);
+      });
+    });
+
+    return inverted;
+  };
+
+  const invertedLookupEqCode = invertObject(lookupTableEqCode);
+  console.log('inverted lookup:',invertedLookupEqCode);
+
+  function returnAvailableS75ByLookup(data, matchString, lookupTable) {
+      if (typeof lookupTable !== 'object' || lookupTable === null) {
+          throw new Error("lookupTable must be a valid object");
+      }
+
+      if (typeof matchString !== 'string' || matchString.trim() === "") {
+          throw new Error("matchString must be a non-empty string");
+      }
+
+      // Filter keys in `data` that contain `matchString`
+      const matchedKeys = Object.keys(data).filter(key => key.includes(matchString));
+
+      // Extract EQ values from matched keys (pattern: EQ followed by numbers up to next underscore)
+      const eqValues = new Set();
+      const eqPattern = /EQ\d+/g;
+      
+      matchedKeys.forEach(key => {
+          const matches = key.match(eqPattern);
+          if (matches) {
+              matches.forEach(eq => eqValues.add(eq));
+          }
+      });
+
+      // Look up extracted EQ values in lookupTable and collect unique matches
+      const uniqueResults = new Set();
+      eqValues.forEach(eq => {
+          if (lookupTable.hasOwnProperty(eq)) {
+              lookupTable[eq].forEach(value => uniqueResults.add(value));
+          }
+      });
+
+      return [...uniqueResults];
+  }
+
+
+  // Get the current URL of the window
+  let window_url = window.location.href;
+
+  let group;  // Variable to store the 's75' parameter value
+  let ind;  // Variable to store the 'key' parameter value
+  let s75CatMeasures;  // Variable to store the measures associated with the 's75' value
+  let path;
+  let key_btns = document.getElementById("key-metrics-container").getElementsByTagName("button");  // Retrieves all button elements within the element that has the ID "key-metrics-container"
+  let s75AvaiMeasures; 
+  let s75_btns = document.getElementById("top-buttons-container").getElementsByTagName("button");
+  let key_btns_inter = document.getElementById("key-metrics-container-inter").getElementsByTagName("button");  // Retrieves all button elements within the element that has the ID "key-metrics-container-inter"
+  let measureTitle // Variable to store measure parameter;
+  let eqGrpDisplayName // Variable to store group name;
+  let nonNull; // variable for creating and hiding linecharts
+  var home_scrn = document.getElementById("home-scrn");
+  var s75_scrn = document.getElementById("s75-scrn");
+  var depart_scrn = document.getElementById("depart-scrn");
+  var s75_measure_scrn = document.getElementById("s75-measure-scrn");
+  var dest_scrn = document.getElementById("dest-scrn");
+
+  if (window_url.indexOf("?") > -1 && window_url.indexOf("path=") > -1) {
+ 
+    path = window_url.slice(window_url.indexOf("path=") + 5);
+    localStorage.setItem("path", path);
+
+    if (path === "s75") {
+      home_scrn.style.display = "none";
+      s75_scrn.style.display = "block";
+      depart_scrn.style.display = "none";
+      s75_measure_scrn.style.display = "none";
+      dest_scrn.style.display = "none";
+
+    } else if (path === "depart") {
+      home_scrn.style.display = "none";
+      s75_scrn.style.display = "none";
+      depart_scrn.style.display = "block";
+      s75_measure_scrn.style.display = "none";
+      dest_scrn.style.display = "none";
+      
+    }
+
+    } else {
+    // default showing when above not met - will apply to any part of the app
+    // home_scrn shown and nothing else
+    // to counteract this, home_scrn will need to be hidden on every other page
+    s75_scrn.style.display = "none";
+    depart_scrn.style.display = "none";
+    s75_measure_scrn.style.display = "none";
+    dest_scrn.style.display = "none";
+  }  
+
+  if (window_url.indexOf("?") > -1 && window_url.indexOf("home=") > -1) {
+    home_scrn.style.display = "none";
+    s75_scrn.style.display = "none";
+    s75_measure_scrn.style.display = "block";
+    dest_scrn.style.display = "none";
+
+    group = window_url.slice(window_url.indexOf("home=") + 5);
+    localStorage.setItem("s75", group);
+
+    let s75_cats = returnS75CatsByLookup(data, group, lookupTableEqCode);
+
+    for (let i = 0; i < key_btns_inter.length; i ++) {
+      if (!s75_cats.includes(key_btns_inter[i].value)) {
+        key_btns_inter[i].style.display = "none";
+      }
+    }
+
+  }
+
+  if (window_url.indexOf("?") > -1 && window_url.indexOf("key=") > -1 & window_url.indexOf("s75=") == -1) {
+    
+    let base_url = window_url.slice(0, window_url.indexOf("?"));
+    group = localStorage.getItem("s75");
+    ind = window_url.slice(window_url.indexOf("key=") + 4);
+    localStorage.setItem("key", ind);
+    window.location.href = base_url + "?s75=" + group + "&key=" + ind;
+  }
+
+if (window_url.indexOf("?") > -1 && window_url.indexOf("s75=") > -1) {
+  // Check if the URL contains a query string ('?') and // Check if the parameter 's75' exists in the URL
+  home_scrn.style.display = "none";
+  dest_scrn.style.display = "block";
+
+// Check if the URL contains a query string ('?')
+let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
+  // Extract the query string part after '?' and split it into key-value pairs
+  let base_url = window_url.slice(0, window_url.indexOf("?"));
+  // Extract the base URL without query parameters
+  for (let i = 0; i < selections.length; i++) {
+    // Loop through each key-value pair in the query string
+    if (selections[i].indexOf("s75=") > -1) {
+      // Check if the parameter 's75' exists in the URL
+      group = selections[i].slice(selections[i].indexOf("s75=") + 4);
+      // Extract the value of 's75' (after "s75=")
+      localStorage.setItem("s75", group);
+      // Store the 's75' value in localStorage for persistence
+      s75CatMeasures = returnS75CatsByLookup(data, group, lookupTableEqCode);
+      // Call a function to retrieve measures associated with 's75'
+      for (let j = 0; j < key_btns.length; j++) {  
+        // Loop through all buttons in "key-metrics-container"
+        if (s75CatMeasures.includes(key_btns[j].value)) {  
+          // If the button's value is in the list of valid measures, show it
+          key_btns[j].style.display = "block";
+        } else {
+          // Otherwise, hide the button
+          key_btns[j].style.display = "none";
+        }
+      } 
+
+      if (s75CatMeasures.includes(localStorage.getItem("key"))) {
+        // If the current stored 'key' is still a valid option
+        ind = localStorage.getItem("key");
+      } else {
+        // Otherwise, default to the first available measure
+        console.log("Not a valid measure");
+        ind = s75CatMeasures[0];
+      }
+    }
+    if (selections[i].indexOf("key=") > -1) {
+      // Check if the parameter 'key' exists in the URL
+      ind = selections[i].slice(selections[i].indexOf("key=") + 4);
+      // Extract the value of 'key' (after "key=")
+      localStorage.setItem("key", ind);
+      // Store the 'key' value in localStorage for persistence
+      group = localStorage.getItem("s75");
+      // Retrieve the stored 's75' value
+    }
+    s75AvaiMeasures = returnAvailableS75ByLookup(data, ind, invertedLookupEqCode);
+        // Call a function to retrieve measures associated with 's75'
+        for (let n = 0; n < s75_btns.length; n++) {  
+        // Loop through all buttons in "key-metrics-container"
+          if (s75AvaiMeasures.includes(s75_btns[n].value)) {  
+            // If the button's value is in the list of valid measures, show it
+            s75_btns[n].style.display = "block";
+          } else {
+           // Otherwise, hide the button
+           s75_btns[n].style.display = "none";
+          }
+        }
+      if (window.location.href != base_url + "?s75=" + group + "&key=" + ind) {
+    // If the URL is not already formatted correctly with the selected values
+    window.location.href = base_url + "?s75=" + group + "&key=" + ind;
+    // Redirect to the updated URL to ensure correct parameters are set
+  }}}
+
+  if (window_url.indexOf("?") > -1 && window_url.indexOf("key=") > -1 & window_url.indexOf("s75=") == -1) {
+    
+    let base_url = window_url.slice(0, window_url.indexOf("?"));
+    group = localStorage.getItem("s75");
+    ind = window_url.slice(window_url.indexOf("key=") + 4);
+    localStorage.setItem("key", ind);
+    window.location.href = base_url + "?s75=" + group + "&key=" + ind;
+  }
+
+  if (window_url.indexOf("?") > -1 && window_url.indexOf("s75=") > -1) {
+    // Check if the URL contains a query string ('?') and // Check if the parameter 's75' exists in the URL
+    home_scrn.style.display = "none";
+    dest_scrn.style.display = "block";
+
+  // Check if the URL contains a query string ('?')
+  let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
+    // Extract the query string part after '?' and split it into key-value pairs
+    let base_url = window_url.slice(0, window_url.indexOf("?"));
+    // Extract the base URL without query parameters
+    for (let i = 0; i < selections.length; i++) {
+      // Loop through each key-value pair in the query string
+      if (selections[i].indexOf("s75=") > -1) {
+        // Check if the parameter 's75' exists in the URL
+        group = selections[i].slice(selections[i].indexOf("s75=") + 4);
+        // Extract the value of 's75' (after "s75=")
+        localStorage.setItem("s75", group);
+        // Store the 's75' value in localStorage for persistence
+        s75CatMeasures = returnS75CatsByLookup(data, group, lookupTableEqCode);
+        // Call a function to retrieve measures associated with 's75'
+        for (let j = 0; j < key_btns.length; j++) {  
+          // Loop through all buttons in "key-metrics-container"
+          if (s75CatMeasures.includes(key_btns[j].value)) {  
+            // If the button's value is in the list of valid measures, show it
+            key_btns[j].style.display = "block";
+          } else {
+            // Otherwise, hide the button
+            key_btns[j].style.display = "none";
+          }
+        }
+
+        if (s75CatMeasures.includes(localStorage.getItem("key"))) {
+          // If the current stored 'key' is still a valid option
+          ind = localStorage.getItem("key");
+        } else {
+          // Otherwise, default to the first available measure
+          console.log("Not a valid measure");
+          ind = s75CatMeasures[0];
+        }
+      }
+      if (selections[i].indexOf("key=") > -1) {
+        // Check if the parameter 'key' exists in the URL
+        ind = selections[i].slice(selections[i].indexOf("key=") + 4);
+        // Extract the value of 'key' (after "key=")
+        localStorage.setItem("key", ind);
+        // Store the 'key' value in localStorage for persistence
+        group = localStorage.getItem("s75");
+        // Retrieve the stored 's75' value
+      }
+
+        if (window.location.href != base_url + "?s75=" + group + "&key=" + ind) {
+      // If the URL is not already formatted correctly with the selected values
+      window.location.href = base_url + "?s75=" + group + "&key=" + ind;
+      // Redirect to the updated URL to ensure correct parameters are set
+    }
+  }}
+
+
+  if (window_url.indexOf("?") > -1) {
+    // // Check if the URL contains a query string ('?')
+    // let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
+    // // Extract the query string part after '?' and split it into key-value pairs
+    // let base_url = window_url.slice(0, window_url.indexOf("?"));
+    // // Extract the base URL without query parameters
+    // for (let i = 0; i < selections.length; i++) {
+    //   // Loop through each key-value pair in the query string
+    //   if (selections[i].indexOf("s75=") > -1) {
+    //     // Check if the parameter 's75' exists in the URL
+    //     group = selections[i].slice(selections[i].indexOf("s75=") + 4);
+    //     // Extract the value of 's75' (after "s75=")
+    //     localStorage.setItem("s75", group);
+    //     // Store the 's75' value in localStorage for persistence
+    //     s75CatMeasures = returnS75CatsByLookup(data, group, lookupTableEqCode);
+    //     // Call a function to retrieve measures associated with 's75'
+    //     for (let j = 0; j < key_btns.length; j++) {  
+    //       // Loop through all buttons in "key-metrics-container"
+    //       if (s75CatMeasures.includes(key_btns[j].value)) {  
+    //         // If the button's value is in the list of valid measures, show it
+    //         key_btns[j].style.display = "block";
+    //       } else {
+    //         // Otherwise, hide the button
+    //         key_btns[j].style.display = "none";
+    //       }
+    //     }
+      //   if (s75CatMeasures.includes(localStorage.getItem("key"))) {
+      //     // If the current stored 'key' is still a valid option
+      //     ind = localStorage.getItem("key");
+      //   } else {
+      //     // Otherwise, default to the first available measure
+      //     console.log("Not a valid measure")
+      //   }
+      // }
+      // if (selections[i].indexOf("key=") > -1) {
+      //   // Check if the parameter 'key' exists in the URL
+      //   ind = selections[i].slice(selections[i].indexOf("key=") + 4);
+      //   // Extract the value of 'key' (after "key=")
+      //   localStorage.setItem("key", ind);
+      //   // Store the 'key' value in localStorage for persistence
+      //   group = localStorage.getItem("s75");
+      //   // Retrieve the stored 's75' value
+      // }
+    // }
+    // if (window.location.href != base_url + "?s75=" + group + "&key=" + ind) {
+    //   // If the URL is not already formatted correctly with the selected values
+    //   window.location.href = base_url + "?s75=" + group + "&key=" + ind;
+    //   // Redirect to the updated URL to ensure correct parameters are set
+    // }
+    // Update document title
+    // measureTitle = filterMetadataFromData(data, ind, "title");
+    // eqGrpDisplayName = lookupValueByKey(group, lookupTableDisplayGrp);
+    // document.getElementsByTagName("title")[0].textContent += " - " + measureTitle + " by " + eqGrpDisplayName;
+  // } 
+  // else if (window_url.indexOf("?") < -1) {
+  //   // If the URL has no query parameters, set default values
+  //   // dest_scrn.style.display = "none"
+  //   // s75_scrn.style.display = "block"
+  //   // group = "age";  
+  //   // ind = "inc1";  
+
+  //   // Set default values for 's75' and 'key'
+  //   // localStorage.setItem("s75", group);
+  //   // localStorage.setItem("key", ind);
+  //   // Store the default values in localStorage
+  //   // measureTitle = filterMetadataFromData(data, ind, "title");
+  //   // eqGrpDisplayName = lookupValueByKey(group, lookupTableDisplayGrp);
+  // }
+  // Update document title
+  measureTitle = lookupValueByKey(ind, lookupTableMeasureTitle);
+  eqGrpDisplayName = lookupValueByKey(group, lookupTableDisplayGrp);
+  document.getElementsByTagName("title")[0].textContent += " - " + measureTitle + " by " + eqGrpDisplayName;
+} 
+// else if (window_url.indexOf("?") < -1) {
+//   // If the URL has no query parameters, set default values
+//   // dest_scrn.style.display = "none"
+//   // home_scrn.style.display = "block"
+//   // group = "age";  
+//   // ind = "inc1";  
+
+//   // Set default values for 's75' and 'key'
+//   // localStorage.setItem("s75", group);
+//   // localStorage.setItem("key", ind);
+//   // Store the default values in localStorage
+//   // measureTitle = filterMetadataFromData(data, ind, "title");
+//   // eqGrpDisplayName = lookupValueByKey(group, lookupTableDisplayGrp);
+// }
+
+  // ################################################################################
+  // ################################################################################
+  // ################################################################################
+  // ################################################################################
+
+  let yearLabels = filterVariablesByName(data, [ind, 'line_labels']);
+  let niLineData = filterVariablesByName(data, [ind, 'ni_']);
+  let niAvgLine = niLineData[niLineData.length - 1];
+  let eqGrpCatLabelsName =  "_" + group + "_category_labels";
+  let eqGrpCatLabels = filterVariablesByName(data, [ind, eqGrpCatLabelsName]);
+  let eqGrpCatLineData = filterVariablesByLookup(data, group, ind, lookupTableEqCode);
+  let eqGrpLciCatLineData = filterLciVariablesByLookup(data, group, ind, lookupTableEqCode);
+  let eqGrpUciCatLineData = filterUciVariablesByLookup(data, group, ind, lookupTableEqCode);
+  let eqGrpCatBarData = Object.values(eqGrpCatLineData).map(value => value[value.length - 1]);
+  let eqGrpLciCatBarData = Object.values(eqGrpLciCatLineData).map(value => value[value.length - 1]);
+  let eqGrpUciCatBarData = Object.values(eqGrpUciCatLineData).map(value => value[value.length - 1]);
+  let numEQGrpCats = eqGrpCatLabels.length;
+  let startYear = filterMetadataFromData(data, ind, "start_year");
+  let latestYear = filterMetadataFromData(data, ind, "end_year");
+  let datasetLongName = lookupValueByKey(ind, lookupTableDatasetLong);
+  let s75CatMeasuresTitle = mapPrefixesToLookup(s75CatMeasures, lookupTableMeasureTitle);
+  let s75CatNotesLabelsName =  "_" + group + "_section75_notes";
+  let s75CatNotesLabels = filterVariablesByName(data, [ind, s75CatNotesLabelsName]);
+  let furtherInfo = data[`${ind}_further_information`];
+  let s75grps = returnAvailableS75ByLookup(data,ind,invertedLookupEqCode);
+
+
+  console.log('Year Labels:', yearLabels);
+  console.log('N.I. Line Data:', niLineData);
+  console.log('N.I. Average Line:', niAvgLine);
+  console.log('EQ Group Category Labels:', eqGrpCatLabels);
+  console.log('EQ Category Data:', eqGrpCatLineData);
+  console.log('EQ Group Display Name:', eqGrpDisplayName);
+  console.log('Bar Data:', eqGrpCatBarData);
+  console.log('LCI Bar Data:', eqGrpLciCatBarData);
+  console.log('UCI Bar Data:', eqGrpUciCatBarData);
+  console.log('Number of Categories:', numEQGrpCats);
+  console.log('Lookup Table:', lookupTableEqCode);
+  console.log('Measure Title:', measureTitle);
+  console.log('Start Year:', startYear);
+  console.log('Latest Year:', latestYear);
+  console.log('Current Dataset Long:', datasetLongName);
+  console.log('Section 75 Category Measures:', s75CatMeasures);
+  console.log('Section 75 Category Measures Titles:', s75CatMeasuresTitle);
+  console.log('Section 75 Category Labels Notes: ',s75CatNotesLabels);
+  console.log('Further Information ',furtherInfo);
+  console.log('Section 75 Available Groups:', s75grps);
+
+  let chartInstance = null;
+
+  Chart.register(ChartDataLabels);
+
+  // determine maxValue of the current bar data
+  const maxValue = Math.max(...eqGrpCatBarData);
+  const maxAvgDiff = niAvgLine - maxValue;
+
+  // Function to calculate padding based on screen size
+  function calculateBarPadding() {
+    const viewportWidth = window.innerWidth;
+
+    if (maxValue < 75 && maxAvgDiff <= -2 || maxValue >= 75 && maxAvgDiff <= -9){
+      if (viewportWidth <= 1024) {
+          // Tablet: Medium padding
+          return maxValue * 0.11;
+      } else if (viewportWidth <=1200) {
+          return maxValue * 0.08;
+      } else if (viewportWidth <=1500) {
+          // Desktop: Larger padding
+          return maxValue * 0.06;
+      } else {
+          return maxValue * 0.04;
+      }
+    }
+    else if (maxValue >= 75 && (maxAvgDiff > -9 && maxAvgDiff <= -4)){
+      if (viewportWidth <= 1024) {
+          // Tablet: Medium padding
+          return maxValue * 0.16;
+      } else if (viewportWidth <=1200) {
+          return maxValue * 0.13;
+      } else if (viewportWidth <=1500) {
+          // Desktop: Larger padding
+          return maxValue * 0.11;
+      } else {
+          return maxValue * 0.09;
+      }
+    }
+    else if (maxValue < 75 && (maxAvgDiff > -2 && maxAvgDiff <= -0.5)){
+      if (viewportWidth <= 1024) {
+          // Tablet: Medium padding
+          return maxValue * 0.20;
+      } else if (viewportWidth <=1200) {
+          return maxValue * 0.17;
+      } else if (viewportWidth <=1500) {
+          // Desktop: Larger padding
+          return maxValue * 0.15;
+      } else {
+          return maxValue * 0.13;
+      }
+    }
+    else {
+      if (viewportWidth <= 1024) {
+          // Tablet: Medium padding
+          return maxValue * 0.31;
+      } else if (viewportWidth <=1200) {
+          return maxValue * 0.28;
+      } else if (viewportWidth <=1500) {
+          // Desktop: Larger padding
+          return maxValue * 0.26;
+      } else {
+          return maxValue * 0.24;
+      }
+    }
+  }
+
+  console.log("max value:", maxValue);
+  console.log("average value:", niAvgLine);
+  console.log("avg diff:", maxAvgDiff)
+
+  // Initial padding - needs to be different when the average value is close or the same as the max value - set thresholds
+  // in calculateBarPadding
+  let barPadding = calculateBarPadding();
+
+  // Bar chart function
+  function createBarChart(cat_labels, bar_data, ni_line) {
+    const ctx_bar_line_chart = document.getElementById('bar_line_chart').getContext('2d');
+
+    let annotationsConfig = {};
+    const realBarValCount = bar_data.filter(value => value !== null).length;
+
+    if (ni_line !== 100){
+      annotationsConfig = {
+        annotations: {
+                avg_line: {
+                  type: 'line',
+                  xMin: ni_line ,             // Set the Y position for the line
+                  xMax: ni_line ,             // Same as yMin for a horizontal line
+                  borderColor: '#3b80ae',   // Color of the line
+                  borderWidth: 6,
+                  label: {
+                    content: (ctx) => {
+                      return [
+                        'N.I.',' value:', `${ni_line}%`
+                      ];
+                    },
+                    display: true,       // Ensure label is displayed
+                    position: 'center',     // Position of the label
+                    backgroundColor: 'rgba(255, 255, 255, 1)', // Optional: Label background color,
+                    color: 'black',      // Optional: Text color for the label
+                    font: {
+                      size: 18,        // Font size of the label text
+                      weight: 'bold'
+                    },
+                    padding: 4,           // Optional: Padding around the label
+                    borderColor: 'black',
+                    borderWidth: 3,
+                    borderRadius: 1,
+                    callout: {
+                      display: true,
+                      color: 'black',
+                      width: 30,
+                      length: 10
+                    },
+                    xAdjust: 80
+                  },
+                },
+              },
+            };
+      }
+    
+    
+    if (realBarValCount >=1){
+      chartInstance = new Chart(ctx_bar_line_chart, {
+        type: 'bar',
+        data: {
+          labels: cat_labels,
+          datasets: [{
+            label:`Group value`,
+            data: bar_data,
+            backgroundColor: '#00205B',
+            datalabels: {
+              display: true,
+              anchor: 'start',
+              align: 'end',
+              formatter: (value) => `${value}%`,
+              color: '#fff',      // Set the label color
+              font: {
+                size: 22
+              }
+            },
+            order: 2
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          plugins: {
+            legend: {
+              display: false
+            },
+            // suppress datalabels globally for this chart - turned on individually for each dataset as needed
+            datalabels: {
+              display: false
+            },
+            title: {
+              display: false,
+            },
+            customLinePlugin: false, // Disable the line mouseover plugin for this chart
+            annotation: annotationsConfig,
+          },
+          scales: {
+            y: {
+              grid: {
+                display: false
+              },
+              border: {
+                display: true,
+                width: 3,
+                color: '#00205B'
+              },
+              ticks: {
+                display: true,
+                font: {
+                  size: 16
+                }
+              }
+            },
+            x: {
+              grid: {
+                display: false
+              },
+              border: {
+                display: false
+              },
+              min: 0,
+              max: maxValue + barPadding,
+              ticks: {
+                display: false,
+              }
+            }
+          }
+        }
+      }
+    )
+    }else{
+          barInfoContainer.style.display = "none";
+          document.getElementById('chartView').innerHTML = '<center style="font-weight: bold; font-size: 18pt;">Current year data is not available for this measure<br><br></center>';
+          
+        }
+
+  };
+
+  const latest_year = document.querySelectorAll('.latest_year');
+  for (let i = 0; i < latest_year.length; i++) {
+    latest_year[i].innerHTML = latestYear;
+  }
+
+  const start_year = document.querySelectorAll('.start_year');
+  for (let i = 0; i < start_year.length; i++) {
+    start_year[i].innerHTML = startYear;
+  }
+
+  const eq_grp_name = document.querySelectorAll('.eq_grp_name');
+  for (let i = 0; i < eq_grp_name.length; i++) {
+    eq_grp_name[i].innerHTML = eqGrpDisplayName;
+  }
+
+  const measure_title = document.querySelectorAll('.measure_title');
+  for (let i = 0; i < measure_title.length; i++) {
+    measure_title[i].innerHTML = measureTitle;
+  }
+
+  const measure_title_table = document.querySelectorAll('.measure_title_table');
+  for (let i = 0; i < measure_title_table.length; i++) {
+    measure_title_table[i].innerHTML = measureTitle + " (%)";
+  }
+
+  const measures_in_group = document.querySelectorAll('.measures_in_group');
+  for (let i = 0; i < measures_in_group.length; i++) {
+    measures_in_group[i].innerHTML = s75CatMeasures;
+  }
+
+  const notes_in_group = document.querySelectorAll('.notes_in_group');
+  for (let i = 0; i < notes_in_group.length; i++) {
+    notes_in_group[i].innerHTML = s75CatNotesLabels;
+  }
+
+  const notes_in_measure = document.querySelectorAll('.notes_in_measure');
+  for (let i = 0; i < notes_in_measure.length; i++) {
+    notes_in_measure[i].innerHTML = furtherInfo;
+  }
+
+  // create ul containing all the measure titles that are split by the s75 current group
+  const measures_in_group_titles = document.querySelectorAll('.measures_in_group_titles');
+
+  // Generate the <ul> structure
+  const ulElement = document.createElement('ul');
+  s75CatMeasuresTitle.forEach(title => {
+    const liElement = document.createElement('li');
+    liElement.textContent = title; // Add the title as the text of the <li>
+    ulElement.appendChild(liElement); // Append the <li> to the <ul>
+  });
+
+  // Replace the content of each target element with the generated <ul>
+  for (let i = 0; i < measures_in_group_titles.length; i++) {
+    measures_in_group_titles[i].innerHTML = ''; // Clear existing content
+    measures_in_group_titles[i].appendChild(ulElement.cloneNode(true)); // Append the <ul> to each element
+  }
+
+  let how_measure = data[`${ind}_how_do_we_measure`];
+  document.getElementById("how_do_we_measure").innerHTML =
+   how_measure;
+
+  let sourceUrl = data[`${ind}_source_url`];
+  document.getElementById("sourceId").href = sourceUrl
+
+  let sourceName = data[`${ind}_source_name`];
+
+  const source_name = document.querySelectorAll('.source_name');
+  for (let i = 0; i < source_name.length; i++) {
+    source_name[i].innerHTML = sourceName;
+  }
+
+  let dataPortalUrl = `https://data.nisra.gov.uk/table/${datasetLongName}`
+  document.getElementById("portalId").href = dataPortalUrl
+
+  const dataportal_name = document.querySelectorAll('.dataportal_name');
+  for (let i = 0; i < dataportal_name.length; i++) {
+    dataportal_name[i].innerHTML = dataPortalUrl;
+  }
+
+
+  document.getElementById("notes_in_measure").innerHTML = furtherInfo;
+
+  document.getElementById("notes_in_group").innerHTML = s75CatNotesLabels;
+
+  const notesInMeasure = document.getElementById("notes_in_measure");
+  const measureNotesParagraph = document.getElementById("measureNotesParagraph");
+  if (notesInMeasure && notesInMeasure.innerHTML.trim()!= ""){
+     measureNotesParagraph.style.display = "block";
+  } else {
+     measureNotesParagraph.style.display = "none";
+  }
+ 
+  const notesInGrp = document.getElementById("notes_in_group");
+  const groupNotesParagraph = document.getElementById("groupNotesParagraph");
+  if (notesInGrp && notesInGrp.innerHTML.trim()!= ""){
+     groupNotesParagraph.style.display = "block";
+  } else {
+     groupNotesParagraph.style.display = "none";
+  }
+
+
+  function populateTable() {
+    const tableBody = document.getElementById("dataTable").getElementsByTagName("tbody")[0];
+    tableBody.innerHTML = "";
+
+    // Ensure niAvgLine is treated as a single value (if it's not an array)
+    const niValue = Array.isArray(niAvgLine) ? niAvgLine[0] : niAvgLine;
+    const tableDataArray = [];
+
+    const allLciNull = eqGrpLciCatBarData.every(val => val ===null);
+    const allUciNull = eqGrpUciCatBarData.every(val => val ===null);
+    const realTabValCount = eqGrpCatBarData.filter(value => value !== null).length;
+
+    if (realTabValCount >=1){
+
+      const headerRow = document.createElement("tr");
+      const headers = [eqGrpDisplayName,measureTitle];
+      if(!allLciNull) headers.push("LCI (%)");
+      if(!allUciNull) headers.push("UCI (%)");
+      if(niValue !== 100) headers.push("NI Value (%)");
+
+      headers.forEach((headerText,index) => {
+        const headerCell = document.createElement("th");
+        
+        if (index === 0) {
+          headerCell.className = "eq_grp_name";
+          headerCell.textContent = headerText;
+        } else if (index === 1){
+          headerCell.className = "measure_title_table";
+          headerCell.textContent = headerText;
+        }  else {
+          headerCell.textContent = headerText;
+        }
+        headerRow.appendChild(headerCell);
+      });
+      document.getElementById("dataTable").getElementsByTagName("thead")[0].appendChild(headerRow);
+
+      for (let i = 0; i < eqGrpCatLabels.length; i++) {
+          const row = document.createElement("tr");
+
+          const ageCell = document.createElement("td");
+          ageCell.textContent = eqGrpCatLabels[i];
+          row.appendChild(ageCell);
+
+          const povCell = document.createElement("td");
+          povCell.textContent = eqGrpCatBarData[i] !== null ? eqGrpCatBarData[i] : "N/A";
+          row.appendChild(povCell);
+
+          if (!allLciNull && realTabValCount >=1){
+            const lcipovCell = document.createElement("td");
+            lcipovCell.textContent = eqGrpLciCatBarData[i] !== null ? eqGrpLciCatBarData[i] : "N/A";
+            row.appendChild(lcipovCell);
+          }
+
+          if (!allUciNull && realTabValCount >=1){
+            const ucipovCell = document.createElement("td");
+            ucipovCell.textContent = eqGrpUciCatBarData[i] !== null ? eqGrpUciCatBarData[i] : "N/A";
+            row.appendChild(ucipovCell);
+          }
+
+          if (niValue !== 100){
+            const niCell = document.createElement("td");
+            niCell.textContent = niValue;
+            row.appendChild(niCell);
+          }
+
+          tableBody.appendChild(row);
+
+          // Store data as an object
+          tableDataArray.push({
+              category: eqGrpCatLabels[i],
+              percentage: parseFloat(eqGrpCatBarData[i]), // Convert to number
+              niAverage: parseFloat(niValue) // Convert to number
+          });
+    }}else{
+      document.getElementById('dataTable').innerHTML = '<center style="font-weight: bold; font-size: 18pt;">Current year data is not available for this measure</center>';
+
+    }
+
+    // Generate summary using the new function
+    const summaryText = generateSummaryText(tableDataArray, niAvgLine, measureTitle, eqGrpDisplayName, how_measure);
+
+    // Update all elements with the class 'data_summary'
+    document.querySelectorAll('.data_summary').forEach(el => {
+        el.innerHTML = summaryText;
+    });
+
+    console.log("Summary:", summaryText); // Debugging log
+
+    return {
+        tableData: tableDataArray,
+        summary: summaryText
+    };
+  }
+
+  function populateTable2() {
+  const tableBody2 = document.getElementById("dataTable2").getElementsByTagName("tbody")[0];
+  tableBody2.innerHTML = "";
+
+  // Replace the keys in the object with the new labels from the array
+  let updatedObject = Object.keys(eqGrpCatLineData).reduce((acc, key, index) => {
+    acc[eqGrpCatLabels[index]] = eqGrpCatLineData[key]; // Use new label from the array
+  return acc;
+                 }, {});
+
+  let ni_line_object = {"NI Value": niLineData}
+  let year_object = {Year: yearLabels}
+  //  let ni_object = {...eqGrpCatLineData}
+  
+  let eqGrpCatLineData2 = {...year_object, ...updatedObject,
+    ...ni_line_object
+  }
+  
+  // Update the header dynamically based on eqGrpCatLineData
+  const ageGroups = Object.keys(eqGrpCatLineData2);
+  
+  // Clear the existing header
+  const ageGroupHeaders = document.getElementById("ageGroupHeaders");
+  ageGroupHeaders.innerHTML = ""; // Clear existing headers
+
+  // Add each age group as a separate header in the table
+  ageGroups.forEach(group => {
+    const th = document.createElement("th");
+    th.textContent = group; // Set age group label as column header
+    ageGroupHeaders.appendChild(th);
+  });
+
+  // Assume niAvgLine is a dynamic array or value for National Index values
+  const niValue = Array.isArray(niAvgLine) ? niAvgLine[0] : niAvgLine;
+
+  // Table data container
+  const tableDataArray = [];
+
+  // Check if the data is available for the selected years
+  if (yearLabels && yearLabels.length > 0) {
+    for (let i = 0; i < yearLabels.length; i++) {
+        const row = document.createElement("tr");
+
+
+        // Add dynamic cells for each age group
+        ageGroups.forEach(group => {
+            const ageCell = document.createElement("td");
+            ageCell.textContent = eqGrpCatLineData2[group][i] || "N/A"; // Handle missing data
+            row.appendChild(ageCell);
+        });
+
+        tableBody2.appendChild(row);
+
+        // Store data for summary generation
+        tableDataArray.push({
+            year: yearLabels[i],
+            data: ageGroups.reduce((acc, group, index) => {
+                acc[group] = parseFloat(eqGrpCatLineData2[group][i]) || 0;
+                return acc;
+            }, {}),
+            niAverage: parseFloat(niValue) || 0
+        });
+    }
+  } else {
+    document.getElementById('dataTable2').innerHTML = '<center style="font-weight: bold; font-size: 18pt;">Current year data is not available for this measure</center>';
+  }
+
+  // Generate summary using the new function
+  const summaryText = generateSummaryText(tableDataArray, niAvgLine, measureTitle, eqGrpDisplayName, how_measure);
+
+  // Update all elements with the class 'data_summary'
+  document.querySelectorAll('.data_summary').forEach(el => {
+    el.innerHTML = summaryText;
+  });
+
+  console.log("Summary:", summaryText); // Debugging log
+
+  return {
+    tableData: tableDataArray,
+    summary: summaryText
+  };
+}
+
+  // Function to generate summary in the requested format
+  function generateSummaryText(tableData, niAverage, measureTitle, eqGrpDisplayName, howMeasure) {
+    if (!Array.isArray(tableData) || tableData.length === 0) {
+        console.warn("No valid data to summarize.");
+        return "No data available for summary.";
+    }
+
+    let categoriesWithDiff = [];
+
+    // Calculate differences and store categories with values
+    tableData.forEach(row => {
+        let category = row.category;
+        let percentage = parseFloat(row.percentage);
+
+        if (isNaN(percentage)) {
+            categoriesWithDiff.push({
+                category: category,
+                isValid: false
+            });
+            return;
+        }
+
+        let diff = percentage - niAverage;
+        let direction = diff > 0 ? "higher" : diff < 0 ? "lower" : "same";
+
+        categoriesWithDiff.push({
+            category: category,
+            percentage: percentage.toFixed(0),
+            difference: Math.abs(diff).toFixed(0),
+            direction: direction,
+            isValid: true
+        });
+    });
+
+    // Separate valid and invalid categories
+    let validCategories = categoriesWithDiff.filter(item => item.isValid);
+    let invalidCategories = categoriesWithDiff.filter(item => !item.isValid);
+
+    // Separate "higher", "lower", and "same" categories for independent sorting
+    let higherCategories = validCategories.filter(item => item.direction === "higher");
+    let lowerCategories = validCategories.filter(item => item.direction === "lower");
+    let sameCategories = validCategories.filter(item => item.direction === "same");
+
+    // Sort "higher" categories in descending order (largest difference first)
+    higherCategories.sort((a, b) => parseFloat(b.difference) - parseFloat(a.difference));
+
+    // Sort "lower" categories in ascending order (smallest difference first)
+    lowerCategories.sort((a, b) => parseFloat(a.difference) - parseFloat(b.difference));
+
+    // Identify the highest "higher" and highest "lower" values
+    let highestHigher = higherCategories.length > 0 ? higherCategories[0] : null;
+    let highestLower = lowerCategories.length > 0 ? lowerCategories[lowerCategories.length - 1] : null;
+    let lowestLower = lowerCategories.length > 0 ? lowerCategories[0] : null;
+
+    let summaryText = {};
+
+    if (niAverage !== 100) {
+        summaryText = `The NI value for ${measureTitle} is ${niAverage}%. This measure records the ${howMeasure}<br>`;
+        summaryText += `When we look at differences by ${eqGrpDisplayName} compared to the NI value:<br>`;
+
+        // Append sorted "higher" category data
+        higherCategories.forEach(entry => {
+            let pointLabel = entry.difference === "1" ? "percentage point" : "percentage points";
+            let formattedText = `${entry.category} is ${entry.percentage}%, ${entry.difference} ${pointLabel} ${entry.direction}.<br>`;
+            if (entry === highestHigher) {
+                formattedText = `<strong>${formattedText}</strong>`;
+            }
+            summaryText += formattedText;
+        });
+
+        // Append "same" category data
+        sameCategories.forEach(entry => {
+            summaryText += `${entry.category} is ${entry.percentage}%, the same as the NI value.<br>`;
+        });
+
+        // Append sorted "lower" category data (now in ascending order)
+        lowerCategories.forEach(entry => {
+            let pointLabel = entry.difference === "1" ? "percentage point" : "percentage points";
+            let formattedText = `${entry.category} is ${entry.percentage}%, ${entry.difference} ${pointLabel} ${entry.direction}.<br>`;
+            if (entry === highestLower) {
+                formattedText = `<strong>${formattedText}</strong>`;
+            }
+            summaryText += formattedText;
+        });
+    } else {
+        summaryText = `This measure records the ${howMeasure}<br>`;
+        summaryText += `When the measure is summarised by ${eqGrpDisplayName} the breakdown is as follows:<br>`;
+
+        // Bold the highest "lower" value (last one in reversed list)
+        lowerCategories.forEach(entry => {
+            let formattedText = `${entry.category} is ${entry.percentage}%.<br>`;
+            if (entry === highestLower || entry === lowestLower) {
+                formattedText = `<strong>${formattedText}</strong>`;
+            }
+            summaryText += formattedText;
+        });
+    }
+
+    // Add invalid category summary text
+    if (invalidCategories.length > 0) {
+        invalidCategories.forEach(entry => {
+            summaryText += `${entry.category} data is not available and hence cannot be compared.<br>`;
+        });
+    }
+
+    return summaryText;
+}
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const button = document.querySelector(".copy-button");
+    button.addEventListener("click", copyTable);
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+  const button = document.getElementById("copy-button2");
+  button.addEventListener("click", copyTable2);
+  });
+
+  function copyTable(){
+    const table = document.getElementById("dataTable");
+    if (!table) {
+      alert("Table not found");
+      return;
+    }
+
+    // clone table to remove html specific styles
+    const clonedTable = table.cloneNode(true);
+
+    // remove unnecessary inline styles
+    clonedTable.removeAttribute("style");
+    clonedTable.querySelectorAll("th, td").forEach(cell => {
+      cell.removeAttribute("style");
+    });
+
+    // add cloned table to a hidden container in the DOM. to allow copying the table from button above table
+    const hiddenContainer = document.createElement("div");
+    hiddenContainer.style.position = "absolute";
+    hiddenContainer.style.left = "-9999px"; // move it off screen
+    hiddenContainer.appendChild(clonedTable);
+    document.body.appendChild(hiddenContainer);
+
+    // use cloned table for copying
+    const range = document.createRange();
+    range.selectNode(clonedTable);
+    const selection = window.getSelection();
+    // window.getSelection().removeAllRanges();
+    // window.getSelection().addRange(range);
+    selection.removeAllRanges();
+    selection.addRange(range);
+    document.execCommand("copy");
+    // window.getSelection().removeAllRanges();
+    // alert("Table copied to clipboard");
+
+    // cleanup
+    document.body.removeChild(hiddenContainer);
+    selection.removeAllRanges();
+    alert("Table copied to clipboard");
+  }
+
+  function copyTable2(){
+    const table = document.getElementById("dataTable2");
+    if (!table) {
+      alert("Table not found");
+      return;
+    }
+
+    // clone table to remove html specific styles
+    const clonedTable = table.cloneNode(true);
+
+    // remove unnecessary inline styles
+    clonedTable.removeAttribute("style");
+    clonedTable.querySelectorAll("th, td").forEach(cell => {
+      cell.removeAttribute("style");
+    });
+
+    // add cloned table to a hidden container in the DOM. to allow copying the table from button above table
+    const hiddenContainer = document.createElement("div");
+    hiddenContainer.style.position = "absolute";
+    hiddenContainer.style.left = "-9999px"; // move it off screen
+    hiddenContainer.appendChild(clonedTable);
+    document.body.appendChild(hiddenContainer);
+
+    // use cloned table for copying
+    const range = document.createRange();
+    range.selectNode(clonedTable);
+    const selection = window.getSelection();
+    // window.getSelection().removeAllRanges();
+    // window.getSelection().addRange(range);
+    selection.removeAllRanges();
+    selection.addRange(range);
+    document.execCommand("copy");
+    // window.getSelection().removeAllRanges();
+    // alert("Table copied to clipboard");
+
+    // cleanup
+    document.body.removeChild(hiddenContainer);
+    selection.removeAllRanges();
+    alert("Table copied to clipboard");
+  }
+
+  // click event listeners for download chart image button
+  document.getElementById('downloadButton').addEventListener('click', () => downloadChart());
+
+  // // set chart background to white. default is transparent for download
+  const backgroundColorPlugin = {
+     id: 'customCanvasBackgroundColor',
+     beforeDraw: (chart) => {
+       const ctx = chart.canvas.getContext('2d');
+       const {width,height} = chart;
+       ctx.save();
+       //ctx.globalCompositeOperation = 'destination-over';
+       ctx.fillStyle = 'white';
+       ctx.fillRect(0, 0, width, height);
+      
+       //add title
+       //ctx.fillStyle = 'black';
+       //ctx.font = 'bold 18px Arial';
+       //ctx.textAlign = 'center';
+       //ctx.fillText(measureTitle,width/2,25);
+       
+       ctx.restore();
+     }
+   }
+   Chart.register(backgroundColorPlugin);
+
+  function downloadChart() {
+    if (chartInstance) {
+        const chartCanvas = chartInstance.canvas;
+        const extraTitleSpace = 35;
+        const extraWatermarkTitleSpace = 50;
+        const extraSpacingBetweenTitleAndSubheading = 15; // Space between title & subheading
+        const extraSpacingAfterSubheading = 15; // Space between subheading and "Measure split by"
+        const originalWidth = chartCanvas.width;
+        const originalHeight = chartCanvas.height;
+
+        // Get the subheading text
+        let measureText = document.getElementById("how_do_we_measure").innerText || "";
+        measureText = measureText.slice(0, measureText.length - 1); // Trim last character if needed
+        let groupName = document.querySelector(".eq_grp_name").innerText.toLowerCase();
+        
+        // Capitalize the first letter of groupName
+        groupName = groupName.charAt(0).toUpperCase() + groupName.slice(1);
+        
+        const subHeading = `${measureText}`; // Main subheading text
+        const groupHeading = "Split by"; // Static text
+
+        // Create a new canvas
+        const tempCanvas = document.createElement('canvas');
+        tempCanvas.width = originalWidth;
+        const ctx = tempCanvas.getContext('2d');
+
+        // Calculate text wrapping for subheading
+        ctx.font = '24px sans-serif';
+        const maxWidth = originalWidth * 0.8; // Limit width to 80% of the canvas to allow for margins
+        const lineHeight = 30;
+        const subHeadingLines = wrapText(ctx, subHeading, maxWidth);
+        const extraMeasureSpace = (subHeadingLines.length * lineHeight) + lineHeight + extraSpacingAfterSubheading;
+
+        // Adjust canvas height
+        tempCanvas.height = originalHeight + extraTitleSpace + extraMeasureSpace + extraWatermarkTitleSpace + extraSpacingBetweenTitleAndSubheading;
+
+        // Fill background
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+
+        // Add title
+        ctx.fillStyle = 'black';
+        ctx.font = 'bold 30px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(measureTitle + ' ' + latestYear, originalWidth / 2, 25);
+
+        // Add extra space before subheading
+        let yPosition = 50 + extraSpacingBetweenTitleAndSubheading;
+
+        // Draw subheading (normal text) line by line
+        ctx.font = '24px sans-serif';
+        ctx.fillStyle = 'black';
+        subHeadingLines.forEach(line => {
+            ctx.fillText(line, originalWidth / 2, yPosition);
+            yPosition += lineHeight;
+        });
+
+        // Move down slightly for "Measure split by {groupName}"
+        yPosition += extraSpacingAfterSubheading;
+
+        // Set text alignment to left for natural spacing
+        ctx.textAlign = 'left';
+
+        // Find total text width to center them as a unit
+        ctx.font = '24px sans-serif';
+        const groupHeadingWidth = ctx.measureText(groupHeading).width;
+        ctx.font = 'bold 24px sans-serif';
+        const groupNameWidth = ctx.measureText(groupName).width;
+        const totalWidth = groupHeadingWidth + groupNameWidth + 10; // 10px spacing
+        const startX = (originalWidth - totalWidth) / 2;
+
+        // Draw "Measure split by" in normal text
+        ctx.font = '24px sans-serif';
+        ctx.fillStyle = 'black';
+        ctx.fillText(groupHeading, startX, yPosition);
+
+        // Draw groupName in bold and blue (#3878c5), right after "Measure split by"
+        ctx.font = 'bold 24px sans-serif';
+        ctx.fillStyle = '#3878c5';
+        ctx.fillText(groupName, startX + groupHeadingWidth + 5, yPosition); // 5px space
+
+        // Draw the chart
+        ctx.drawImage(chartCanvas, 0, extraTitleSpace + extraMeasureSpace + extraSpacingBetweenTitleAndSubheading);
+
+        // Load and add watermark
+        const watermark = new Image();
+        watermark.src = 'img/nisra-only-colour.png';
+        watermark.onload = function () {
+            const wmWidth = watermark.width * 0.5;
+            const wmHeight = watermark.height * 0.5;
+            const wmX = tempCanvas.width - wmWidth - 10;
+            const wmY = tempCanvas.height - wmHeight - 10;
+
+            ctx.drawImage(watermark, wmX, wmY, wmWidth, wmHeight);
+
+            // Download chart
+            const link = document.createElement('a');
+            const chart_image_filename = measureTitle + ` ` + latestYear.slice(0, 4) + `-` + latestYear.slice(5, 7) + `.png`;
+            link.href = tempCanvas.toDataURL('image/png');
+            link.download = chart_image_filename;
+            link.click();
+        };
+    }
+  }
+
+  // Function to wrap text into multiple lines
+  function wrapText(ctx, text, maxWidth) {
+    const words = text.split(' ');
+    let lines = [];
+    let currentLine = words[0];
+
+    for (let i = 1; i < words.length; i++) {
+        let testLine = currentLine + ' ' + words[i];
+        if (ctx.measureText(testLine).width < maxWidth) {
+            currentLine = testLine;
+        } else {
+            lines.push(currentLine);
+            currentLine = words[i];
+        }
+    }
+    lines.push(currentLine);
+    return lines;
+  }
+ 
+  // click event listeners for view chart and view table buttons
+  document.getElementById('chartBtn').addEventListener('click', () => showView('chartView'));
+  document.getElementById('tableBtn').addEventListener('click', () => showView('tableView'));
+
+  // Button event listeners for section 2
+  document.getElementById('line_chartBtn').addEventListener('click', () => showView('chartContainer'));
+  document.getElementById('line_tableBtn').addEventListener('click', () => showView('tableView2'));
+
+  function showView(viewId) {
+  const tableView = document.getElementById("tableView");
+  const chartView = document.getElementById("chartView");
+  const chartButton = document.getElementById('chartBtn');
+
+  const tableView2 = document.getElementById("tableView2");
+  const chartView2 = document.getElementById("chartContainer");
+  const chartButton2 = document.getElementById('line_chartBtn');
+
+  const legend = document.querySelector('.chart-legend');
+
+  // Handle the first section: Table/Chart Toggle
+  if (viewId === 'tableView') {
+    tableView.style.display = "block";
+    chartView.style.display = "none";
+    chartButton.style.backgroundColor = '#fff';
+    chartButton.style.color = '#00205B';
+    // Only destroy the bar chart when it's in the 'chartView'
+    if (chartInstance && chartView.style.display === "block") {
+      chartInstance.destroy();
+      chartInstance = null;
+    }
+  } else if (viewId === 'chartView') {
+    tableView.style.display = "none";
+    chartView.style.display = "block";
+    chartButton.style.backgroundColor = '#00205B';
+    chartButton.style.color = '#fff';
+    if (!chartInstance) {
+      createBarChart(eqGrpCatLabels, eqGrpCatBarData, niAvgLine);
+    }
+  }
+
+  // Handle the second section: Line Chart/Table Toggle
+  if (viewId === 'tableView2') {
+    tableView2.style.display = "block";
+    chartView2.style.display = "none";
+    chartButton2.style.backgroundColor = '#fff';
+    chartButton2.style.color = '#00205B';
+    legend.style.display = 'none'; // Hide the legend
+    // Don't destroy the bar chart here
+    populateTable2()
+    if (lineChartInstance) {
+      lineChartInstance.destroy();
+      lineChartInstance = null;
+    }
+  } else if (viewId === 'chartContainer') {
+    tableView2.style.display = "none";
+    chartView2.style.display = "grid";
+    chartButton2.style.backgroundColor = '#00205B';
+    chartButton2.style.color = '#fff';
+    if (nonNull !== 1){
+      legend.style.display = 'block';
+    }
+     // dont Show the legend
+    // Only destroy the line chart when necessary
+    if (!lineChartInstance) {
+      createMultipleLineCharts(eqGrpCatLineData, niLineData, containerId, eqGrpCatLabels, yearLabels);
+    }
+  }
+}
+  
+  // Function to populate the table and create charts
+  window.onload = function() {
+    populateTable();
+    showView('chartView');
+    showView('chartContainer');
+  };
+
+  // funcitonality for click button copying of descriptive text
+  document.getElementById('copyTextButton').addEventListener('click', copyText);
+
+  function copyText() {
+    // Select the paragraph with the class 'data_summary'
+    const textToCopy = document.querySelector('.data_summary').innerText;
+
+    // Use Clipboard API for copying text
+    navigator.clipboard.writeText(textToCopy)
+      .then(() => {
+          // Provide feedback to the user via alert
+          alert('Text copied to clipboard!');
+      })
+      .catch(err => {
+          console.error('Failed to copy text: ', err);
+      });
+  }
+
+  const customLinePlugin = {
+    id: 'customLinePlugin',
+    afterDatasetsDraw(chart, args, pluginOptions) {
+        const { ctx, chartArea: { left, right, top, bottom }, tooltip } = chart;
+
+        if (tooltip && tooltip._active && tooltip._active.length) {
+            const x = tooltip._active[0].element.x;
+
+            ctx.save();
+            ctx.beginPath();
+            ctx.moveTo(x, top);
+            ctx.lineTo(x, bottom);
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+            ctx.stroke();
+            ctx.restore();
+        }
+    }
+  };
+  // this makes the above Plugin available to any chart with tooltips turned on
+  Chart.register(customLinePlugin);
+
+  // Update padding dynamically on resize
+  window.addEventListener('resize', () => {
+    barPadding = calculateBarPadding(); // Recalculate padding
+    chart.options.scales.x.max = maxValue + barPadding; // Update max value
+    chart.update(); // Redraw the chart
+
+  });
+
+
+
+  // js to open and close accordion
+  let acc = document.getElementsByClassName("accordion-button");
+  let i;
+
+  for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+      /* Toggle between adding and removing the "active" class,
+      to highlight the button that controls the panel */
+      this.classList.toggle("active");
+
+      /* Toggle between hiding and showing the active panel */
+      let panel = this.nextElementSibling;
+      if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
+    });
+  }
+  
+  function createMultipleLineCharts(dataObject, secondSeriesValues, containerId, categoryLabels, years) {
+    // Get the container where charts will be appended
+    const container = document.getElementById(containerId);
+
+    // Clear the container to avoid duplicates
+    container.innerHTML = '';
+
+    // Check if the legend already exists, if not, create it
+    let legend = document.querySelector('.chart-legend');
+    if (!legend) {
+        // Create a new legend if it doesn't exist
+        legend = document.createElement('div');
+        legend.classList.add('chart-legend'); // Add class for styling
+
+        // Define the legend entries
+        legend.innerHTML = `
+            <div style="display: flex; gap: 20px; justify-content: center; align-items: center; margin-bottom: 20px;">
+                <div style="display: flex; align-items: center; gap: 5px;">
+                    <span style="width: 20px; height: 4px; background-color: #00205b; display: inline-block;"></span>
+                    <span>Group Value (%)</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 5px;">
+                    <span style="width: 20px; height: 4px; background-color: #3b80ae; display: inline-block; border-bottom: 2px dashed #3b80ae;"></span>
+                    <span>NI Value (%)</span>
+                </div>
+            </div>
+        `;
+
+        // Insert the legend before the container without affecting the layout
+        container.parentNode.insertBefore(legend, container);
+    }
+
+    // Get all keys from the dataObject
+    const keys = Object.keys(dataObject);
+
+    // Loop through each key in the dataObject
+    keys.forEach((key, index) => {
+        // Generate a unique ID for the canvas element
+        const canvasId = `chartCanvas${index}`;
+
+        const chartDiv = document.createElement("div");
+        chartDiv.classList.add('div-style-line'); // Add a class for styling
+
+        // Create a canvas element for each chart
+        const canvas = document.createElement('canvas');
+        canvas.id = canvasId;
+
+        chartDiv.appendChild(canvas);
+
+        // Append the canvas to the container
+        container.appendChild(chartDiv);
+
+        // Get the data for the current series
+        const firstSeriesData = dataObject[key];
+
+        var arr = firstSeriesData;
+        var count = 0;
+        var x = (arr.length-1);
+        while (x--) {
+            if (arr[x] === null){
+                count++;                  
+            }     
+        }
+        console.log(count); 
+        nonNull = firstSeriesData.length - count;
+
+        // Ensure the length of secondSeriesValues matches firstSeriesData
+        if (!firstSeriesData || secondSeriesValues.length !== firstSeriesData.length) {
+            console.warn(`Invalid data for key "${key}"`);
+            return;
+        }
+
+        // Get the category label for the current chart
+        const categoryLabel = categoryLabels && categoryLabels[index]
+            ? categoryLabels[index]
+            : `Category ${index + 1}`;
+
+        // Create the labels array using categoryLabel and the years array
+        const labels = firstSeriesData.map((_, i) => `${categoryLabel} - ${years[i] || `Year ${i + 1}`}`);
+
+        const labelyears = years; 
+
+        // Create the context for the chart
+        const ctx = canvas.getContext('2d');
+
+        if (nonNull !== 1) {
+            // Create the chart instance
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels,
+                    datasets: [
+                        {
+                            label: `Group value`,
+                            data: firstSeriesData,
+                            borderColor: '#00205b',
+                            pointRadius: 0,
+                            borderWidth: 4
+                        },
+                        {
+                            label: `NI value`,
+                            data: secondSeriesValues,
+                            fill: false,
+                            borderDash: [15, 5],
+                            borderColor: '#3b80ae',
+                            pointRadius: 0,
+                            borderWidth: 2
+                        },
+                    ],
+                },
+                options: {
+                    responsive: true,
+                    interaction: {
+                        mode: 'index',
+                        axis: 'x',
+                        intersect: false
+                    },
+                    plugins: {
+                        legend: {
+                            display: false, // Hide individual chart legends
+                        },
+                        datalabels: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: categoryLabel, // Keep the chart title to just the category label
+                            font: {
+                                size: 20
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                callback:function (value, tickIndex, ticks) {
+                                    if (tickIndex === 0 || tickIndex === labelyears.length - 1) {
+                                        return labelyears[tickIndex];
+                                    }
+                                    return null;
+                                }
+                            },
+                            border: {
+                                display: true
+                            }
+                        },
+                        y: {
+                            min: 0,
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                maxTicksLimit: 5
+                            },
+                            border: {
+                                display: true
+                            }
+                        }
+                    }
+                },
+            });
+
+        } else {
+            chartInfoContainer.style.display = "none";
+            legend.style.display = "none";
+            container.innerHTML = '<center style="font-weight: bold; font-size: 18pt;">Historic data is not available for this measure</center>';
+        }
+
+    });
+}
+
+  const containerId = 'chartContainer'; // Make sure this div exists in your HTML
+
+  // Call the function
+  createMultipleLineCharts(eqGrpCatLineData, niLineData, containerId, eqGrpCatLabels, yearLabels);
+
+</script>
