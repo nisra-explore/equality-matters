@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Equality Matters</title>
+    <link rel="icon" type="image" href="img/teo-logo-hex.png">
+
+    <!-- imports for bootstrap - jquery and popper are dependencies -->
+    <script src="https://cdn.jsdelivr.net/gh/jquery/jquery@3.4.1/dist/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/gh/twbs/bootstrap@v4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/FezVrasta/popper.js@v1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/twbs/bootstrap@v4.5.2/dist/js/bootstrap.min.js"></script>
+
+    <!-- fontawesome import -->
+    <script src="https://kit.fontawesome.com/ee3848f0f5.js" crossorigin="anonymous"></script>
+
+    <!-- chart.js and add ons -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/3.0.1/chartjs-plugin-annotation.min.js" integrity="sha512-Hn1w6YiiFw6p6S2lXv6yKeqTk0PLVzeCwWY9n32beuPjQ5HLcvz5l2QsP+KilEr1ws37rCTw3bZpvfvVIeTh0Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+    <link rel ="stylesheet" href ="style.css">
+
+    <!-- <script src = "scripts/cookies_script.js"></script> -->
+
+    <!-- import data for use in charts - needs to be imported in each script -->
+      <!-- only useful here if some data transformations to happen in head section -->
+    <!-- <script type="module">
+      import * as data from './data.js';
+    </script> -->
+  </head>
+
+
+  <body>
+    <div class="wrapper">
+      
+      <nav class="warning">
+        <div class="col-wide middle" style=" text-align: center;">
+          <p style="margin-bottom: 0px;">This prototype application will be enhanced as further equality indicator data is released.</p>
+          <p style="margin-bottom: 0px;">We welcome feedback from users through our 
+            <a class="survey-link" href="https://dttselfserve.nidirect.gov.uk/NISRA/RateIt#/Equality_Matters" target="_blank"><span style="color: white;">short survey</span>
+              <img class = "new-tab" src = "img/opens-new-tab.svg"></a></p>
+          
+          </div>
+      </nav>
+
+      <!-- <div id="prototype">This prototype application will be enhanced as further equality indicator data is released.</div> -->
+
+      <div id="top-container">
+        <div id="top-menu" class="grid" style="margin: 0;">
+          <div class="nisra-logo-container">
+            <a href="https://www.nisra.gov.uk/" target="_blank"><img id="top-menu-nisra-logo" src="img/nisra-white-bilingual.svg" alt="NISRA logo. Clicking image takes user to NISRA website"></a>
+          </div>
+          <div id="dashboard-title-container">
+            <h1 id="dashboard-title">Equality Matters</h1>
+            <span id="dashboard-subtitle">Access equality data across a range of <br>key measures for Northern Ireland</span>
+          </div>
+          <div id = "about">
+            <div>
+              <span>Search by Grouping or by Measure name:</span>
+              <form class="search-container" style="margin-bottom: 15px;" action="/search" method="get">
+                <input type="text" name="q" placeholder="Search..." />
+                <button type="submit">Search</button>
+              </form>
+              <button class="about-btn" name = "backbutton" alt="Home" onclick="window.location.href='index.html'">Back to Home Page</button>  
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
+      <hr style="border-top: 10px solid #cedc20; margin: 0">
+
+
+          <div class="about-content">
+            <h2>About the Equality Matters webpage</h2>
+      
+      
+            <h3>What is the website about?</h3>
+
+            <p>
+              <span>Equality Matters is place to access a range of measures and analyse them in relation to equality groupings.</span><br>
+              <span>There are over 200 measure pages available to explore</span> 
+            </p>
+      
+            <p style="margin-bottom: 0px;">You will be able to get to a measure page through various pathways:</p>
+            <ul> 
+              <li>Search using the bar in the header</li>
+              <li>By <a href="#">Section 75 Category</a></li>
+              <li>By <a href="#">Government Department</a></li>
+            </ul>
+      
+            <h3>Features:</h3>
+            <ul> 
+              <li>Measure page covering current year data and time trends where available</li>
+              <li>Download image files of the current year data</li>
+              <li>Access automatically generated data summaries of each measures trends and values</li>
+              <li>Access and copy tabular data of each chart</li>
+              <li>Links to Data Portal Sources and the original publication where this measure was reported</li>
+            </ul>
+          
+            <h3>Sources of data</h3>
+          
+            <p>All of the data presented is sourced from the  <a href="https://data.nisra.gov.uk">NISRA Data Portal</a>.
+          
+            <h3>The NISRA Data Portal</h3>
+            <p>The <a href="https://data.nisra.gov.uk">NISRA Data Portal</a> is a repository for data on our population, society and economy.  </p>
+            <p>The Data Portal is continually refreshed with new and updated datasets from across the NICS and Public Sector.  
+            It gives users the opportunity to view and filter data sets, plot interactive charts and visualise data on interactive maps, save queries, create favourite datasets and widgets, access data in multiple formats - xlsx, csv, JSON-stat, px and share results and automate processes using API queries.</p>
+          
+            <p><a href = "https://www.nisra.gov.uk/nisra-data-portal-faqs-and-training-materials">Training Materials</a> (NISRA Data Portal user guide, instructional video and FAQ section) have been published to help you navigate and use the new system.  </p>
+            <p>You can sign-up to attend online training sessions by emailing <a href="mailto:info@nisra.gov.uk">info@nisra.gov.uk</a> to register your interest.  Further help, if needed, will also be available on request.</p>
+      
+            <h3>Rounding</h3>
+            <p>For the purposes of this application, all values have been round to 0 decimal places.</p>
+        
+            <h3>Video guides</h3>
+            <ul>
+              <li><a href="#">Equality Matters</a></li>
+              <li><a href="https://www.youtube.com/watch?v=HwGsqgdsiHM">Data Portal</a></li>
+            </ul>
+          
+            <h3>Timeliness</h3>
+            <p>This web application is refreshed periodically when new or modified information is available.</p>
+        
+            <h3>Versions</h3>
+            <table>
+              <thead>
+                <tr>
+                <th>Release</th>
+                <th>Date</th>
+                <th>Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                <td>Prototype (v0.1)</td>
+                <td>March 2025</td>
+                <td>Initial prototype for user testing and feedback. This will be incorporated with a view to have a major release later in 2025</td>
+                </tr>
+              </tbody>
+              </table>
+        
+            <h3 style="margin-top: 20px;">Feedback and contact details</h3>
+            <p>This is a prototype application and we are very keen to get feedback on how it can be improved.</p>
+            <p>We welcome feedback from users through our <a href="https://dttselfserve.nidirect.gov.uk/NISRA/RateIt#/Equality_Matters" target="_blank">short survey</a>.</p>
+            <p>Contact details for the measures original producers can be found from the measure page in the Source section.</p>
+            <p>Contact <a href="mailto:explore@nisra.gov.uk">explore@nisra.gov.uk</a> for further information.</p>
+            </div>
+         
+
+            <hr style="border-top: 10px solid #cedc20; margin-bottom: 0; margin-top: 25px;">
+            <footer>
+              <div id="footer-container">
+                <div class="row">
+                  <div style="height: 170px; width: 350px; margin: 10px;">
+                    <h3 style="font-weight: 700; font-size: 18px; color: #ffffff">Links</h3>
+                    <a href="https://data.nisra.gov.uk/" target="_blank" rel="noopener noreferrer">NISRA Data
+                      Portal</a><br>
+                    <a href="https://visual.nisra.gov.uk/" target="_blank" rel="noopener noreferrer">NISRA Interactive
+                      Data Visualisation Hub</a><br>
+                    <a href="https://www.opendatani.gov.uk/" target="_blank" rel="noopener noreferrer">OpenDataNI</a><br>
+                    <a href="https://www.nidirect.gov.uk" target="_blank" rel="noopener noreferrer">NIDirect</a><br>
+                    <a href="https://www.gov.uk/" target="_blank" rel="noopener noreferrer">GOV.UK</a><br>
+                  </div>
+                  <div style="height: 170px; width: 120px; margin: 20px 0px 20px 60px;">
+                    <h3 style="font-weight: 700; font-size: 18px; color: #ffffff">Follow NISRA</h3>
+                    <i class="fa-brands fa-facebook-f"></i> <a href="https://www.facebook.com/nisra.gov.uk" target="_blank"
+                      rel="noopener noreferrer">Facebook</a><br>
+                    <i class="fa-brands fa-x-twitter"></i> <a href="https://twitter.com/NISRA" target="_blank"
+                      rel="noopener noreferrer">Twitter</a><br>
+                    <i class="fa-brands fa-youtube"></i> <a href="https://www.youtube.com/user/nisrastats" target="_blank"
+                      rel="noopener noreferrer">YouTube</a><br>
+                  </div>
+                  <div id="teo-logo-container">
+                    <h4 style="margin-right: 20px; font-weight: normal; padding-bottom: 30px;">Funded by:</h4>
+                    <a href="https://www.executiveoffice-ni.gov.uk/" target="_blank"><img id="footer-teo-logo" src="img/logo-white-teo.png" alt="The Executive Office logo. Clicking image takes user to TEO website"></a>
+                  </div>
+                </div>
+                <div class="flex-list-footer">
+                  <ul
+                    style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; margin-left: -1px;">
+                    <li class="cc-li" style="border-left:0px;"><a href="https://www.nisra.gov.uk/crown-copyright" target="_blank"
+                        rel="noopener noreferrer">© Crown Copyright</a></li>
+                    <!--<li class="cc-li"><a href="https://www.nisra.gov.uk/contacts/programme-government-analytics-executive-office"
+                        target="_blank" rel="noopener noreferrer">Contact us</a></li> --> 
+                    <li class="cc-li"><a href="https://consultations.nidirect.gov.uk/teo/d8cf2dfc" target="_blank">Leave
+                        feedback</a></li>
+                    <li class="cc-li"><a href="https://www.nisra.gov.uk/terms-and-conditions" target="_blank"
+                        rel="noopener noreferrer">Terms and conditions</a></li>
+                    <li class="cc-li"><a href="https://www.nisra.gov.uk/cookies" target="_blank"
+                        rel="noopener noreferrer">Cookies</a></li>
+                    <li class="cc-li"><a href="https://www.nisra.gov.uk/nisra-privacy-notice" target="_blank"
+                        rel="noopener noreferrer">Privacy</a></li>
+                    <li class="cc-li"><a href="https://www.nisra.gov.uk/accessibility-statement-nisra" target="_blank"
+                        rel="noopener noreferrer">Accessibility Statement</a></li>
+                  </ul>
+                </div>
+              </div>
+            </footer>
+          <div>
+
+  </body>
+
+    <script src = "scripts/cookies_script.js"></script>
+    <script>
+      window.onload = showCookieBanner;
+    </script>
+    <!-- <script src = "scripts/data_functions.js"></script>
+    <script src = "scripts/navigation_functions.js"></script> -->
+
+</html>
+
