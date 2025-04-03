@@ -102,29 +102,29 @@
                 <button name = "key" value = "pubt">Active Travel - Public Transport</button>
                 <button name = "key" value = "walk">Active Travel - Walking or Cycling</button>
                 <button name = "key" value = "artc">Arts and Culture activities participation</button>
-                <button name = "key" value = "c500">Census 2021 - Usual Resident Population</button>
-                <button name = "key" value = "c5011">Census 2021 - Economic Activity - In Employment</button>
-                <button name = "key" value = "c5012">Census 2021 - Economic Activity - Unemployed</button>
-                <button name = "key" value = "c5013">Census 2021 - Economically Inactive</button>
-                <button name = "key" value = "c5021">Census 2021 - Agriculture, energy and water employment</button>
-                <button name = "key" value = "c5022">Census 2021 - Manufacturing employment</button>
-                <button name = "key" value = "c5023">Census 2021 - Construction employment</button>
-                <button name = "key" value = "c5024">Census 2021 - Distribution, hotels and restaurants employment</button>
-                <button name = "key" value = "c5025">Census 2021 - Transport and communications employment</button>
-                <button name = "key" value = "c5026">Census 2021 - Financial, Real Estate, Professional and Administrative activities employment</button>
-                <button name = "key" value = "c5027">Census 2021 - Public administration, education and health employment</button>
-                <button name = "key" value = "c5028">Census 2021 - Other employment</button>
-                <button name = "key" value = "c5031">Census 2021 - Part-time: 15 hours or less worked per week</button>
-                <button name = "key" value = "c5032">Census 2021 - Part-time: 16-30 hours worked per week</button>
-                <button name = "key" value = "c5033">Census 2021 - Full-time: 31-48 hours worked per week</button>
-                <button name = "key" value = "c5034">Census 2021 - Full-time: 49+ hours worked per week</button>
+                <button name = "key" value = "c500">Usual Resident Population</button>
+                <button name = "key" value = "c5011">Economic Activity - In Employment</button>
+                <button name = "key" value = "c5012">Economic Activity - Unemployed</button>
+                <button name = "key" value = "c5013">Economically Inactive</button>
+                <button name = "key" value = "c5021">Industry of employment - Agriculture, energy and water employment</button>
+                <button name = "key" value = "c5022">Industry of employment - Manufacturing employment</button>
+                <button name = "key" value = "c5023">Industry of employment - Construction employment</button>
+                <button name = "key" value = "c5024">Industry of employment - Distribution, hotels and restaurants employment</button>
+                <button name = "key" value = "c5025">Industry of employment - Transport and communications employment</button>
+                <button name = "key" value = "c5026">Industry of employment - Financial, Real Estate, Professional and Administrative activities employment</button>
+                <button name = "key" value = "c5027">Industry of employment - Public administration, education and health employment</button>
+                <button name = "key" value = "c5028">Industry of employment - Other employment</button>
+                <button name = "key" value = "c5031">Hours worked - Part-time: 15 hours or less worked per week</button>
+                <button name = "key" value = "c5032">Hours worked - Part-time: 16-30 hours worked per week</button>
+                <button name = "key" value = "c5033">Hours worked - Full-time: 31-48 hours worked per week</button>
+                <button name = "key" value = "c5034">Hours worked - Full-time: 49+ hours worked per week</button>
                 <button name = "key" value = "comr">Community Relations</button>
                 <button name = "key" value = "cult">Cultural Identity</button>
-                <button name = "key" value = "hsg1">Health Survey - Very Good or Good General Health</button>
-                <button name = "key" value = "hsg2">Health Survey - Very Bad or Bad General Health</button>
-                <button name = "key" value = "hsns">Health Survey - Never Smoked</button>
-                <button name = "key" value = "hssm">Health Survey - Smoking</button>
-                <button name = "key" value = "hsec">Health Survey - Use E-Cigarettes</button>
+                <button name = "key" value = "hsg1">Very Good or Good General Health</button>
+                <button name = "key" value = "hsg2">Very Bad or Bad General Health</button>
+                <button name = "key" value = "hsns">Never Smoked</button>
+                <button name = "key" value = "hssm">Smoking</button>
+                <button name = "key" value = "hsec">Use E-Cigarettes</button>
                 <!-- <button name = "key" value = "sahl">Higher Level Apprenticeships in FE Equality Data</button> --> 
                 <button name = "key" value = "inc1">Income Deprivation and Inequality - Relative poverty</button>
                 <button name = "key" value = "inc2">Income Deprivation and Inequality - Absolute poverty</button>
@@ -243,11 +243,25 @@
       <div id="home-scrn">
         <h2 style="text-align: center; margin-top: 20px;">Welcome to Equality Matters</h2>
         <h5 style="text-align: center;">Equality Matters is a tool designed to give you access to many measures collected by NISRA, split by their available Section 75 Equality Groups.</h5>
-        <h5 style="text-align: center;">To get started, please select a pathway from the options below:</h5>
-        <form id = "selection-form-pathway" style="list-style-type: none; padding: 0;">
+        <h5 style="text-align: center;">To get started, please select a a Section 75 Group from the options below:</h5>
+        <!-- <form id = "selection-form-pathway" style="list-style-type: none; padding: 0;">
           <div id="pathways-container">
             <button name = "path" value = "s75">Section 75 Group</button>
             <button name = "path" value = "depart">Department</button>
+          </div>
+        </form> -->
+        <form id = "selection-form-75group" style="list-style-type: none; padding: 0;">
+          <div id="s75-groups-container">
+            <button name = "home" value = "age">Age</button>
+            <button name = "home" value = "depend">Dependants</button>
+            <button name = "home" value = "disab">Disability</button>
+            <button name = "home" value = "ethnic">Ethnic Group</button>
+            <button name = "home" value = "marital">Marital Status</button>
+            <button name = "home" value  = "political">Political Opinion</button>
+            <button name = "home" value = "race">Racial Group</button>
+            <button name = "home" value = "religion">Religion</button>
+            <button name = "home" value = "sex">Sex</button>
+            <button name = "home" value = "ori">Sexual Orientation</button>
           </div>
         </form>
         <div style="margin-left: 30px;">
@@ -294,35 +308,35 @@
       </div>
 
       <div id="s75-measure-scrn">
-        <h2 style="text-align: center; margin-top: 20px;">Available measures</h2>
+        <h2 style="text-align: center; margin-top: 20px;">Available measures within your current selection</h2>
         <form id = "selection-form-measure" style="list-style-type: none; padding: 0;">
           <div id="key-metrics-container-inter">
             <button name = "key" value = "pubt">Active Travel - Public Transport</button>
             <button name = "key" value = "walk">Active Travel - Walking or Cycling</button>
             <button name = "key" value = "artc">Arts and Culture activities participation</button>
-            <button name = "key" value = "c500">Census 2021 - Usual Resident Population</button>
-            <button name = "key" value = "c5011">Census 2021 - Economic Activity - In Employment</button>
-            <button name = "key" value = "c5012">Census 2021 - Economic Activity - Unemployed</button>
-            <button name = "key" value = "c5013">Census 2021 - Economically Inactive</button>
-            <button name = "key" value = "c5021">Census 2021 - Agriculture, energy and water employment</button>
-            <button name = "key" value = "c5022">Census 2021 - Manufacturing employment</button>
-            <button name = "key" value = "c5023">Census 2021 - Construction employment</button>
-            <button name = "key" value = "c5024">Census 2021 - Distribution, hotels and restaurants employment</button>
-            <button name = "key" value = "c5025">Census 2021 - Transport and communications employment</button>
-            <button name = "key" value = "c5026">Census 2021 - Financial, Real Estate, Professional and Administrative activities employment</button>
-            <button name = "key" value = "c5027">Census 2021 - Public administration, education and health employment</button>
-            <button name = "key" value = "c5028">Census 2021 - Other employment</button>
-            <button name = "key" value = "c5031">Census 2021 - Part-time: 15 hours or less worked per week</button>
-            <button name = "key" value = "c5032">Census 2021 - Part-time: 16-30 hours worked per week</button>
-            <button name = "key" value = "c5033">Census 2021 - Full-time: 31-48 hours worked per week</button>
-            <button name = "key" value = "c5034">Census 2021 - Full-time: 49+ hours worked per week</button>
+            <button name = "key" value = "c500">Usual Resident Population</button>
+            <button name = "key" value = "c5011">Economic Activity - In Employment</button>
+            <button name = "key" value = "c5012">Economic Activity - Unemployed</button>
+            <button name = "key" value = "c5013">Economic Activity - Economically Inactive</button>
+            <button name = "key" value = "c5021">Industry of employment - Agriculture, energy and water employment</button>
+            <button name = "key" value = "c5022">Industry of employment - Manufacturing employment</button>
+            <button name = "key" value = "c5023">Industry of employment - Construction employment</button>
+            <button name = "key" value = "c5024">Industry of employment - Distribution, hotels and restaurants employment</button>
+            <button name = "key" value = "c5025">Industry of employment - Transport and communications employment</button>
+            <button name = "key" value = "c5026">Industry of employment - Financial, Real Estate, Professional and Administrative activities employment</button>
+            <button name = "key" value = "c5027">Industry of employment - Public administration, education and health employment</button>
+            <button name = "key" value = "c5028">Industry of employment - Other employment</button>
+            <button name = "key" value = "c5031">Hours worked - Part-time: 15 hours or less worked per week</button>
+            <button name = "key" value = "c5032">Hours worked - Part-time: 16-30 hours worked per week</button>
+            <button name = "key" value = "c5033">Hours worked - Full-time: 31-48 hours worked per week</button>
+            <button name = "key" value = "c5034">Hours worked - Full-time: 49+ hours worked per week</button>
             <button name = "key" value = "comr">Community Relations</button>
             <button name = "key" value = "cult">Cultural Identity</button>
-            <button name = "key" value = "hsg1">Health Survey - Very Good or Good General Health</button>
-            <button name = "key" value = "hsg2">Health Survey - Very Bad or Bad General Health</button>
-            <button name = "key" value = "hsns">Health Survey - Never Smoked</button>
-            <button name = "key" value = "hssm">Health Survey - Smoking</button>
-            <button name = "key" value = "hsec">Health Survey - Use E-Cigarettes</button>
+            <button name = "key" value = "hsg1">Very Good or Good General Health</button>
+            <button name = "key" value = "hsg2">Very Bad or Bad General Health</button>
+            <button name = "key" value = "hsns">Never Smoked</button>
+            <button name = "key" value = "hssm">Smoking</button>
+            <button name = "key" value = "hsec">Use E-Cigarettes</button>
             <!-- <button name = "key" value = "sahl">Higher Level Apprenticeships in FE Equality Data</button> --> 
             <button name = "key" value = "inc1">Income Deprivation and Inequality - Relative poverty</button>
             <button name = "key" value = "inc2">Income Deprivation and Inequality - Absolute poverty</button>
@@ -690,37 +704,16 @@
   var s75_measure_scrn = document.getElementById("s75-measure-scrn");
   var dest_scrn = document.getElementById("dest-scrn");
 
-  if (window_url.indexOf("?") > -1 && window_url.indexOf("path=") > -1) {
- 
-    path = window_url.slice(window_url.indexOf("path=") + 5);
-    localStorage.setItem("path", path);
+    
+  // default showing when no extra URL criteria - will apply to any part of the app
+  // home_scrn shown as default for any div is block unless otherwise instructed
+  // to counteract this, home_scrn will need to be hidden on every other page in if blocks
+  s75_scrn.style.display = "none";
+  depart_scrn.style.display = "none";
+  s75_measure_scrn.style.display = "none";
+  dest_scrn.style.display = "none";
 
-    if (path === "s75") {
-      home_scrn.style.display = "none";
-      s75_scrn.style.display = "block";
-      depart_scrn.style.display = "none";
-      s75_measure_scrn.style.display = "none";
-      dest_scrn.style.display = "none";
-
-    } else if (path === "depart") {
-      home_scrn.style.display = "none";
-      s75_scrn.style.display = "none";
-      depart_scrn.style.display = "block";
-      s75_measure_scrn.style.display = "none";
-      dest_scrn.style.display = "none";
-      
-    }
-
-    } else {
-    // default showing when above not met - will apply to any part of the app
-    // home_scrn shown and nothing else
-    // to counteract this, home_scrn will need to be hidden on every other page
-    s75_scrn.style.display = "none";
-    depart_scrn.style.display = "none";
-    s75_measure_scrn.style.display = "none";
-    dest_scrn.style.display = "none";
-  }  
-
+  // if block denoting action when a button is clicked from the home screen - returns measures within s75 selection
   if (window_url.indexOf("?") > -1 && window_url.indexOf("home=") > -1) {
     home_scrn.style.display = "none";
     s75_scrn.style.display = "none";
@@ -739,83 +732,7 @@
     }
 
   }
-
-  if (window_url.indexOf("?") > -1 && window_url.indexOf("key=") > -1 & window_url.indexOf("s75=") == -1) {
-    
-    let base_url = window_url.slice(0, window_url.indexOf("?"));
-    group = localStorage.getItem("s75");
-    ind = window_url.slice(window_url.indexOf("key=") + 4);
-    localStorage.setItem("key", ind);
-    window.location.href = base_url + "?s75=" + group + "&key=" + ind;
-  }
-
-if (window_url.indexOf("?") > -1 && window_url.indexOf("s75=") > -1) {
-  // Check if the URL contains a query string ('?') and // Check if the parameter 's75' exists in the URL
-  home_scrn.style.display = "none";
-  dest_scrn.style.display = "block";
-
-// Check if the URL contains a query string ('?')
-let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
-  // Extract the query string part after '?' and split it into key-value pairs
-  let base_url = window_url.slice(0, window_url.indexOf("?"));
-  // Extract the base URL without query parameters
-  for (let i = 0; i < selections.length; i++) {
-    // Loop through each key-value pair in the query string
-    if (selections[i].indexOf("s75=") > -1) {
-      // Check if the parameter 's75' exists in the URL
-      group = selections[i].slice(selections[i].indexOf("s75=") + 4);
-      // Extract the value of 's75' (after "s75=")
-      localStorage.setItem("s75", group);
-      // Store the 's75' value in localStorage for persistence
-      s75CatMeasures = returnS75CatsByLookup(data, group, lookupTableEqCode);
-      // Call a function to retrieve measures associated with 's75'
-      for (let j = 0; j < key_btns.length; j++) {  
-        // Loop through all buttons in "key-metrics-container"
-        if (s75CatMeasures.includes(key_btns[j].value)) {  
-          // If the button's value is in the list of valid measures, show it
-          key_btns[j].style.display = "block";
-        } else {
-          // Otherwise, hide the button
-          key_btns[j].style.display = "none";
-        }
-      } 
-
-      if (s75CatMeasures.includes(localStorage.getItem("key"))) {
-        // If the current stored 'key' is still a valid option
-        ind = localStorage.getItem("key");
-      } else {
-        // Otherwise, default to the first available measure
-        console.log("Not a valid measure");
-        ind = s75CatMeasures[0];
-      }
-    }
-    if (selections[i].indexOf("key=") > -1) {
-      // Check if the parameter 'key' exists in the URL
-      ind = selections[i].slice(selections[i].indexOf("key=") + 4);
-      // Extract the value of 'key' (after "key=")
-      localStorage.setItem("key", ind);
-      // Store the 'key' value in localStorage for persistence
-      group = localStorage.getItem("s75");
-      // Retrieve the stored 's75' value
-    }
-    s75AvaiMeasures = returnAvailableS75ByLookup(data, ind, invertedLookupEqCode);
-        // Call a function to retrieve measures associated with 's75'
-        for (let n = 0; n < s75_btns.length; n++) {  
-        // Loop through all buttons in "key-metrics-container"
-          if (s75AvaiMeasures.includes(s75_btns[n].value)) {  
-            // If the button's value is in the list of valid measures, show it
-            s75_btns[n].style.display = "block";
-          } else {
-           // Otherwise, hide the button
-           s75_btns[n].style.display = "none";
-          }
-        }
-      if (window.location.href != base_url + "?s75=" + group + "&key=" + ind) {
-    // If the URL is not already formatted correctly with the selected values
-    window.location.href = base_url + "?s75=" + group + "&key=" + ind;
-    // Redirect to the updated URL to ensure correct parameters are set
-  }}}
-
+  // action taken to update url once a s75 measure given - this being actioned triggers the below if block and populates the dest page based on the key and s75 in the url
   if (window_url.indexOf("?") > -1 && window_url.indexOf("key=") > -1 & window_url.indexOf("s75=") == -1) {
     
     let base_url = window_url.slice(0, window_url.indexOf("?"));
@@ -830,8 +747,8 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
     home_scrn.style.display = "none";
     dest_scrn.style.display = "block";
 
-  // Check if the URL contains a query string ('?')
-  let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
+    // Check if the URL contains a query string ('?')
+    let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
     // Extract the query string part after '?' and split it into key-value pairs
     let base_url = window_url.slice(0, window_url.indexOf("?"));
     // Extract the base URL without query parameters
@@ -854,7 +771,7 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
             // Otherwise, hide the button
             key_btns[j].style.display = "none";
           }
-        }
+        } 
 
         if (s75CatMeasures.includes(localStorage.getItem("key"))) {
           // If the current stored 'key' is still a valid option
@@ -874,13 +791,25 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
         group = localStorage.getItem("s75");
         // Retrieve the stored 's75' value
       }
-
-        if (window.location.href != base_url + "?s75=" + group + "&key=" + ind) {
-      // If the URL is not already formatted correctly with the selected values
-      window.location.href = base_url + "?s75=" + group + "&key=" + ind;
-      // Redirect to the updated URL to ensure correct parameters are set
+      s75AvaiMeasures = returnAvailableS75ByLookup(data, ind, invertedLookupEqCode);
+      // Call a function to retrieve measures associated with 's75'
+      for (let n = 0; n < s75_btns.length; n++) {  
+        // Loop through all buttons in "key-metrics-container"
+        if (s75AvaiMeasures.includes(s75_btns[n].value)) {  
+          // If the button's value is in the list of valid measures, show it
+          s75_btns[n].style.display = "block";
+        } else {
+        // Otherwise, hide the button
+        s75_btns[n].style.display = "none";
+        }
+      }
+      if (window.location.href != base_url + "?s75=" + group + "&key=" + ind) {
+        // If the URL is not already formatted correctly with the selected values
+        window.location.href = base_url + "?s75=" + group + "&key=" + ind;
+        // Redirect to the updated URL to ensure correct parameters are set
+      }
     }
-  }}
+  }
 
 
   if (window_url.indexOf("?") > -1) {
