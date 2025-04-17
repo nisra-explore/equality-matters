@@ -1439,6 +1439,69 @@ footer a:hover {
   height: auto; /* Let it expand naturally */
 }
 
+.category-grp{
+  border: 1px solid #eee;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.category-grp h3{
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.category-grp-btn{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  gap: 20px;
+}
+
+.toggle-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px; 
+  padding-right: 30px;
+}
+
+
+
+#selection-form-measure button.cen-theme:hover {
+  background: #00205b;
+  color: white;
+  border-color: #cedc20 !important;
+}
+
+#selection-form-measure button.doh-theme:hover {
+  background: #0193a6;
+  color: white;
+}
+
+#selection-form-measure button.doe-theme:hover {
+  background: #ca2c92;
+  color: white;
+}
+
+#selection-form-measure button.dfi-theme:hover {
+  background: #ffb81c;
+  color: black;
+}
+
+#selection-form-measure button.dfc-theme:hover {
+  background: #7d55c7;
+  color: white;
+}
+
+#selection-form-measure button.dfe-theme:hover {
+  background: #0072ce;
+  color: white;
+}
+
+#selection-form-measure button.teo-theme:hover {
+  background: #3b80ae;
+  color: white;
+}
+
 #selection-form-pathway, #selection-form-75group, #selection-form-depart, #selection-form-measure{
   display: contents; /* Makes the form behave like it's not there */
 }
@@ -1463,29 +1526,73 @@ footer a:hover {
   position :relative;
 }
 
+#toggle-group-btn,
 #selection-form-measure button {
-  display: flex;
+  position: relative;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
-  background: transparent;
-  color: #000;
+  padding: 10px 20px;
   font-size: 17px;
-  text-align: center;
-  padding: 0 20px;
+  color: #000;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  min-height: 60px;
+  outline: none;
+  transition: 0.3s ease-in-out;
+  box-sizing: border-box;
+  white-space: normal;
+  word-break: break-word;
+}
+
+#toggle-group-btn {
+  background: #4F95DA;
+  color: white;
+  border-radius: 999px;
+}
+
+#toggle-group-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid #4F95DA;
+  border-radius: 999px;
+  transition: all 0.3s ease-in-out;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+#selection-form-measure button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   border: 2px solid #4F95DA;
   border-radius: 2px;
-  cursor: pointer;
-  transition: 0.3s ease-in-out;
-  min-height: 60px;
-  outline:none;
-  position :relative;
+  transition: all 0.3s ease-in-out;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+#toggle-group-btn:hover::before,
+#selection-form-measure button:hover::before {
+  border-width: 4px;
+  border-color: #00205B;
+}
+
+#selection-form-measure button:hover {
+  background: #4F95DA;
+  color: white;
+}
+
+#toggle-group-btn:hover {
+  background: transparent;
+  color: #000;
 }
 
 #selection-form-pathway button:hover,
 #selection-form-75group button:hover,
-#selection-form-depart button:hover,
-#selection-form-measure button:hover {
-  transition: 0.3s ease-in-out;
+#selection-form-depart button:hover{
   background: #4F95DA;
   color: white;
   /* font-weight: bold; */
@@ -1668,4 +1775,21 @@ a.cookiesbarlink {
 
 .about-content{
   padding: 30px;
+}
+
+@keyframes staggerFade {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.staggered-entry {
+  opacity: 0;
+  animation: staggerFade 0.4s ease forwards;
+  animation-delay: var(--delay, 0ms);
 }

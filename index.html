@@ -99,9 +99,9 @@
               <!-- <hr style=" border-top: 3px solid rgba(0, 0, 0, .6); border-radius: 3px;"> -->
               <h3 id="domains-title" style="font-weight: normal; font-size: 14pt; margin-bottom: 0px; margin-top: 20px;">Explore other measures by <p class = "eq_grp_name" style="color:#3878c5; font-weight: bold; margin-bottom: 10px;"></p></h3>
               <div id = "key-metrics-container">
-                <button name = "key" value = "pubt">Active Travel - Public Transport</button>
-                <button name = "key" value = "walk">Active Travel - Walking or Cycling</button>
                 <button name = "key" value = "artc">Arts and Culture activities participation</button>
+                <button name = "key" value = "pubt">Public Transport Use</button>
+                <button name = "key" value = "walk" >Walking or Cycling (Active Travel)</button>
                 <button name = "key" value = "c500">Usual Resident Population</button>
                 <button name = "key" value = "c5011">Economic Activity - In Employment</button>
                 <button name = "key" value = "c5012">Economic Activity - Unemployed</button>
@@ -119,12 +119,12 @@
                 <button name = "key" value = "c5033">Hours worked - Full-time: 31-48 hours worked per week</button>
                 <button name = "key" value = "c5034">Hours worked - Full-time: 49+ hours worked per week</button>
                 <button name = "key" value = "comr">Community Relations</button>
-                <button name = "key" value = "cult">Cultural Identity</button>
-                <button name = "key" value = "hsg1">Very Good or Good General Health</button>
-                <button name = "key" value = "hsg2">Very Bad or Bad General Health</button>
+                <button name = "key" value = "cult">Respected Cultural Identity</button>
+                <button name = "key" value = "hsg1">General Health - Very Good or Good</button>
+                <button name = "key" value = "hsg2">General Health - Bad or Very Bad</button>
                 <button name = "key" value = "hsns">Never Smoked</button>
                 <button name = "key" value = "hssm">Smoking</button>
-                <button name = "key" value = "hsec">Use E-Cigarettes</button>
+                <button name = "key" value = "hsec">Use of E-Cigarettes</button>
                 <!-- <button name = "key" value = "sahl">Higher Level Apprenticeships in FE Equality Data</button> --> 
                 <button name = "key" value = "inc1">Income Deprivation and Inequality - Relative poverty</button>
                 <button name = "key" value = "inc2">Income Deprivation and Inequality - Absolute poverty</button>
@@ -137,11 +137,11 @@
                 <button name = "key" value = "sls5">Qualifications of School Leavers - 5 GCSEs (A*-C including GCSE English and maths)</button>
                 <button name = "key" value = "slsall">Qualifications of School Leavers - Total Leavers</button>
                 <button name = "key" value = "refw">Refugee Welcome</button>
-                <button name = "key" value = "resp">Respect</button>
+                <button name = "key" value = "resp">Feeling Respected</button>
                 <button name = "key" value = "safe">Safe Towns and City Centres</button>
-                <button name = "key" value = "self">Self-efficacy</button>
+                <button name = "key" value = "self">Low Self-efficacy</button>
                 <button name = "key" value = "prej">Self-reported prejudice against minority ethnic communities</button>
-                <button name = "key" value = "shar">Shared Communities</button>
+                <button name = "key" value = "shar">Shared Community</button>
                 <button name = "key" value = "spor">Sport and Physical Activity</button>
                 <button name = "key" value = "sar2">Students Achieving Regulated Qualifications at Level 2 in FE Colleges</button>
                 <button name = "key" value = "sar3">Students Achieving Regulated Qualifications at Level 3 in FE Colleges</button>
@@ -186,19 +186,15 @@
                       </tbody>
                     </table>
                   </div>
-                  <button class="accordion-button" style="margin-top: 30px;">Click to show data summary for <span style="font-weight: bold;" class = "measure_title"></span> <span class= "latest_year" style="color:#3878c5; font-weight: bold;"></span></button>
-                  <div class="panel">
+                    <h4 style="margin-top: 20px;"><span class = "measure_title"></span> <span class= "latest_year"></span> Summary text</h4>
                     <p class="data_summary" style="margin-bottom: 10px; margin-top: 10px;"></p>
-                    <button class="btn" id="copyTextButton" style="margin-bottom: 10px;">Copy Data Summary</button>
-                  </div>
+                    <button class="btn" id="copyTextButton" style="margin-bottom: 10px;">Copy Summary Text</button>
                 </div>
 
             <div id="chartInfoContainer">
                 <h3 style="margin-top: 30px;"><span class = "measure_title"></span> time trend - <span class="start_year" style = "color:#3878c5;"></span> <span style = "color:#3878c5;">to</span> <span class="latest_year" style = "color:#3878c5;"></span></h3>
                 <p style="margin-bottom: 0px;">The following line chart shows data on this measure from <span class= "start_year" style="color:#3878c5; font-weight: bold;"></span> to <span class= "latest_year" style="color:#3878c5; font-weight: bold;"></span> split by <span class = "eq_grp_name" style="color:#3878c5; font-weight: bold;"></span>.</p>
                 <p style="margin-bottom: 15px;">The Northern Ireland (NI) value is added for comparison in a blue dashed line.</p>
-                      
-                
               <button class="btn" id="line_chartBtn">View chart</button>
               <button class="btn" id="line_tableBtn">View table</button>
               
@@ -217,6 +213,12 @@
               </div>
             </div>
             <div id="chartContainer" class="grid" style="margin-top: 30px;"></div>
+            <div id ="lineDataSummaryContainer">
+              <h4 style="margin-top: 20px;"><span class = "measure_title"></span> time trend - <span class="start_year"></span> to <span class="latest_year"></span> Summary Text</h4>
+              <p class="data_summary" id = "data_summary_2" style="margin-bottom: 10px; margin-top: 10px;"></p>
+              <button class="btn" id="copyTextButton2" style="margin-bottom: 10px;">Copy Data Summary</button>
+            </div>
+            
     
               <div>
                 <br>
@@ -294,6 +296,7 @@
         <h2 style="text-align: center; margin-top: 20px;">Select a Department to see measures available</h2>
         <form id = "selection-form-depart" style="list-style-type: none; padding: 0;">
           <div id="depart-container">
+            <button name = "depart" value = "cen">Census</button>
             <button name = "depart" value = "dfc">Department for Communities</button>
             <button name = "depart" value = "dfi">Department for Infrastructure</button>
             <button name = "depart" value = "dfe">Department for the Economy</button>
@@ -308,57 +311,66 @@
       </div>
 
       <div id="s75-measure-scrn">
-        <h2 style="text-align: center; margin-top: 20px;">Available measures within your current selection</h2>
+        <h2 id = "selection-heading" style="text-align: center; margin-top: 20px;"></h2>
+        <div class="toggle-container">
+          <button id="toggle-group-btn">Group by Department</button>
+        </div>
         <form id = "selection-form-measure" style="list-style-type: none; padding: 0;">
           <div id="key-metrics-container-inter">
-            <button name = "key" value = "pubt">Active Travel - Public Transport</button>
-            <button name = "key" value = "walk">Active Travel - Walking or Cycling</button>
-            <button name = "key" value = "artc">Arts and Culture activities participation</button>
-            <button name = "key" value = "c500">Usual Resident Population</button>
-            <button name = "key" value = "c5011">Economic Activity - In Employment</button>
-            <button name = "key" value = "c5012">Economic Activity - Unemployed</button>
-            <button name = "key" value = "c5013">Economic Activity - Economically Inactive</button>
-            <button name = "key" value = "c5021">Industry of employment - Agriculture, energy and water employment</button>
-            <button name = "key" value = "c5022">Industry of employment - Manufacturing employment</button>
-            <button name = "key" value = "c5023">Industry of employment - Construction employment</button>
-            <button name = "key" value = "c5024">Industry of employment - Distribution, hotels and restaurants employment</button>
-            <button name = "key" value = "c5025">Industry of employment - Transport and communications employment</button>
-            <button name = "key" value = "c5026">Industry of employment - Financial, Real Estate, Professional and Administrative activities employment</button>
-            <button name = "key" value = "c5027">Industry of employment - Public administration, education and health employment</button>
-            <button name = "key" value = "c5028">Industry of employment - Other employment</button>
-            <button name = "key" value = "c5031">Hours worked - Part-time: 15 hours or less worked per week</button>
-            <button name = "key" value = "c5032">Hours worked - Part-time: 16-30 hours worked per week</button>
-            <button name = "key" value = "c5033">Hours worked - Full-time: 31-48 hours worked per week</button>
-            <button name = "key" value = "c5034">Hours worked - Full-time: 49+ hours worked per week</button>
-            <button name = "key" value = "comr">Community Relations</button>
-            <button name = "key" value = "cult">Cultural Identity</button>
-            <button name = "key" value = "hsg1">Very Good or Good General Health</button>
-            <button name = "key" value = "hsg2">Very Bad or Bad General Health</button>
-            <button name = "key" value = "hsns">Never Smoked</button>
-            <button name = "key" value = "hssm">Smoking</button>
-            <button name = "key" value = "hsec">Use E-Cigarettes</button>
+
+            <button name = "key" value = "artc" category = "Department of Communities">Arts and Culture activities participation</button>
+            <button name = "key" value = "pubt" category = "Department of Infrastructure">Public Transport Use</button>
+            <button name = "key" value = "walk" category = "Department of Infrastructure">Walking or Cycling (Active Travel)</button>
+            <button name = "key" value = "c500" category = "Census 2021">Usual Resident Population</button>
+            <button name = "key" value = "c5011" category = "Census 2021">Economic Activity - In Employment</button>
+            <button name = "key" value = "c5012" category = "Census 2021">Economic Activity - Unemployed</button>
+            <button name = "key" value = "c5013" category = "Census 2021">Economically Inactive</button>
+            <button name = "key" value = "c5021" category = "Census 2021">Industry of employment - Agriculture, energy and water employment</button>
+            <button name = "key" value = "c5022" category = "Census 2021">Industry of employment - Manufacturing employment</button>
+            <button name = "key" value = "c5023" category = "Census 2021">Industry of employment - Construction employment</button>
+            <button name = "key" value = "c5024" category = "Census 2021">Industry of employment - Distribution, hotels and restaurants employment</button>
+            <button name = "key" value = "c5025" category = "Census 2021">Industry of employment - Transport and communications employment</button>
+            <button name = "key" value = "c5026" category = "Census 2021">Industry of employment - Financial, Real Estate, Professional and Administrative activities employment</button>
+            <button name = "key" value = "c5027" category = "Census 2021">Industry of employment - Public administration, education and health employment</button>
+            <button name = "key" value = "c5028" category = "Census 2021">Industry of employment - Other employment</button>
+            <button name = "key" value = "c5031" category = "Census 2021">Hours worked - Part-time: 15 hours or less worked per week</button>
+            <button name = "key" value = "c5032" category = "Census 2021">Hours worked - Part-time: 16-30 hours worked per week</button>
+            <button name = "key" value = "c5033" category = "Census 2021">Hours worked - Full-time: 31-48 hours worked per week</button>
+            <button name = "key" value = "c5034" category = "Census 2021">Hours worked - Full-time: 49+ hours worked per week</button>
+            <button name = "key" value = "comr" category = "The Executive Office">Community Relations</button>
+            <button name = "key" value = "cult" category = "The Executive Office">Respected Cultural Identity</button>
+            <button name = "key" value = "hsg1" category = "Department of Health">General Health - Very Good or Good</button>
+            <button name = "key" value = "hsg2" category = "Department of Health">General Health - Bad or Very Bad</button>
+            <button name = "key" value = "hsns" category = "Department of Health">Never Smoked</button>
+            <button name = "key" value = "hssm" category = "Department of Health">Smoking</button>
+            <button name = "key" value = "hsec" category = "Department of Health">Use of E-Cigarettes</button>
             <!-- <button name = "key" value = "sahl">Higher Level Apprenticeships in FE Equality Data</button> --> 
-            <button name = "key" value = "inc1">Income Deprivation and Inequality - Relative poverty</button>
-            <button name = "key" value = "inc2">Income Deprivation and Inequality - Absolute poverty</button>
+            <button name = "key" value = "inc1" category = "Department of Communities">Income Deprivation and Inequality - Relative poverty</button>
+            <button name = "key" value = "inc2" category = "Department of Communities">Income Deprivation and Inequality - Absolute poverty</button>
             <!-- <button name = "key" value = "life">Life Satisfaction</button> -->
-            <button name = "key" value = "lone">Loneliness</button>
-            <button name = "key" value = "sls1">Qualifications of School Leavers - 3 A-levels (A*-C)</button>
-            <button name = "key" value = "sls2">Qualifications of School Leavers - 3 A-levels (A*-E) </button>
-            <button name = "key" value = "sls3">Qualifications of School Leavers - 2 A-levels (A*-E) </button>
-            <button name = "key" value = "sls4">Qualifications of School Leavers - 5 GCSEs (A*-C) </button>
-            <button name = "key" value = "sls5">Qualifications of School Leavers - 5 GCSEs (A*-C including GCSE English and maths)</button>
-            <button name = "key" value = "slsall">Qualifications of School Leavers - Total Leavers</button>
-            <button name = "key" value = "refw">Refugee Welcome</button>
-            <button name = "key" value = "resp">Respect</button>
-            <button name = "key" value = "safe">Safe Towns and City Centres</button>
-            <button name = "key" value = "self">Self-efficacy</button>
-            <button name = "key" value = "prej">Self-reported prejudice against minority ethnic communities</button>
-            <button name = "key" value = "shar">Shared Communities</button>
-            <button name = "key" value = "spor">Sport and Physical Activity</button>
-            <button name = "key" value = "sar2">Students Achieving Regulated Qualifications at Level 2 in FE Colleges</button>
-            <button name = "key" value = "sar3">Students Achieving Regulated Qualifications at Level 3 in FE Colleges</button>
+            <button name = "key" value = "lone" category = "The Executive Office">Loneliness</button>
+            <button name = "key" value = "sls1" category = "Department of Education">Qualifications of School Leavers - 3 A-levels (A*-C)</button>
+            <button name = "key" value = "sls2" category = "Department of Education">Qualifications of School Leavers - 3 A-levels (A*-E) </button>
+            <button name = "key" value = "sls3" category = "Department of Education">Qualifications of School Leavers - 2 A-levels (A*-E) </button>
+            <button name = "key" value = "sls4" category = "Department of Education">Qualifications of School Leavers - 5 GCSEs (A*-C) </button>
+            <button name = "key" value = "sls5" category = "Department of Education">Qualifications of School Leavers - 5 GCSEs (A*-C including GCSE English and maths)</button>
+            <button name = "key" value = "slsall" category = "Department of Education">Qualifications of School Leavers - Total Leavers</button>
+            <button name = "key" value = "refw" category = "The Executive Office">Refugee Welcome</button>
+            <button name = "key" value = "resp" category = "The Executive Office">Feeling Respected</button>
+            <button name = "key" value = "safe" category = "The Executive Office">Safe Towns and City Centres</button>
+            <button name = "key" value = "self" category = "The Executive Office">Low Self-efficacy</button>
+            <button name = "key" value = "prej" category = "The Executive Office">Self-reported prejudice against minority ethnic communities</button>
+            <button name = "key" value = "shar" category = "The Executive Office">Shared Community</button>
+            <button name = "key" value = "spor" category = "Department of Communities">Sport and Physical Activity</button>
+            <button name = "key" value = "sar2" category = "Department of Economy">Students Achieving Regulated Qualifications at Level 2 in FE Colleges</button>
+            <button name = "key" value = "sar3" category = "Department of Economy">Students Achieving Regulated Qualifications at Level 3 in FE Colleges</button>
+            
+            <!-- <button name = "key" value = "sahl">Higher Level Apprenticeships in FE Equality Data</button> --> 
+            <!-- <button name = "key" value = "life">Life Satisfaction</button> -->
           </div>
+          <div id="grouped-container" style="display: none;"></div>
         </form>
+        
       </div>
       </div>
       <hr style="border-top: 10px solid #cedc20; margin-bottom: 0; margin-top: 25px;">
@@ -431,6 +443,7 @@
   let lookupTableDisplayGrp = data.lookup_table_display_grp;
   let lookupTableMeasureTitle = data.lookup_table_measure_title;
   let lookupTableDatasetLong = data.lookup_table_dataset_long;
+  let lookupDeptName = data.lookup_table_dept_name;
 
   function filterVariablesByName(data, matchStrings) {
     if (!Array.isArray(matchStrings) || matchStrings.length !== 2) {
@@ -695,6 +708,7 @@
   let s75AvaiMeasures; 
   let s75_btns = document.getElementById("top-buttons-container").getElementsByTagName("button");
   let key_btns_inter = document.getElementById("key-metrics-container-inter").getElementsByTagName("button");  // Retrieves all button elements within the element that has the ID "key-metrics-container-inter"
+  let dept_btns = document.getElementById("depart-container").getElementsByTagName("button");
   let measureTitle // Variable to store measure parameter;
   let eqGrpDisplayName // Variable to store group name;
   let nonNull; // variable for creating and hiding linecharts
@@ -703,7 +717,6 @@
   var depart_scrn = document.getElementById("depart-scrn");
   var s75_measure_scrn = document.getElementById("s75-measure-scrn");
   var dest_scrn = document.getElementById("dest-scrn");
-
     
   // default showing when no extra URL criteria - will apply to any part of the app
   // home_scrn shown as default for any div is block unless otherwise instructed
@@ -713,6 +726,15 @@
   s75_measure_scrn.style.display = "none";
   dest_scrn.style.display = "none";
 
+  document.addEventListener('DOMContentLoaded', function () {
+  const toggleBtn = document.getElementById("toggle-group-btn");
+  const form = document.getElementById("selection-form-measure");
+  const flatContainer = document.getElementById("key-metrics-container-inter");
+  const groupedContainer = document.getElementById("grouped-container");
+  let isGrouped = false;
+
+  let filteredButtons = [];
+
   // if block denoting action when a button is clicked from the home screen - returns measures within s75 selection
   if (window_url.indexOf("?") > -1 && window_url.indexOf("home=") > -1) {
     home_scrn.style.display = "none";
@@ -720,18 +742,147 @@
     s75_measure_scrn.style.display = "block";
     dest_scrn.style.display = "none";
 
-    group = window_url.slice(window_url.indexOf("home=") + 5);
+    const group = window_url.slice(window_url.indexOf("home=") + 5);
     localStorage.setItem("s75", group);
 
-    let s75_cats = returnS75CatsByLookup(data, group, lookupTableEqCode);
+    const matchedBtn = document.querySelector(`button[name="home"][value="${group}"]`);
 
-    for (let i = 0; i < key_btns_inter.length; i ++) {
-      if (!s75_cats.includes(key_btns_inter[i].value)) {
-        key_btns_inter[i].style.display = "none";
-      }
+    if (matchedBtn) {
+      const friendlyLabel = matchedBtn.textContent.trim();
+      const selectionHeading = document.getElementById("selection-heading");
+      selectionHeading.textContent = `Available Measures within ${friendlyLabel}`;
     }
 
+    const s75_cats = returnS75CatsByLookup(data, group, lookupTableEqCode);
+
+    const allButtons = Array.from(form.querySelectorAll('button[name="key"]'));
+
+    // Hide all buttons first
+    allButtons.forEach(btn => btn.style.display = 'none');
+
+    // Filter the matching buttons
+    filteredButtons = allButtons.filter(btn => s75_cats.includes(btn.value));
+
+    // Show only the filtered ones (let CSS grid handle layout)
+    filteredButtons.forEach(btn => btn.style.display = '');
+
+    if (groupedContainer.style.display === "block") {
+      renderGroupedButtons(filteredButtons);
+    }
   }
+
+  // Toggle view
+  toggleBtn.addEventListener("click", function () {
+  isGrouped = !isGrouped;
+
+  if (isGrouped) {
+    flatContainer.style.display = "none";
+    groupedContainer.style.display = "block";
+    toggleBtn.textContent = "Show all available selections";
+    renderGroupedButtons(filteredButtons);
+  } else {
+    groupedContainer.style.display = "none";
+    flatContainer.style.display = "grid";
+    toggleBtn.textContent = "Group by Department";
+
+    filteredButtons.forEach((btn, index) => {
+    btn.classList.add("staggered-entry");
+    btn.style.setProperty('--delay', `${index * 80}ms`);
+    btn.style.opacity = '0'; // reset for animation
+  });
+  }
+});
+
+  function renderGroupedButtons(buttons) {
+  groupedContainer.innerHTML = "";
+
+  const customCategoryOrder = ["Census 2021", "Department of Health", "Department of Education", "Department of Infrastructure", "Department of Communities", "Department of Economy", "The Executive Office"];
+  const categoryIcons = {
+    "Census 2021": "img/cen-logo-hex.png",
+    "Department of Health": "img/doh-logo-hex.png",
+    "Department of Education": "img/doe-logo-hex.png",
+    "Department of Infrastructure": "img/dfi-logo-hex.png",
+    "Department of Communities": "img/dfc-logo-hex.png",
+    "Department of Economy": "img/dfe-logo-hex.png",
+    "The Executive Office": "img/teo-logo-hex.png"
+  };
+  const categoryColors = {
+  "Census 2021": "cen-theme",
+  "Department of Health": "doh-theme",
+  "Department of Education": "doe-theme",
+  "Department of Infrastructure": "dfi-theme",
+  "Department of Communities": "dfc-theme",
+  "Department of Economy": "dfe-theme",
+  "The Executive Office": "teo-theme"
+};
+
+  //Group buttons by normalized category key
+  const groups = new Map();
+
+  buttons.forEach(btn => {
+    const rawCat = btn.getAttribute("category") || "Uncategorized";
+    const cat = rawCat.trim(); // Trim whitespace
+    if (!groups.has(cat)) {
+      groups.set(cat, []);
+    }
+    groups.get(cat).push(btn);
+  });
+
+  //Render groups in the defined order
+  customCategoryOrder.forEach(cat => {
+    if (groups.has(cat)) {
+      renderGroup(cat, groups.get(cat));
+      groups.delete(cat);
+    }
+  });
+
+  //Render any leftover categories not in the list
+  groups.forEach((btnArray, cat) => {
+    renderGroup(cat, btnArray);
+  });
+
+  // Helper to render one group
+  function renderGroup(cat, btnArray) {
+  const groupDiv = document.createElement("div");
+  groupDiv.classList.add("category-grp");
+
+  // Header with icon
+  const title = document.createElement("h3");
+  const icon = document.createElement("img");
+  icon.src = categoryIcons[cat] || categoryIcons["Uncategorized"];
+  icon.style.height = "70px";
+  icon.style.verticalAlign = "middle";
+  icon.style.marginRight = "8px";
+
+  title.appendChild(icon);
+  title.appendChild(document.createTextNode(cat));
+  groupDiv.appendChild(title);
+
+  const btnWrapper = document.createElement("div");
+  btnWrapper.classList.add("category-grp-btn");
+
+  const themeClass = categoryColors[cat] || "default-theme";
+
+  btnArray.forEach((origBtn, index) => {
+    const clone = origBtn.cloneNode(true);
+    clone.className = `${origBtn.className} ${themeClass} staggered-entry`;
+    clone.style.setProperty('--delay', `${index * 100}ms`);
+
+    clone.addEventListener("click", () => {
+      origBtn.click();
+    });
+
+    btnWrapper.appendChild(clone);
+  });
+
+  groupDiv.appendChild(btnWrapper);
+  groupedContainer.appendChild(groupDiv);
+}
+
+}
+
+});
+
   // action taken to update url once a s75 measure given - this being actioned triggers the below if block and populates the dest page based on the key and s75 in the url
   if (window_url.indexOf("?") > -1 && window_url.indexOf("key=") > -1 & window_url.indexOf("s75=") == -1) {
     
@@ -742,75 +893,72 @@
     window.location.href = base_url + "?s75=" + group + "&key=" + ind;
   }
 
-  if (window_url.indexOf("?") > -1 && window_url.indexOf("s75=") > -1) {
-    // Check if the URL contains a query string ('?') and // Check if the parameter 's75' exists in the URL
-    home_scrn.style.display = "none";
-    dest_scrn.style.display = "block";
+if (window_url.indexOf("?") > -1 && window_url.indexOf("s75=") > -1) {
+  // Check if the URL contains a query string ('?') and // Check if the parameter 's75' exists in the URL
+  home_scrn.style.display = "none";
+  dest_scrn.style.display = "block";
 
-    // Check if the URL contains a query string ('?')
-    let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
-    // Extract the query string part after '?' and split it into key-value pairs
-    let base_url = window_url.slice(0, window_url.indexOf("?"));
-    // Extract the base URL without query parameters
-    for (let i = 0; i < selections.length; i++) {
-      // Loop through each key-value pair in the query string
-      if (selections[i].indexOf("s75=") > -1) {
-        // Check if the parameter 's75' exists in the URL
-        group = selections[i].slice(selections[i].indexOf("s75=") + 4);
-        // Extract the value of 's75' (after "s75=")
-        localStorage.setItem("s75", group);
-        // Store the 's75' value in localStorage for persistence
-        s75CatMeasures = returnS75CatsByLookup(data, group, lookupTableEqCode);
-        // Call a function to retrieve measures associated with 's75'
-        for (let j = 0; j < key_btns.length; j++) {  
-          // Loop through all buttons in "key-metrics-container"
-          if (s75CatMeasures.includes(key_btns[j].value)) {  
-            // If the button's value is in the list of valid measures, show it
-            key_btns[j].style.display = "block";
-          } else {
-            // Otherwise, hide the button
-            key_btns[j].style.display = "none";
-          }
-        } 
-
-        if (s75CatMeasures.includes(localStorage.getItem("key"))) {
-          // If the current stored 'key' is still a valid option
-          ind = localStorage.getItem("key");
-        } else {
-          // Otherwise, default to the first available measure
-          console.log("Not a valid measure");
-          ind = s75CatMeasures[0];
-        }
-      }
-      if (selections[i].indexOf("key=") > -1) {
-        // Check if the parameter 'key' exists in the URL
-        ind = selections[i].slice(selections[i].indexOf("key=") + 4);
-        // Extract the value of 'key' (after "key=")
-        localStorage.setItem("key", ind);
-        // Store the 'key' value in localStorage for persistence
-        group = localStorage.getItem("s75");
-        // Retrieve the stored 's75' value
-      }
-      s75AvaiMeasures = returnAvailableS75ByLookup(data, ind, invertedLookupEqCode);
+// Check if the URL contains a query string ('?')
+let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
+  // Extract the query string part after '?' and split it into key-value pairs
+  let base_url = window_url.slice(0, window_url.indexOf("?"));
+  // Extract the base URL without query parameters
+  for (let i = 0; i < selections.length; i++) {
+    // Loop through each key-value pair in the query string
+    if (selections[i].indexOf("s75=") > -1) {
+      // Check if the parameter 's75' exists in the URL
+      group = selections[i].slice(selections[i].indexOf("s75=") + 4);
+      // Extract the value of 's75' (after "s75=")
+      localStorage.setItem("s75", group);
+      // Store the 's75' value in localStorage for persistence
+      s75CatMeasures = returnS75CatsByLookup(data, group, lookupTableEqCode);
       // Call a function to retrieve measures associated with 's75'
-      for (let n = 0; n < s75_btns.length; n++) {  
+      for (let j = 0; j < key_btns.length; j++) {  
         // Loop through all buttons in "key-metrics-container"
-        if (s75AvaiMeasures.includes(s75_btns[n].value)) {  
+        if (s75CatMeasures.includes(key_btns[j].value)) {  
           // If the button's value is in the list of valid measures, show it
-          s75_btns[n].style.display = "block";
+          key_btns[j].style.display = "block";
         } else {
-        // Otherwise, hide the button
-        s75_btns[n].style.display = "none";
+          // Otherwise, hide the button
+          key_btns[j].style.display = "none";
         }
-      }
-      if (window.location.href != base_url + "?s75=" + group + "&key=" + ind) {
-        // If the URL is not already formatted correctly with the selected values
-        window.location.href = base_url + "?s75=" + group + "&key=" + ind;
-        // Redirect to the updated URL to ensure correct parameters are set
+      } 
+
+      if (s75CatMeasures.includes(localStorage.getItem("key"))) {
+        // If the current stored 'key' is still a valid option
+        ind = localStorage.getItem("key");
+      } else {
+        // Otherwise, default to the first available measure
+        console.log("Not a valid measure");
+        ind = s75CatMeasures[0];
       }
     }
-  }
-
+    if (selections[i].indexOf("key=") > -1) {
+      // Check if the parameter 'key' exists in the URL
+      ind = selections[i].slice(selections[i].indexOf("key=") + 4);
+      // Extract the value of 'key' (after "key=")
+      localStorage.setItem("key", ind);
+      // Store the 'key' value in localStorage for persistence
+      group = localStorage.getItem("s75");
+      // Retrieve the stored 's75' value
+    }
+    s75AvaiMeasures = returnAvailableS75ByLookup(data, ind, invertedLookupEqCode);
+        // Call a function to retrieve measures associated with 's75'
+        for (let n = 0; n < s75_btns.length; n++) {  
+        // Loop through all buttons in "key-metrics-container"
+          if (s75AvaiMeasures.includes(s75_btns[n].value)) {  
+            // If the button's value is in the list of valid measures, show it
+            s75_btns[n].style.display = "block";
+          } else {
+           // Otherwise, hide the button
+           s75_btns[n].style.display = "none";
+          }
+        }
+      if (window.location.href != base_url + "?s75=" + group + "&key=" + ind) {
+    // If the URL is not already formatted correctly with the selected values
+    window.location.href = base_url + "?s75=" + group + "&key=" + ind;
+    // Redirect to the updated URL to ensure correct parameters are set
+  }}}
 
   if (window_url.indexOf("?") > -1) {
     // // Check if the URL contains a query string ('?')
@@ -1412,24 +1560,60 @@
     document.getElementById('dataTable2').innerHTML = '<center style="font-weight: bold; font-size: 18pt;">Current year data is not available for this measure</center>';
   }
 
-  // Generate summary using the new function
-  const summaryText = generateSummaryText(tableDataArray, niAvgLine, measureTitle, eqGrpDisplayName, how_measure);
+  // Create a new object with labels replaced by the array values
+const eqGrpCatLineData4 = Object.keys(eqGrpCatLineData).reduce((acc, key, index) => {
+  acc[eqGrpCatLabels[index]] = eqGrpCatLineData[key]; // Replace key with value from arr
+  return acc;
+}, {});
 
-  // Update all elements with the class 'data_summary'
-  document.querySelectorAll('.data_summary').forEach(el => {
-    el.innerHTML = summaryText;
-  });
+const yearLabels2 = ["2001/02", "2002/03", "2003/04"];
 
-  console.log("Summary:", summaryText); // Debugging log
+const eqGrpCatLineData3 = {
+    "16-24": [12, 22, 62],
+    "25-34": [0, 32, 42], // 2001 is missing, assumed 0
+    "35-49": [52, 32, 12]
+};
+const niLineData2 = [12, 11, 10]; // Example placeholder values
 
-  return {
-    tableData: tableDataArray,
-    summary: summaryText
+let tableDataArray2 = [];
+
+for (let i = 0; i < yearLabels.length; i++) {
+    let year = yearLabels[i];
+    
+    let yearData = {
+        year: parseInt(year), // Convert to number
+        data: {},
+        niAverage: parseFloat(niLineData[i]) || 0
+    };
+
+    // Assign values for each age group
+    Object.keys(eqGrpCatLineData4).forEach(group => {
+        yearData.data[group] = parseFloat(eqGrpCatLineData4[group][i]) || 0;
+    });
+
+    tableDataArray2.push(yearData);
+}
+console.log("Tests:", tableDataArray2);
+
+const summaryText2 = generateSummaryText2(
+    tableDataArray2, 
+    niLineData[0], 
+    measureTitle, 
+    Object.keys(eqGrpCatLineData4), 
+    how_measure
+);
+
+document.getElementById('data_summary_2').innerHTML = summaryText2;
+  
+return {
+    tableData: tableDataArray2,
+    summary: summaryText2
   };
+
 }
 
-  // Function to generate summary in the requested format
-  function generateSummaryText(tableData, niAverage, measureTitle, eqGrpDisplayName, howMeasure) {
+// Function to generate summary in the requested format
+function generateSummaryText(tableData, niAverage, measureTitle, eqGrpDisplayName, howMeasure) {
     if (!Array.isArray(tableData) || tableData.length === 0) {
         console.warn("No valid data to summarize.");
         return "No data available for summary.";
@@ -1536,7 +1720,67 @@
     return summaryText;
 }
 
-  document.addEventListener("DOMContentLoaded", () => {
+function generateSummaryText2(tableData, niAverage, measureTitle, ageGroups, howMeasure) {
+    if (!Array.isArray(tableData) || tableData.length < 2) {
+        console.warn("Not enough data to summarize.");
+        return "Not enough data available for summary.";
+    }
+
+    const firstYearLabel = tableData[0].year;
+    const lastYearLabel = tableData[tableData.length - 1].year;
+
+    let diffValues = {};
+
+    ageGroups.forEach(group => {
+        const firstRow = tableData[0];
+        const lastRow = tableData[tableData.length - 1];
+
+        const firstGroupVal = firstRow?.data[group] || 0;
+        const firstNI = firstRow?.niAverage || 0;
+        const firstDiff = Math.round(firstGroupVal - firstNI);
+
+        const lastGroupVal = lastRow?.data[group] || 0;
+        const lastNI = lastRow?.niAverage || 0;
+        const lastDiff = Math.round(lastGroupVal - lastNI);
+
+        diffValues[group] = {
+            firstDiff,
+            lastDiff,
+            change: lastDiff - firstDiff
+        };
+    });
+
+    const sortedDiffs = Object.entries(diffValues).sort((a, b) => b[1].change - a[1].change);
+    const biggestIncrease = sortedDiffs[0];
+    const biggestDecrease = sortedDiffs[sortedDiffs.length - 1];
+
+    function toFinancialYear(year) {
+    const nextYear = (parseInt(year) + 1).toString().slice(-2); // Gets last two digits
+    return `${year}/${nextYear}`; 
+    }
+
+    const firstYearLabels = toFinancialYear(tableData[0].year);
+    const lastYearLabels = toFinancialYear(tableData[tableData.length - 1].year);
+
+    let summaryText = `This measure records the ${howMeasure}<br><br>`;
+
+    summaryText += `The group with the highest <strong>increase relative to the NI value</strong> is <strong>${biggestIncrease[0]}</strong>, which was <strong>${Math.abs(biggestIncrease[1].firstDiff)}%</strong> ${
+        biggestIncrease[1].firstDiff >= 0 ? "above" : "below"
+    } the NI value in ${firstYearLabels}, and <strong>${Math.abs(biggestIncrease[1].lastDiff)}%</strong> ${
+        biggestIncrease[1].lastDiff >= 0 ? "above" : "below"
+    } in ${lastYearLabels}.<br>`;
+
+    summaryText += `The group with the greatest <strong>decrease relative to the NI value</strong> is <strong>${biggestDecrease[0]}</strong>, which was <strong>${Math.abs(biggestDecrease[1].firstDiff)}%</strong> ${
+        biggestDecrease[1].firstDiff >= 0 ? "above" : "below"
+    } the NI value in ${firstYearLabels}, and <strong>${Math.abs(biggestDecrease[1].lastDiff)}%</strong> ${
+        biggestDecrease[1].lastDiff >= 0 ? "above" : "below"
+    } in ${lastYearLabels}.`;
+
+    return summaryText;
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
     const button = document.querySelector(".copy-button");
     button.addEventListener("click", copyTable);
   });
@@ -1849,17 +2093,18 @@
   // Function to populate the table and create charts
   window.onload = function() {
     populateTable();
+    populateTable2();
     showView('chartView');
     showView('chartContainer');
   };
 
   // funcitonality for click button copying of descriptive text
   document.getElementById('copyTextButton').addEventListener('click', copyText);
-
+  
   function copyText() {
     // Select the paragraph with the class 'data_summary'
     const textToCopy = document.querySelector('.data_summary').innerText;
-
+    
     // Use Clipboard API for copying text
     navigator.clipboard.writeText(textToCopy)
       .then(() => {
@@ -1868,6 +2113,20 @@
       })
       .catch(err => {
           console.error('Failed to copy text: ', err);
+      });
+  }
+
+  document.getElementById('copyTextButton2').addEventListener('click', copyText2);
+
+  function copyText2() {
+    const textToCopy = document.getElementById('data_summary_2').innerText;
+
+    navigator.clipboard.writeText(textToCopy)
+      .then(() => {
+        alert('Text copied to clipboard!');
+      })
+      .catch(err => {
+        console.error('Failed to copy text: ', err);
       });
   }
 
@@ -2090,6 +2349,7 @@
 
         } else {
             chartInfoContainer.style.display = "none";
+            lineDataSummaryContainer.style.display = "none";
             legend.style.display = "none";
             container.innerHTML = '<center style="font-weight: bold; font-size: 18pt;">Historic data is not available for this measure</center>';
         }
