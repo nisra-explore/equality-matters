@@ -27,6 +27,11 @@ body {
   flex: 1;
 }
 
+#dest-scrn, #s75-measure-scrn {
+  flex: 1;
+  flex-direction: column;
+}
+
 main {
   flex: 1;
 }
@@ -47,14 +52,15 @@ main {
 
 #top-menu {
   align-items: center;
+  justify-content: space-between;
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: repeat(2,1fr);
   padding: 16px;
 }
 
 .nisra-logo-container {
   display: flex;
-  justify-content:center;
+  justify-content:space-between;
   align-items: center
 }
 
@@ -68,19 +74,16 @@ main {
 #dashboard-title-container {
   display: flex;
   flex-direction:column;
+  align-items: end;
 }
 
-#dashboard-title {
-  font-size: 2.75em;
-  font-weight: bold;
+#dashboard-title a {
+  font-size: 2.75rem;
+  font-weight: normal;
   color: #ffffff;
   line-height: 1em;
   margin-bottom: 10px;
-}
-
-#dashboard-subtitle {
-  font-size: 1.5em;
-  line-height: 1em;
+  text-decoration: none;
 }
 
 #top-menu-items {
@@ -122,18 +125,24 @@ h1 {
 
 h2 {
     font-size: 26pt;
-    color: #404040;
-    font-weight: bold;
+    color: #363636;
 }
 
-h3 {
-    color: #404040;
-    font-weight: bold;
+h3, h4, h5 {
+    color: #2e2e2e;
+    font-weight: normal;
 }
 
-h5 {
-  color: #404040;
-  font-weight: normal;
+.footer-header {
+  color: #fff;
+  font-weight: 500;
+  font-size: 1.25rem;
+  padding: 0;
+ /*  margin-bottom: .5rem; */
+}
+
+.accordion-header {
+  display: inline;
 }
 
 #content-centre {
@@ -144,8 +153,10 @@ h5 {
 }
 
 #main-container {
-    width: 95%;
+    width: 75rem;
     display: flex;
+    margin-bottom: 20px;
+
 }
 
 #main-content {
@@ -169,12 +180,14 @@ aside {
 }
 
 a {
-	color: #0064c8;
-    text-decoration: unset;
+	color: #006edb;
+    /* text-decoration: unset; */
+    text-decoration: underline;
 }
 
 a:hover {
-    text-decoration: underline;
+  color: #b400f0;
+  text-decoration: underline;
 }
 
 .survey-link {
@@ -532,12 +545,6 @@ iframe {
     display: none;
 }*/
 
-.content-wrapper {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
 .cookies-infobar_wrapper {
     margin: 10px;
 }
@@ -583,7 +590,7 @@ a.cookies-infobar_btn, a.cookies-infobar_btn_reject, a.cookiesbarlink {
     width: 100%;
     display: flex;
   }
-  
+
   .nisrafooter ul {
     display: block;
     list-style-type: disc;
@@ -614,7 +621,7 @@ a.cookies-infobar_btn, a.cookies-infobar_btn_reject, a.cookiesbarlink {
 
 /*.flex-list-footer {
 	position: relative;
-  margin: 20px 0em 0em 0em; 
+  margin: 20px 0em 0em 0em;
 	display:block;
   overflow: hidden;
 }*/
@@ -766,11 +773,31 @@ footer {
 
 footer a {
     color: #ffffff;
+    text-underline-offset: 3px;
 }
 
 footer a:hover {
     color: #ffffff;
+    text-decoration-thickness: 2px;
 }
+
+.footer-links { list-style: none; padding-left: 0; }
+.footer-links .list-inline-item { margin: 0 .5rem; }
+
+/* More vertical spacing in vertical lists */
+.footer ul.list-unstyled li { margin-bottom: 0.5rem; }
+
+/* Social icon hover */
+.footer .list-inline-item img {
+  transition: box-shadow 0.2s ease, border 0.2s ease;
+}
+.footer .list-inline-item img:hover {
+  border: 2px solid #fff;
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+  border-radius: 4px;
+}
+
+.img-50 { width: 50px; height: 50px; }
 
 #prototype {
     color: #fff;
@@ -1028,22 +1055,26 @@ footer a:hover {
     margin-bottom: 5px;
   }
 
+  .btn.selected {
+  border: 4px solid #000;
+  background-color: #fff;
+  color: #00205b;
+}
+
+
   .btn {
-    color: #00205B;
+    /* color: #00205B;*/
     border: 2px solid #00205B;
+    background-color: #3878c5;
+    color: #fff;
     font-weight: bold;
   }
 
   .btn:hover {
-    background-color: #6093d2;
-    color: #fff;
+    background-color: #7e6ec4;
+    border: 2px solid #000;
+    /* color: #fff; */
   }
-
-  .btn:focus {
-    background-color: #00205B;
-    color: #fff;
-  }
-
 
   #search-box {
     border: 2px solid #ffffff;
@@ -1112,8 +1143,8 @@ footer a:hover {
     width: 100%;
   }
 
-  table {
-    width: 80%;
+  .dest-table {
+    width: 100%;
     max-width: 100%;
     /* margin-left: auto; */
     /* margin-right: auto; */
@@ -1121,6 +1152,22 @@ footer a:hover {
     margin-top: 20px;
     border-collapse: collapse;
     table-layout: auto;
+  }
+
+  table {
+    width: 100%;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+    font-size: 12pt;
+    margin-top: 20px;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  .wrap-cell {
+    white-space: normal;   /* allow wrapping */
+    word-wrap: break-word; /* older name, still useful */
+    overflow-wrap: anywhere; /* modern, breaks long words/URLs */
   }
 
   td, th {
@@ -1153,14 +1200,6 @@ footer a:hover {
     color: #000000;
     text-decoration: none;
     font-weight: bold;
-  }
-
-  .navy-dot {
-    background-color: #142062;
-    height: 16px;
-    width: 16px;
-    border-radius: 100%;
-    margin: auto;
   }
 
   .framework-column {
@@ -1220,13 +1259,13 @@ footer a:hover {
   /* format download button for table */
 .copy-button {
   position: absolute;
-  top: -53px;
-  right: 20%;
+  top: -33px;
+  right: 0%;
   z-index: 10; /*ensures button is above table*/
   border: 2px solid #00205B;
   border-radius: 5px;
-  background-color: #fff;
-  color: #00205B;
+  background-color: #7767c1;
+  color: #fff;
   font-weight: bold;
 }
 
@@ -1258,13 +1297,15 @@ footer a:hover {
   display: grid;
   width: 100%;
   grid-gap: 10px;
-  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  /* grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); */
+  grid-template-columns: repeat(3, 1fr); /* Max 3 columns */
   grid-template-rows: 1fr;
   grid-auto-rows: 1fr;
   justify-content: stretch;
   page-break-inside: avoid;
   margin-bottom: 20px;
 }
+
 
 .mtb {
     margin-top: 20px;
@@ -1301,10 +1342,6 @@ footer a:hover {
   margin-left: 15px;
 }
 
-.active:after {
-  /* 2b9d is up arrow */
-  content: '\2796';
-}
 
 .panel {
   padding: 0 18px;
@@ -1333,8 +1370,8 @@ footer a:hover {
 
 #selection-form button {
   border: none;
-  background-color: #eee;
-  color: #0064c8;
+  background-color: #7e6ec4;
+  color: #fff;
   margin: 2px;
   border-radius: 5px;
   text-align: left;
@@ -1347,13 +1384,16 @@ footer a:hover {
 
 #top-buttons-container {
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
+  flex-direction: column;
   gap: 5px;
 }
 
 #top-buttons-container button {
-  flex: 1 1 auto;
-  text-align: center;
+  /* flex: 1 1 auto; */
+  /* text-align: center; */
+  padding-left: 10px;
+  text-align: left;
   min-width: 30%; /* Allows buttons to adjust dynamically */
 }
 
@@ -1460,7 +1500,7 @@ footer a:hover {
 .toggle-container {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
   padding-right: 30px;
 }
 
@@ -1512,18 +1552,18 @@ footer a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: transparent;
-  color: #000;
-  font-size: 17px;
+  background: #3878c1;
+  border: 2px solid #00205B;
+  color: #fff;
+  font-weight: bold;
   text-align: center;
   padding: 0 20px;
-  border: 2px solid #4F95DA;
-  border-radius: 2px;
   cursor: pointer;
   transition: 0.3s ease-in-out;
-  min-height: 100px;
+  min-height: 50px;
   outline:none;
   position :relative;
+  border-radius: 10px;
 }
 
 #toggle-group-btn,
@@ -1645,6 +1685,57 @@ footer a:hover {
   color: #fff;
 }
 
+.home-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 70% 30%;
+  grid-template-rows: 100%;
+  width: 75rem;
+  height: 100%;
+  gap: 0;
+  min-height: 0;
+  margin: 0 auto;
+}
+
+.home-main {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  padding: 40px 30px 0 30px;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+}
+
+.home-side {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  display: grid;
+  grid-template-rows: minmax(min-content, 1fr) minmax(0, 1fr);
+  height: 100%;
+  width: 100%;
+  min-height: 0;
+}
+
+.home-side-top {
+  grid-row: 1 / 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 20px 0px 20px;
+  box-sizing: border-box;
+  min-height: 0;
+}
+
+.home-side-bottom {
+  grid-row: 2 / 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0px 20px;
+  box-sizing: border-box;
+  min-height: 0;
+}
+
 #cookie-banner {
 	top: 0;
 	left: 0;
@@ -1713,27 +1804,30 @@ a.cookiesbarlink {
   padding: 0;
 }
 
-#about {
+.breadcrumb-about-div {
   display: flex;
-  justify-content: center;
-}
-
-#about > div {
-  display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
-.about-btn {
-  border: 1px solid #00205B;
-  background-color: #fff;
-  color: #00205B;
-  margin: 2px;
+.all-measures-btn {
+  background-color: #7e6ec4;
+  border: 2px solid #00205B;
+  color: #fff;
+  font-weight: bold;
   font-size: 20px;
   padding: 6px 12px;
 }
 
-.about-btn:hover {
+.about-btn {
+  color: #fff;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 6px 12px;
+}
+
+.about-btn:hover, .all-measures-btn:hover {
   background-color: #6093d2;
   color: #fff;
 }
@@ -1745,7 +1839,8 @@ a.cookiesbarlink {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
-  width: 300px;
+  width: 83%;
+  border: 2px solid #000;
 }
 
 .search-container input[type="text"] {
@@ -1792,4 +1887,348 @@ a.cookiesbarlink {
   opacity: 0;
   animation: staggerFade 0.4s ease forwards;
   animation-delay: var(--delay, 0ms);
+}
+
+/*###################################################*/
+/*###################################################*/
+/* S75 MEASURES PAGE BUTTON GRID LAYOUT AND NESTING */
+/*###################################################*/
+/*###################################################*/
+
+.child-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 per row */
+  grid-gap: 8px;                         /* spacing between buttons */
+}
+
+.btn-block+.btn-block {
+  margin-top: 0; /* Remove top margin default styling from bootstrap btn-block*/
+}
+
+/* Optional: make it 1 per row on very small screens */
+@media (max-width: 400px) {
+  .child-grid { grid-template-columns: 1fr; }
+}
+
+.masonry-cols {
+  display: flex;
+  align-items: flex-start;
+  margin-left: -8px;   /* gutters */
+  margin-right: -8px;
+}
+.masonry-col {
+  flex: 1 1 0;
+  padding: 0 8px;      /* gutters */
+}
+.masonry-item {
+  width: 100%;
+  margin-bottom: 16px; /* vertical spacing between cards */
+}
+
+/* Optional: make headers look like BS5-ish accordion buttons */
+.card-header .btn {
+  border-radius: 0.5rem;
+}
+.card {
+  border: 0;
+}
+
+.btn-accordion {
+  position: relative;
+  padding-right: 2rem; /* room for caret */
+}
+.btn-accordion::after {
+  content: "";
+  position: absolute;
+  right: .75rem;
+  top: 50%;
+  width: 1em;
+  height: 1em;
+  transform: translateY(-50%) rotate(90deg);
+  transition: transform .2s ease;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  /* White-stroke outline arrowhead (URL-encoded #fff) */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpolyline points='8 4 16 12 8 20' fill='none' stroke='%23ffffff' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  opacity: .95;
+}
+.btn-accordion[aria-expanded='true']::after {
+  transform: translateY(-50%) rotate(-90deg);
+}
+
+.breadcrumb {
+    background: none;       /* Removes grey box */
+    border: none;           /* Removes border */
+    padding: 0;             /* Removes extra spacing */
+    margin: -12px 0 24px 0px; /* Top, Right, Bottom, Left spacing */
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb a {
+  text-decoration: underline;
+  color: #006edb;
+  margin-right: 5px;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb span {
+  margin-right: 5px;
+}
+
+.layout-container {
+  display: flex;
+  font-family: Arial, sans-serif;
+  width: 75rem;
+  margin: 0 auto;
+  min-height: 85vh;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #007BFF;
+  color: white;
+  padding: 20px;
+}
+
+.sidebar h3 {
+  margin-top: 0;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 10px 0;
+}
+
+.main-body {
+  flex: 1;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #3878c5;
+  color: white;
+  padding: 20px;
+}
+
+.sidebar h4 {
+  margin-top: 30px;
+  margin-bottom: 32px;
+  color: white;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 10px 0;
+}
+
+.main-body {
+  flex: 1;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.toggle-container {
+  display: flex;
+  flex-direction: column;
+  gap: 27px; /* Adds space between buttons */
+}
+
+.toggle-container button {
+  border: 1px solid black;
+  background-color: white;
+  color: black;
+  padding: 10px 15px;
+  margin-bottom: 10px; /* Adds space between buttons */
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/* Hide the page until the page is fully rendered */
+body{visibility: hidden;}
+
+#search-results button {
+  display: block;
+  margin: 5px 0;
+  padding: 8px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.dropdown-item {
+  padding: 8px;
+  cursor: pointer;
+}
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+#search-container {
+  position: relative;
+  width: 300px;
+}
+
+#search-bar {
+  background-color: white;
+  color: black;
+  padding: 8px;
+  height: 24px;
+  width: 100%;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  font-size: 20px;
+}
+
+#top-container {
+  position: relative;
+  overflow: visible; /* Allow dropdown to extend beyond */
+  z-index: 1;
+}
+
+#search-container {
+  position: relative; /* Needed for dropdown positioning */
+}
+
+#dropdown {
+  position: absolute;
+  top: 100%; /* Position below the search bar */
+  left: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 1000; /* Ensure it's above other elements */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional: subtle shadow */
+}
+
+#dropdown {
+  border: 1px solid #ccc;
+  max-height: 200px;
+  overflow-y: auto;
+  display: none;
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  z-index: 1000;
+}
+
+
+/*******************************/
+/*******************************/
+/*opens in new window/tab icon*/
+/*******************************/
+/*******************************/
+
+ main a[target="_blank"]::after {
+  content: "";
+  width: 14px; height: 11px;
+  margin: 5px; vertical-align: text-bottom; display: inline-block;
+
+  /* Use the SVG as a mask; then color it with Bootstrap’s variable */
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="11" viewBox="0 0 14 11"><g fill="none" stroke="%23000" stroke-width="1"><path d="M0 3h2V0h12v8h-2v3H0zm13-2H3v6h10zM2 4H1v4h1zm-1 6h10V8H1z"/></g></svg>') no-repeat center / contain;
+          mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="11" viewBox="0 0 14 11"><g fill="none" stroke="%23000" stroke-width="1"><path d="M0 3h2V0h12v8h-2v3H0zm13-2H3v6h10zM2 4H1v4h1zm-1 6h10V8H1z"/></g></svg>') no-repeat center / contain;
+  background-color: var(--bs-secondary-color, #6c757d); /* follows Bootstrap’s text-secondary */
+}
+
+footer a[target="_blank"]::after,
+nav a[target="_blank"]::after {
+  content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="11" viewBox="0 0 14 11"><g fill="none" stroke="white" stroke-width="1"><path d="M0 3h2V0h12v8h-2v3H0zm13-2H3v6h10zM2 4H1v4h1zm-1 6h10V8H1z"/></g></svg>');
+  display: inline-block;
+  width: 14px;
+  height: 11px;
+  margin: 0 5px 0 5px;
+  vertical-align: text-top;
+}
+
+#all-meas-tbl tr:nth-child(even) {
+    background-color: #E0E0E0; /* Light grey */
+}
+
+
+
+/* Hide the caret */
+.multiselect .caret {
+    display: none !important;
+}
+
+/* Change background color of selected items */
+.multiselect-container li.active > a {
+    background-color: #e9ecef !important; /* Light grey */
+    color: #000 !important; /* Keep text readable */
+}
+
+/* Align text in dropdown items to the left */
+.multiselect-container li > a {
+    text-align: left !important;
+}
+
+#dropdown {
+  max-width: 100%; /* Ensure it doesn't exceed container width */
+  word-wrap: break-word; /* Break long words */
+  white-space: normal; /* Allow wrapping */
+  overflow-wrap: break-word; /* Modern equivalent for word-wrap */
+}
+
+#dropdown .dropdown-item {
+  padding: 0.5rem 1rem;
+  white-space: normal; /* Important for wrapping */
+  word-break: break-word; /* Break long words if needed */
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* aligns top edges */
+  gap: 40px; /* space between left and center sections */
+}
+
+.left-section {
+  display: flex;
+  flex-direction: column; /* stack header and button vertically */
+  align-items: flex-start; /* keep them left-aligned */
+}
+
+.left-section h4 {
+  font-size: 20px; /* Change to any size you want */
+  font-weight: bold; /* Optional: make it bold */
+}
+
+.toggle-container {
+  margin-top: 10px; /* space between header and button */
+}
+
+.center-section {
+  text-align: left; /* Align text to the left */
+  flex: 1; /* Take remaining space */
+  padding-left: 60px; /* Optional: adds some space from the left edge */
+}
+
+.navy-dot {
+  background-color: #142062;
+  height: 20px;
+  width: 20px;
+  border-radius: 100%;
+  margin: auto;
+}
+
+#all-meas-tbl th {
+  white-space: normal;   /* Allows text to wrap */
+  word-wrap: break-word; /* Break long words if needed */
+  text-align: center;    /* Optional: keep header text centered */
+  padding: 8px;          /* Adds spacing for readability */
 }

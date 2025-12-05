@@ -18,7 +18,18 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/3.0.1/chartjs-plugin-annotation.min.js" integrity="sha512-Hn1w6YiiFw6p6S2lXv6yKeqTk0PLVzeCwWY9n32beuPjQ5HLcvz5l2QsP+KilEr1ws37rCTw3bZpvfvVIeTh0Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" />
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
     <link rel ="stylesheet" href ="style.css">
 
     <!-- <script src = "scripts/cookies_script.js"></script> -->
@@ -36,13 +47,13 @@
 
       
       
-      <div class="content-wrapper">
       <nav class="warning">
         <div class="col-wide middle" style=" text-align: center;">
-          <p style="margin-bottom: 0px;">This prototype application will be enhanced as further equality indicator data is released.</p>
           <p style="margin-bottom: 0px;">We welcome feedback from users through our 
             <a class="survey-link" href="https://dttselfserve.nidirect.gov.uk/NISRA/RateIt#/Equality_Matters" target="_blank"><span style="color: white;">short survey</span>
-              <img class = "new-tab" src = "img/opens-new-tab.svg"></a></p>
+              <!-- <img class = "new-tab" src = "img/opens-new-tab.svg"> -->
+            </a>
+            </p>
           
           </div>
       </nav>
@@ -52,117 +63,57 @@
       <div id="top-container">
         <div id="top-menu" class="grid" style="margin: 0;">
           <div class="nisra-logo-container">
-            <a href="https://www.nisra.gov.uk/" target="_blank"><img id="top-menu-nisra-logo" src="img/nisra-white-bilingual.svg" alt="NISRA logo. Clicking image takes user to NISRA website"></a>
+            <a href="https://www.nisra.gov.uk/" target="_blank"><img id="top-menu-nisra-logo" src="img/nisra-only-white.svg" alt="NISRA logo. Clicking image takes user to NISRA website"></a>
           </div>
           <div id="dashboard-title-container">
-            <h1 id="dashboard-title">Equality Matters</h1>
-            <span id="dashboard-subtitle">Access equality data across a range of <br>key measures for Northern Ireland</span>
-          </div>
-          <div id = "about">
-            <div>
-              <span>Search by Grouping or by Measure name:</span>
-              <form class="search-container" style="margin-bottom: 15px;" action="/search" method="get">
-                <input type="text" name="q" placeholder="Search..." />
-                <button type="submit">Search</button>
-              </form>
-              <button class="about-btn" name = "aboutbutton" alt="Home" onclick="window.location.href='about.html';">About Equality Matters</button>
-            </div>
+            <h1 id="dashboard-title"><a href="index.html">Equality Matters</a></h1>
           </div>
         </div>
       </div>
 
-      <hr style="border-top: 10px solid #cedc20; margin: 0">
+     <!--  <hr style="border-top: 10px solid #cedc20; margin: 0"> -->
+
+      <main>
 
       <div id = "dest-scrn">
         <div id="content-centre">
+
+    <div class="content-wrapper">
+          
           <div id="main-container">
 
             <aside>
               <div id ="home-btn">
-                <button name = "backbutton" alt="Home" onclick="window.location.href='index.html';">Back to Home Page</button>
-                <!-- <hr style=" border-top: 3px solid rgba(0, 0, 0, .6); border-radius: 3px;"> -->
               </div>
-              <h3 style="font-weight: normal; font-size: 14pt; margin-bottom: 0px; margin-top: 20px;">Explore other groups within <p class = "measure_title" style="color:#3878c5; font-weight: bold; margin-bottom: 10px;"></p></h3>
+              <h3 style="font-weight: normal; font-size: 14pt; margin-bottom: 0px; margin-top: 20px;">Explore other groups and <p class = "measure_title" style="margin-bottom: 10px;"></p></h3>
               <form id = "selection-form" style="list-style-type: none; padding: 0;">
-                <div id="top-buttons-container">
-                  <button name = "s75" value = "age">Age</button>
-                  <button name = "s75" value = "depend">Dependants</button>
-                  <button name = "s75" value = "disab">Disability</button>
-                  <button name = "s75" value = "ethnic">Ethnic Group</button>
-                  <button name = "s75" value = "marital">Marital Status</button>
-                  <button name = "s75" value  = "political">Political Opinion</button>
-                  <button name = "s75" value = "race">Racial Group</button>
-                  <button name = "s75" value = "religion">Religion</button>
-                  <button name = "s75" value = "sex">Sex</button>
-                  <button name = "s75" value = "ori">Sexual Orientation</button>
-                </div>
+              <div id="top-buttons-container"></div>
               <!-- <hr style=" border-top: 3px solid rgba(0, 0, 0, .6); border-radius: 3px;"> -->
-              <h3 id="domains-title" style="font-weight: normal; font-size: 14pt; margin-bottom: 0px; margin-top: 20px;">Explore other measures by <p class = "eq_grp_name" style="color:#3878c5; font-weight: bold; margin-bottom: 10px;"></p></h3>
-              <div id = "key-metrics-container">
-                <button name = "key" value = "artc">Arts and Culture activities participation</button>
-                <button name = "key" value = "pubt">Public Transport Use</button>
-                <button name = "key" value = "walk" >Walking or Cycling (Active Travel)</button>
-                <button name = "key" value = "c500">Usual Resident Population</button>
-                <button name = "key" value = "c5011">Economic Activity - In Employment</button>
-                <button name = "key" value = "c5012">Economic Activity - Unemployed</button>
-                <button name = "key" value = "c5013">Economically Inactive</button>
-                <button name = "key" value = "c5021">Industry of employment - Agriculture, energy and water employment</button>
-                <button name = "key" value = "c5022">Industry of employment - Manufacturing employment</button>
-                <button name = "key" value = "c5023">Industry of employment - Construction employment</button>
-                <button name = "key" value = "c5024">Industry of employment - Distribution, hotels and restaurants employment</button>
-                <button name = "key" value = "c5025">Industry of employment - Transport and communications employment</button>
-                <button name = "key" value = "c5026">Industry of employment - Financial, Real Estate, Professional and Administrative activities employment</button>
-                <button name = "key" value = "c5027">Industry of employment - Public administration, education and health employment</button>
-                <button name = "key" value = "c5028">Industry of employment - Other employment</button>
-                <button name = "key" value = "c5031">Hours worked - Part-time: 15 hours or less worked per week</button>
-                <button name = "key" value = "c5032">Hours worked - Part-time: 16-30 hours worked per week</button>
-                <button name = "key" value = "c5033">Hours worked - Full-time: 31-48 hours worked per week</button>
-                <button name = "key" value = "c5034">Hours worked - Full-time: 49+ hours worked per week</button>
-                <button name = "key" value = "comr">Community Relations</button>
-                <button name = "key" value = "cult">Respected Cultural Identity</button>
-                <button name = "key" value = "hsg1">General Health - Very Good or Good</button>
-                <button name = "key" value = "hsg2">General Health - Bad or Very Bad</button>
-                <button name = "key" value = "hsns">Never Smoked</button>
-                <button name = "key" value = "hssm">Smoking</button>
-                <button name = "key" value = "hsec">Use of E-Cigarettes</button>
-                <!-- <button name = "key" value = "sahl">Higher Level Apprenticeships in FE Equality Data</button> --> 
-                <button name = "key" value = "inc1">Income Deprivation and Inequality - Relative poverty</button>
-                <button name = "key" value = "inc2">Income Deprivation and Inequality - Absolute poverty</button>
-                <!-- <button name = "key" value = "life">Life Satisfaction</button> -->
-                <button name = "key" value = "lone">Loneliness</button>
-                <button name = "key" value = "sls1">Qualifications of School Leavers - 3 A-levels (A*-C)</button>
-                <button name = "key" value = "sls2">Qualifications of School Leavers - 3 A-levels (A*-E) </button>
-                <button name = "key" value = "sls3">Qualifications of School Leavers - 2 A-levels (A*-E) </button>
-                <button name = "key" value = "sls4">Qualifications of School Leavers - 5 GCSEs (A*-C) </button>
-                <button name = "key" value = "sls5">Qualifications of School Leavers - 5 GCSEs (A*-C including GCSE English and maths)</button>
-                <button name = "key" value = "slsall">Qualifications of School Leavers - Total Leavers</button>
-                <button name = "key" value = "refw">Refugee Welcome</button>
-                <button name = "key" value = "resp">Feeling Respected</button>
-                <button name = "key" value = "safe">Safe Towns and City Centres</button>
-                <button name = "key" value = "self">Low Self-efficacy</button>
-                <button name = "key" value = "prej">Self-reported prejudice against minority ethnic communities</button>
-                <button name = "key" value = "shar">Shared Community</button>
-                <button name = "key" value = "spor">Sport and Physical Activity</button>
-                <button name = "key" value = "sar2">Students Achieving Regulated Qualifications at Level 2 in FE Colleges</button>
-                <button name = "key" value = "sar3">Students Achieving Regulated Qualifications at Level 3 in FE Colleges</button>
-              </div>
+              <h3 style="display: none;" id="domains-title" style="font-weight: normal; font-size: 14pt; margin-bottom: 0px; margin-top: 20px;">Explore other measures by <p class = "eq_grp_name" style="color:#3878c5; font-weight: bold; margin-bottom: 10px;"></p></h3>              
+              <div style="display: none;" id="key-metrics-container"></div>
             </form>
             </aside>
 
             <div id="main-content" class="screen">
-                <h2 id="domains-title" style="width: 100%; text-align: center;"></h2>
 
                 <div class="intro">
-                  <h2 style="margin-bottom: 30px;"><span class = "measure_title"></span> by <span class = "eq_grp_name" style = "color:#3878c5;"></span></h2>
-                  <h3>How do we measure this?</h3>
+                  <div class = "breadcrumb-about-div">
+                    <nav id="breadcrumb" class="breadcrumb"></nav>
+                    <button class="btn about-btn" name = "aboutbutton" alt="Home" onclick="window.location.href='about.html';">About Equality Matters</button>
+                  </div>
+
+                  <h2 style="margin-bottom: 30px;"><span class = "measure_title"></span> by <span class = "eq_grp_name"></span></h2>
+                  <h3>How do we measure this?</h3>                  
                 <h5><p id = "how_do_we_measure"></p></h5>
                 </div>
+
                 <div class="div-style-bar">
                   
-                  <h3><span class = "measure_title"></span> <span class= "latest_year" style = "color:#3878c5;"></span></h3>
+                  <!-- <h3><span class = "measure_title"></span> <span class= "latest_year" style = "color:#3878c5;"></span></h3> -->
+                  <h3>Latest year: <span class= "latest_year"></span></h3>
                   <div id ="barInfoContainer">
-                    <p style="margin-bottom: 0px;">The following bar chart shows data on this measure for <span class= "latest_year" style="color:#3878c5; font-weight: bold;"></span> split by <span class = "eq_grp_name" style="color:#3878c5; font-weight: bold;"></span>.</p>
-                    <p style="margin-bottom: 15px;">The Northern Ireland (NI) value is added for comparison in a blue line.</p>
+                    <!-- <p style="margin-bottom: 0px;">The following bar chart shows data on this measure for <span class= "latest_year" style="color:#3878c5; font-weight: bold;"></span> split by <span class = "eq_grp_name" style="color:#3878c5; font-weight: bold;"></span>.</p>
+                    <p style="margin-bottom: 15px;">The Northern Ireland (NI) value is added for comparison in a blue line.</p> -->
                 
                     <!-- <br><hr style="border-top:3px solid rgba(0, 0, 0, .6)"> -->
 
@@ -186,14 +137,18 @@
                       </tbody>
                     </table>
                   </div>
-                    <h4 style="margin-top: 20px;"><span class = "measure_title"></span> <span class= "latest_year"></span> Summary text</h4>
+                  </div>
+                    <!-- <h4 ">Summary of <span class= "latest_year"></span> data</h4> -->
+                    <button class="accordion-button"><h4 style="margin-top: 20px;" class="accordion-header">Summary of <span class= "latest_year"></span> data </h4>(click to expand or hide) </button>
+                    <div class="panel">
                     <p class="data_summary" style="margin-bottom: 10px; margin-top: 10px;"></p>
                     <button class="btn" id="copyTextButton" style="margin-bottom: 10px;">Copy Summary Text</button>
-                </div>
+                    </div>
+                
 
             <div id="chartInfoContainer">
-                <h3 style="margin-top: 30px;"><span class = "measure_title"></span> time trend - <span class="start_year" style = "color:#3878c5;"></span> <span style = "color:#3878c5;">to</span> <span class="latest_year" style = "color:#3878c5;"></span></h3>
-                <p style="margin-bottom: 0px;">The following line chart shows data on this measure from <span class= "start_year" style="color:#3878c5; font-weight: bold;"></span> to <span class= "latest_year" style="color:#3878c5; font-weight: bold;"></span> split by <span class = "eq_grp_name" style="color:#3878c5; font-weight: bold;"></span>.</p>
+                <h3 style="margin-top: 30px;">Time trend: <span class="start_year"></span> <span>to</span> <span class="latest_year"></span></h3>
+                <!-- <p style="margin-bottom: 0px;">The following line chart shows data on this measure from <span class= "start_year" style="color:#3878c5; font-weight: bold;"></span> to <span class= "latest_year" style="color:#3878c5; font-weight: bold;"></span> split by <span class = "eq_grp_name" style="color:#3878c5; font-weight: bold;"></span>.</p> -->
                 <p style="margin-bottom: 15px;">The Northern Ireland (NI) value is added for comparison in a blue dashed line.</p>
               <button class="btn" id="line_chartBtn">View chart</button>
               <button class="btn" id="line_tableBtn">View table</button>
@@ -214,9 +169,12 @@
             </div>
             <div id="chartContainer" class="grid" style="margin-top: 30px;"></div>
             <div id ="lineDataSummaryContainer">
-              <h4 style="margin-top: 20px;"><span class = "measure_title"></span> time trend - <span class="start_year"></span> to <span class="latest_year"></span> Summary Text</h4>
+              <!-- <h4 style="margin-top: 20px;">Change over time summary</h4> -->
+              <button class="accordion-button"><h4 class="accordion-header">Change over time summary </h4>(click to expand or hide) </button>
+              <div class="panel">
               <p class="data_summary" id = "data_summary_2" style="margin-bottom: 10px; margin-top: 10px;"></p>
               <button class="btn" id="copyTextButton2" style="margin-bottom: 10px;">Copy Data Summary</button>
+              </div>
             </div>
             
     
@@ -228,8 +186,8 @@
               </div>
               
             <!-- accordion section    -->
-              <h3>Notes</h3>
-            <button class="accordion-button">Click to expand or hide notes section for <span style="font-weight: bold;" class = "measure_title"></span> by <span style="font-weight: bold; color:#3878c5;"class = "eq_grp_name"></span></button>
+              <!-- <h3>Notes</h3> -->
+            <button class="accordion-button"><h3 class="accordion-header">Notes </h3>(click to expand or hide) </button>
               <div class="panel">
                 <p id = "measureNotesParagraph" style="margin-bottom: 0px; font-weight: bold;font-size: 18px;">Notes on <span class = "measure_title" style="font-weight: bold;font-size: 18px;"></span></p>
                 <p id = "notes_in_measure"></p>
@@ -241,36 +199,89 @@
           </div>
         </div>
       </div>
+      </div>
 
-      <div id="home-scrn">
-        <h2 style="text-align: center; margin-top: 20px;">Welcome to Equality Matters</h2>
-        <h5 style="text-align: center;">Equality Matters is a tool designed to give you access to many measures collected by NISRA, split by their available Section 75 Equality Groups.</h5>
-        <h5 style="text-align: center;">To get started, please select a a Section 75 Group from the options below:</h5>
-        <!-- <form id = "selection-form-pathway" style="list-style-type: none; padding: 0;">
-          <div id="pathways-container">
-            <button name = "path" value = "s75">Section 75 Group</button>
-            <button name = "path" value = "depart">Department</button>
+      <div id="home-scrn" class="home-grid">
+        <!-- Left side: 70% width, main content -->
+        <div class="home-main">
+          <h2>Explore NISRA Equality Data</h2>
+          <h3 style="font-weight: normal;">Select an equality group to see the information available</h3>
+          <!-- <form id = "selection-form-pathway" style="list-style-type: none; padding: 0;">
+            <div id="pathways-container">
+              <button name = "path" value = "s75">Section 75 Group</button>
+              <button name = "path" value = "depart">Department</button>
+            </div>
+          </form> -->
+          <form id = "selection-form-75group" style="list-style-type: none; padding: 0;">
+          <div id="s75-groups-container"></div>
+          </form>
+        </div>
+        <!-- Right side: 30% width, two stacked containers -->
+        <div class="home-side">
+          <div class="home-side-top">
+            <div class="div-style-bar" style="margin-top: 0px; padding: 2rem;">
+              <span><h4 style="color: #000;">Search by keyword or theme</h4></span>
+              <div class="search-container" id="search-container">
+                <input type="text" id="search-bar" placeholder="Search..." />
+                <div id="dropdown"></div>
+              </div>
+            </div>
           </div>
-        </form> -->
-        <form id = "selection-form-75group" style="list-style-type: none; padding: 0;">
-          <div id="s75-groups-container">
-            <button name = "home" value = "age">Age</button>
-            <button name = "home" value = "depend">Dependants</button>
-            <button name = "home" value = "disab">Disability</button>
-            <button name = "home" value = "ethnic">Ethnic Group</button>
-            <button name = "home" value = "marital">Marital Status</button>
-            <button name = "home" value  = "political">Political Opinion</button>
-            <button name = "home" value = "race">Racial Group</button>
-            <button name = "home" value = "religion">Religion</button>
-            <button name = "home" value = "sex">Sex</button>
-            <button name = "home" value = "ori">Sexual Orientation</button>
+          <div class="home-side-bottom">
+            <form>
+            <div class="div-style-bar" id ="all-meas-btn" style="padding: 2.8rem;">
+              <button class="btn all-measures-btn" name = "allmeasures" style="margin-left: 0.4rem;">View all available measures</button>
+            </div>
+            </form>
           </div>
-        </form>
-        <div style="margin-left: 30px;">
-          <h3>Video guide</h3>
-          <a href="#" target="blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/YouTube_icon_%282013-2017%29.png/200px-YouTube_icon_%282013-2017%29.png" alt="Equality Matters Video Guide" style="width: 150px; height: auto;">
-          </a>
+        </div>
+      </div>
+      
+      <div id="all-measures-scrn">
+        <div class="layout-container">
+          <div class="main-body">
+
+            <div class = "breadcrumb-about-div">
+              <nav id="breadcrumb" class="breadcrumb"></nav>
+              <button class="btn about-btn" name = "aboutbutton" alt="Home" onclick="window.location.href='about.html';">About Equality Matters</button>
+            </div>
+
+
+            <div class="all-measures-div">
+              <div class="header-row">
+                <div class="left-section">
+                  <h4>Filter measures by:</h4>
+                              <div class="form-group">
+              <select id="departmentSelect" class="form-control" multiple="multiple">
+                  <option value="Census">Census</option>
+                  <option value="Department for Communities">Department for Communities</option>
+                  <option value="Department for Infrastructure">Department for Infrastructure</option>
+                  <option value="Department for the Economy">Department for the Economy</option>
+                  <option value="Department of Agriculture, Environment and Rural Affairs">Department of Agriculture, Environment and Rural Affairs</option>
+                  <option value="Department of Education">Department of Education</option>
+                  <option value="Department of Finance">Department of Finance</option>
+                  <option value="Department of Health">Department of Health</option>
+                  <option value="Department for Justice">Department for Justice</option>
+                  <option value="The Executive Office">The Executive Office</option>
+              </select>
+            </div>
+                </div>
+
+                <div class="center-section">
+                  <h2 style="padding-left: 7rem;">All Measures Page</h2>
+                  <h5>Click a cell in the matrix below to view the equality statistics.</h5>
+                  <h5>If a cell is empty, equality statistics are not currently available.</h5>
+                </div>
+              </div>
+
+              <form id="selection-form-75group" style="list-style-type: none; padding: 0;">
+                <div id="all-measures-container">
+                  <table id="all-meas-tbl" border="1"></table>
+                </div>
+              </form>
+
+            </div>
+          </div>
         </div>
       </div>
 
@@ -278,7 +289,7 @@
         <h2 style="text-align: center; margin-top: 20px;">Select a Section 75 Group to see available measures</h2>
         <form id = "selection-form-75group" style="list-style-type: none; padding: 0;">
           <div id="s75-groups-container">
-            <button name = "home" value = "age">Age</button>
+            <button name = "home" value = "age">Ageing</button>
             <button name = "home" value = "depend">Dependants</button>
             <button name = "home" value = "disab">Disability</button>
             <button name = "home" value = "ethnic">Ethnic Group</button>
@@ -311,118 +322,162 @@
       </div>
 
       <div id="s75-measure-scrn">
-        <h2 id = "selection-heading" style="text-align: center; margin-top: 20px;"></h2>
+      <div class="layout-container">
+        <div class="sidebar">
+          <h4>Group measures by:</h4>
         <div class="toggle-container">
-          <button id="toggle-group-btn">Group by Department</button>
-        </div>
-        <form id = "selection-form-measure" style="list-style-type: none; padding: 0;">
-          <div id="key-metrics-container-inter">
-
-            <button name = "key" value = "artc" category = "Department of Communities">Arts and Culture activities participation</button>
-            <button name = "key" value = "pubt" category = "Department of Infrastructure">Public Transport Use</button>
-            <button name = "key" value = "walk" category = "Department of Infrastructure">Walking or Cycling (Active Travel)</button>
-            <button name = "key" value = "c500" category = "Census 2021">Usual Resident Population</button>
-            <button name = "key" value = "c5011" category = "Census 2021">Economic Activity - In Employment</button>
-            <button name = "key" value = "c5012" category = "Census 2021">Economic Activity - Unemployed</button>
-            <button name = "key" value = "c5013" category = "Census 2021">Economically Inactive</button>
-            <button name = "key" value = "c5021" category = "Census 2021">Industry of employment - Agriculture, energy and water employment</button>
-            <button name = "key" value = "c5022" category = "Census 2021">Industry of employment - Manufacturing employment</button>
-            <button name = "key" value = "c5023" category = "Census 2021">Industry of employment - Construction employment</button>
-            <button name = "key" value = "c5024" category = "Census 2021">Industry of employment - Distribution, hotels and restaurants employment</button>
-            <button name = "key" value = "c5025" category = "Census 2021">Industry of employment - Transport and communications employment</button>
-            <button name = "key" value = "c5026" category = "Census 2021">Industry of employment - Financial, Real Estate, Professional and Administrative activities employment</button>
-            <button name = "key" value = "c5027" category = "Census 2021">Industry of employment - Public administration, education and health employment</button>
-            <button name = "key" value = "c5028" category = "Census 2021">Industry of employment - Other employment</button>
-            <button name = "key" value = "c5031" category = "Census 2021">Hours worked - Part-time: 15 hours or less worked per week</button>
-            <button name = "key" value = "c5032" category = "Census 2021">Hours worked - Part-time: 16-30 hours worked per week</button>
-            <button name = "key" value = "c5033" category = "Census 2021">Hours worked - Full-time: 31-48 hours worked per week</button>
-            <button name = "key" value = "c5034" category = "Census 2021">Hours worked - Full-time: 49+ hours worked per week</button>
-            <button name = "key" value = "comr" category = "The Executive Office">Community Relations</button>
-            <button name = "key" value = "cult" category = "The Executive Office">Respected Cultural Identity</button>
-            <button name = "key" value = "hsg1" category = "Department of Health">General Health - Very Good or Good</button>
-            <button name = "key" value = "hsg2" category = "Department of Health">General Health - Bad or Very Bad</button>
-            <button name = "key" value = "hsns" category = "Department of Health">Never Smoked</button>
-            <button name = "key" value = "hssm" category = "Department of Health">Smoking</button>
-            <button name = "key" value = "hsec" category = "Department of Health">Use of E-Cigarettes</button>
-            <!-- <button name = "key" value = "sahl">Higher Level Apprenticeships in FE Equality Data</button> --> 
-            <button name = "key" value = "inc1" category = "Department of Communities">Income Deprivation and Inequality - Relative poverty</button>
-            <button name = "key" value = "inc2" category = "Department of Communities">Income Deprivation and Inequality - Absolute poverty</button>
-            <!-- <button name = "key" value = "life">Life Satisfaction</button> -->
-            <button name = "key" value = "lone" category = "The Executive Office">Loneliness</button>
-            <button name = "key" value = "sls1" category = "Department of Education">Qualifications of School Leavers - 3 A-levels (A*-C)</button>
-            <button name = "key" value = "sls2" category = "Department of Education">Qualifications of School Leavers - 3 A-levels (A*-E) </button>
-            <button name = "key" value = "sls3" category = "Department of Education">Qualifications of School Leavers - 2 A-levels (A*-E) </button>
-            <button name = "key" value = "sls4" category = "Department of Education">Qualifications of School Leavers - 5 GCSEs (A*-C) </button>
-            <button name = "key" value = "sls5" category = "Department of Education">Qualifications of School Leavers - 5 GCSEs (A*-C including GCSE English and maths)</button>
-            <button name = "key" value = "slsall" category = "Department of Education">Qualifications of School Leavers - Total Leavers</button>
-            <button name = "key" value = "refw" category = "The Executive Office">Refugee Welcome</button>
-            <button name = "key" value = "resp" category = "The Executive Office">Feeling Respected</button>
-            <button name = "key" value = "safe" category = "The Executive Office">Safe Towns and City Centres</button>
-            <button name = "key" value = "self" category = "The Executive Office">Low Self-efficacy</button>
-            <button name = "key" value = "prej" category = "The Executive Office">Self-reported prejudice against minority ethnic communities</button>
-            <button name = "key" value = "shar" category = "The Executive Office">Shared Community</button>
-            <button name = "key" value = "spor" category = "Department of Communities">Sport and Physical Activity</button>
-            <button name = "key" value = "sar2" category = "Department of Economy">Students Achieving Regulated Qualifications at Level 2 in FE Colleges</button>
-            <button name = "key" value = "sar3" category = "Department of Economy">Students Achieving Regulated Qualifications at Level 3 in FE Colleges</button>
-            
-            <!-- <button name = "key" value = "sahl">Higher Level Apprenticeships in FE Equality Data</button> --> 
-            <!-- <button name = "key" value = "life">Life Satisfaction</button> -->
+          <div class="container" style="margin-left:-15px;">
+              <select id="multiple-checkboxes" multiple="multiple">
+                  <option value="Census">Census</option>
+                  <option value="Department for Communities">Department for Communities</option>
+                  <option value="Department for Infrastructure">Department for Infrastructure</option>
+                  <option value="Department for the Economy">Department for the Economy</option>
+                  <option value="Department of Agriculture, Environment and Rural Affairs">Department of Agriculture, Environment and Rural Affairs</option>
+                  <option value="Department of Education">Department of Education</option>
+                  <option value="Department of Finance">Department of Finance</option>
+                  <option value="Department of Health">Department of Health</option>
+                  <option value="Department for Justice">Department for Justice</option>
+                  <option value="The Executive Office">The Executive Office</option>        
+              </select>
           </div>
+          <button class="toggle-btn">Section 75 Group</button>          
+          <button class="toggle-btn">Theme</button>
+          <button class="toggle-btn">Another</button>
+        </div>
+        </div>
+           
+        <div class="main-body">
+
+        <div class = "breadcrumb-about-div">
+          <nav id="breadcrumb" class="breadcrumb"></nav>
+          <button class="btn about-btn" name = "aboutbutton" alt="Home" onclick="window.location.href='about.html';">About Equality Matters</button>
+        </div>
+        <h2 id="selection-heading" style="text-align: center; margin-top: 20px;"></h2>
+        
+        <form>
+          <div id="new_button_container" class="container mt-4">
+          <div class="container mt-4">
+            <div class="row justify-content-center" id="buttonRow"></div>
+          </div>
+          </div>
+        </form>
+
+        <form id = "selection-form-measure" style="list-style-type: none; padding: 0;">
+        <div id="key-metrics-container-inter" style="display: none;"></div>
           <div id="grouped-container" style="display: none;"></div>
         </form>
-        
+        </div>
       </div>
       </div>
-      <hr style="border-top: 10px solid #cedc20; margin-bottom: 0; margin-top: 25px;">
-      <footer>
-        <div id="footer-container">
-          <div class="row">
-            <div style="height: 170px; width: 350px; margin: 10px;">
-              <h3 style="font-weight: 700; font-size: 18px; color: #ffffff">Links</h3>
-              <a href="https://data.nisra.gov.uk/" target="_blank" rel="noopener noreferrer">NISRA Data
-                Portal</a><br>
-              <a href="https://visual.nisra.gov.uk/" target="_blank" rel="noopener noreferrer">NISRA Interactive
-                Data Visualisation Hub</a><br>
-              <a href="https://www.opendatani.gov.uk/" target="_blank" rel="noopener noreferrer">OpenDataNI</a><br>
-              <a href="https://www.nidirect.gov.uk" target="_blank" rel="noopener noreferrer">NIDirect</a><br>
-              <a href="https://www.gov.uk/" target="_blank" rel="noopener noreferrer">GOV.UK</a><br>
-            </div>
-            <div style="height: 170px; width: 120px; margin: 20px 0px 20px 60px;">
-              <h3 style="font-weight: 700; font-size: 18px; color: #ffffff">Follow NISRA</h3>
-              <i class="fa-brands fa-facebook-f"></i> <a href="https://www.facebook.com/nisra.gov.uk" target="_blank"
-                rel="noopener noreferrer">Facebook</a><br>
-              <i class="fa-brands fa-x-twitter"></i> <a href="https://twitter.com/NISRA" target="_blank"
-                rel="noopener noreferrer">Twitter</a><br>
-              <i class="fa-brands fa-youtube"></i> <a href="https://www.youtube.com/user/nisrastats" target="_blank"
-                rel="noopener noreferrer">YouTube</a><br>
-            </div>
-            <div id="teo-logo-container">
-              <h4 style="margin-right: 20px; font-weight: normal; padding-bottom: 30px;">Funded by:</h4>
-              <a href="https://www.executiveoffice-ni.gov.uk/" target="_blank"><img id="footer-teo-logo" src="img/logo-white-teo.png" alt="The Executive Office logo. Clicking image takes user to TEO website"></a>
-            </div>
+
+      </main>
+    <footer>
+      <div id="footer-container">
+        <!-- 3 column section -->
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <h5 class="footer-header">Data Tools</h5>
+            <ul class="list-unstyled">
+              <li><a href="https://explore.nisra.gov.uk/local-stats/" target="_blank">Local Statistics Explorer</a></li>
+              <li><a href="https://data.nisra.gov.uk" target="_blank">Data Portal</a></li>
+              <li><a href="https://build.nisra.gov.uk/en/" target="_blank">Census Flexible Table Builder</a></li>
+            </ul>
           </div>
-          <div class="flex-list-footer">
-            <ul
-              style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; margin-left: -1px;">
-              <li class="cc-li" style="border-left:0px;"><a href="https://www.nisra.gov.uk/crown-copyright" target="_blank"
-                  rel="noopener noreferrer">© Crown Copyright</a></li>
-              <!--<li class="cc-li"><a href="https://www.nisra.gov.uk/contacts/programme-government-analytics-executive-office"
-                  target="_blank" rel="noopener noreferrer">Contact us</a></li> --> 
-              <li class="cc-li"><a href="https://consultations.nidirect.gov.uk/teo/d8cf2dfc" target="_blank">Leave
-                  feedback</a></li>
-              <li class="cc-li"><a href="https://www.nisra.gov.uk/terms-and-conditions" target="_blank"
-                  rel="noopener noreferrer">Terms and conditions</a></li>
-              <li class="cc-li"><a href="https://www.nisra.gov.uk/cookies" target="_blank"
-                  rel="noopener noreferrer">Cookies</a></li>
-              <li class="cc-li"><a href="https://www.nisra.gov.uk/nisra-privacy-notice" target="_blank"
-                  rel="noopener noreferrer">Privacy</a></li>
-              <li class="cc-li"><a href="https://www.nisra.gov.uk/accessibility-statement-nisra" target="_blank"
-                  rel="noopener noreferrer">Accessibility Statement</a></li>
+          <div class="col-md-4">
+            <h5 class="footer-header">Corporate</h5>
+            <ul class="list-unstyled">
+              <li><a href="https://www.nisra.gov.uk/" target="_blank">NISRA website</a></li>
+              <li><a href="https://www.nisra.gov.uk/statistics/about-nisra/careers" target="_blank">Careers</a></li>
+              <li><a href="https://www.nisra.gov.uk/contact" target="_blank">Contact</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4" style="padding-bottom: 2rem">
+            <h5 class="footer-header">Follow</h5>
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <a href="https://www.facebook.com/nisra.gov.uk">
+                  <img src="img/facebook-brands-solid-full.svg" alt="icon links to NISRA Facebook page" class="img-50">
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://x.com/NISRA/">
+                  <img src="img/x-twitter-brands-solid-full.svg"alt="icon links to NISRA X page" class="img-50"/>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://www.youtube.com/user/nisrastats">
+                  <img src="img/youtube-brands-solid-full.svg" alt="icon links to NISRA Youtube channel" class="img-50"/>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://www.linkedin.com/company/northern-ireland-statistics-and-research-agency/">
+                  <img src="img/linkedin-in-brands-solid-full.svg" alt="icon links to NISRA linkedin" class="img-50"/>
+                </a>
+              </li>
             </ul>
           </div>
         </div>
-      </footer>
-    </div>
+
+        <!-- Horizontal list with separators -->
+        <ul class="list-inline footer-links text-center mb-0">
+          <li class="list-inline-item"><a href="https://www.nisra.gov.uk/crown-copyright" target="_blank">© Crown Copyright</a></li>
+          <li class="list-inline-item">|</li>
+          <li class="list-inline-item"><a href="https://www.nisra.gov.uk/terms-and-conditions" target="_blank">Terms and conditions</a></li>
+          <li class="list-inline-item">|</li>
+          <li class="list-inline-item"><a href="https://www.nisra.gov.uk/cookies" target="_blank">Cookies</a></li>
+          <li class="list-inline-item">|</li>
+          <li class="list-inline-item"><a href="https://www.nisra.gov.uk/nisra-privacy-notice" target="_blank">Privacy</a></li>
+          <li class="list-inline-item">|</li>
+          <li class="list-inline-item"><a href="https://www.nisra.gov.uk/accessibility-statement-nisra" target="_blank">Accessibility statement</a></li>
+        </ul>
+
+        <!-- <div class="row"> -->
+          <!-- <div style="height: 170px; width: 350px; margin: 10px;">
+            <h3 style="font-weight: 700; font-size: 18px; color: #ffffff">Data tools</h3>
+            <a href="https://explore.nisra.gov.uk/local-stats/">Local Statistics Explorer</a><br>
+            <a href="https://data.nisra.gov.uk/" target="_blank" rel="noopener noreferrer">Data Portal</a><br>
+            <a href="https://build.nisra.gov.uk/en/">Census Flexible Table Builder</a>
+            <a href="https://visual.nisra.gov.uk/" target="_blank" rel="noopener noreferrer">NISRA Interactive
+              Data Visualisation Hub</a><br> -->
+            <!-- <a href="https://www.opendatani.gov.uk/" target="_blank" rel="noopener noreferrer">OpenDataNI</a><br>
+            <a href="https://www.nidirect.gov.uk" target="_blank" rel="noopener noreferrer">NIDirect</a><br>
+            <a href="https://www.gov.uk/" target="_blank" rel="noopener noreferrer">GOV.UK</a><br> -->
+          <!-- </div> -->
+          <!-- <div style="height: 170px; width: 120px; margin: 20px 0px 20px 60px;">
+            <h3 style="font-weight: 700; font-size: 18px; color: #ffffff">Follow NISRA</h3>
+            <i class="fa-brands fa-facebook-f"></i> <a href="https://www.facebook.com/nisra.gov.uk" target="_blank"
+              rel="noopener noreferrer">Facebook</a><br>
+            <i class="fa-brands fa-x-twitter"></i> <a href="https://twitter.com/NISRA" target="_blank"
+              rel="noopener noreferrer">Twitter</a><br>
+            <i class="fa-brands fa-youtube"></i> <a href="https://www.youtube.com/user/nisrastats" target="_blank"
+              rel="noopener noreferrer">YouTube</a><br>
+          </div> -->
+          <!-- <div id="teo-logo-container">
+            <h4 style="margin-right: 20px; font-weight: normal; padding-bottom: 30px; color: #ffffff">Funded by:</h4>
+            <a href="https://www.executiveoffice-ni.gov.uk/" target="_blank"><img id="footer-teo-logo" src="img/logo-white-teo.png" alt="The Executive Office logo. Clicking image takes user to TEO website"></a>
+          </div> -->
+        <!-- </div> -->
+        <!-- <div class="flex-list-footer">
+          <ul
+            style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; margin-left: -1px;">
+            <li class="cc-li" style="border-left:0px;"><a href="https://www.nisra.gov.uk/crown-copyright" target="_blank"
+                rel="noopener noreferrer">© Crown Copyright</a></li> -->
+            <!--<li class="cc-li"><a href="https://www.nisra.gov.uk/contacts/programme-government-analytics-executive-office"
+                target="_blank" rel="noopener noreferrer">Contact us</a></li> --> 
+            <!-- <li class="cc-li"><a href="https://consultations.nidirect.gov.uk/teo/d8cf2dfc" target="_blank">Leave
+                feedback</a></li> -->
+            <!-- <li class="cc-li"><a href="https://www.nisra.gov.uk/terms-and-conditions" target="_blank"
+                rel="noopener noreferrer">Terms and conditions</a></li>
+            <li class="cc-li"><a href="https://www.nisra.gov.uk/cookies" target="_blank"
+                rel="noopener noreferrer">Cookies</a></li>
+            <li class="cc-li"><a href="https://www.nisra.gov.uk/nisra-privacy-notice" target="_blank"
+                rel="noopener noreferrer">Privacy</a></li>
+            <li class="cc-li"><a href="https://www.nisra.gov.uk/accessibility-statement-nisra" target="_blank"
+                rel="noopener noreferrer">Accessibility statement</a></li>
+          </ul>
+        </div> -->
+      </div>
+    </footer>
   </body>
 
     <script src = "scripts/cookies_script.js"></script>
@@ -439,11 +494,26 @@
   // import data for use in charts - needs to be imported in each script
   import * as data from './data.js';
 
+  console.log("Dataset: ", data )
+
+  const measure_code = Object.entries(data)
+    .filter(([key, value]) => key.endsWith('_metadata') && value.dataset)
+    .map(([_, value]) => value.dataset);
+
+  console.log("Measure Code:", measure_code);
+    
+  const metadataEntries = Object.entries(data)
+    .filter(([key, value]) => key.endsWith('_metadata') && value.dataset && value.title);
+  const datasetsWithTitles = metadataEntries.map(([key, value]) => ({
+    key,
+    dataset: value.dataset,
+    title: value.title
+  }));
+
   let lookupTableEqCode = data.lookup_table_eq_code;
   let lookupTableDisplayGrp = data.lookup_table_display_grp;
   let lookupTableMeasureTitle = data.lookup_table_measure_title;
   let lookupTableDatasetLong = data.lookup_table_dataset_long;
-  let lookupDeptName = data.lookup_table_dept_name;
 
   function filterVariablesByName(data, matchStrings) {
     if (!Array.isArray(matchStrings) || matchStrings.length !== 2) {
@@ -458,6 +528,73 @@
 
     return filtered.flat(); // Flatten the array if the values are arrays
   }
+
+  // deals with the filling of the new nested button grid on S75 measures scrn
+  (function () {
+    var ACCORDION_ID = 'buttonAccordion';
+    var GUTTER_MS = 150; // debounce
+
+    function getColCount() {
+      var w = window.innerWidth || document.documentElement.clientWidth;
+      if (w >= 992) return 3;      // ≥ lg
+      if (w >= 576) return 2;      // ≥ sm
+      return 1;
+    }
+
+    function buildColumns(container, count) {
+      // Extract existing items (preserve order)
+      var items = Array.prototype.slice.call(container.querySelectorAll('.masonry-item'));
+
+      // Clear container
+      container.innerHTML = '';
+
+      // Make columns
+      var cols = [];
+      for (var i = 0; i < count; i++) {
+        var col = document.createElement('div');
+        col.className = 'masonry-col';
+        cols.push(col);
+        container.appendChild(col);
+      }
+
+      // Distribute items in round-robin to keep top-to-bottom flow
+      items.forEach(function (item, idx) {
+        cols[idx % count].appendChild(item);
+      });
+    }
+
+    function initMasonry() {
+      var container = document.getElementById(ACCORDION_ID);
+      if (!container) return;
+
+      // If container already has .masonry-col children, collect back to a flat list first
+      var existingCols = container.querySelectorAll('.masonry-col');
+      if (existingCols.length) {
+        var flatItems = [];
+        existingCols.forEach(function (col) {
+          flatItems = flatItems.concat(Array.prototype.slice.call(col.children));
+        });
+        container.innerHTML = '';
+        flatItems.forEach(function (item) { container.appendChild(item); });
+      }
+
+      buildColumns(container, getColCount());
+    }
+
+    // Init on load
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initMasonry);
+    } else {
+      initMasonry();
+    }
+
+    // Rebuild on resize (debounced)
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(initMasonry, GUTTER_MS);
+    });
+  })();
 
   // filters the data based on a key and the returned values from a lookup - returns data arrays as an object
   function filterVariablesByLookup(data, lookupKey, matchString, lookupTable) {
@@ -587,6 +724,7 @@
 
     // Return the value associated with the fieldName
     return metadata[fieldName];
+    console.log("Metadata", metadata)
   }
 
   // accepts the current S75 group value and returns all measures that are split by that group
@@ -641,6 +779,7 @@
     });
 
     return mappedValues;
+
   }
 
   // inverse lookup
@@ -661,8 +800,8 @@
 
   const invertedLookupEqCode = invertObject(lookupTableEqCode);
   console.log('inverted lookup:',invertedLookupEqCode);
-
-  function returnAvailableS75ByLookup(data, matchString, lookupTable) {
+ 
+ function returnAvailableS75ByLookup(data, matchString, lookupTable) {
       if (typeof lookupTable !== 'object' || lookupTable === null) {
           throw new Error("lookupTable must be a valid object");
       }
@@ -674,6 +813,9 @@
       // Filter keys in `data` that contain `matchString`
       const matchedKeys = Object.keys(data).filter(key => key.includes(matchString));
 
+      console.log("Matchstring", matchString)
+      console.log("LookupTable", lookupTable)
+      
       // Extract EQ values from matched keys (pattern: EQ followed by numbers up to next underscore)
       const eqValues = new Set();
       const eqPattern = /EQ\d+/g;
@@ -713,6 +855,7 @@
   let eqGrpDisplayName // Variable to store group name;
   let nonNull; // variable for creating and hiding linecharts
   var home_scrn = document.getElementById("home-scrn");
+  var all_meas_scrn = document.getElementById("all-measures-scrn");
   var s75_scrn = document.getElementById("s75-scrn");
   var depart_scrn = document.getElementById("depart-scrn");
   var s75_measure_scrn = document.getElementById("s75-measure-scrn");
@@ -725,21 +868,352 @@
   depart_scrn.style.display = "none";
   s75_measure_scrn.style.display = "none";
   dest_scrn.style.display = "none";
+ // home_scrn.style.display = "none";
+  all_meas_scrn.style.display = "none";
 
-  document.addEventListener('DOMContentLoaded', function () {
-  const toggleBtn = document.getElementById("toggle-group-btn");
+
+document.addEventListener('DOMContentLoaded', function () {  
+
+    // Constructing all measures table
+  const exclusions = getS75ExclusionsFromLineData(data, invertedLookupEqCode);
+  console.log("Exclusions from all measures", exclusions);
+
+  // Dynamically build availableLinks
+  const availableLinks = {};
+
+  for (const measureKey in lookupTableMeasureTitle) {
+    availableLinks[measureKey] = [];
+
+    for (const groupKey in lookupTableDisplayGrp) {
+      const excluded = exclusions[measureKey]?.includes(groupKey);
+      if (!excluded) {
+        availableLinks[measureKey].push(groupKey);
+      }
+    }
+  }
+
+  console.log("Links", availableLinks)
+
+const dept_long_names = {
+  "Census": "cen",
+  "Department of Health": "doh",
+  "Department of Education": "doe",
+  "Department of Infrastructure": "dfi",
+  "Department for Communities": "dfc",
+  "Department for the Economy": "dfe",
+  "The Executive Office": "teo",
+  "Department of Agriculture, Environment and Rural Affairs": "daera",
+  "Department of Finance": "dfc",
+  "Department for Justice": "doj",
+  "Department of Education": "de"
+};
+
+const codeToLongName = {};
+for (const [longName, shortCode] of Object.entries(dept_long_names)) {
+  codeToLongName[shortCode] = longName;
+}
+
+  let lookup_table_dept_name = data.lookup_table_dept_name;
+
+// Build enrichedLookup using lookup_table_dept_name
+const enrichedLookups = {};
+for (const code in lookup_table_dept_name) {
+  const deptCode = lookup_table_dept_name[code][0]; // short code like 'dfc'
+  enrichedLookups[code] = {
+    department: codeToLongName[deptCode] || deptCode // long name or fallback
+  };
+}
+
+// Main logic
+let dataArray = [];
+const selectedGroup = window_url.slice(window_url.indexOf("home=") + 5);
+
+fetch('./measure_group_lookup.json')
+  .then(response => response.json())
+  .then(measure_lookup => {
+    // Enrich the array
+    dataArray = measure_lookup.map(entry => ({
+      ...entry,
+      dataset: 'example',
+      s75_groups: availableLinks[entry.Code] || [],
+      department: enrichedLookups[entry.Code]?.department || null // now uses long name
+    }));
+    let filtered = dataArray.filter(m => m.s75_groups.includes(selectedGroup));
+    renderButtons(filtered);
+    console.log("selectedGroup", selectedGroup);
+
+    // Example static data for testing
+    const dataArrays = [
+      {
+        Code: 'artc',
+        Group: 'Arts and Cultural Activities Participation',
+        Measure_Name: 'Arts and Cultural Activities Participation',
+        Nested: 'FALSE',
+        dataset: 'example',
+        department: 'Department for Communities',
+      },
+      {
+        Code: 'c500',
+        Group: 'Community Relations',
+        Measure_Name: 'Community Relations',
+        Nested: 'FALSE',
+        dataset: 'example',
+        department: 'The Executive Office'
+      }
+    ];
+
+    console.log("dataArray", dataArray);
+
+    // Usage:
+    const attributeToDepartments = buildAttributeDepartmentMap(availableLinks, dataArray);
+    console.log("dep_by_S75", attributeToDepartments);
+
+    // Get departments for the selected group
+    const departmentsForGroup = attributeToDepartments[selectedGroup] || [];
+
+    // Populate the multiselect with these departments
+    const $deptSelect = $('#multiple-checkboxes');
+    $deptSelect.empty(); // Clear previous options
+
+    departmentsForGroup.forEach(dept => {
+      $deptSelect.append(`<option value="${dept}">${dept}</option>`);
+    });
+
+    // Refresh the multiselect UI
+    $deptSelect.multiselect('rebuild');
+  })
+  .catch(error => console.error('Error loading JSON:', error));
+
+// Multiselect initialization
+$('#multiple-checkboxes').multiselect({
+  includeSelectAllOption: false,
+  buttonWidth: '180px',
+  buttonText: function(options, select) {
+    return 'Department'; // Always show this text
+  }
+});      
+   
+$(document).ready(function() {
+  $('#multiple-checkboxes').multiselect({
+    nonSelectedText: 'Department', // Placeholder text
+    buttonText: function(options, select) {
+      return 'Department'; // Always show this text
+    },
+  });
+
+  // Trigger filtering logic on change
+  $('#multiple-checkboxes').on('change', function() {
+    const Departments = $(this).val() || [];
+    console.log("Selected Departments:", Departments);
+
+    // Example: Call your filtering function
+    let filtered = dataArray.filter(m => m.s75_groups.includes(selectedGroup));
+    if (Departments.length > 0) {
+      filtered = filtered.filter(m => Departments.includes(m.department));
+    }
+    renderButtons(filtered);
+  });
+});
+
+// Function to build the attribute -> [departments] map
+function buildAttributeDepartmentMap(availableLinks, dataArray) {
+  const result = {}; // { attribute: [departments] }
+
+  for (const item of dataArray) {
+    const code = item.Code;
+    const dept = item.department;
+
+    // Get attributes for this code from availableLinks
+    const attrs = availableLinks[code];
+    if (!attrs || !Array.isArray(attrs)) {
+      // Skip codes not present in availableLinks
+      continue;
+    }
+
+    // For each attribute under this code, add the department
+    for (const attr of attrs) {
+      if (!result[attr]) {
+        result[attr] = [];
+      }
+      // Deduplicate departments
+      if (!result[attr].includes(dept)) {
+        result[attr].push(dept);
+      }
+    }
+  }
+
+  return result;
+}
+
+// ✅ Render buttons function
+function renderButtons(dataArray) {
+  const buttonRow = document.getElementById("buttonRow");
+  buttonRow.innerHTML = "";
+
+  const nestedGroups = {};
+  const nonNested = [];
+
+  dataArray.forEach(item => {
+    if (item.Nested === 'TRUE') {
+      if (!nestedGroups[item.Group]) nestedGroups[item.Group] = [];
+      nestedGroups[item.Group].push(item);
+    } else {
+      nonNested.push(item);
+    }
+  });
+// Render non-nested buttons
+  nonNested.forEach(item => {
+    buttonRow.innerHTML += `
+      <div class="col-md-4 mb-4 d-flex justify-content-center">
+        <div class="card w-100">
+          <div class="card-header p-0">
+  <button name="key" value="${item.Code}" class="btn btn-outline-primary btn-block">
+              ${item.Measure_Name || enrichedLookup[item.Code]?.measure || 'Unnamed Measure'}
+    </button>
+          </div>
+          </div>
+      </div>
+    `;
+  });
+
+  // Render nested groups
+  let collapseIndex = 0;
+  for (const [groupName, items] of Object.entries(nestedGroups)) {
+    const collapseId = `collapse${collapseIndex}`;
+    const headingId = `heading${collapseIndex}`;
+
+    let childButtons = items.map(item => `
+      <div class="col-md-12 mb-2">
+        <button name="key" value="${item.Code}" class="btn btn-outline-primary btn-block">
+          ${item.Measure_Name || enrichedLookup[item.Code]?.measure || 'Unnamed Measure'}
+        </button>
+      </div>
+    `).join("");
+
+    buttonRow.innerHTML += `
+      <div class="col-md-4 mb-4 d-flex justify-content-center">
+        <div class="card w-100">
+          <div class="card-header p-0" id="${headingId}">
+            <h5 class="mb-0">
+              <button class="btn btn-primary btn-block text-left btn-accordion" type="button"
+                data-toggle="collapse" data-target="#${collapseId}" aria-expanded="false" aria-controls="${collapseId}">
+                ${groupName}
+              </button>
+            </h5>
+          </div>
+          <div id="${collapseId}" class="collapse" aria-labelledby="${headingId}">
+            <div class="card-body p-2">
+              <div class="row">
+                ${childButtons}
+              </div>
+            </div>
+          </div>
+     </div>
+      </div>
+    `;
+    collapseIndex++;
+  }
+}
+
+  // // Add dataset to each measure_lookup entry
+  // const enriched_measure_lookup = measure_lookup.map(entry => ({
+  //   ...entry,
+  //   dataset: titleToDatasetMap[entry.Group] || null  // null if no match found
+  // }));
+
+  // console.log("enriched", enriched_measure_lookup);
+
+  // Show the page when the script is done (prevents flickering)
+  document.body.style.visibility = "visible"; 
+
+  const searchBar = document.getElementById('search-bar');
+  const dropdown = document.getElementById('dropdown');
+
+
+searchBar.addEventListener('input', function () {
+  const query = searchBar.value.toLowerCase();
+  dropdown.innerHTML = '';
+  dropdown.style.display = 'none';
+
+  if (query.length === 0) return;
+
+  const results = [];
+  const matchedCategories = [];
+
+  for (const [category, words] of Object.entries(relatedWordsLookup)) {
+    if (words.some(word => query.includes(word))) {
+      matchedCategories.push(category);
+    }
+  }
+
+  for (const [measureKey, measureTitles] of Object.entries(lookupTableMeasureTitle)) {
+    const measureExclusions = exclusions[measureKey] || [];
+
+    for (const [groupKey, groupTitles] of Object.entries(lookupTableDisplayGrp)) {
+      const groupTitleLower = groupTitles[0].toLowerCase();
+
+      if (measureExclusions.some(ex => groupKey.includes(ex) || groupTitleLower.includes(ex))) {
+        continue;
+      }
+
+      const label = `${measureTitles[0]} <em>by ${groupTitles[0]}</em>`;
+      const labelLower = label.toLowerCase();
+
+      const isDirectMatch = labelLower.includes(query);
+      const isRelatedMatch = matchedCategories.some(cat => labelLower.includes(cat));
+
+      if (isDirectMatch || isRelatedMatch) {
+        // Highlight the matching part
+        const highlightedLabel = label.replace(
+          new RegExp(query, 'gi'),
+          match => `<strong>${match}</strong>`
+        );
+
+        results.push({
+          label: highlightedLabel,
+          url: `${window_url}?s75=${groupKey}&key=${measureKey}`
+        });
+      }
+    }
+  }
+
+  if (results.length > 0) {
+    dropdown.style.display = 'block';
+    results.forEach(result => {
+      const item = document.createElement('div');
+      item.className = 'dropdown-item';
+      item.innerHTML = result.label; // Use innerHTML to render <strong> and <em>
+      item.onclick = () => window.location.href = result.url;
+      dropdown.appendChild(item);
+    });
+  }
+});
+
+document.addEventListener('click', function (e) {
+  if (!document.getElementById('search-container').contains(e.target)) {
+    dropdown.style.display = 'none';
+  }
+});
+
   const form = document.getElementById("selection-form-measure");
-  const flatContainer = document.getElementById("key-metrics-container-inter");
   const groupedContainer = document.getElementById("grouped-container");
   let isGrouped = false;
 
   let filteredButtons = [];
 
+  if (window_url.indexOf("?") > -1 && window_url.indexOf("allmeasures=") > -1) {
+    home_scrn.style.display = "none";
+    s75_scrn.style.display = "none";
+    s75_measure_scrn.style.display = "none";
+    dest_scrn.style.display = "none";
+    all_meas_scrn.style.display = "block";
+  }
+
   // if block denoting action when a button is clicked from the home screen - returns measures within s75 selection
   if (window_url.indexOf("?") > -1 && window_url.indexOf("home=") > -1) {
     home_scrn.style.display = "none";
     s75_scrn.style.display = "none";
-    s75_measure_scrn.style.display = "block";
+    s75_measure_scrn.style.display = "flex";
     dest_scrn.style.display = "none";
 
     const group = window_url.slice(window_url.indexOf("home=") + 5);
@@ -769,66 +1243,111 @@
     if (groupedContainer.style.display === "block") {
       renderGroupedButtons(filteredButtons);
     }
+
+
   }
 
-  // Toggle view
-  toggleBtn.addEventListener("click", function () {
-  isGrouped = !isGrouped;
+  const deptLookup = {};  
+  const urlParams = new URLSearchParams(window.location.search);
+  const selectedS75 = urlParams.get('home'); // e.g. 'age'
 
-  if (isGrouped) {
-    flatContainer.style.display = "none";
-    groupedContainer.style.display = "block";
-    toggleBtn.textContent = "Show all available selections";
-    renderGroupedButtons(filteredButtons);
-  } else {
-    groupedContainer.style.display = "none";
-    flatContainer.style.display = "grid";
-    toggleBtn.textContent = "Group by Department";
+    const deptLookupLong = {};
+  // Step 2: Enrich measure titles using deptLookup
+  const enrichedLookup = {};
 
-    filteredButtons.forEach((btn, index) => {
-    btn.classList.add("staggered-entry");
-    btn.style.setProperty('--delay', `${index * 80}ms`);
-    btn.style.opacity = '0'; // reset for animation
-  });
+  for (const code in lookupTableMeasureTitle) {
+    const measureName = lookupTableMeasureTitle[code][0];
+    const deptName = deptLookup[code] || 'Unknown Department';
+    enrichedLookup[code] = {
+      measure: measureName,
+      department: deptName
+    };
   }
-});
 
-  function renderGroupedButtons(buttons) {
+  const intermeascontainer = document.getElementById('key-metrics-container-inter');
+
+  const s75MeasureMap = getS75InclusionsFromLineData(data, invertedLookupEqCode);
+  const invertedMeasureMap = {};
+
+  for (const [measure, groups] of Object.entries(s75MeasureMap)) {
+    groups.forEach(group => {
+      if (!invertedMeasureMap[group]) {
+        invertedMeasureMap[group] = [];
+      }
+      invertedMeasureMap[group].push(measure);
+    });
+  }
+
+  // Now `invertedMeasureMap` is structured like your original `s75MeasureMap`
+  console.log("Invi", invertedMeasureMap);
+
+  const allowedKeys = invertedMeasureMap[selectedS75] || [];
+
+  for (const key of allowedKeys) {
+    if (enrichedLookup[key]) {
+      const { measure, department } = enrichedLookup[key];
+      const button = document.createElement('button');
+      button.name = 'key';
+      button.value = key;
+      button.textContent = measure;
+      button.setAttribute('category', department);
+      intermeascontainer.appendChild(button);
+    }}
+
+    
+  // Update filteredButtons after dynamic creation
+  filteredButtons = Array.from(intermeascontainer.querySelectorAll('button[name="key"]'));
+  const flatContainer = document.getElementById("key-metrics-container-inter");
+  
+
+function renderGroupedButtons(buttons) {
   groupedContainer.innerHTML = "";
 
-  const customCategoryOrder = ["Census 2021", "Department of Health", "Department of Education", "Department of Infrastructure", "Department of Communities", "Department of Economy", "The Executive Office"];
+  // ✅ Define these at the top of the function
+  const customCategoryOrder = [
+    "Census",
+    "Department of Health",
+    "Department of Education",
+    "Department of Infrastructure",
+    "Department for Communities",
+    "Department for the Economy",
+    "The Executive Office"
+  ];
+
   const categoryIcons = {
-    "Census 2021": "img/cen-logo-hex.png",
+    "Census": "img/cen-logo-hex.png",
     "Department of Health": "img/doh-logo-hex.png",
     "Department of Education": "img/doe-logo-hex.png",
     "Department of Infrastructure": "img/dfi-logo-hex.png",
-    "Department of Communities": "img/dfc-logo-hex.png",
-    "Department of Economy": "img/dfe-logo-hex.png",
-    "The Executive Office": "img/teo-logo-hex.png"
+    "Department for Communities": "img/dfc-logo-hex.png",
+    "Department for the Economy": "img/dfe-logo-hex.png",
+    "The Executive Office": "img/teo-logo-hex.png",
+    "Uncategorized": "img/default-logo.png" // ✅ fallback logo
   };
-  const categoryColors = {
-  "Census 2021": "cen-theme",
-  "Department of Health": "doh-theme",
-  "Department of Education": "doe-theme",
-  "Department of Infrastructure": "dfi-theme",
-  "Department of Communities": "dfc-theme",
-  "Department of Economy": "dfe-theme",
-  "The Executive Office": "teo-theme"
-};
 
-  //Group buttons by normalized category key
+  const categoryColors = {
+    "Census": "cen-theme",
+    "Department of Health": "doh-theme",
+    "Department of Education": "doe-theme",
+    "Department of Infrastructure": "dfi-theme",
+    "Department for Communities": "dfc-theme",
+    "Department of Economy": "dfe-theme",
+    "The Executive Office": "teo-theme"
+  };
+
+  // ✅ Group buttons by category
   const groups = new Map();
 
   buttons.forEach(btn => {
     const rawCat = btn.getAttribute("category") || "Uncategorized";
-    const cat = rawCat.trim(); // Trim whitespace
+    const cat = rawCat.trim();
     if (!groups.has(cat)) {
       groups.set(cat, []);
     }
     groups.get(cat).push(btn);
   });
 
-  //Render groups in the defined order
+  // ✅ Render groups in custom order
   customCategoryOrder.forEach(cat => {
     if (groups.has(cat)) {
       renderGroup(cat, groups.get(cat));
@@ -836,67 +1355,243 @@
     }
   });
 
-  //Render any leftover categories not in the list
+  // ✅ Render remaining groups
   groups.forEach((btnArray, cat) => {
     renderGroup(cat, btnArray);
   });
 
-  // Helper to render one group
+  // ✅ Helper function to render each group
   function renderGroup(cat, btnArray) {
-  const groupDiv = document.createElement("div");
-  groupDiv.classList.add("category-grp");
+    const groupDiv = document.createElement("div");
+    groupDiv.classList.add("category-grp");
 
-  // Header with icon
-  const title = document.createElement("h3");
-  const icon = document.createElement("img");
-  icon.src = categoryIcons[cat] || categoryIcons["Uncategorized"];
-  icon.style.height = "70px";
-  icon.style.verticalAlign = "middle";
-  icon.style.marginRight = "8px";
+    const title = document.createElement("h3");
 
-  title.appendChild(icon);
-  title.appendChild(document.createTextNode(cat));
-  groupDiv.appendChild(title);
+    const icon = document.createElement("img");
 
-  const btnWrapper = document.createElement("div");
-  btnWrapper.classList.add("category-grp-btn");
+    // ✅ Check if logo exists, fallback if not
+    if (!categoryIcons[cat]) {
+      console.warn(`No logo found for category "${cat}". Using default.`);
+    }
 
-  const themeClass = categoryColors[cat] || "default-theme";
+    icon.src = categoryIcons[cat] || categoryIcons["Uncategorized"];
+    icon.alt = `${cat} logo`;
+    icon.style.height = "70px";
+    icon.style.verticalAlign = "middle";
+    icon.style.marginRight = "8px";
 
-  btnArray.forEach((origBtn, index) => {
-    const clone = origBtn.cloneNode(true);
-    clone.className = `${origBtn.className} ${themeClass} staggered-entry`;
-    clone.style.setProperty('--delay', `${index * 100}ms`);
+    title.appendChild(icon);
+    title.appendChild(document.createTextNode(cat));
+    groupDiv.appendChild(title);
 
-    clone.addEventListener("click", () => {
-      origBtn.click();
+    const btnWrapper = document.createElement("div");
+    btnWrapper.classList.add("category-grp-btn");
+
+    const themeClass = categoryColors[cat] || "default-theme";
+
+    btnArray.forEach((origBtn, index) => {
+      const clone = origBtn.cloneNode(true);
+      clone.className = `${origBtn.className} ${themeClass} staggered-entry`;
+      clone.style.setProperty('--delay', `${index * 100}ms`);
+
+      clone.addEventListener("click", () => {
+        origBtn.click();
+      });
+
+      btnWrapper.appendChild(clone);
     });
 
-    btnWrapper.appendChild(clone);
+    groupDiv.appendChild(btnWrapper);
+    groupedContainer.appendChild(groupDiv);
+  }
+  
+console.log(`Rendering logo for category: "${cat}"`);
+console.log(`Resolved logo path: "${categoryIcons[cat]}"`)
+
+}
+
+$(function () {
+  // Populate multiselect with long department names from enrichedLookup
+  const $deptSelect = $('#departmentSelect');
+  $deptSelect.empty();
+
+  // Extract unique department names from enrichedLookup
+  const uniqueDepartments = [...new Set(Object.values(enrichedLookups).map(d => d.department))];
+
+  uniqueDepartments.forEach(dept => {
+    $deptSelect.append(`<option value="${dept}">${dept}</option>`);
   });
 
-  groupDiv.appendChild(btnWrapper);
-  groupedContainer.appendChild(groupDiv);
+  // Initialize multiselect
+  $deptSelect.multiselect({
+    includeSelectAllOption: false,
+    enableFiltering: false, // No search box
+    buttonWidth: '180px',
+    nonSelectedText: 'Department',
+    buttonText: function() {
+      return 'Department'; // Always show this text
+    },
+    onChange: function() {
+      renderTable($('#departmentSelect').val() || []);
+    }
+  });
+  const table = document.getElementById('all-meas-tbl');
+
+  // Create header row
+  const headerRow = document.createElement('tr');
+  const thMeasure = document.createElement('th');
+  thMeasure.textContent = 'Measure';
+  headerRow.appendChild(thMeasure);
+
+  for (const grpKey in lookupTableDisplayGrp) {
+    const th = document.createElement('th');
+    th.textContent = lookupTableDisplayGrp[grpKey][0];
+    headerRow.appendChild(th);
+  }
+  table.appendChild(headerRow);
+
+ // Render table rows filtered by selected departments
+  function renderTable(selectedDepartmentsArray = []) {
+    // Clear previous rows
+    table.querySelectorAll('tr:not(:first-child)').forEach(row => row.remove());
+
+    for (const measureKey in lookupTableMeasureTitle) {
+      const department = enrichedLookups[measureKey]?.department?.trim();
+      if (!department) continue;
+
+      // Show all if no selection OR filter by selected departments
+      if (selectedDepartmentsArray.length === 0 || selectedDepartmentsArray.includes(department)) {
+        const row = document.createElement('tr');
+
+        const tdTitle = document.createElement('td');
+        tdTitle.classList.add('wrap-cell');
+        tdTitle.textContent = lookupTableMeasureTitle[measureKey][0];
+        row.appendChild(tdTitle);
+
+        for (const grpKey in lookupTableDisplayGrp) {
+          const td = document.createElement('td');
+
+          if (availableLinks[measureKey]?.includes(grpKey)) {
+            td.style.cursor = 'pointer';
+            td.setAttribute('tabindex', '0'); // Make cell focusable
+            td.setAttribute('role', 'link');  // Screen reader: behaves like a link
+
+            // Add descriptive label for screen readers
+            const measureName = lookupTableMeasureTitle[measureKey][0];
+            const groupName = lookupTableDisplayGrp[grpKey][0];
+            td.setAttribute('aria-label', `Click for ${measureName} by ${groupName}`);
+
+            // Click navigation
+            td.addEventListener('click', () => {
+              window.location.href = `?s75=${grpKey}&key=${measureKey}`;
+            });
+
+            // Keyboard navigation
+            td.addEventListener('keydown', (event) => {
+              if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                window.location.href = `?s75=${grpKey}&key=${measureKey}`;
+              }
+            });
+
+            td.innerHTML = '<div class="navy-dot"></div>';
+          }
+            row.appendChild(td);
+        }
+        table.appendChild(row);
+      }
+    }
+
+  }
+  // ✅ Show all rows by default
+  renderTable();
+});
+
+// Create home page s75 buttons dynamically
+const container = document.getElementById('s75-groups-container');
+
+for (const key in lookupTableDisplayGrp) {
+  const label = lookupTableDisplayGrp[key][0]; // Get label from array
+  const button = document.createElement('button');
+  button.name = 'home';           // Link to measures logic
+  button.value = key;             // Use key as value
+  button.textContent = label;     // Use label as button text
+  container.appendChild(button);
 }
 
+// Create destination page home buttons dynamically
+const destcontainer = document.getElementById('top-buttons-container');
+
+for (const key in lookupTableDisplayGrp) {
+  const label = lookupTableDisplayGrp[key][0];
+  const button = document.createElement('button');
+  button.name = 's75';
+  button.value = key;
+  button.textContent = label;
+  destcontainer.appendChild(button);
 }
+
+const s75_btns = destcontainer.getElementsByTagName('button');
+const s75AvaiMeasures = returnAvailableS75ByLookup(data, ind, invertedLookupEqCode);
+
+for (let n = 0; n < s75_btns.length; n++) {
+  if (s75AvaiMeasures.includes(s75_btns[n].value)) {
+    s75_btns[n].style.display = 'block';
+  } else {
+    s75_btns[n].style.display = 'none';
+  }
+}
+
+// Create destination page buttons dynamically
+const meascontainer = document.getElementById('key-metrics-container');
+
+for (const key in lookupTableMeasureTitle) {
+  const label = lookupTableMeasureTitle[key][0]; // Get label from array
+  const button = document.createElement('button');
+  button.name = 'key';           // Link to measures logic
+  button.value = key;             // Use key as value
+  button.textContent = label;     // Use label as button text
+  meascontainer.appendChild(button);
+}
+
 
 });
 
-  // action taken to update url once a s75 measure given - this being actioned triggers the below if block and populates the dest page based on the key and s75 in the url
-  if (window_url.indexOf("?") > -1 && window_url.indexOf("key=") > -1 & window_url.indexOf("s75=") == -1) {
-    
-    let base_url = window_url.slice(0, window_url.indexOf("?"));
-    group = localStorage.getItem("s75");
-    ind = window_url.slice(window_url.indexOf("key=") + 4);
-    localStorage.setItem("key", ind);
-    window.location.href = base_url + "?s75=" + group + "&key=" + ind;
+// action taken to update url once a s75 measure given - this being actioned triggers the below if block and populates the dest page based on the key and s75 in the url
+const urlParams = new URLSearchParams(window.location.search);
+const key = urlParams.get("key");
+const s75 = urlParams.get("s75");
+
+console.log("Key:", key)
+console.log("S75:", s75)
+
+// Add a related words lookup table
+const relatedWordsLookup = {
+  transport: ['bus', 'train', 'tram', 'subway', 'commute', 'public transport'],
+  walking: ['walk', 'walking', 'cycle', 'bike', 'bicycle'],
+  arts: ['music', 'dance', 'theatre', 'art', 'gallery'],
+  population: ['people', 'residents', 'inhabitants'],
+};
+
+if (key && !s75) {
+  const group = localStorage.getItem("s75");
+  if (group) {
+    urlParams.set("s75", group);
+    const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+    if (window.location.search !== `?${urlParams.toString()}`) {
+      window.location.replace(newUrl); // avoids history loop
+    }
   }
+  } else {
+  // Optional: store current values for future use
+  if (s75) localStorage.setItem("s75", s75);
+  if (key) localStorage.setItem("key", key);
+}
 
 if (window_url.indexOf("?") > -1 && window_url.indexOf("s75=") > -1) {
   // Check if the URL contains a query string ('?') and // Check if the parameter 's75' exists in the URL
   home_scrn.style.display = "none";
-  dest_scrn.style.display = "block";
+  dest_scrn.style.display = "flex";
 
 // Check if the URL contains a query string ('?')
 let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
@@ -917,7 +1612,7 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
         // Loop through all buttons in "key-metrics-container"
         if (s75CatMeasures.includes(key_btns[j].value)) {  
           // If the button's value is in the list of valid measures, show it
-          key_btns[j].style.display = "block";
+          key_btns[j].style.display = "none"; // changed to none while testing not displaying measures on destination page
         } else {
           // Otherwise, hide the button
           key_btns[j].style.display = "none";
@@ -942,18 +1637,6 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
       group = localStorage.getItem("s75");
       // Retrieve the stored 's75' value
     }
-    s75AvaiMeasures = returnAvailableS75ByLookup(data, ind, invertedLookupEqCode);
-        // Call a function to retrieve measures associated with 's75'
-        for (let n = 0; n < s75_btns.length; n++) {  
-        // Loop through all buttons in "key-metrics-container"
-          if (s75AvaiMeasures.includes(s75_btns[n].value)) {  
-            // If the button's value is in the list of valid measures, show it
-            s75_btns[n].style.display = "block";
-          } else {
-           // Otherwise, hide the button
-           s75_btns[n].style.display = "none";
-          }
-        }
       if (window.location.href != base_url + "?s75=" + group + "&key=" + ind) {
     // If the URL is not already formatted correctly with the selected values
     window.location.href = base_url + "?s75=" + group + "&key=" + ind;
@@ -961,92 +1644,14 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
   }}}
 
   if (window_url.indexOf("?") > -1) {
-    // // Check if the URL contains a query string ('?')
-    // let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
-    // // Extract the query string part after '?' and split it into key-value pairs
-    // let base_url = window_url.slice(0, window_url.indexOf("?"));
-    // // Extract the base URL without query parameters
-    // for (let i = 0; i < selections.length; i++) {
-    //   // Loop through each key-value pair in the query string
-    //   if (selections[i].indexOf("s75=") > -1) {
-    //     // Check if the parameter 's75' exists in the URL
-    //     group = selections[i].slice(selections[i].indexOf("s75=") + 4);
-    //     // Extract the value of 's75' (after "s75=")
-    //     localStorage.setItem("s75", group);
-    //     // Store the 's75' value in localStorage for persistence
-    //     s75CatMeasures = returnS75CatsByLookup(data, group, lookupTableEqCode);
-    //     // Call a function to retrieve measures associated with 's75'
-    //     for (let j = 0; j < key_btns.length; j++) {  
-    //       // Loop through all buttons in "key-metrics-container"
-    //       if (s75CatMeasures.includes(key_btns[j].value)) {  
-    //         // If the button's value is in the list of valid measures, show it
-    //         key_btns[j].style.display = "block";
-    //       } else {
-    //         // Otherwise, hide the button
-    //         key_btns[j].style.display = "none";
-    //       }
-    //     }
-      //   if (s75CatMeasures.includes(localStorage.getItem("key"))) {
-      //     // If the current stored 'key' is still a valid option
-      //     ind = localStorage.getItem("key");
-      //   } else {
-      //     // Otherwise, default to the first available measure
-      //     console.log("Not a valid measure")
-      //   }
-      // }
-      // if (selections[i].indexOf("key=") > -1) {
-      //   // Check if the parameter 'key' exists in the URL
-      //   ind = selections[i].slice(selections[i].indexOf("key=") + 4);
-      //   // Extract the value of 'key' (after "key=")
-      //   localStorage.setItem("key", ind);
-      //   // Store the 'key' value in localStorage for persistence
-      //   group = localStorage.getItem("s75");
-      //   // Retrieve the stored 's75' value
-      // }
-    // }
-    // if (window.location.href != base_url + "?s75=" + group + "&key=" + ind) {
-    //   // If the URL is not already formatted correctly with the selected values
-    //   window.location.href = base_url + "?s75=" + group + "&key=" + ind;
-    //   // Redirect to the updated URL to ensure correct parameters are set
-    // }
-    // Update document title
-    // measureTitle = filterMetadataFromData(data, ind, "title");
-    // eqGrpDisplayName = lookupValueByKey(group, lookupTableDisplayGrp);
-    // document.getElementsByTagName("title")[0].textContent += " - " + measureTitle + " by " + eqGrpDisplayName;
-  // } 
-  // else if (window_url.indexOf("?") < -1) {
-  //   // If the URL has no query parameters, set default values
-  //   // dest_scrn.style.display = "none"
-  //   // s75_scrn.style.display = "block"
-  //   // group = "age";  
-  //   // ind = "inc1";  
+  // run if there is a '?' in the url
 
-  //   // Set default values for 's75' and 'key'
-  //   // localStorage.setItem("s75", group);
-  //   // localStorage.setItem("key", ind);
-  //   // Store the default values in localStorage
-  //   // measureTitle = filterMetadataFromData(data, ind, "title");
-  //   // eqGrpDisplayName = lookupValueByKey(group, lookupTableDisplayGrp);
-  // }
   // Update document title
   measureTitle = lookupValueByKey(ind, lookupTableMeasureTitle);
   eqGrpDisplayName = lookupValueByKey(group, lookupTableDisplayGrp);
   document.getElementsByTagName("title")[0].textContent += " - " + measureTitle + " by " + eqGrpDisplayName;
-} 
-// else if (window_url.indexOf("?") < -1) {
-//   // If the URL has no query parameters, set default values
-//   // dest_scrn.style.display = "none"
-//   // home_scrn.style.display = "block"
-//   // group = "age";  
-//   // ind = "inc1";  
+  }  
 
-//   // Set default values for 's75' and 'key'
-//   // localStorage.setItem("s75", group);
-//   // localStorage.setItem("key", ind);
-//   // Store the default values in localStorage
-//   // measureTitle = filterMetadataFromData(data, ind, "title");
-//   // eqGrpDisplayName = lookupValueByKey(group, lookupTableDisplayGrp);
-// }
 
   // ################################################################################
   // ################################################################################
@@ -1074,7 +1679,6 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
   let furtherInfo = data[`${ind}_further_information`];
   let s75grps = returnAvailableS75ByLookup(data,ind,invertedLookupEqCode);
 
-
   console.log('Year Labels:', yearLabels);
   console.log('N.I. Line Data:', niLineData);
   console.log('N.I. Average Line:', niAvgLine);
@@ -1095,8 +1699,133 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
   console.log('Section 75 Category Labels Notes: ',s75CatNotesLabels);
   console.log('Further Information ',furtherInfo);
   console.log('Section 75 Available Groups:', s75grps);
+  console.log('matchString', ind);
 
   let chartInstance = null;
+
+function returnAvailableS75GroupsForAllMeasures(data, lookupTable) {
+    if (typeof lookupTable !== 'object' || lookupTable === null) {
+        throw new Error("lookupTable must be a valid object");
+    }
+
+    // Get all measure codes from metadata
+    const measureCodes = Object.entries(data)
+        .filter(([key, value]) => key.endsWith('_metadata') && value.dataset)
+        .map(([_, value]) => value.dataset);
+
+    const eqPattern = /EQ\d+/g;
+    const allEqValues = new Set();
+
+    // For each measure code, find matching keys and extract EQ codes
+    measureCodes.forEach(measureCode => {
+        const matchedKeys = Object.keys(data).filter(key => key.includes(measureCode));
+        matchedKeys.forEach(key => {
+            const matches = key.match(eqPattern);
+            if (matches) {
+                matches.forEach(eq => allEqValues.add(eq));
+            }
+        });
+    });
+
+    // Map EQ codes to Section 75 groups
+    const matchedGroups = new Set();
+
+    allEqValues.forEach(eq => {
+        for (const [group, eqList] of Object.entries(lookupTable)) {
+            if (eqList.includes(eq)) {
+                matchedGroups.add(group);
+            }
+        }
+    });
+
+    return [...matchedGroups];
+}
+
+// Generating tables for all measures lookup and inter measures page array
+const lookupTable = {
+    age: ['EQ101', 'EQ102', 'EQ115', 'EQ107', 'EQ103', 'EQ111', 'EQ112', 'EQ108', 'EQ104', 'EQ113', 'EQ114', 'EQ109', 'EQ105', 'EQ106', 'EQ110', 'EQ116', 'EQ117', 'EQ118', 'EQ119', 'EQ120', 'EQ121'],
+    depend: ['EQ701', 'EQ702', 'EQ703', 'EQ704'],
+    disab: ['EQ401', 'EQ402'],
+    ethnic: ['EQ1001', 'EQ1002', 'EQ1003'],
+    marital: ['EQ301', 'EQ302', 'EQ303', 'EQ304', 'EQ305', 'EQ306', 'EQ307', 'EQ308', 'EQ309'],
+    ori: ['EQ601', 'EQ602', 'EQ603'],
+    political: ['EQ901', 'EQ902', 'EQ903', 'EQ904'],
+    race: ['EQ801', 'EQ802', 'EQ803'],
+    religion: ['EQ501', 'EQ502', 'EQ503', 'EQ504', 'EQ505', 'EQ506', 'EQ507', 'EQ508'],
+    sex: ['EQ201', 'EQ202']
+};
+
+let allS75Groups = returnAvailableS75GroupsForAllMeasures(data, lookupTable);
+console.log("Please Work", allS75Groups);
+
+function getS75ExclusionsFromLineData(data, invertedLookupEqCode) {
+    const allGroups = new Set(Object.values(invertedLookupEqCode).flat());
+    const measureToIncludedGroups = {};
+
+    // Step 1: Loop through all keys ending in "_line_data"
+      Object.keys(data).forEach(key => {
+        if (key.endsWith('_line_data')) {
+            const parts = key.split('_');
+            if (parts.length >= 3) {
+                const measure = parts[0];
+                const eqCode = parts[1];
+              
+                // Step 2: Get the Section 75 group(s) for this EQ code
+                const groups = invertedLookupEqCode[eqCode];
+                if (!groups) return;
+
+                // Step 3: Add to measure's included groups
+                if (!measureToIncludedGroups[measure]) {
+                    measureToIncludedGroups[measure] = new Set();
+                }
+                groups.forEach(group => measureToIncludedGroups[measure].add(group));
+            }
+        }
+    });
+    // Step 4: Build exclusions object
+    const exclusions = {};
+    for (const [measure, includedSet] of Object.entries(measureToIncludedGroups)) {
+        const excluded = [...allGroups].filter(group => !includedSet.has(group));
+        exclusions[measure] = excluded;
+    }
+
+    return exclusions;
+}
+  
+const exclusions = getS75ExclusionsFromLineData(data, invertedLookupEqCode);
+console.log("Please work!", exclusions);
+
+function getS75InclusionsFromLineData(data, invertedLookupEqCode) {
+    const measureToIncludedGroups = {};
+
+    // Loop through all keys ending in "_line_data"
+      Object.keys(data).forEach(key => {
+      if (key.endsWith('_line_data')) {
+          const parts = key.split('_');
+          if (parts.length >= 3) {
+              const measure = parts[0];
+              const eqCode = parts[1];
+              // Get the Section 75 group(s) for this EQ code
+              const groups = invertedLookupEqCode[eqCode];
+              if (!groups) return;
+
+               // Add to measure's included groups
+            if (!measureToIncludedGroups[measure]) {
+                    measureToIncludedGroups[measure] = new Set();
+                }
+                groups.forEach(group => measureToIncludedGroups[measure].add(group));
+            }
+        }
+    });
+  
+    // Convert sets to arrays for easier use
+    const inclusions = {};
+    for (const [measure, includedSet] of Object.entries(measureToIncludedGroups)) {
+        inclusions[measure] = [...includedSet];
+    }
+
+    return inclusions;
+}
 
   Chart.register(ChartDataLabels);
 
@@ -1189,7 +1918,7 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
                   label: {
                     content: (ctx) => {
                       return [
-                        'N.I.',' value:', `${ni_line}%`
+                        'NI',`${ni_line}%`
                       ];
                     },
                     display: true,       // Ensure label is displayed
@@ -1242,6 +1971,7 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
         },
         options: {
           indexAxis: 'y',
+          events: [], // turn off hover labels //
           plugins: {
             legend: {
               display: false
@@ -1356,9 +2086,10 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
   }
 
   let how_measure = data[`${ind}_how_do_we_measure`];
-  document.getElementById("how_do_we_measure").innerHTML =
-   how_measure;
-
+  const howElem = document.getElementById("how_do_we_measure");
+  if (howElem && how_measure) {
+  howElem.innerHTML = how_measure;
+  }
   let sourceUrl = data[`${ind}_source_url`];
   document.getElementById("sourceId").href = sourceUrl
 
@@ -1401,6 +2132,7 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
 
   function populateTable() {
     const tableBody = document.getElementById("dataTable").getElementsByTagName("tbody")[0];
+    dataTable.classList.add('dest-table');
     tableBody.innerHTML = "";
 
     // Ensure niAvgLine is treated as a single value (if it's not an array)
@@ -1495,6 +2227,7 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
 
   function populateTable2() {
   const tableBody2 = document.getElementById("dataTable2").getElementsByTagName("tbody")[0];
+  dataTable2.classList.add('dest-table');
   tableBody2.innerHTML = "";
 
   // Replace the keys in the object with the new labels from the array
@@ -1612,6 +2345,18 @@ return {
 
 }
 
+function toLowercase(str) {
+  return String(str || '').toLowerCase();
+}
+
+function toTitleCase(str) {
+  return String(str || '')
+    .toLowerCase()
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
+
 // Function to generate summary in the requested format
 function generateSummaryText(tableData, niAverage, measureTitle, eqGrpDisplayName, howMeasure) {
     if (!Array.isArray(tableData) || tableData.length === 0) {
@@ -1650,62 +2395,46 @@ function generateSummaryText(tableData, niAverage, measureTitle, eqGrpDisplayNam
     let validCategories = categoriesWithDiff.filter(item => item.isValid);
     let invalidCategories = categoriesWithDiff.filter(item => !item.isValid);
 
-    // Separate "higher", "lower", and "same" categories for independent sorting
-    let higherCategories = validCategories.filter(item => item.direction === "higher");
-    let lowerCategories = validCategories.filter(item => item.direction === "lower");
-    let sameCategories = validCategories.filter(item => item.direction === "same");
+    // Ensure categories follow the original order from eqGrpCatLabels (from data.js)
+    if (typeof eqGrpCatLabels !== 'undefined' && Array.isArray(eqGrpCatLabels)) {
+       validCategories.sort((a, b) => eqGrpCatLabels.indexOf(a.category) - eqGrpCatLabels.indexOf(b.category));
+    }
 
-    // Sort "higher" categories in descending order (largest difference first)
-    higherCategories.sort((a, b) => parseFloat(b.difference) - parseFloat(a.difference));
-
-    // Sort "lower" categories in ascending order (smallest difference first)
-    lowerCategories.sort((a, b) => parseFloat(a.difference) - parseFloat(b.difference));
-
-    // Identify the highest "higher" and highest "lower" values
-    let highestHigher = higherCategories.length > 0 ? higherCategories[0] : null;
-    let highestLower = lowerCategories.length > 0 ? lowerCategories[lowerCategories.length - 1] : null;
-    let lowestLower = lowerCategories.length > 0 ? lowerCategories[0] : null;
+     // Keep the original order from eqGrpCatLabels and output in that order.
+     // Precompute lower-only items for census-specific bolding logic
+     const lowerOnly = validCategories.filter(item => item.direction === "lower");
+     const highestLower = lowerOnly.length
+         ? lowerOnly.reduce((max, cur) => parseFloat(cur.percentage) > parseFloat(max.percentage) ? cur : max, lowerOnly[0])
+         : null;
+     const lowestLower = lowerOnly.length
+         ? lowerOnly.reduce((min, cur) => parseFloat(cur.percentage) < parseFloat(min.percentage) ? cur : min, lowerOnly[0])
+         : null;
 
     let summaryText = {};
 
     if (niAverage !== 100) {
-        summaryText = `The NI value for ${measureTitle} is ${niAverage}%. This measure records the ${howMeasure}<br>`;
-        summaryText += `When we look at differences by ${eqGrpDisplayName} compared to the NI value:<br>`;
 
-        // Append sorted "higher" category data
-        higherCategories.forEach(entry => {
+        summaryText = `${measureTitle} ${latestYear}<br>`;
+        summaryText += `This measure records the <span style="text-transform:lowercase">${howMeasure}</span> The NI value for ${measureTitle} is ${niAverage}%.<br>`;
+        summaryText += `Looking at differences by ${eqGrpDisplayName} compared to the NI value:<br>`;
+
+        // Output every valid category in the original eqGrpCatLabels order
+        validCategories.forEach(entry => {
             let pointLabel = entry.difference === "1" ? "percentage point" : "percentage points";
-            let formattedText = `${entry.category} is ${entry.percentage}%, ${entry.difference} ${pointLabel} ${entry.direction}.<br>`;
-            if (entry === highestHigher) {
-                formattedText = `<strong>${formattedText}</strong>`;
+            if (entry.direction === "same") {
+                summaryText += `${entry.category}: ${entry.percentage}% (the same as the NI value)<br>`;
+            } else {
+                let formattedText = `${entry.category}: ${entry.percentage}% (${entry.difference} ${pointLabel} ${entry.direction})<br>`;
+                summaryText += formattedText;
             }
-            summaryText += formattedText;
-        });
-
-        // Append "same" category data
-        sameCategories.forEach(entry => {
-            summaryText += `${entry.category} is ${entry.percentage}%, the same as the NI value.<br>`;
-        });
-
-        // Append sorted "lower" category data (now in ascending order)
-        lowerCategories.forEach(entry => {
-            let pointLabel = entry.difference === "1" ? "percentage point" : "percentage points";
-            let formattedText = `${entry.category} is ${entry.percentage}%, ${entry.difference} ${pointLabel} ${entry.direction}.<br>`;
-            if (entry === highestLower) {
-                formattedText = `<strong>${formattedText}</strong>`;
-            }
-            summaryText += formattedText;
         });
     } else {
-        summaryText = `This measure records the ${howMeasure}<br>`;
-        summaryText += `When the measure is summarised by ${eqGrpDisplayName} the breakdown is as follows:<br>`;
+        summaryText = `${toTitleCase(measureTitle)} - ${latestYear} Census<br>`;
+        summaryText += `The ${toLowercase(measureTitle)} is broken down by ${eqGrpDisplayName} as follows:<br>`;
 
-        // Bold the highest "lower" value (last one in reversed list)
-        lowerCategories.forEach(entry => {
-            let formattedText = `${entry.category} is ${entry.percentage}%.<br>`;
-            if (entry === highestLower || entry === lowestLower) {
-                formattedText = `<strong>${formattedText}</strong>`;
-            }
+        // Output categories in original order; bold the highest/lowest among 'lower' direction items
+        validCategories.forEach(entry => {
+            let formattedText = `${entry.category}: ${entry.percentage}%<br>`;
             summaryText += formattedText;
         });
     }
@@ -1761,27 +2490,29 @@ function generateSummaryText2(tableData, niAverage, measureTitle, ageGroups, how
 
     const firstYearLabels = toFinancialYear(tableData[0].year);
     const lastYearLabels = toFinancialYear(tableData[tableData.length - 1].year);
+    
+    let summaryText = `${measureTitle} ${firstYearLabels} to ${lastYearLabels}<br>`;
+    summaryText += `This measure records the <span style="text-transform:lowercase">${howMeasure}</span><br>`;
+    summaryText += `Looking at trends by ${eqGrpDisplayName} compared to the NI value:<br>`;
 
-    let summaryText = `This measure records the ${howMeasure}<br><br>`;
-
-    summaryText += `The group with the highest <strong>increase relative to the NI value</strong> is <strong>${biggestIncrease[0]}</strong>, which was <strong>${Math.abs(biggestIncrease[1].firstDiff)}%</strong> ${
+    summaryText += `${biggestIncrease[0]}: This group showed the highest increase relative to the NI value from ${Math.abs(biggestIncrease[1].firstDiff)} percentage points ${
         biggestIncrease[1].firstDiff >= 0 ? "above" : "below"
-    } the NI value in ${firstYearLabels}, and <strong>${Math.abs(biggestIncrease[1].lastDiff)}%</strong> ${
+    } the NI value in ${firstYearLabels} to ${Math.abs(biggestIncrease[1].lastDiff)} percentage points ${
         biggestIncrease[1].lastDiff >= 0 ? "above" : "below"
     } in ${lastYearLabels}.<br>`;
 
-    summaryText += `The group with the greatest <strong>decrease relative to the NI value</strong> is <strong>${biggestDecrease[0]}</strong>, which was <strong>${Math.abs(biggestDecrease[1].firstDiff)}%</strong> ${
+    summaryText += `${biggestDecrease[0]}: This group showed the greatest decrease relative to the NI value from ${Math.abs(biggestDecrease[1].firstDiff)} percentage points ${
         biggestDecrease[1].firstDiff >= 0 ? "above" : "below"
-    } the NI value in ${firstYearLabels}, and <strong>${Math.abs(biggestDecrease[1].lastDiff)}%</strong> ${
+    } the NI value in ${firstYearLabels} to ${Math.abs(biggestDecrease[1].lastDiff)} percentage points ${
         biggestDecrease[1].lastDiff >= 0 ? "above" : "below"
-    } in ${lastYearLabels}.`;
+    } in ${lastYearLabels}.<br>`;
 
     return summaryText;
 }
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    const button = document.querySelector(".copy-button");
+  const button = document.querySelector(".copy-button");
     button.addEventListener("click", copyTable);
   });
 
@@ -2044,8 +2775,12 @@ document.addEventListener("DOMContentLoaded", () => {
   if (viewId === 'tableView') {
     tableView.style.display = "block";
     chartView.style.display = "none";
-    chartButton.style.backgroundColor = '#fff';
-    chartButton.style.color = '#00205B';
+
+    // Add 'inactive' class to chartButton to avoid inline coding here and remove 'selected'
+    chartButton.classList.add('inactive');
+    chartButton.classList.remove('selected');
+    /* chartButton.style.backgroundColor = '#7e6ec4';
+    chartButton.style.color = '#fff'; */
     // Only destroy the bar chart when it's in the 'chartView'
     if (chartInstance && chartView.style.display === "block") {
       chartInstance.destroy();
@@ -2054,8 +2789,12 @@ document.addEventListener("DOMContentLoaded", () => {
   } else if (viewId === 'chartView') {
     tableView.style.display = "none";
     chartView.style.display = "block";
-    chartButton.style.backgroundColor = '#00205B';
-    chartButton.style.color = '#fff';
+
+    // Remove 'inactive' and switch to 'selected' styling for chart button
+  chartButton.classList.remove('inactive');
+  chartButton.classList.add('selected');
+    /* chartButton.style.backgroundColor = '#fff';
+    chartButton.style.color = '#00205b'; */
     if (!chartInstance) {
       createBarChart(eqGrpCatLabels, eqGrpCatBarData, niAvgLine);
     }
@@ -2065,8 +2804,10 @@ document.addEventListener("DOMContentLoaded", () => {
   if (viewId === 'tableView2') {
     tableView2.style.display = "block";
     chartView2.style.display = "none";
-    chartButton2.style.backgroundColor = '#fff';
-    chartButton2.style.color = '#00205B';
+    chartButton2.classList.add('inactive');
+    chartButton2.classList.remove('selected');
+   /*  chartButton2.style.backgroundColor = '#7e6ec4';
+    chartButton2.style.color = '#fff'; */
     legend.style.display = 'none'; // Hide the legend
     // Don't destroy the bar chart here
     populateTable2()
@@ -2077,8 +2818,10 @@ document.addEventListener("DOMContentLoaded", () => {
   } else if (viewId === 'chartContainer') {
     tableView2.style.display = "none";
     chartView2.style.display = "grid";
-    chartButton2.style.backgroundColor = '#00205B';
-    chartButton2.style.color = '#fff';
+    chartButton2.classList.remove('inactive');
+    chartButton2.classList.add('selected');
+    /* chartButton2.style.backgroundColor = '#fff';
+    chartButton2.style.color = '#00205b'; */
     if (nonNull !== 1){
       legend.style.display = 'block';
     }
@@ -2361,5 +3104,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Call the function
   createMultipleLineCharts(eqGrpCatLineData, niLineData, containerId, eqGrpCatLabels, yearLabels);
+
+
+function getQueryParams() {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    home: params.get('home'),
+    s75: params.get('s75'),
+    key: params.get('key')
+  };
+}
+
+function buildBreadcrumb() {
+  const { home, s75, key } = getQueryParams();
+  const breadcrumb = document.getElementById('breadcrumb');
+  breadcrumb.innerHTML = '';
+
+  // Home link
+  const homeLink = document.createElement('a');
+  homeLink.href = 'index.html';
+  homeLink.textContent = 'Home';
+  breadcrumb.appendChild(homeLink);
+
+  if (s75 || home) {
+    breadcrumb.appendChild(document.createTextNode(' > '));
+    const measureLink = document.createElement('a');
+    measureLink.href = `index.html?home=${s75 || home}`;
+    measureLink.textContent = 'Measure';
+    breadcrumb.appendChild(measureLink);
+  }
+
+  if (key) {
+    breadcrumb.appendChild(document.createTextNode(' > '));
+    const destinationSpan = document.createElement('span');
+    destinationSpan.textContent = 'Destination';
+    breadcrumb.appendChild(destinationSpan);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', buildBreadcrumb);
 
 </script>
