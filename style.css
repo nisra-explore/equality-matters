@@ -1056,7 +1056,7 @@ footer a:hover {
   }
 
   .btn.selected {
-  border: 4px solid #000;
+  border: 2px solid #7e6ec4;
   background-color: #fff;
   color: #00205b;
 }
@@ -1071,9 +1071,23 @@ footer a:hover {
   }
 
   .btn:hover {
-    background-color: #7e6ec4;
-    border: 2px solid #000;
-    /* color: #fff; */
+    background-color: #6093d2;
+    color: #fff;
+  }
+
+  .btn:focus {
+    border: 2px solid #7e6ec4;
+    background-color: #fff;
+    color: #000;
+  }
+
+  .btn.inactive {
+    background-color:#3878c5;;
+    color: #fff;
+  }
+
+  .btn.inactive:hover {
+    background-color: #6093d2; /* hover color for active state */
   }
 
   #search-box {
@@ -1955,6 +1969,14 @@ a.cookiesbarlink {
 }
 .btn-accordion[aria-expanded='true']::after {
   transform: translateY(-50%) rotate(-90deg);
+}
+.btn-accordion:focus {
+  background-color: #7e6ec4;
+  border: 2px solid #000;
+  color: #fff;
+}
+.btn-accordion:hover {
+  background-color: #7e6ec4;
 }
 
 .breadcrumb {
