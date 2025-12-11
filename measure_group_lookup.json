@@ -2,22 +2,26 @@
   {
     "Measure_Name": "Arts and Cultural Activities Participation",
     "Code": "artc",
-    "Group": "Arts and Cultural Activities Participation",
-    "Nested": "FALSE"
+    "Group": "Culture, arts, heritage and sport",
+    "Nested": "TRUE"
   },
   {
     "Measure_Name": "Asylum seekers allowed in Northern Ireland",
-    "Code": "asya"
+    "Code": "asya",
+    "Group": "Community relations",
+    "Nested": "TRUE"
   },
   {
     "Measure_Name": "Community Relations",
     "Code": "comr",
-    "Group": "Community Relations",
-    "Nested": "FALSE"
+    "Group": "Community relations",
+    "Nested": "TRUE"
   },
   {
     "Measure_Name": "Culture and traditions of people from different minority ethnic groups",
-    "Code": "culr"
+    "Code": "culr",
+    "Group": "Community relations",
+    "Nested": "TRUE"
   },
   {
     "Measure_Name": "Economic activity - All",
@@ -26,31 +30,31 @@
   {
     "Measure_Name": "Economic activity - Economically active: In employment (including full-time students)",
     "Code": "c5011",
-    "Group": "Economically Active",
+    "Group": "Census 2021",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Economic activity - Economically active: Unemployed (including full-time students)",
     "Code": "c5012",
-    "Group": "Economically Active",
+    "Group": "Census 2021",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Economic activity - Economically inactive",
     "Code": "c5013",
-    "Group": "Economically Active",
+    "Group": "Census 2021",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Encourage members of minority ethnic communities to participate in public life",
     "Code": "orgm",
-    "Group": "Attitude To Immigrants",
+    "Group": "Community relations",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Feeling Respected",
     "Code": "resp",
-    "Group": "Emotional Wellbeing",
+    "Group": "Community relations",
     "Nested": "TRUE"
   },
   {
@@ -72,43 +76,43 @@
   {
     "Measure_Name": "Hours worked - Full-time: 31-48 hours worked per week",
     "Code": "c5033",
-    "Group": "Hours Worked",
+    "Group": "Census 2021",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Hours worked - Full-time: 49+ hours worked per week",
     "Code": "c5034",
-    "Group": "Hours Worked",
+    "Group": "Census 2021",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Hours worked - Part-time: 15 hours or less worked per week",
     "Code": "c5031",
-    "Group": "Hours Worked",
+    "Group": "Census 2021",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Hours worked - Part-time: 16-30 hours worked per week",
     "Code": "c5032",
-    "Group": "Hours Worked",
+    "Group": "Census 2021",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Income Deprivation and Inequality - Living in absolute poverty",
     "Code": "inc2",
-    "Group": "Income Deprivation",
+    "Group": "Poverty",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Income Deprivation and Inequality - Living in relative poverty",
     "Code": "inc1",
-    "Group": "Income Deprivation",
+    "Group": "Poverty",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Industry of employment - A, B, D, E Agriculture, energy and water",
     "Code": "c5021",
-    "Group": "Industry of Employment",
+    "Group": "Census 2021",
     "Nested": "TRUE"
   },
   {
@@ -118,56 +122,56 @@
   {
     "Measure_Name": "Industry of employment - C Manufacturing",
     "Code": "c5022",
-    "Group": "Industry of Employment",
+    "Group": "Census 2021",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Industry of employment - F Construction",
     "Code": "c5023",
-    "Group": "Industry of Employment",
+    "Group": "Census 2021",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Industry of employment - G, I Distribution, hotels and restaurants",
     "Code": "c5024",
-    "Group": "Industry of Employment",
+    "Group": "Census 2021",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Industry of employment - H, J Transport and communication",
     "Code": "c5025",
-    "Group": "Industry of Employment",
+    "Group": "Census 2021",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Industry of employment - K, L, M, N Financial, Real Estate, Professional and Administrative activities",
     "Code": "c5026",
-    "Group": "Industry of Employment",
+    "Group": "Census 2021",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Industry of employment - O, P, Q Public administration, education and health",
     "Code": "c5027",
-    "Group": "Industry of Employment",
+    "Group": "Census 2021",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Industry of employment - R, S, T, U Other",
     "Code": "c5028",
-    "Group": "Industry of Employment",
+    "Group": "Census 2021",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Loneliness",
     "Code": "lone",
-    "Group": "Emotional Wellbeing",
-    "Nested": "TRUE"
+    "Group": "Loneliness",
+    "Nested": "FALSE"
   },
   {
     "Measure_Name": "Low Self-Efficacy",
     "Code": "self",
-    "Group": "Emotional Wellbeing",
-    "Nested": "TRUE"
+    "Group": "Low Self-Efficacy",
+    "Nested": "FALSE"
   },
   {
     "Measure_Name": "Never Smoked",
@@ -178,92 +182,98 @@
   {
     "Measure_Name": "Primary, Post Primary and Special Schools - Free School Meal Entitled Pupils",
     "Code": "desfsme",
-    "Group": "Primary, Post Primary and Special Schools",
+    "Group": "All schools",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Primary, Post Primary and Special Schools - Special Educational Needs pupils with a statement",
     "Code": "desssen",
-    "Group": "Primary, Post Primary and Special Schools",
+    "Group": "All schools",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Primary, Post Primary and Special Schools - Special Educational Needs pupils without a statement",
     "Code": "desnonssen",
-    "Group": "Primary, Post Primary and Special Schools",
+    "Group": "All schools",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Primary, Post Primary and Special Schools - Total Enrolment",
     "Code": "deste",
-    "Group": "Primary, Post Primary and Special Schools",
+    "Group": "All schools",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Public bodies take into account the needs of minority ethnic communities",
-    "Code": "pubb"
+    "Code": "pubb",
+    "Group": "Community relations",
+    "Nested": "TRUE"
   },
   {
     "Measure_Name": "Public Transport Use",
     "Code": "pubt",
-    "Group": "Transport Usage",
-    "Nested": "TRUE"
+    "Group": "Public Transport Use",
+    "Nested": "FALSE"
   },
   {
     "Measure_Name": "Qualifications of School Leavers - At least 2 A-levels at grades A*-E (incl. equivalent qualifications)",
     "Code": "sls3",
-    "Group": "Qualifications of School Leavers",
+    "Group": "Qualifications",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Qualifications of School Leavers - At least 3 A-levels at grades A*-C (incl. equivalent qualifications)",
     "Code": "sls1",
-    "Group": "Qualifications of School Leavers",
+    "Group": "Qualifications",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Qualifications of School Leavers - At least 3 A-levels at grades A*-E (incl. equivalent qualifications)",
     "Code": "sls2",
-    "Group": "Qualifications of School Leavers",
+    "Group": "Qualifications",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Qualifications of School Leavers - At least 5 GCSEs at grades A*-C (incl. equivalent qualifications)",
     "Code": "sls4",
-    "Group": "Qualifications of School Leavers",
+    "Group": "Qualifications",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Qualifications of School Leavers - At least 5 GCSEs at grades A*-C (incl. equivalent qualifications) including GCSE English and maths",
     "Code": "sls5",
-    "Group": "Qualifications of School Leavers",
+    "Group": "Qualifications",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Qualifications of School Leavers - Total Leavers",
     "Code": "slsall",
-    "Group": "Qualifications of School Leavers",
+    "Group": "Qualifications",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Racial prejudice in Northern Ireland",
-    "Code": "racp"
+    "Code": "racp",
+    "Group": "Community relations",
+    "Nested": "TRUE"
   },
   {
     "Measure_Name": "Refugee Welcome",
     "Code": "refw",
-    "Group": "Attitude To Immigrants",
+    "Group": "Community relations",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Refugees contribute to society",
-    "Code": "refc"
+    "Code": "refc",
+    "Group": "Community relations",
+    "Nested": "TRUE"
   },
   {
     "Measure_Name": "Respected Cultural Identity",
     "Code": "cult",
-    "Group": "Respected Cultural Identity",
-    "Nested": "FALSE"
+    "Group": "Community relations",
+    "Nested": "TRUE"
   },
   {
     "Measure_Name": "Safe Towns and City Centres",
@@ -274,14 +284,14 @@
   {
     "Measure_Name": "Self-reported prejudice against minority ethnic communities",
     "Code": "prej",
-    "Group": "Attitude To Immigrants",
+    "Group": "Community relations",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Shared Community",
     "Code": "shar",
-    "Group": "Shared Community",
-    "Nested": "FALSE"
+    "Group": "Community relations",
+    "Nested": "TRUE"
   },
   {
     "Measure_Name": "Smoking",
@@ -292,19 +302,19 @@
   {
     "Measure_Name": "Sports and Physical Activity",
     "Code": "spor",
-    "Group": "Sports and Physical Activity",
-    "Nested": "FALSE"
+    "Group": "Culture, arts, heritage and sport",
+    "Nested": "TRUE"
   },
   {
     "Measure_Name": "Students Achieving Regulated Qualifications at Level 2 in FE Colleges",
     "Code": "sar2",
-    "Group": "Student Qualifications",
+    "Group": "Achievements",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Students Achieving Regulated Qualifications at Level 3 in FE Colleges",
     "Code": "sar3",
-    "Group": "Student Qualifications",
+    "Group": "Achievements",
     "Nested": "TRUE"
   },
   {
@@ -316,13 +326,13 @@
   {
     "Measure_Name": "Usual resident population",
     "Code": "c500",
-    "Group": "Usual resident population",
-    "Nested": "FALSE"
+    "Group": "Census 2021",
+    "Nested": "TRUE"
   },
   {
     "Measure_Name": "Walking or Cycling (Active Travel)",
     "Code": "walk",
-    "Group": "Transport Usage",
-    "Nested": "TRUE"
+    "Group": "Walking or Cycling (Active Travel)",
+    "Nested": "FALSE"
   }
 ]

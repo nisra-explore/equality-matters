@@ -85,7 +85,7 @@
             <aside>
               <div id ="home-btn">
               </div>
-              <h3 style="font-weight: normal; font-size: 14pt; margin-bottom: 0px; margin-top: 20px;">Explore other groups and <p class = "measure_title" style="margin-bottom: 10px;"></p></h3>
+              <h3 style="font-weight: normal; font-size: 14pt; margin-bottom: 0px; margin-top: 20px;">Explore other breakdowns for <p class = "measure_title" style="margin-bottom: 10px;"></p></h3>
               <form id = "selection-form" style="list-style-type: none; padding: 0;">
               <div id="top-buttons-container"></div>
               <!-- <hr style=" border-top: 3px solid rgba(0, 0, 0, .6); border-radius: 3px;"> -->
@@ -98,7 +98,7 @@
 
                 <div class="intro">
                   <div class = "breadcrumb-about-div">
-                    <nav id="breadcrumb" class="breadcrumb"></nav>
+                    <nav id="breadcrumb-destination" class="breadcrumb"></nav>
                     <button class="btn about-btn" name = "aboutbutton" alt="Home" onclick="window.location.href='about.html';">About Equality Matters</button>
                   </div>
 
@@ -219,6 +219,7 @@
         <!-- Right side: 30% width, two stacked containers -->
         <div class="home-side">
           <div class="home-side-top">
+            <div id="home_about_button"></div><br>  
             <div class="div-style-bar" style="margin-top: 0px; padding: 2rem;">
               <span><h4 style="color: #000;">Search by keyword or theme</h4></span>
               <div class="search-container" id="search-container">
@@ -242,8 +243,8 @@
           <div class="main-body">
 
             <div class = "breadcrumb-about-div">
-              <nav id="breadcrumb" class="breadcrumb"></nav>
-              <button class="btn about-btn" name = "aboutbutton" alt="Home" onclick="window.location.href='about.html';">About Equality Matters</button>
+              <nav id="breadcrumb-all-measures" class="breadcrumb"></nav>
+              <div id="allmeas_about_button"></div>
             </div>
 
 
@@ -274,6 +275,11 @@
                 </div>
               </div>
 
+              
+<h2 id="measures-header-all-meas" aria-live="polite" class="measures-header-all-meas">
+  Measures available
+</h2>
+
               <form id="selection-form-75group" style="list-style-type: none; padding: 0;">
                 <div id="all-measures-container">
                   <table id="all-meas-tbl" border="1"></table>
@@ -289,14 +295,14 @@
         <h2 style="text-align: center; margin-top: 20px;">Select a Section 75 Group to see available measures</h2>
         <form id = "selection-form-75group" style="list-style-type: none; padding: 0;">
           <div id="s75-groups-container">
-            <button name = "home" value = "age">Ageing</button>
-            <button name = "home" value = "depend">Dependants</button>
+            <button name = "home" value = "age">Age Group</button>
+            <button name = "home" value = "depend">Dependant Status</button>
             <button name = "home" value = "disab">Disability</button>
             <button name = "home" value = "ethnic">Ethnic Group</button>
             <button name = "home" value = "marital">Marital Status</button>
             <button name = "home" value  = "political">Political Opinion</button>
             <button name = "home" value = "race">Racial Group</button>
-            <button name = "home" value = "religion">Religion</button>
+            <button name = "home" value = "religion">Religious Belief</button>
             <button name = "home" value = "sex">Sex</button>
             <button name = "home" value = "ori">Sexual Orientation</button>
           </div>
@@ -323,7 +329,12 @@
 
       <div id="s75-measure-scrn">
       <div class="layout-container">
-        <div class="sidebar">
+                
+        <div class="main-body">
+
+        <div class = "breadcrumb-about-div">
+          <nav id="breadcrumb-inter-measures" class="breadcrumb"></nav>
+          <div class="test">
           <h4>Group measures by:</h4>
         <div class="toggle-container">
           <div class="container" style="margin-left:-15px;">
@@ -340,28 +351,22 @@
                   <option value="The Executive Office">The Executive Office</option>        
               </select>
           </div>
-          <button class="toggle-btn">Section 75 Group</button>          
-          <button class="toggle-btn">Theme</button>
-          <button class="toggle-btn">Another</button>
         </div>
         </div>
-           
-        <div class="main-body">
+          <!-- <div id="inter_about_button"></div> -->
+        </div>
+        <h2 id="selection-heading" style="text-align: center; margin-top: 0px;"></h2>
+        <h2 id="measures-header" aria-live="polite" class="measures-header">
+  Measures available
+</h2>
 
-        <div class = "breadcrumb-about-div">
-          <nav id="breadcrumb" class="breadcrumb"></nav>
-          <button class="btn about-btn" name = "aboutbutton" alt="Home" onclick="window.location.href='about.html';">About Equality Matters</button>
-        </div>
-        <h2 id="selection-heading" style="text-align: center; margin-top: 20px;"></h2>
-        
-        <form>
+        <form id="measuresPageForm">
           <div id="new_button_container" class="container mt-4">
           <div class="container mt-4">
             <div class="row justify-content-center" id="buttonRow"></div>
           </div>
           </div>
         </form>
-
         <form id = "selection-form-measure" style="list-style-type: none; padding: 0;">
         <div id="key-metrics-container-inter" style="display: none;"></div>
           <div id="grouped-container" style="display: none;"></div>
@@ -872,9 +877,16 @@
   all_meas_scrn.style.display = "none";
 
 
-document.addEventListener('DOMContentLoaded', function () {  
+document.addEventListener('DOMContentLoaded', function () {
+  
+  buildBreadcrumb();
 
-    // Constructing all measures table
+  // Insert button into multiple locations
+  // document.getElementById('inter_about_button').appendChild(createAboutButton());
+  document.getElementById('allmeas_about_button').appendChild(createAboutButton());
+  document.getElementById('home_about_button').appendChild(createAboutButton());
+
+  // Constructing all measures table
   const exclusions = getS75ExclusionsFromLineData(data, invertedLookupEqCode);
   console.log("Exclusions from all measures", exclusions);
 
@@ -924,6 +936,62 @@ for (const code in lookup_table_dept_name) {
   };
 }
 
+
+/**
+ * Format a list like:
+ * [] => ""
+ * ["Census"] => "Census"
+ * ["Census", "Department of Finance"] => "Census and Department of Finance"
+ * ["A", "B", "C"] => "A, B and C"   (Oxford comma optional; set useOxfordComma=true to include it)
+ */
+
+
+/**
+ * Format a list like:
+ * [] => ""
+ * ["Census"] => "Census"
+ * ["Census", "Department of Finance"] => "Census and Department of Finance"
+ * ["A", "B", "C"] => "A, B and C"   (Oxford comma optional; set useOxfordComma=true to include it)
+ */
+function formatListWithAnd(items, useOxfordComma = false) {
+  const arr = (items || []).filter(Boolean);
+  if (arr.length === 0) return '';
+  if (arr.length === 1) return arr[0];
+  if (arr.length === 2) return `${arr[0]} and ${arr[1]}`;
+  const head = arr.slice(0, -1).join(', ');
+  const tail = arr[arr.length - 1];
+  return useOxfordComma ? `${head}, and ${tail}` : `${head} and ${tail}`;
+}
+
+/**
+ * Update the header text according to selected departments.
+ * - Default (none selected): "No filters applied - showing all measures"
+ * - If selected equals all: "All Departments selected - showing all measures"
+ * - Else: "Measures available for X and Y"
+ */
+function updateMeasuresHeader(selectedDepts = [], allDepts = []) {
+  const headerEl = document.getElementById('measures-header');
+  if (!headerEl) return;
+
+  const selected = (selectedDepts || []).filter(Boolean);
+  const all = (allDepts || []).filter(Boolean);
+
+  const noneSelected = selected.length === 0;
+  const allSelected = all.length > 0 && selected.length === all.length;
+
+  if (noneSelected) {
+    headerEl.textContent = 'No filters applied - showing all measures';
+    return;
+  } else if (allSelected) {
+    headerEl.textContent = 'All Departments selected - showing all measures';
+    return;
+  }
+
+  const formatted = formatListWithAnd(selected /*, true */); // pass true for Oxford comma
+  headerEl.textContent = `Measures available for ${formatted}`;
+}
+
+
 // Main logic
 let dataArray = [];
 const selectedGroup = window_url.slice(window_url.indexOf("home=") + 5);
@@ -938,37 +1006,17 @@ fetch('./measure_group_lookup.json')
       s75_groups: availableLinks[entry.Code] || [],
       department: enrichedLookups[entry.Code]?.department || null // now uses long name
     }));
+
     let filtered = dataArray.filter(m => m.s75_groups.includes(selectedGroup));
+    console.log("Filtered data", filtered)
     renderButtons(filtered);
     console.log("selectedGroup", selectedGroup);
 
-    // Example static data for testing
-    const dataArrays = [
-      {
-        Code: 'artc',
-        Group: 'Arts and Cultural Activities Participation',
-        Measure_Name: 'Arts and Cultural Activities Participation',
-        Nested: 'FALSE',
-        dataset: 'example',
-        department: 'Department for Communities',
-      },
-      {
-        Code: 'c500',
-        Group: 'Community Relations',
-        Measure_Name: 'Community Relations',
-        Nested: 'FALSE',
-        dataset: 'example',
-        department: 'The Executive Office'
-      }
-    ];
-
-    console.log("dataArray", dataArray);
-
-    // Usage:
+    // Build attribute->departments map
     const attributeToDepartments = buildAttributeDepartmentMap(availableLinks, dataArray);
     console.log("dep_by_S75", attributeToDepartments);
 
-    // Get departments for the selected group
+    // Departments available for the currently selected S75 group (fallback list for header)
     const departmentsForGroup = attributeToDepartments[selectedGroup] || [];
 
     // Populate the multiselect with these departments
@@ -981,6 +1029,9 @@ fetch('./measure_group_lookup.json')
 
     // Refresh the multiselect UI
     $deptSelect.multiselect('rebuild');
+
+    // Initial header: show all available departments (or leave generic)
+    updateMeasuresHeader([], departmentsForGroup);
   })
   .catch(error => console.error('Error loading JSON:', error));
 
@@ -988,25 +1039,22 @@ fetch('./measure_group_lookup.json')
 $('#multiple-checkboxes').multiselect({
   includeSelectAllOption: false,
   buttonWidth: '180px',
+  nonSelectedText: 'Department', // Placeholder text
   buttonText: function(options, select) {
     return 'Department'; // Always show this text
   }
-});      
-   
-$(document).ready(function() {
-  $('#multiple-checkboxes').multiselect({
-    nonSelectedText: 'Department', // Placeholder text
-    buttonText: function(options, select) {
-      return 'Department'; // Always show this text
-    },
-  });
+});
 
-  // Trigger filtering logic on change
+
+$(document).ready(function() {
   $('#multiple-checkboxes').on('change', function() {
     const Departments = $(this).val() || [];
     console.log("Selected Departments:", Departments);
 
-    // Example: Call your filtering function
+    // Update header to reflect current selection (with allDepts for all-selected detection)
+    updateMeasuresHeader(Departments, $('#multiple-checkboxes option').map((_, opt) => opt.value).get());
+
+    // Filter and re-render
     let filtered = dataArray.filter(m => m.s75_groups.includes(selectedGroup));
     if (Departments.length > 0) {
       filtered = filtered.filter(m => Departments.includes(m.department));
@@ -1045,6 +1093,51 @@ function buildAttributeDepartmentMap(availableLinks, dataArray) {
   return result;
 }
 
+function closeAllNestedOverlays() {
+  document.querySelectorAll(".nested-overlay-panel").forEach(p => p.remove());
+  document.querySelectorAll(".overlay-backdrop").forEach(b => b.remove());
+}
+
+function openNestedOverlay(anchorEl, innerHtml) {
+  closeAllNestedOverlays();
+
+  const backdrop = document.createElement("div");
+  backdrop.className = "overlay-backdrop";
+  backdrop.addEventListener("click", closeAllNestedOverlays);
+  document.body.appendChild(backdrop);
+
+  const panel = document.createElement("div");
+  panel.className = "nested-overlay-panel";
+  panel.innerHTML = innerHtml;
+  document.body.appendChild(panel);
+
+  // ✅ hook up close button inside overlay
+  panel.querySelectorAll(".js-overlay-close").forEach(b =>
+    b.addEventListener("click", closeAllNestedOverlays)
+  );
+
+  const r = anchorEl.getBoundingClientRect();
+  const margin = 8;
+
+  let top = r.bottom + margin + window.scrollY;
+  let left = r.left + window.scrollX;
+
+  const maxLeft = window.scrollX + document.documentElement.clientWidth - panel.offsetWidth - margin;
+  left = Math.max(window.scrollX + margin, Math.min(left, maxLeft));
+
+  const maxTop = window.scrollY + document.documentElement.clientHeight - panel.offsetHeight - margin;
+  if (top > maxTop) {
+    top = r.top + window.scrollY - panel.offsetHeight - margin;
+    top = Math.max(window.scrollY + margin, top);
+  }
+
+  panel.style.top = `${top}px`;
+  panel.style.left = `${left}px`;
+
+  panel.addEventListener("click", (e) => e.stopPropagation());
+}
+
+
 // ✅ Render buttons function
 function renderButtons(dataArray) {
   const buttonRow = document.getElementById("buttonRow");
@@ -1061,30 +1154,34 @@ function renderButtons(dataArray) {
       nonNested.push(item);
     }
   });
-// Render non-nested buttons
+
+  // Render non-nested buttons
   nonNested.forEach(item => {
     buttonRow.innerHTML += `
       <div class="col-md-4 mb-4 d-flex justify-content-center">
         <div class="card w-100">
           <div class="card-header p-0">
-  <button name="key" value="${item.Code}" class="btn btn-outline-primary btn-block">
+            <button form="measuresPageForm" type="submit" name="key" value="${item.Code}"
+              class="btn btn-outline-primary btn-block">
               ${item.Measure_Name || enrichedLookup[item.Code]?.measure || 'Unnamed Measure'}
-    </button>
+            </button>
           </div>
-          </div>
+        </div>
       </div>
     `;
   });
 
   // Render nested groups
   let collapseIndex = 0;
-  for (const [groupName, items] of Object.entries(nestedGroups)) {
-    const collapseId = `collapse${collapseIndex}`;
-    const headingId = `heading${collapseIndex}`;
+  window.__nestedOverlayContent = {}; // reset each render
 
-    let childButtons = items.map(item => `
-      <div class="col-md-12 mb-2">
-        <button name="key" value="${item.Code}" class="btn btn-outline-primary btn-block">
+  for (const [groupName, items] of Object.entries(nestedGroups)) {
+    const overlayId = `overlay${collapseIndex}`;
+
+    const childButtons = items.map(item => `
+      <div class="mb-2">
+        <button form="measuresPageForm" type="submit" name="key" value="${item.Code}"
+          class="btn btn-outline-primary btn-block">
           ${item.Measure_Name || enrichedLookup[item.Code]?.measure || 'Unnamed Measure'}
         </button>
       </div>
@@ -1093,27 +1190,55 @@ function renderButtons(dataArray) {
     buttonRow.innerHTML += `
       <div class="col-md-4 mb-4 d-flex justify-content-center">
         <div class="card w-100">
-          <div class="card-header p-0" id="${headingId}">
-            <h5 class="mb-0">
-              <button class="btn btn-primary btn-block text-left btn-accordion" type="button"
-                data-toggle="collapse" data-target="#${collapseId}" aria-expanded="false" aria-controls="${collapseId}">
-                ${groupName}
-              </button>
-            </h5>
+          <div class="card-header p-0">
+            <button
+              type="button"
+              class="btn btn-primary btn-block text-left btn-accordion nested-overlay-trigger"
+              data-overlay-id="${overlayId}">
+              ${groupName}
+            </button>
           </div>
-          <div id="${collapseId}" class="collapse" aria-labelledby="${headingId}">
-            <div class="card-body p-2">
-              <div class="row">
-                ${childButtons}
-              </div>
-            </div>
-          </div>
-     </div>
+        </div>
       </div>
     `;
+
+    window.__nestedOverlayContent[overlayId] = `
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <strong>${groupName}</strong>
+        <button type="button" class="btn btn-sm btn-outline-secondary js-overlay-close">Close</button>
+      </div>
+      ${childButtons}
+    `;
+
     collapseIndex++;
   }
+
+  // wire up overlay triggers
+  buttonRow.querySelectorAll(".nested-overlay-trigger").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const id = btn.getAttribute("data-overlay-id");
+      openNestedOverlay(btn, window.__nestedOverlayContent[id] || "");
+    });
+  });
 }
+
+  // Function to check and store the relevant URL
+  function storeRelevantUrl() {
+    const currentUrl = window.location.href;
+
+    // Check if URL contains home= or allmeasures=
+    if (currentUrl.includes('home=') || currentUrl.includes('allmeasures=')) {
+        localStorage.setItem('lastRelevantUrl', currentUrl);
+    }
+  }
+
+  // Call this on page load
+  storeRelevantUrl();
+
+  // Retrieve later
+  const lastRelevantUrl = localStorage.getItem('lastRelevantUrl');
+  console.log('Last relevant URL:', lastRelevantUrl);
+
 
   // // Add dataset to each measure_lookup entry
   // const enriched_measure_lookup = measure_lookup.map(entry => ({
@@ -1410,13 +1535,57 @@ console.log(`Resolved logo path: "${categoryIcons[cat]}"`)
 
 }
 
+function formatListWithAnd(items, useOxfordComma = false) {
+  const arr = (items || []).filter(Boolean);
+  if (arr.length === 0) return '';
+  if (arr.length === 1) return arr[0];
+  if (arr.length === 2) return `${arr[0]} and ${arr[1]}`;
+  const head = arr.slice(0, -1).join(', ');
+  const tail = arr[arr.length - 1];
+  return useOxfordComma ? `${head}, and ${tail}` : `${head} and ${tail}`;
+}
+
+/**
+ * Update header text according to selected departments.
+ * - Default: "No filters applied - showing all measures" on initial load.
+ * - If none selected: same as default.
+ * - If all selected: same as default.
+ * - Otherwise: "Measures available for X and Y" etc.
+ */
+function updateMeasuresHeaderForDepartments(selectedDepts, allDepts) {
+  const headerEl = document.getElementById('measures-header-all-meas');
+  if (!headerEl) return;
+
+  const selected = (selectedDepts || []).filter(Boolean);
+  const all = (allDepts || []).filter(Boolean);
+
+  const noneSelected = selected.length === 0;
+  const allSelected = all.length > 0 && selected.length === all.length;
+
+  if (noneSelected) {
+    headerEl.textContent = 'No filters applied - showing all measures';
+    return;
+  } else if (allSelected) {
+    headerEl.textContent = 'All Departments selected - showing all measures';
+    return;
+  }
+
+  const formatted = formatListWithAnd(selected /* , true */); // pass true for Oxford comma
+  headerEl.textContent = `Measures available for ${formatted}`;
+}
+
+
 $(function () {
-  // Populate multiselect with long department names from enrichedLookup
+  // Populate multiselect with long department names from enrichedLookups
   const $deptSelect = $('#departmentSelect');
   $deptSelect.empty();
 
-  // Extract unique department names from enrichedLookup
-  const uniqueDepartments = [...new Set(Object.values(enrichedLookups).map(d => d.department))];
+  // Extract unique department names from enrichedLookups
+  const uniqueDepartments = [...new Set(
+    Object.values(enrichedLookups)
+      .map(d => d?.department?.trim())
+      .filter(Boolean)
+  )];
 
   uniqueDepartments.forEach(dept => {
     $deptSelect.append(`<option value="${dept}">${dept}</option>`);
@@ -1428,13 +1597,20 @@ $(function () {
     enableFiltering: false, // No search box
     buttonWidth: '180px',
     nonSelectedText: 'Department',
-    buttonText: function() {
+    buttonText: function () {
       return 'Department'; // Always show this text
     },
-    onChange: function() {
-      renderTable($('#departmentSelect').val() || []);
+    onChange: function () {
+      const selected = $('#departmentSelect').val() || [];
+
+      // Update header based on selection
+      updateMeasuresHeaderForDepartments(selected, uniqueDepartments);
+
+      // Render table rows for the selected departments
+      renderTable(selected);
     }
   });
+
   const table = document.getElementById('all-meas-tbl');
 
   // Create header row
@@ -1450,7 +1626,7 @@ $(function () {
   }
   table.appendChild(headerRow);
 
- // Render table rows filtered by selected departments
+  // Render table rows filtered by selected departments
   function renderTable(selectedDepartmentsArray = []) {
     // Clear previous rows
     table.querySelectorAll('tr:not(:first-child)').forEach(row => row.remove());
@@ -1496,14 +1672,17 @@ $(function () {
 
             td.innerHTML = '<div class="navy-dot"></div>';
           }
-            row.appendChild(td);
+
+          row.appendChild(td);
         }
         table.appendChild(row);
       }
     }
-
   }
-  // ✅ Show all rows by default
+
+  // Initial header and table render
+  // Default header: "No filters applied - showing all measures"
+  updateMeasuresHeaderForDepartments([], uniqueDepartments);
   renderTable();
 });
 
@@ -3111,16 +3290,17 @@ function getQueryParams() {
   return {
     home: params.get('home'),
     s75: params.get('s75'),
-    key: params.get('key')
+    key: params.get('key'),
+    allmeasures: params.get('allmeasures')
   };
 }
 
 function buildBreadcrumb() {
-  const { home, s75, key } = getQueryParams();
-  const breadcrumb = document.getElementById('breadcrumb');
+  const { home, s75, key, allmeasures } = getQueryParams();
+  const breadcrumb = document.getElementById('breadcrumb-destination');
   breadcrumb.innerHTML = '';
 
-  // Home link
+  // Common Home link
   const homeLink = document.createElement('a');
   homeLink.href = 'index.html';
   homeLink.textContent = 'Home';
@@ -3129,19 +3309,67 @@ function buildBreadcrumb() {
   if (s75 || home) {
     breadcrumb.appendChild(document.createTextNode(' > '));
     const measureLink = document.createElement('a');
-    measureLink.href = `index.html?home=${s75 || home}`;
-    measureLink.textContent = 'Measure';
+    const lastRelevantUrl = localStorage.getItem('lastRelevantUrl');
+
+    // Determine label dynamically
+    let label = 'Measure';
+    if (lastRelevantUrl && lastRelevantUrl.includes('allmeasures=')) {
+      label = 'All Measures';
+    } else if (lastRelevantUrl && lastRelevantUrl.includes('home=')) {
+      const sectionKey = lastRelevantUrl.split('home=')[1];
+      label = `${lookupTableDisplayGrp[sectionKey] || 'Measure'}`;
+    }
+
+    measureLink.href = lastRelevantUrl || `index.html?home=${s75 || home}`;
+    measureLink.textContent = label;
     breadcrumb.appendChild(measureLink);
   }
 
   if (key) {
     breadcrumb.appendChild(document.createTextNode(' > '));
     const destinationSpan = document.createElement('span');
-    destinationSpan.textContent = 'Destination';
+
+    const titles = lookupTableMeasureTitle[key];
+    // Use the first item if it exists, else fallback to 'Destination'
+    destinationSpan.textContent = Array.isArray(titles) && titles.length > 0
+      ? titles[0]
+      : 'Destination';
+
     breadcrumb.appendChild(destinationSpan);
+  }
+
+  // Case 2: home= → breadcrumb-inter-measures
+  if (home) {
+    const breadcrumb = document.getElementById('breadcrumb-inter-measures');
+    breadcrumb.innerHTML = '';
+    breadcrumb.appendChild(homeLink);
+    breadcrumb.appendChild(document.createTextNode(' > '));
+
+    // Lookup measure name dynamically
+    const measureLabel = lookupTableDisplayGrp[home] || 'Measure';
+    const measureSpan = document.createElement('span');
+    measureSpan.textContent = measureLabel;
+    breadcrumb.appendChild(measureSpan);
+  }
+
+  // Case 3: allmeasures= → breadcrumb-all-measures
+  if (allmeasures !== null) {
+    const breadcrumb = document.getElementById('breadcrumb-all-measures');
+    breadcrumb.innerHTML = '';
+    breadcrumb.appendChild(homeLink);
+    breadcrumb.appendChild(document.createTextNode(' > All Measures'));
   }
 }
 
-document.addEventListener('DOMContentLoaded', buildBreadcrumb);
+  // About button
+  function createAboutButton() {
+      const button = document.createElement('button');
+      button.className = 'btn about-btn';
+      button.name = 'aboutbutton';
+      button.alt = 'Home';
+      button.textContent = 'About Equality Matters';
+      button.onclick = () => window.location.href = 'about.html';
+      return button;
+  }
 
 </script>

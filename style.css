@@ -1068,11 +1068,13 @@ footer a:hover {
     background-color: #3878c5;
     color: #fff;
     font-weight: bold;
+    border-radius: 2px;
   }
 
   .btn:hover {
     background-color: #6093d2;
     color: #fff;
+    border: 2px solid #000;
   }
 
   .btn:focus {
@@ -1256,7 +1258,7 @@ footer a:hover {
     right: 0px;
     /* padding: 8px 12px; */
     border: 2px solid #00205B;
-    border-radius: 5px;
+    border-radius: 2px;
   }
 
   #downloadButton:active {
@@ -1409,6 +1411,7 @@ footer a:hover {
   padding-left: 10px;
   text-align: left;
   min-width: 30%; /* Allows buttons to adjust dynamically */
+  border-radius: 2px;
 }
 
 #key-metrics-container {
@@ -1577,7 +1580,7 @@ footer a:hover {
   min-height: 50px;
   outline:none;
   position :relative;
-  border-radius: 10px;
+  border-radius: 2px;
 }
 
 #toggle-group-btn,
@@ -1650,7 +1653,7 @@ footer a:hover {
   background: #4F95DA;
   color: white;
   /* font-weight: bold; */
-  border: 4px solid #00205B;
+  border: 3px solid #00205B;
   padding: 0 16px;
 }
 
@@ -1832,6 +1835,7 @@ a.cookiesbarlink {
   font-weight: bold;
   font-size: 20px;
   padding: 6px 12px;
+  border-radius: 2px;
 }
 
 .about-btn {
@@ -1839,6 +1843,7 @@ a.cookiesbarlink {
   font-weight: bold;
   font-size: 20px;
   padding: 6px 12px;
+  border-radius: 2px;
 }
 
 .about-btn:hover, .all-measures-btn:hover {
@@ -1941,7 +1946,7 @@ a.cookiesbarlink {
 
 /* Optional: make headers look like BS5-ish accordion buttons */
 .card-header .btn {
-  border-radius: 0.5rem;
+  border-radius: 2px;
 }
 .card {
   border: 0;
@@ -2079,6 +2084,7 @@ a.cookiesbarlink {
   margin-bottom: 10px; /* Adds space between buttons */
   cursor: pointer;
   font-size: 20px;
+  border-radius: 2px;
 }
 
 /* Hide the page until the page is fully rendered */
@@ -2253,4 +2259,48 @@ nav a[target="_blank"]::after {
   word-wrap: break-word; /* Break long words if needed */
   text-align: center;    /* Optional: keep header text centered */
   padding: 8px;          /* Adds spacing for readability */
+}
+
+/* backdrop that sits over page but under the panel */
+.overlay-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.15);
+  z-index: 1040;
+}
+
+/* floating panel containing child buttons */
+.nested-overlay-panel {
+  position: absolute;
+  z-index: 1050;
+  width: min(360px, calc(100vw - 24px));
+  max-height: min(420px, calc(100vh - 24px));
+  overflow: auto;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: 2px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.2);
+  padding: .75rem;
+}
+
+/* optional: nicer spacing for child buttons */
+.nested-overlay-panel .btn {
+  text-align: left;
+}
+
+.measures-header {
+  font-size: 1.25rem;
+  margin: 0.5rem 0 1rem;
+  line-height: 1.4;
+}
+
+.measures-header-all-meas {
+  font-size: 1.25rem;
+  margin: 0.5rem 0 1rem;
+  line-height: 1.4;
+}
+
+#home_about_button {
+    display: flex;
+    justify-content: flex-end; /* Aligns content to the right */
 }
