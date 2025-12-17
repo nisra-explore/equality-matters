@@ -618,14 +618,21 @@
  
     // Iterate through `lookupValues` to preserve order from `lookupTable`
     const filtered = [];
- 
+    const escapeRegExp = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
     for (const val of lookupValues) {
-        for (const [key, value] of Object.entries(data)) {
-            if (key.includes(matchString) && key.includes(val) && !key.includes("_lci_") && !key.includes("_uci_")) {
-                filtered.push([key, value]);
-                break;  // Move to the next value once a match is found
-            }
+      const re = new RegExp(`(?:^|_)${escapeRegExp(val)}(?:_|$)`); // whole token match
+      for (const [key, value] of Object.entries(data)) {
+        if (
+          key.includes(matchString) &&
+          re.test(key) &&                 // matches EQ101 as a full token, not EQ1010
+          !key.includes("_lci_") &&
+          !key.includes("_uci_")
+        ) {
+          filtered.push([key, value]);
+          break;
         }
+      }
     }
     
     return Object.fromEntries(filtered); // Convert Map back to an object if needed
@@ -1093,29 +1100,170 @@ function buildAttributeDepartmentMap(availableLinks, dataArray) {
   return result;
 }
 
-function closeAllNestedOverlays() {
-  document.querySelectorAll(".nested-overlay-panel").forEach(p => p.remove());
-  document.querySelectorAll(".overlay-backdrop").forEach(b => b.remove());
+function getFocusableElements(container) {
+  // Matches focusable controls including those with tabindex >= 0
+  return Array.from(
+    container.querySelectorAll(
+      'a[href], area[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), ' +
+      'select:not([disabled]), textarea:not([disabled]), ' +
+      '[contenteditable]:not([contenteditable="false"]), ' +
+      '[tabindex]:not([tabindex="-1"])'
+    )
+  ).filter(el => el.offsetParent !== null || el === document.activeElement); // visible or currently focused
 }
 
-function openNestedOverlay(anchorEl, innerHtml) {
+// Apply 'inert' if supported; otherwise set aria-hidden and remove from tab order.
+function makeBackgroundInertExcept(keepNodes) {
+  const keep = new Set(keepNodes);
+  const rootChildren = Array.from(document.body.children);
+  rootChildren.forEach(node => {
+    if (keep.has(node)) return;
+
+    // If the browser supports 'inert' (Chrome, Edge, etc.), use it.
+    if ('inert' in HTMLElement.prototype) {
+      node.setAttribute('inert', '');
+    } else {
+      // Fallback: hide from AT and block tab focus by capturing current tabbables
+      node.setAttribute('aria-hidden', 'true');
+      node.__savedTabindex = [];
+      const tabbables = node.querySelectorAll('[tabindex]:not([tabindex="-1"]), a[href], button, input, select, textarea');
+      tabbables.forEach(t => {
+        const hasExplicit = t.hasAttribute('tabindex');
+        node.__savedTabindex.push([t, hasExplicit ? t.getAttribute('tabindex') : null]);
+        t.setAttribute('tabindex', '-1');
+      });
+    }
+  });
+
+  // Keep a reference to restore later
+  document.body.__inertApplied = true;
+  document.body.__inertKept = keepNodes;
+}
+
+function restoreBackgroundInert() {
+  if (!document.body.__inertApplied) return;
+  const rootChildren = Array.from(document.body.children);
+  rootChildren.forEach(node => {
+    if ('inert' in HTMLElement.prototype) {
+      node.removeAttribute('inert');
+    } else {
+      node.removeAttribute('aria-hidden');
+      if (node.__savedTabindex) {
+        node.__savedTabindex.forEach(([el, val]) => {
+          if (val === null) {
+            el.removeAttribute('tabindex');
+          } else {
+            el.setAttribute('tabindex', val);
+          }
+        });
+        delete node.__savedTabindex;
+      }
+    }
+  });
+  delete document.body.__inertApplied;
+  delete document.body.__inertKept;
+}
+
+/** ---- Accessible overlay management ---- **/
+
+function closeAllNestedOverlays() {
+  // Remove panel and backdrop
+  document.querySelectorAll(".nested-overlay-panel").forEach(p => p.remove());
+  document.querySelectorAll(".overlay-backdrop").forEach(b => b.remove());
+
+  // Restore background interactivity
+  restoreBackgroundInert();
+  document.body.classList.remove('body--no-scroll');
+
+  // Restore focus to the opener if we saved it
+  const opener = document.body.__overlayOpener;
+  if (opener && opener instanceof HTMLElement) {
+    opener.focus();
+    delete document.body.__overlayOpener;
+  }
+
+  // Remove global key handler
+  document.removeEventListener('keydown', trapKeydown, true);
+
+  // Clear panel ref
+  __overlayPanel = null;
+}
+
+// We'll set these when opening to use inside the keydown trap
+let __overlayPanel = null;
+
+function trapKeydown(e) {
+  if (!__overlayPanel) return;
+
+  if (e.key === 'Escape') {
+    e.preventDefault();
+    closeAllNestedOverlays();
+    return;
+  }
+
+  if (e.key === 'Tab') {
+    const focusables = getFocusableElements(__overlayPanel);
+    if (focusables.length === 0) {
+      // Keep focus on the panel itself if nothing else is focusable
+      e.preventDefault();
+      __overlayPanel.focus();
+      return;
+    }
+
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    const current = document.activeElement;
+
+    if (e.shiftKey) {
+      if (current === first || current === __overlayPanel) {
+        e.preventDefault();
+        last.focus();
+      }
+    } else {
+      if (current === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  }
+}
+
+function openNestedOverlay(anchorEl, innerHtml, { label = '', labelledById = '' } = {}) {
   closeAllNestedOverlays();
 
-  const backdrop = document.createElement("div");
-  backdrop.className = "overlay-backdrop";
-  backdrop.addEventListener("click", closeAllNestedOverlays);
+  // Save the opener to restore focus later
+  document.body.__overlayOpener = anchorEl;
+
+  // Build backdrop
+  const backdrop = document.createElement('div');
+  backdrop.className = 'overlay-backdrop';
+  backdrop.addEventListener('click', closeAllNestedOverlays);
   document.body.appendChild(backdrop);
 
-  const panel = document.createElement("div");
-  panel.className = "nested-overlay-panel";
+  // Build panel
+  const panel = document.createElement('div');
+  panel.className = 'nested-overlay-panel';
+  panel.setAttribute('role', 'dialog');
+  panel.setAttribute('aria-modal', 'true');
+  // Labeling
+  if (label) {
+    panel.setAttribute('aria-label', label);
+  }
+  if (labelledById) {
+    panel.setAttribute('aria-labelledby', labelledById);
+  }
+  // Make panel itself focusable so we can move focus to it if needed
+  panel.setAttribute('tabindex', '-1');
+
   panel.innerHTML = innerHtml;
   document.body.appendChild(panel);
 
-  // ✅ hook up close button inside overlay
+  // Hook up close buttons inside overlay
   panel.querySelectorAll(".js-overlay-close").forEach(b =>
     b.addEventListener("click", closeAllNestedOverlays)
   );
 
+  // Positioning (your original logic)
   const r = anchorEl.getBoundingClientRect();
   const margin = 8;
 
@@ -1134,11 +1282,30 @@ function openNestedOverlay(anchorEl, innerHtml) {
   panel.style.top = `${top}px`;
   panel.style.left = `${left}px`;
 
+  // Stop clicks inside from bubbling (so backdrop click can close)
   panel.addEventListener("click", (e) => e.stopPropagation());
+
+  // Make the rest of the page inert (keyboard & AT)
+  document.body.classList.add('body--no-scroll');
+  makeBackgroundInertExcept([panel, backdrop]);
+
+  // Focus handling: move focus to the first focusable in panel, else panel itself
+  const focusables = getFocusableElements(panel);
+  if (focusables.length) {
+    focusables[0].focus();
+  } else {
+    panel.focus();
+  }
+
+  // Enable keyboard trap
+  __overlayPanel = panel;
+  document.addEventListener('keydown', trapKeydown, true);
+
+  return panel; // in case you need a handle
 }
 
 
-// ✅ Render buttons function
+// Render buttons function
 function renderButtons(dataArray) {
   const buttonRow = document.getElementById("buttonRow");
   buttonRow.innerHTML = "";
@@ -1146,6 +1313,7 @@ function renderButtons(dataArray) {
   const nestedGroups = {};
   const nonNested = [];
 
+  // Partition data into nested groups and non-nested items
   dataArray.forEach(item => {
     if (item.Nested === 'TRUE') {
       if (!nestedGroups[item.Group]) nestedGroups[item.Group] = [];
@@ -1157,13 +1325,14 @@ function renderButtons(dataArray) {
 
   // Render non-nested buttons
   nonNested.forEach(item => {
+    const label = item.Measure_Name || enrichedLookup[item.Code]?.measure || 'Unnamed Measure';
     buttonRow.innerHTML += `
       <div class="col-md-4 mb-4 d-flex justify-content-center">
         <div class="card w-100">
           <div class="card-header p-0">
             <button form="measuresPageForm" type="submit" name="key" value="${item.Code}"
               class="btn btn-outline-primary btn-block">
-              ${item.Measure_Name || enrichedLookup[item.Code]?.measure || 'Unnamed Measure'}
+              ${label}
             </button>
           </div>
         </div>
@@ -1177,16 +1346,22 @@ function renderButtons(dataArray) {
 
   for (const [groupName, items] of Object.entries(nestedGroups)) {
     const overlayId = `overlay${collapseIndex}`;
+    const titleId = `ovl-title-${collapseIndex}`;
 
-    const childButtons = items.map(item => `
-      <div class="mb-2">
-        <button form="measuresPageForm" type="submit" name="key" value="${item.Code}"
-          class="btn btn-outline-primary btn-block">
-          ${item.Measure_Name || enrichedLookup[item.Code]?.measure || 'Unnamed Measure'}
-        </button>
-      </div>
-    `).join("");
+    // Build inner child buttons
+    const childButtons = items.map(item => {
+      const label = item.Measure_Name || enrichedLookup[item.Code]?.measure || 'Unnamed Measure';
+      return `
+        <div class="mb-2">
+          <button form="measuresPageForm" type="submit" name="key" value="${item.Code}"
+            class="btn btn-outline-primary btn-block">
+            ${label}
+          </button>
+        </div>
+      `;
+    }).join("");
 
+    // Outer (parent) button that triggers overlay
     buttonRow.innerHTML += `
       <div class="col-md-4 mb-4 d-flex justify-content-center">
         <div class="card w-100">
@@ -1194,7 +1369,8 @@ function renderButtons(dataArray) {
             <button
               type="button"
               class="btn btn-primary btn-block text-left btn-accordion nested-overlay-trigger"
-              data-overlay-id="${overlayId}">
+              data-overlay-id="${overlayId}"
+              data-overlay-title-id="${titleId}">
               ${groupName}
             </button>
           </div>
@@ -1202,22 +1378,38 @@ function renderButtons(dataArray) {
       </div>
     `;
 
+    // Store accessible overlay content, including a heading used for aria-labelledby
     window.__nestedOverlayContent[overlayId] = `
-      <div class="d-flex justify-content-between align-items-center mb-2">
-        <strong>${groupName}</strong>
-        <button type="button" class="btn btn-sm btn-outline-secondary js-overlay-close">Close</button>
+      <div class="p-2">
+        <h2 id="${titleId}" class="h5 m-0">${groupName}</h2>
+        <div class="mt-2">
+          ${childButtons}
+        </div>
+        <div class="mt-3 d-flex justify-content-end">
+          <button type="button" class="btn btn-sm btn-outline-secondary js-overlay-close">Close</button>
+        </div>
       </div>
-      ${childButtons}
     `;
 
     collapseIndex++;
   }
 
-  // wire up overlay triggers
+  // Wire up overlay triggers (click opens; Enter/Space already work on buttons natively)
   buttonRow.querySelectorAll(".nested-overlay-trigger").forEach(btn => {
     btn.addEventListener("click", () => {
       const id = btn.getAttribute("data-overlay-id");
-      openNestedOverlay(btn, window.__nestedOverlayContent[id] || "");
+      const labelledById = btn.getAttribute("data-overlay-title-id"); // match the <h2 id="...">
+      openNestedOverlay(btn, window.__nestedOverlayContent[id] || "", { labelledById });
+    });
+
+    // Optional: open with keyboard in case some UA customizations change default button behavior
+    btn.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        const id = btn.getAttribute("data-overlay-id");
+        const labelledById = btn.getAttribute("data-overlay-title-id");
+        openNestedOverlay(btn, window.__nestedOverlayContent[id] || "", { labelledById });
+      }
     });
   });
 }
@@ -3295,69 +3487,86 @@ function getQueryParams() {
   };
 }
 
+
 function buildBreadcrumb() {
   const { home, s75, key, allmeasures } = getQueryParams();
-  const breadcrumb = document.getElementById('breadcrumb-destination');
-  breadcrumb.innerHTML = '';
 
-  // Common Home link
-  const homeLink = document.createElement('a');
-  homeLink.href = 'index.html';
-  homeLink.textContent = 'Home';
-  breadcrumb.appendChild(homeLink);
+  // Helpers
+  const sep = () => document.createTextNode(' \u003e '); // " > "
+  const makeHomeLink = () => {
+    const a = document.createElement('a');
+    a.href = 'index.html';
+    a.textContent = 'Home';
+    return a;
+  };
 
-  if (s75 || home) {
-    breadcrumb.appendChild(document.createTextNode(' > '));
-    const measureLink = document.createElement('a');
-    const lastRelevantUrl = localStorage.getItem('lastRelevantUrl');
+  // -------- Case 1: breadcrumb-destination (default trail on measure pages) --------
+  {
+    const container = document.getElementById('breadcrumb-destination');
+    if (container) {
+      container.innerHTML = '';
 
-    // Determine label dynamically
-    let label = 'Measure';
-    if (lastRelevantUrl && lastRelevantUrl.includes('allmeasures=')) {
-      label = 'All Measures';
-    } else if (lastRelevantUrl && lastRelevantUrl.includes('home=')) {
-      const sectionKey = lastRelevantUrl.split('home=')[1];
-      label = `${lookupTableDisplayGrp[sectionKey] || 'Measure'}`;
+      // Home
+      const homeLink = makeHomeLink();
+      container.appendChild(homeLink);
+
+      // Optional mid crumb (section link) when s75 or home exists
+      if (s75 || home) {
+        container.appendChild(sep());
+
+        const measureLink = document.createElement('a');
+        const lastRelevantUrl = localStorage.getItem('lastRelevantUrl');
+
+        // Determine mid-crumb label
+        let label = 'Measure';
+        if (lastRelevantUrl && lastRelevantUrl.includes('allmeasures=')) {
+          label = 'All Measures';
+        } else if (lastRelevantUrl && lastRelevantUrl.includes('home=')) {
+          const sectionKey = lastRelevantUrl.split('home=')[1];
+          label = `${lookupTableDisplayGrp[sectionKey] || 'Measure'}`;
+        }
+
+        // Fallback URL if nothing stored
+        measureLink.href = lastRelevantUrl || `index.html?home=${s75 || home}`;
+        measureLink.textContent = label;
+        container.appendChild(measureLink);
+      }
+
+      // Final crumb: ALWAYS "Destination" (static, non-link) when key is present
+      if (key) {
+        container.appendChild(sep());
+        const destinationSpan = document.createElement('span');
+        destinationSpan.textContent = '';
+        container.appendChild(destinationSpan);
+      }
     }
-
-    measureLink.href = lastRelevantUrl || `index.html?home=${s75 || home}`;
-    measureLink.textContent = label;
-    breadcrumb.appendChild(measureLink);
   }
 
-  if (key) {
-    breadcrumb.appendChild(document.createTextNode(' > '));
-    const destinationSpan = document.createElement('span');
-
-    const titles = lookupTableMeasureTitle[key];
-    // Use the first item if it exists, else fallback to 'Destination'
-    destinationSpan.textContent = Array.isArray(titles) && titles.length > 0
-      ? titles[0]
-      : 'Destination';
-
-    breadcrumb.appendChild(destinationSpan);
-  }
-
-  // Case 2: home= → breadcrumb-inter-measures
+  // -------- Case 2: home= → breadcrumb-inter-measures --------
   if (home) {
-    const breadcrumb = document.getElementById('breadcrumb-inter-measures');
-    breadcrumb.innerHTML = '';
-    breadcrumb.appendChild(homeLink);
-    breadcrumb.appendChild(document.createTextNode(' > '));
+    const container = document.getElementById('breadcrumb-inter-measures');
+    if (container) {
+      container.innerHTML = '';
+      const homeLink = makeHomeLink();
+      container.appendChild(homeLink);
+      container.appendChild(sep());
 
-    // Lookup measure name dynamically
-    const measureLabel = lookupTableDisplayGrp[home] || 'Measure';
-    const measureSpan = document.createElement('span');
-    measureSpan.textContent = measureLabel;
-    breadcrumb.appendChild(measureSpan);
+      const measureLabel = lookupTableDisplayGrp[home] || 'Measure';
+      const measureSpan = document.createElement('span');
+      measureSpan.textContent = measureLabel;
+      container.appendChild(measureSpan);
+    }
   }
 
-  // Case 3: allmeasures= → breadcrumb-all-measures
-  if (allmeasures !== null) {
-    const breadcrumb = document.getElementById('breadcrumb-all-measures');
-    breadcrumb.innerHTML = '';
-    breadcrumb.appendChild(homeLink);
-    breadcrumb.appendChild(document.createTextNode(' > All Measures'));
+  // -------- Case 3: allmeasures= → breadcrumb-all-measures --------
+  if (allmeasures !== null && allmeasures !== undefined) {
+    const container = document.getElementById('breadcrumb-all-measures');
+    if (container) {
+      container.innerHTML = '';
+      const homeLink = makeHomeLink();
+      container.appendChild(homeLink);
+      container.appendChild(document.createTextNode(' > All Measures'));
+       }
   }
 }
 

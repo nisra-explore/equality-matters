@@ -2304,3 +2304,16 @@ nav a[target="_blank"]::after {
     display: flex;
     justify-content: flex-end; /* Aligns content to the right */
 }
+
+/* Apply to all buttons */
+button:focus-visible {
+  outline: none;                 /* Remove default outline */
+  box-shadow: 0 0 0 3px #000;    /* Black ring without changing layout */
+}
+
+/* If using Bootstrap buttons */
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px #000;
+}
+

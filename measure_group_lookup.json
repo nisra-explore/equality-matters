@@ -60,13 +60,13 @@
   {
     "Measure_Name": "General Health - Bad/very bad",
     "Code": "hsg2",
-    "Group": "General Health",
+    "Group": "General health",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "General Health - Very good/good",
     "Code": "hsg1",
-    "Group": "General Health",
+    "Group": "General health",
     "Nested": "TRUE"
   },
   {
