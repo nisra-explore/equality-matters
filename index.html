@@ -2862,21 +2862,21 @@ function generateSummaryText2(tableData, niAverage, measureTitle, ageGroups, how
     const firstYearLabels = toFinancialYear(tableData[0].year);
     const lastYearLabels = toFinancialYear(tableData[tableData.length - 1].year);
     
-    let summaryText = `${measureTitle} ${firstYearLabels} to ${lastYearLabels}<br>`;
+    let summaryText = `${measureTitle} ${startYear} to ${latestYear}<br>`;
     summaryText += `This measure records the <span style="text-transform:lowercase">${howMeasure}</span><br>`;
     summaryText += `Looking at trends by ${eqGrpDisplayName} compared to the NI value:<br>`;
 
     summaryText += `${biggestIncrease[0]}: This group showed the highest increase relative to the NI value from ${Math.abs(biggestIncrease[1].firstDiff)} percentage points ${
         biggestIncrease[1].firstDiff >= 0 ? "above" : "below"
-    } the NI value in ${firstYearLabels} to ${Math.abs(biggestIncrease[1].lastDiff)} percentage points ${
+    } the NI value in ${startYear} to ${Math.abs(biggestIncrease[1].lastDiff)} percentage points ${
         biggestIncrease[1].lastDiff >= 0 ? "above" : "below"
-    } in ${lastYearLabels}.<br>`;
+    } in ${latestYear}.<br>`;
 
     summaryText += `${biggestDecrease[0]}: This group showed the greatest decrease relative to the NI value from ${Math.abs(biggestDecrease[1].firstDiff)} percentage points ${
         biggestDecrease[1].firstDiff >= 0 ? "above" : "below"
-    } the NI value in ${firstYearLabels} to ${Math.abs(biggestDecrease[1].lastDiff)} percentage points ${
+    } the NI value in ${startYear} to ${Math.abs(biggestDecrease[1].lastDiff)} percentage points ${
         biggestDecrease[1].lastDiff >= 0 ? "above" : "below"
-    } in ${lastYearLabels}.<br>`;
+    } in ${latestYear}.<br>`;
 
     return summaryText;
 }
