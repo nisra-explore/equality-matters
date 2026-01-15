@@ -71,6 +71,11 @@ main {
   filter: brightness(0) invert(1);
 }
 
+#teo-logo {
+  width: 250px;
+  margin-bottom: 10px;
+}
+
 #dashboard-title-container {
   display: flex;
   flex-direction:column;
@@ -190,15 +195,6 @@ a:hover {
   text-decoration: underline;
 }
 
-.survey-link {
-  text-decoration: underline;
-  color: #00205B;
-}
-
-.survey-link:hover {
-  text-decoration-color: white;
-}
-
 
 /* a:visited {
 	color: purple;
@@ -313,7 +309,7 @@ a:hover {
 
 .intro {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 0px;
     width: 100%;
     text-align: left;
 }
@@ -584,8 +580,7 @@ a.cookies-infobar_btn, a.cookies-infobar_btn_reject, a.cookiesbarlink {
     margin-bottom: 0px;
     padding-top: 5px;
     padding-bottom: 10px;
-    font-size: 1em;
-    font-weight: bold;
+    font-size: 1.1em;
     justify-content: center;
     width: 100%;
     display: flex;
@@ -648,21 +643,6 @@ footer {
 
 #footer-container {
     width: 1300px;
-}
-
-#teo-logo-container {
-    height: 210px;
-    display:flex;
-    justify-content: flex-end;
-    align-items: center;
-    width: 635px;
-    max-width: 1200px;
-    min-width: 250px;
-}
-
-#footer-teo-logo {
-    width: 250px;
-    filter: brightness(0) invert(1);
 }
 
 #line-chart-container {
@@ -1067,7 +1047,6 @@ footer a:hover {
     border: 2px solid #00205B;
     background-color: #3878c5;
     color: #fff;
-    font-weight: bold;
     border-radius: 2px;
   }
 
@@ -1721,6 +1700,8 @@ footer a:hover {
   box-sizing: border-box;
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .home-side {
@@ -1738,7 +1719,7 @@ footer a:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 20px 20px 0px 20px;
+  padding: 5px 20px 0px 20px;
   box-sizing: border-box;
   min-height: 0;
 }
@@ -1840,9 +1821,8 @@ a.cookiesbarlink {
 
 .about-btn {
   color: #fff;
-  font-weight: bold;
-  font-size: 20px;
-  padding: 6px 12px;
+  font-size: 1rem;
+  padding: 6px 20px;
   border-radius: 2px;
 }
 
@@ -1989,7 +1969,7 @@ a.cookiesbarlink {
     border: none;           /* Removes border */
     padding: 0;             /* Removes extra spacing */
     margin: -12px 0 24px 0px; /* Top, Right, Bottom, Left spacing */
-    font-size: 18px;
+    font-size: 1rem;
     display: flex;
     align-items: center;
 }
@@ -2002,6 +1982,7 @@ a.cookiesbarlink {
 
 .breadcrumb a:hover {
   text-decoration: underline;
+  color: #b400f0;
 }
 
 .breadcrumb span {
@@ -2181,6 +2162,16 @@ nav a[target="_blank"]::after {
   height: 11px;
   margin: 0 5px 0 5px;
   vertical-align: text-top;
+}
+
+nav a {
+  color: #ffffff;
+  text-underline-offset: 3px;
+}
+
+nav a:hover {
+    color: #ffffff;
+    text-decoration-thickness: 2px;
 }
 
 #all-meas-tbl tr:nth-child(even) {

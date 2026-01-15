@@ -49,8 +49,8 @@
       
       <nav class="warning">
         <div class="col-wide middle" style=" text-align: center;">
-          <p style="margin-bottom: 0px;">We welcome feedback from users through our 
-            <a class="survey-link" href="https://dttselfserve.nidirect.gov.uk/NISRA/RateIt#/Equality_Matters" target="_blank"><span style="color: white;">short survey</span>
+          <p style="margin-bottom: 0px;">We welcome your feedback or requests for new data through our 
+            <a href="https://dttselfserve.nidirect.gov.uk/NISRA/RateIt#/Equality_Matters" target="_blank"><span style="color: white;">short survey</span>
               <!-- <img class = "new-tab" src = "img/opens-new-tab.svg"> -->
             </a>
             </p>
@@ -99,7 +99,7 @@
                 <div class="intro">
                   <div class = "breadcrumb-about-div">
                     <nav id="breadcrumb-destination" class="breadcrumb"></nav>
-                    <button class="btn about-btn" name = "aboutbutton" alt="Home" onclick="window.location.href='about.html';">About Equality Matters</button>
+                    <div id="dest_about_button"></div>
                   </div>
 
                   <h2 style="margin-bottom: 30px;"><span class = "measure_title"></span> by <span class = "eq_grp_name"></span></h2>
@@ -215,6 +215,10 @@
           <form id = "selection-form-75group" style="list-style-type: none; padding: 0;">
           <div id="s75-groups-container"></div>
           </form>
+          <div style="margin-top: auto;">
+            <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">Funded by</p>
+            <a href="https://www.executiveoffice-ni.gov.uk/" target="_blank"><img id="teo-logo" src="img/logo-colour-unstacked-teo.svg" alt="TEO logo. Clicking image takes user to the Executive Office website"></a>
+          </div>
         </div>
         <!-- Right side: 30% width, two stacked containers -->
         <div class="home-side">
@@ -334,31 +338,33 @@
 
         <div class = "breadcrumb-about-div">
           <nav id="breadcrumb-inter-measures" class="breadcrumb"></nav>
-          <div class="test">
-          <h4>Group measures by:</h4>
-        <div class="toggle-container">
-          <div class="container" style="margin-left:-15px;">
-              <select id="multiple-checkboxes" multiple="multiple">
-                  <option value="Census">Census</option>
-                  <option value="Department for Communities">Department for Communities</option>
-                  <option value="Department for Infrastructure">Department for Infrastructure</option>
-                  <option value="Department for the Economy">Department for the Economy</option>
-                  <option value="Department of Agriculture, Environment and Rural Affairs">Department of Agriculture, Environment and Rural Affairs</option>
-                  <option value="Department of Education">Department of Education</option>
-                  <option value="Department of Finance">Department of Finance</option>
-                  <option value="Department of Health">Department of Health</option>
-                  <option value="Department for Justice">Department for Justice</option>
-                  <option value="The Executive Office">The Executive Office</option>        
-              </select>
+          <div id="inter_about_button"></div>
+        </div>
+        <div class="header-row">
+          <div class="left-section">
+            <h4>Group measures by:</h4>
+            <div class="toggle-container">
+              <div class="container" style="margin-left:-15px;">
+                  <select id="multiple-checkboxes" multiple="multiple">
+                      <option value="Census">Census</option>
+                      <option value="Department for Communities">Department for Communities</option>
+                      <option value="Department for Infrastructure">Department for Infrastructure</option>
+                      <option value="Department for the Economy">Department for the Economy</option>
+                      <option value="Department of Agriculture, Environment and Rural Affairs">Department of Agriculture, Environment and Rural Affairs</option>
+                      <option value="Department of Education">Department of Education</option>
+                      <option value="Department of Finance">Department of Finance</option>
+                      <option value="Department of Health">Department of Health</option>
+                      <option value="Department for Justice">Department for Justice</option>
+                      <option value="The Executive Office">The Executive Office</option>        
+                  </select>
+              </div>
+            </div>
+          </div>
+          <div class="center-section">
+              <h2 id="selection-heading" style="margin-top: 0px;"></h2>
           </div>
         </div>
-        </div>
-          <!-- <div id="inter_about_button"></div> -->
-        </div>
-        <h2 id="selection-heading" style="text-align: center; margin-top: 0px;"></h2>
-        <h2 id="measures-header" aria-live="polite" class="measures-header">
-  Measures available
-</h2>
+        <h2 id="measures-header" aria-live="polite" class="measures-header">Measures available</h2>
 
         <form id="measuresPageForm">
           <div id="new_button_container" class="container mt-4">
@@ -844,9 +850,10 @@ document.addEventListener('DOMContentLoaded', function () {
   buildBreadcrumb();
 
   // Insert button into multiple locations
-  // document.getElementById('inter_about_button').appendChild(createAboutButton());
-  document.getElementById('allmeas_about_button').appendChild(createAboutButton());
-  document.getElementById('home_about_button').appendChild(createAboutButton());
+  document.getElementById('inter_about_button').appendChild(createAboutShareButtons());
+  document.getElementById('allmeas_about_button').appendChild(createAboutShareButtons());
+  document.getElementById('home_about_button').appendChild(createAboutShareButtons());
+   document.getElementById('dest_about_button').appendChild(createAboutShareButtons());
 
   // Constructing all measures table
   const exclusions = getS75ExclusionsFromLineData(data, invertedLookupEqCode);
@@ -3525,15 +3532,38 @@ function buildBreadcrumb() {
   }
 }
 
-  // About button
-  function createAboutButton() {
-      const button = document.createElement('button');
-      button.className = 'btn about-btn';
-      button.name = 'aboutbutton';
-      button.alt = 'Home';
-      button.textContent = 'About Equality Matters';
-      button.onclick = () => window.location.href = 'about.html';
-      return button;
+  // About and Share buttons
+  function createAboutShareButtons() {
+      const container = document.createElement('div');
+      container.style.display = 'flex';
+      container.style.gap = '10px';
+      container.style.marginBottom = '25px';
+
+      const aboutButton = document.createElement('button');
+      aboutButton.className = 'btn about-btn';
+      aboutButton.name = 'aboutbutton';
+      aboutButton.textContent = 'About';
+      aboutButton.onclick = () => window.location.href = 'about.html';
+
+      const shareButton = document.createElement('button');
+      shareButton.className = 'btn about-btn';
+      shareButton.name = 'sharebutton';
+      shareButton.textContent = 'Share';
+      shareButton.onclick = () => {
+          if (navigator.share) {
+              navigator.share({
+                  title: 'Equality Matters',
+                  text: 'Check out this equality data dashboard',
+                  url: window.location.href
+              });
+          } else {
+              alert('Share feature not supported on this browser');
+          }
+      };
+
+      container.appendChild(aboutButton);
+      container.appendChild(shareButton);
+      return container;
   }
 
 </script>
