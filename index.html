@@ -258,7 +258,7 @@
                   <h4>Filter measures by:</h4>
                               <div class="form-group">
               <select id="departmentSelect" class="form-control" multiple="multiple">
-                  <option value="Census">Census</option>
+                  <option value="Census">Census 2021</option>
                   <option value="Department for Communities">Department for Communities</option>
                   <option value="Department for Infrastructure">Department for Infrastructure</option>
                   <option value="Department for the Economy">Department for the Economy</option>
@@ -266,7 +266,7 @@
                   <option value="Department of Education">Department of Education</option>
                   <option value="Department of Finance">Department of Finance</option>
                   <option value="Department of Health">Department of Health</option>
-                  <option value="Department for Justice">Department for Justice</option>
+                  <option value="Department of Justice">Department of Justice</option>
                   <option value="The Executive Office">The Executive Office</option>
               </select>
             </div>
@@ -317,7 +317,7 @@
         <h2 style="text-align: center; margin-top: 20px;">Select a Department to see measures available</h2>
         <form id = "selection-form-depart" style="list-style-type: none; padding: 0;">
           <div id="depart-container">
-            <button name = "depart" value = "cen">Census</button>
+            <button name = "depart" value = "cen">Census 2021</button>
             <button name = "depart" value = "dfc">Department for Communities</button>
             <button name = "depart" value = "dfi">Department for Infrastructure</button>
             <button name = "depart" value = "dfe">Department for the Economy</button>
@@ -325,7 +325,7 @@
             <button name = "depart" value = "de">Department of Education</button>
             <button name = "depart" value  = "dof">Department of Finance</button>
             <button name = "depart" value = "doh">Department of Health</button>
-            <button name = "depart" value = "doj">Department for Justice</button>
+            <button name = "depart" value = "doj">Department of Justice</button>
             <button name = "depart" value = "teo">The Executive Office</button>
           </div>
         </form>
@@ -876,16 +876,15 @@ document.addEventListener('DOMContentLoaded', function () {
   console.log("Links", availableLinks)
 
 const dept_long_names = {
-  "Census": "cen",
+  "Census 2021": "cen",
   "Department of Health": "doh",
-  "Department of Education": "doe",
-  "Department of Infrastructure": "dfi",
+  "Department for Infrastructure": "dfi",
   "Department for Communities": "dfc",
   "Department for the Economy": "dfe",
   "The Executive Office": "teo",
   "Department of Agriculture, Environment and Rural Affairs": "daera",
-  "Department of Finance": "dfc",
-  "Department for Justice": "doj",
+  "Department of Finance": "dof",
+  "Department of Justice": "doj",
   "Department of Education": "de"
 };
 
@@ -1587,7 +1586,7 @@ function renderGroupedButtons(buttons) {
     "Census",
     "Department of Health",
     "Department of Education",
-    "Department of Infrastructure",
+    "Department for Infrastructure",
     "Department for Communities",
     "Department for the Economy",
     "The Executive Office"
@@ -1597,7 +1596,7 @@ function renderGroupedButtons(buttons) {
     "Census": "img/cen-logo-hex.png",
     "Department of Health": "img/doh-logo-hex.png",
     "Department of Education": "img/doe-logo-hex.png",
-    "Department of Infrastructure": "img/dfi-logo-hex.png",
+    "Department for Infrastructure": "img/dfi-logo-hex.png",
     "Department for Communities": "img/dfc-logo-hex.png",
     "Department for the Economy": "img/dfe-logo-hex.png",
     "The Executive Office": "img/teo-logo-hex.png",
@@ -1608,9 +1607,9 @@ function renderGroupedButtons(buttons) {
     "Census": "cen-theme",
     "Department of Health": "doh-theme",
     "Department of Education": "doe-theme",
-    "Department of Infrastructure": "dfi-theme",
+    "Department for Infrastructure": "dfi-theme",
     "Department for Communities": "dfc-theme",
-    "Department of Economy": "dfe-theme",
+    "Department for the Economy": "dfe-theme",
     "The Executive Office": "teo-theme"
   };
 
