@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Equality Matters</title>
     <link rel="icon" type="image" href="img/teo-logo-hex.png">
 
@@ -77,25 +78,39 @@
 
       <div id = "dest-scrn">
         <div id="content-centre">
+          <div class="content-wrapper">    
+            <div id="main-container">              
+                    <!-- Sidebar (static on desktop, popup on mobile) -->
+                    <aside id="sidebar" class="sidebar">
+                      <!-- Header -->
+                      <div class="sidebar-header mobile-only">
+                        <!-- Optional: a close button only visible on mobile -->
+                        <button type="button" class="close-on-mobile" aria-label="Close" onclick="closeSidebar()">×</button>
+                      </div>
 
-    <div class="content-wrapper">
-          
-          <div id="main-container">
+                      <!-- Body: your original content -->
+                      <div class="sidebar-body">
+                        <div id="home-btn"></div>
 
-            <aside>
-              <div id ="home-btn">
-              </div>
-              <h3 style="font-weight: normal; font-size: 14pt; margin-bottom: 0px; margin-top: 20px;">Explore other breakdowns for <p class = "measure_title" style="margin-bottom: 10px;"></p></h3>
-              <form id = "selection-form" style="list-style-type: none; padding: 0;">
-              <div id="top-buttons-container"></div>
-              <!-- <hr style=" border-top: 3px solid rgba(0, 0, 0, .6); border-radius: 3px;"> -->
-              <h3 style="display: none;" id="domains-title" style="font-weight: normal; font-size: 14pt; margin-bottom: 0px; margin-top: 20px;">Explore other measures by <p class = "eq_grp_name" style="color:#3878c5; font-weight: bold; margin-bottom: 10px;"></p></h3>              
-              <div style="display: none;" id="key-metrics-container"></div>
-            </form>
-            </aside>
+                        <h3 style="font-weight: normal; font-size: 14pt; margin-bottom: 0; margin-top: 20px;">
+                          Explore other breakdowns for
+                          <p class="measure_title" style="margin-bottom: 10px;"></p>
+                        </h3>
 
-            <div id="main-content" class="screen">
+                        <form id="selection-form" style="list-style-type: none; padding: 0;">
+                          <div id="top-buttons-container"></div>
 
+                          <h3 id="domains-title"
+                              style="display: none; font-weight: normal; font-size: 14pt; margin-bottom: 0; margin-top: 20px;">
+                            Explore other measures by
+                            <p class="eq_grp_name" style="color:#3878c5; font-weight: bold; margin-bottom: 10px;"></p>
+                          </h3>
+
+                          <div id="key-metrics-container" style="display: none;"></div>
+                        </form>
+                      </div>
+                    </aside>
+              <div id="main-content" class="screen">                
                 <div class="intro">
                   <div class = "breadcrumb-about-div">
                     <nav id="breadcrumb-destination" class="breadcrumb"></nav>
@@ -112,14 +127,8 @@
                   <!-- <h3><span class = "measure_title"></span> <span class= "latest_year" style = "color:#3878c5;"></span></h3> -->
                   <h3>Latest year: <span class= "latest_year"></span></h3>
                   <div id ="barInfoContainer">
-                    <!-- <p style="margin-bottom: 0px;">The following bar chart shows data on this measure for <span class= "latest_year" style="color:#3878c5; font-weight: bold;"></span> split by <span class = "eq_grp_name" style="color:#3878c5; font-weight: bold;"></span>.</p>
-                    <p style="margin-bottom: 15px;">The Northern Ireland (NI) value is added for comparison in a blue line.</p> -->
-                
-                    <!-- <br><hr style="border-top:3px solid rgba(0, 0, 0, .6)"> -->
-
                     <button class="btn" id="chartBtn">View chart</button>
                     <button class="btn" id="tableBtn">View table</button>
-
                   </div>
 
                   <div id="chartView" class ="chart-container">
@@ -176,8 +185,7 @@
               <button class="btn" id="copyTextButton2" style="margin-bottom: 10px;">Copy Data Summary</button>
               </div>
             </div>
-            
-    
+                
               <div>
                 <br>
                 <h3> Source</h3>
@@ -195,55 +203,72 @@
                 <p id = "notes_in_group"></p>
               </div> <!--close panel div-->
   
+<button id="open-filters" type="button" class="btn btn-outline-secondary d-inline-flex align-items-center gap-1">
+  ☰ Select Breakdown
+</button>
+
+
             </div> <!--closes main content div-->
           </div>
         </div>
       </div>
       </div>
 
-      <div id="home-scrn" class="home-grid">
-        <!-- Left side: 70% width, main content -->
-        <div class="home-main">
-          <h2>Explore NISRA Equality Data</h2>
-          <h3 style="font-weight: normal;">Select an equality group to see the information available</h3>
-          <!-- <form id = "selection-form-pathway" style="list-style-type: none; padding: 0;">
-            <div id="pathways-container">
-              <button name = "path" value = "s75">Section 75 Group</button>
-              <button name = "path" value = "depart">Department</button>
-            </div>
-          </form> -->
-          <form id = "selection-form-75group" style="list-style-type: none; padding: 0;">
-          <div id="s75-groups-container"></div>
-          </form>
-          <div style="margin-top: auto;">
-            <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">Funded by</p>
-            <a href="https://www.executiveoffice-ni.gov.uk/" target="_blank"><img id="teo-logo" src="img/logo-colour-unstacked-teo.svg" alt="TEO logo. Clicking image takes user to the Executive Office website"></a>
-          </div>
-        </div>
-        <!-- Right side: 30% width, two stacked containers -->
-        <div class="home-side">
-          <div class="home-side-top">
-            <div id="home_about_button"></div><br>  
-            <div class="div-style-bar" style="margin-top: 0px; padding: 2rem;">
-              <span><h4 style="color: #000;">Search by keyword or theme</h4></span>
-              <div class="search-container" id="search-container">
-                <input type="text" id="search-bar" placeholder="Search..." />
-                <div id="dropdown"></div>
-              </div>
-            </div>
-          </div>
-          <div class="home-side-bottom">
-            <form>
-            <div class="div-style-bar" id ="all-meas-btn" style="padding: 2.8rem;">
-              <button class="btn all-measures-btn" name = "allmeasures" style="margin-left: 0.4rem;">View all available measures</button>
-            </div>
-            </form>
-          </div>
+<div id="home-scrn" class="home-grid">
+  <!-- Left side: 70% width, main content -->
+  <div class="container my-3"><!-- caps width & centers -->          
+  <div id="home-scrn" class="row g-4 align-items-start"><!-- g-4 adds gap -->
+    
+    <!-- LEFT: home-main -->
+    <div class="col-12 col-lg-8">
+      <div class="home-main">
+        <h2 class="custom-header2">Explore NISRA Equality Data</h2>
+        <h3 class="fw-normal custom-header">
+  Select an equality group to see the information available
+</h3>
+        <!-- Section 75 buttons -->
+        <form id="selection-form-75group" style="list-style-type:none; padding:0;">
+          <!-- We’ll fill #s75-groups-container with buttons via JS -->
+           <div id="s75-groups-container" class="row g-3" style="margin-bottom: 14rem;"></div>
+        </form>
+        <div style="margin-top: auto;">
+          <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">Funded by</p>
+          <a href="https://www.executiveoffice-ni.gov.uk/" target="_blank"><img id="teo-logo" src="img/logo-colour-unstacked-teo.svg" alt="TEO logo. Clicking image takes user to the Executive Office website"></a>
         </div>
       </div>
-      
+    </div>
+
+    <!-- RIGHT: home-side -->
+    <div class="col-12 col-lg-4" style="padding-right: 0;">
+      <div class="home-side">
+        <div class="home-side-top mb-3">
+          <div id="home_about_button" class="d-flex justify-content-end"></div>
+          <br />
+          <div class="div-style-bar p-4" style="margin-top: 0;">
+            <h4 class="text-dark mb-3">Search by keyword or theme</h4>
+            <div class="search-container" id="search-container">
+              <input type="text" id="search-bar" placeholder="Search..." />
+              <div id="dropdown"></div>
+            </div>
+          </div>
+           </div>
+
+        <div class="home-side-bottom">
+          <form>
+            <div id="all-meas-btn" class="div-style-bar p-4">
+              <button class="btn all-measures-btn w-100" name="allmeasures">View all available measures</button>
+            </div>
+            </form>
+        </div>
+      </div>
+</div>
+
+  </div>
+</div>
+
+      </div>
       <div id="all-measures-scrn">
-        <div class="layout-container">
+      <div class="container-fluid container-sm layout-container-inter">
           <div class="main-body">
 
             <div class = "breadcrumb-about-div">
@@ -252,9 +277,10 @@
             </div>
 
 
+            
             <div class="all-measures-div">
-              <div class="header-row">
-                <div class="left-section">
+<div class="row align-items-start">
+                  <div class="left-section">
                   <h4>Filter measures by:</h4>
                               <div class="form-group">
               <select id="departmentSelect" class="form-control" multiple="multiple">
@@ -271,12 +297,14 @@
               </select>
             </div>
                 </div>
+                <div class="col-12 col-lg-8 text-center mx-auto">
+                <div class="text-lg-start">
+                  <h2 class="mb-1">All Measures Page</h2>
 
-                <div class="center-section">
-                  <h2 style="padding-left: 7rem;">All Measures Page</h2>
-                  <h5>Click a cell in the matrix below to view the equality statistics.</h5>
-                  <h5>If a cell is empty, equality statistics are not currently available.</h5>
+                  <h5 class="mb-0 text-start">Click a cell in the matrix below to view the equality statistics.</h5>
+                  <h5 class="text-start">If a cell is empty, equality statistics are not currently available.</h5>
                 </div>
+              </div>
               </div>
 
               
@@ -331,55 +359,71 @@
         </form>
       </div>
 
-      <div id="s75-measure-scrn">
-      <div class="layout-container">
-                
-        <div class="main-body">
+<div id="s75-measure-scrn">
+<div class="container-fluid container-sm layout-container-inter">
+      <div class="main-body">
 
-        <div class = "breadcrumb-about-div">
-          <nav id="breadcrumb-inter-measures" class="breadcrumb"></nav>
-          <div id="inter_about_button"></div>
-        </div>
-        <div class="header-row">
-          <div class="left-section">
-            <h4>Group measures by:</h4>
-            <div class="toggle-container">
-              <div class="container" style="margin-left:-15px;">
-                  <select id="multiple-checkboxes" multiple="multiple">
-                      <option value="Census">Census</option>
-                      <option value="Department for Communities">Department for Communities</option>
-                      <option value="Department for Infrastructure">Department for Infrastructure</option>
-                      <option value="Department for the Economy">Department for the Economy</option>
-                      <option value="Department of Agriculture, Environment and Rural Affairs">Department of Agriculture, Environment and Rural Affairs</option>
-                      <option value="Department of Education">Department of Education</option>
-                      <option value="Department of Finance">Department of Finance</option>
-                      <option value="Department of Health">Department of Health</option>
-                      <option value="Department for Justice">Department for Justice</option>
-                      <option value="The Executive Office">The Executive Office</option>        
-                  </select>
-              </div>
-            </div>
-          </div>
-          <div class="center-section">
-              <h2 id="selection-heading" style="margin-top: 0px;"></h2>
-          </div>
-        </div>
-        <h2 id="measures-header" aria-live="polite" class="measures-header">Measures available</h2>
+      <div class="breadcrumb-about-div d-flex flex-wrap align-items-center justify-content-between gap-2">
+        <nav id="breadcrumb-inter-measures" class="breadcrumb mb-0"></nav>
+        <div id="inter_about_button"></div>
+      </div>
 
+      <!-- RESPONSIVE HEADER -->
+ 
+<div class="row align-items-start gx-3 gx-lg-3 header-row">
+  <!-- Left: selector -->
+  <div class="col-12 col-lg-5 left-section">
+    <h4 class="mb-2">Group measures by:</h4>
+    <div class="toggle-container">
+
+            <select id="multiple-checkboxes" class="form-select w-100" multiple="multiple">
+              <option value="Census">Census</option>
+              <option value="Department for Communities">Department for Communities</option>
+              <option value="Department for Infrastructure">Department for Infrastructure</option>
+              <option value="Department for the Economy">Department for the Economy</option>
+              <option value="Department of Agriculture, Environment and Rural Affairs">
+                Department of Agriculture, Environment and Rural Affairs
+              </option>
+              <option value="Department of Education">Department of Education</option>
+              <option value="Department of Finance">Department of Finance</option>
+              <option value="Department of Health">Department of Health</option>
+              <option value="Department for Justice">Department for Justice</option>
+              <option value="The Executive Office">The Executive Office</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Center: heading -->
+
+
+
+<div class="col-12 col-lg-7 center-section text-center text-lg-start ps-lg-0">
+  <h2 id="selection-heading" class="h3 mb-0 ms-lg-n1"></h2>
+</div>
+      </div>
+
+      <h2 id="measures-header" aria-live="polite" class="measures-header">
+        Measures available
+      </h2>
+
+      <!-- Buttons area -->
+      <div class="measures-scope">
         <form id="measuresPageForm">
-          <div id="new_button_container" class="container mt-4">
-          <div class="container mt-4">
-            <div class="row justify-content-center" id="buttonRow"></div>
-          </div>
+          <!-- Use container-fluid so it fits phone width nicely -->
+          <div id="new_button_container" class="container-fluid px-0 mt-3">
+            <div class="row g-2 g-md-3" id="buttonRow"></div>
           </div>
         </form>
-        <form id = "selection-form-measure" style="list-style-type: none; padding: 0;">
+      </div>
+
+      <form id="selection-form-measure" style="list-style-type: none; padding: 0;">
         <div id="key-metrics-container-inter" style="display: none;"></div>
-          <div id="grouped-container" style="display: none;"></div>
-        </form>
-        </div>
-      </div>
-      </div>
+        <div id="grouped-container" style="display: none;"></div>
+      </form>
+
+    </div>
+  </div>
+</div>
 
       </main>
     <footer>
@@ -845,9 +889,53 @@
   all_meas_scrn.style.display = "none";
 
 
+  
+function escapeHtml(str) {
+  return String(str)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function escapeAttr(str) {
+  // safe for attribute values like title="..."
+  return escapeHtml(str).replaceAll("\n", " ").replaceAll("\r", " ");
+}
+
+/**
+ * If text length > maxChars (including spaces), insert ONE <br>
+ * at the nearest sensible space. Falls back to hard break.
+ * Returns HTML-safe string (escaped + optional <br>).
+ */
+function wrapByCharCountHTML(text, maxChars = 17) {
+  const s = String(text ?? "").trim();
+
+  if (s.length <= maxChars) return escapeHtml(s);
+
+  // Prefer breaking at the last space before maxChars
+  let breakIndex = s.lastIndexOf(" ", maxChars);
+
+  // If none before, try first space after
+  if (breakIndex === -1) breakIndex = s.indexOf(" ", maxChars);
+
+  // If still none (single long token), hard break
+  if (breakIndex === -1) breakIndex = maxChars;
+
+  const line1 = s.slice(0, breakIndex).trim();
+  const line2 = s.slice(breakIndex).trim();
+
+  return `${escapeHtml(line1)}<br>${escapeHtml(line2)}`;
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   
   buildBreadcrumb();
+ 
+  if (location.href.includes('key')) {
+      document.body.classList.add('url-has-key');
+    }
 
   // Insert button into multiple locations
   document.getElementById('inter_about_button').appendChild(createAboutShareButtons());
@@ -1288,7 +1376,7 @@ function renderButtons(dataArray) {
   nonNested.forEach(item => {
     const label = item.Measure_Name || enrichedLookup[item.Code]?.measure || 'Unnamed Measure';
     buttonRow.innerHTML += `
-      <div class="col-md-4 mb-4 d-flex justify-content-center">
+      <div class="col-6 col-md-4 mb-4">
         <div class="card w-100">
           <div class="card-header p-0">
             <button form="measuresPageForm" type="submit" name="key" value="${item.Code}"
@@ -1324,7 +1412,7 @@ function renderButtons(dataArray) {
 
     // Outer (parent) button that triggers overlay
     buttonRow.innerHTML += `
-      <div class="col-md-4 mb-4 d-flex justify-content-center">
+      <div class="col-6 col-md-4 mb-4 d-flex justify-content-center">
         <div class="card w-100">
           <div class="card-header p-0">
             <button
@@ -1339,7 +1427,7 @@ function renderButtons(dataArray) {
       </div>
     `;
 
-    // Store accessible overlay content, including a heading used for aria-labelledby
+    // Store accessible overlay content
     window.__nestedOverlayContent[overlayId] = `
       <div class="p-2">
         <h2 id="${titleId}" class="h5 m-0">${groupName}</h2>
@@ -1355,15 +1443,14 @@ function renderButtons(dataArray) {
     collapseIndex++;
   }
 
-  // Wire up overlay triggers (click opens; Enter/Space already work on buttons natively)
+  // Wire up overlay triggers
   buttonRow.querySelectorAll(".nested-overlay-trigger").forEach(btn => {
     btn.addEventListener("click", () => {
       const id = btn.getAttribute("data-overlay-id");
-      const labelledById = btn.getAttribute("data-overlay-title-id"); // match the <h2 id="...">
+      const labelledById = btn.getAttribute("data-overlay-title-id");
       openNestedOverlay(btn, window.__nestedOverlayContent[id] || "", { labelledById });
     });
 
-    // Optional: open with keyboard in case some UA customizations change default button behavior
     btn.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
@@ -1844,49 +1931,98 @@ const container = document.getElementById('s75-groups-container');
 
 for (const key in lookupTableDisplayGrp) {
   const label = lookupTableDisplayGrp[key][0]; // Get label from array
-  const button = document.createElement('button');
-  button.name = 'home';           // Link to measures logic
-  button.value = key;             // Use key as value
-  button.textContent = label;     // Use label as button text
-  container.appendChild(button);
-}
 
-// Create destination page home buttons dynamically
-const destcontainer = document.getElementById('top-buttons-container');
+  const col = document.createElement('div');
+  // 2 per row on mobile, 3 per row on md, 4 per row on lg (adjust as you like)
+  col.className = 'col-6 col-md-4 col-lg-4';
 
-for (const key in lookupTableDisplayGrp) {
-  const label = lookupTableDisplayGrp[key][0];
   const button = document.createElement('button');
-  button.name = 's75';
+  button.className = 'btn s75-btn w-100 p-2 p-md-3 py-lg-1 px-lg-3';
+  button.name = 'home';
   button.value = key;
   button.textContent = label;
-  destcontainer.appendChild(button);
+
+  col.appendChild(button);
+  container.appendChild(col);
 }
 
-const s75_btns = destcontainer.getElementsByTagName('button');
-const s75AvaiMeasures = returnAvailableS75ByLookup(data, ind, invertedLookupEqCode);
 
-for (let n = 0; n < s75_btns.length; n++) {
-  if (s75AvaiMeasures.includes(s75_btns[n].value)) {
-    s75_btns[n].style.display = 'block';
-  } else {
-    s75_btns[n].style.display = 'none';
+// Create destination page home buttons dynamically
+  const destcontainer = document.getElementById('top-buttons-container');
+  if (!destcontainer) return; // safety
+
+  for (const key in lookupTableDisplayGrp) {
+    const label = lookupTableDisplayGrp[key][0];
+    const button = document.createElement('button');
+    button.name = 's75';
+    button.value = key;
+    button.textContent = label;
+    destcontainer.appendChild(button);
   }
-}
 
-// Create destination page buttons dynamically
-const meascontainer = document.getElementById('key-metrics-container');
+  const s75_btns = destcontainer.getElementsByTagName('button');
+  const s75AvaiMeasures = returnAvailableS75ByLookup(data, ind, invertedLookupEqCode);
 
-for (const key in lookupTableMeasureTitle) {
-  const label = lookupTableMeasureTitle[key][0]; // Get label from array
-  const button = document.createElement('button');
-  button.name = 'key';           // Link to measures logic
-  button.value = key;             // Use key as value
-  button.textContent = label;     // Use label as button text
-  meascontainer.appendChild(button);
-}
+  for (let n = 0; n < s75_btns.length; n++) {
+    if (s75AvaiMeasures.includes(s75_btns[n].value)) {
+      s75_btns[n].style.display = 'block';
+    } else {
+      s75_btns[n].style.display = 'none';
+    }
+  }
+
+  // Create destination page buttons dynamically (key metrics)
+  const meascontainer = document.getElementById('key-metrics-container');
+  if (meascontainer) {
+    for (const key in lookupTableMeasureTitle) {
+      const label = lookupTableMeasureTitle[key][0];
+      const button = document.createElement('button');
+      button.name = 'key';
+      button.value = key;
+      button.textContent = label;
+      meascontainer.appendChild(button);
+    }
+  }
+
+  
+});
 
 
+// Existing globals
+window.openSidebar = function () {
+  document.getElementById('sidebar')?.classList.add('open');
+  document.getElementById('sidebar-backdrop')?.classList.add('show');
+  document.body.classList.add('sidebar-open');
+};
+
+window.closeSidebar = function () {
+  document.getElementById('sidebar')?.classList.remove('open');
+  document.getElementById('sidebar-backdrop')?.classList.remove('show');
+  document.body.classList.remove('sidebar-open');
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('open-filters');
+  if (btn) btn.addEventListener('click', window.openSidebar);
+
+  // Close on ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') window.closeSidebar();
+  });
+
+  // (Optional) Focus the first focusable element when opened
+  const sidebar = document.getElementById('sidebar');
+  const focusFirst = () => {
+    const focusable = sidebar?.querySelector(
+      'button, a, input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    focusable?.focus();
+  };
+  sidebar?.addEventListener('transitionend', (e) => {
+    if (e.propertyName === 'transform' && sidebar.classList.contains('open')) {
+      focusFirst();
+    }
+  });
 });
 
 // action taken to update url once a s75 measure given - this being actioned triggers the below if block and populates the dest page based on the key and s75 in the url
@@ -2230,55 +2366,103 @@ function getS75InclusionsFromLineData(data, invertedLookupEqCode) {
   // Initial padding - needs to be different when the average value is close or the same as the max value - set thresholds
   // in calculateBarPadding
   let barPadding = calculateBarPadding();
+  
+
+// Only draws the NI label — no other visual changes
+const niBelowAxisLabelPlugin = {
+  id: 'niBelowAxisLabel',
+
+  afterDraw(chart, args, pluginOptions) {
+    const { niValue, textLines } = pluginOptions || {};
+    if (niValue == null || !textLines.length) return;
+
+    const { ctx, chartArea, scales } = chart;
+    const xScale = scales.x;
+
+    const x = xScale.getPixelForValue(niValue);
+    const y = chartArea.bottom + 11; // label below x-axis
+
+    ctx.save();
+    ctx.font = "18px Helvetica";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "top";
+
+    const padding = 6;
+    const lineHeight = 22;
+
+    // Measure text width
+    const widest = Math.max(...textLines.map(t => ctx.measureText(t).width));
+    const boxWidth = widest + padding * 2;
+    const boxHeight = textLines.length * lineHeight + padding * 2;
+
+    // background box
+    ctx.fillStyle = "white";
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.rect(x - boxWidth / 2, y - padding, boxWidth, boxHeight);
+    ctx.fill();
+    ctx.stroke();
+
+    // Text lines
+    ctx.fillStyle = "black";
+    textLines.forEach((line, i) => {
+      ctx.fillText(line, x, y + i * lineHeight);
+    });
+
+    ctx.restore();
+  }
+};
+
+// register plugin
+Chart.register(niBelowAxisLabelPlugin);
 
   // Bar chart function
   function createBarChart(cat_labels, bar_data, ni_line) {
-    const ctx_bar_line_chart = document.getElementById('bar_line_chart').getContext('2d');
+    const chartCanvas = document.getElementById('bar_line_chart');
+    const chartContainer = document.getElementById('chartView');
+
+    // ✅ DESTROY OLD CHART
+    if (chartInstance) {
+      chartInstance.destroy();
+    }
+
+    // ✅ DYNAMIC HEIGHT CALC
+    const BAR_HEIGHT = 50;
+    const CHART_PADDING = 100;
+
+    const barCount = cat_labels.length;
+    const calculatedChartHeight =
+      Math.max(300, barCount * BAR_HEIGHT + CHART_PADDING);
+
+    chartCanvas.style.height = `${calculatedChartHeight}px`;
+    chartContainer.style.height = `${calculatedChartHeight + 20}px`;
+
+    const ctx_bar_line_chart = chartCanvas.getContext('2d');
 
     let annotationsConfig = {};
     const realBarValCount = bar_data.filter(value => value !== null).length;
 
     if (ni_line !== 100){
       annotationsConfig = {
-        annotations: {
-                avg_line: {
-                  type: 'line',
-                  xMin: ni_line ,             // Set the Y position for the line
-                  xMax: ni_line ,             // Same as yMin for a horizontal line
-                  borderColor: '#3b80ae',   // Color of the line
-                  borderWidth: 6,
-                  label: {
-                    content: (ctx) => {
-                      return [
-                        'NI',`${ni_line}%`
-                      ];
-                    },
-                    display: true,       // Ensure label is displayed
-                    position: 'center',     // Position of the label
-                    backgroundColor: 'rgba(255, 255, 255, 1)', // Optional: Label background color,
-                    color: 'black',      // Optional: Text color for the label
-                    font: {
-                      size: 18,        // Font size of the label text
-                      weight: 'bold'
-                    },
-                    padding: 4,           // Optional: Padding around the label
-                    borderColor: 'black',
-                    borderWidth: 3,
-                    borderRadius: 1,
-                    callout: {
-                      display: true,
-                      color: 'black',
-                      width: 30,
-                      length: 10
-                    },
-                    xAdjust: 80
-                  },
-                },
-              },
-            };
-      }
-    
-    
+  annotations: {
+    avg_line: {
+      type: 'line',
+      xMin: ni_line,
+      xMax: ni_line,
+      borderColor: '#3b80ae',
+      borderWidth: 5,
+
+      // ⬇️ Turn off clipping for this annotation
+      clip: false,
+
+      label: {
+      display: false},
+      clip: false
+    },
+  },
+};
+      }        
     if (realBarValCount >=1){
       chartInstance = new Chart(ctx_bar_line_chart, {
         type: 'bar',
@@ -2303,11 +2487,23 @@ function getS75InclusionsFromLineData(data, invertedLookupEqCode) {
         },
         options: {
           indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false, // ✅ REQUIRED
+          layout: {
+            padding: {
+              bottom: 70
+            }
+          },
           events: [], // turn off hover labels //
           plugins: {
             legend: {
               display: false
             },
+                      niBelowAxisLabel: {
+            niValue: ni_line,
+            textLines: ["NI", `${ni_line}%`]
+          },
+
             // suppress datalabels globally for this chart - turned on individually for each dataset as needed
             datalabels: {
               display: false
@@ -2316,6 +2512,9 @@ function getS75InclusionsFromLineData(data, invertedLookupEqCode) {
               display: false,
             },
             customLinePlugin: false, // Disable the line mouseover plugin for this chart
+            annotation: {
+              clip: false,
+            },
             annotation: annotationsConfig,
           },
           scales: {
@@ -2335,30 +2534,22 @@ function getS75InclusionsFromLineData(data, invertedLookupEqCode) {
                 }
               }
             },
-            x: {
-              grid: {
-                display: false
-              },
-              border: {
-                display: false
-              },
-              min: 0,
-              max: maxValue + barPadding,
-              ticks: {
-                display: false,
-              }
-            }
+          x: {
+            grid: { display: false },
+            border: { display: false },
+            min: 0,
+            max: maxValue + barPadding,
+            ticks: { display: false }
           }
         }
       }
-    )
-    }else{
-          barInfoContainer.style.display = "none";
-          document.getElementById('chartView').innerHTML = '<center style="font-weight: bold; font-size: 18pt;">Current year data is not available for this measure<br><br></center>';
-          
-        }
-
-  };
+    });
+  } else {
+    barInfoContainer.style.display = "none";
+    chartContainer.innerHTML =
+      '<center style="font-weight:bold;font-size:18pt;">Current year data is not available</center>';
+  }
+};
 
   const latest_year = document.querySelectorAll('.latest_year');
   for (let i = 0; i < latest_year.length; i++) {
@@ -2688,6 +2879,29 @@ function toTitleCase(str) {
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
 }
+//Function to tidy up and change the initial capital letter to lowercase for the How do we measure sentence (MG)
+function prepareMeasureText(str) {
+  if (!str) return "";               // handle undefined/null
+  if (Array.isArray(str)) str = str[0] || "";  // handle array input
+
+  const cleaned = str
+    .replace(/\[\/?b\]/g, "")         // remove [b] and [/b]
+    .replace(/\\r?\\n/g, " ")         // remove escaped newlines from JSON
+    .replace(/\r?\n/g, " ")           // remove real newlines
+    .replace(/\\/g, "")               // remove stray backslashes
+    .trim();
+
+  const lowered = cleaned.charAt(0).toLowerCase() + cleaned.slice(1);
+
+  return lowered
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+
 
 // Function to generate summary in the requested format
 function generateSummaryText(tableData, niAverage, measureTitle, eqGrpDisplayName, howMeasure) {
@@ -2747,7 +2961,7 @@ function generateSummaryText(tableData, niAverage, measureTitle, eqGrpDisplayNam
     if (niAverage !== 100) {
 
         summaryText = `${measureTitle} ${latestYear}<br>`;
-        summaryText += `This measure records the <span style="text-transform:lowercase">${howMeasure}</span> The NI value for ${measureTitle} is ${niAverage}%.<br>`;
+        summaryText += `This measure records the <span>${prepareMeasureText(howMeasure)}</span> The NI value for ${measureTitle} is ${niAverage}%.<br>`;
         summaryText += `Looking at differences by ${eqGrpDisplayName} compared to the NI value:<br>`;
 
         // Output every valid category in the original eqGrpCatLabels order
@@ -2824,7 +3038,7 @@ function generateSummaryText2(tableData, niAverage, measureTitle, ageGroups, how
     const lastYearLabels = toFinancialYear(tableData[tableData.length - 1].year);
     
     let summaryText = `${measureTitle} ${startYear} to ${latestYear}<br>`;
-    summaryText += `This measure records the <span style="text-transform:lowercase">${howMeasure}</span><br>`;
+    summaryText += `This measure records the <span>${prepareMeasureText(howMeasure)}</span><br>`;
     summaryText += `Looking at trends by ${eqGrpDisplayName} compared to the NI value:<br>`;
 
     summaryText += `${biggestIncrease[0]}: This group showed the highest increase relative to the NI value from ${Math.abs(biggestIncrease[1].firstDiff)} percentage points ${
@@ -3366,28 +3580,23 @@ document.addEventListener("DOMContentLoaded", () => {
                             borderWidth: 2
                         },
                     ],
-                },
-                options: {
+                },                
+                  options: {
                     responsive: true,
+                    maintainAspectRatio: false,   // ✅ IMPORTANT: fill the parent height
                     interaction: {
-                        mode: 'index',
-                        axis: 'x',
-                        intersect: false
+                      mode: 'index',
+                      axis: 'x',
+                      intersect: false
                     },
                     plugins: {
-                        legend: {
-                            display: false, // Hide individual chart legends
-                        },
-                        datalabels: {
-                            display: false
-                        },
-                        title: {
-                            display: true,
-                            text: categoryLabel, // Keep the chart title to just the category label
-                            font: {
-                                size: 20
-                            }
-                        }
+                      legend: { display: false },
+                      datalabels: { display: false },
+                      title: {
+                        display: true,
+                        text: categoryLabel,
+                        font: { size: 20 }
+                      }
                     },
                     scales: {
                         x: {
