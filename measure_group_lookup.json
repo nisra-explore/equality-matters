@@ -2,1016 +2,409 @@
   {
     "Measure_Name": "Arts and cultural activities participation",
     "Code": "artc",
-    "Long.Name": "ARTCULEQ",
-    "Associated Theme": "Culture, arts, heritage and sport",
+    "Group": "Community",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Asylum seekers allowed in Northern Ireland",
     "Code": "asya",
-    "Long.Name": "ASYALLEQ",
-    "Associated Theme": "Community relations",
+    "Group": "Community",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Community relations",
     "Code": "comr",
-    "Long.Name": "COMRELEQ",
-    "Associated Theme": "Community relations",
+    "Group": "Community",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Culture and traditions of people from different minority ethnic groups",
     "Code": "culr",
-    "Long.Name": "CULRICEQ",
-    "Associated Theme": "Community relations",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Distance to place of study - All distances",
-    "Code": "c515all",
-    "Long.Name": "C21515EQ",
-    "Associated Theme": "Commuting",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Distance to place of study - Study mainly at or from home; or study outside Northern Ireland or no fixed place of study",
-    "Code": "c5156",
-    "Long.Name": "C21515EQ",
-    "Associated Theme": "Commuting",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Distance to place of study - Study within Northern Ireland: 10km to less than 20km",
-    "Code": "c5154",
-    "Long.Name": "C21515EQ",
-    "Associated Theme": "Commuting",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Distance to place of study - Study within Northern Ireland: 20km and over",
-    "Code": "c5155",
-    "Long.Name": "C21515EQ",
-    "Associated Theme": "Commuting",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Distance to place of study - Study within Northern Ireland: 2km to less than 5km",
-    "Code": "c5152",
-    "Long.Name": "C21515EQ",
-    "Associated Theme": "Commuting",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Distance to place of study - Study within Northern Ireland: 5km to less than 10km",
-    "Code": "c5153",
-    "Long.Name": "C21515EQ",
-    "Associated Theme": "Commuting",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Distance to place of study - Study within Northern Ireland: Less than 2km",
-    "Code": "c5151",
-    "Long.Name": "C21515EQ",
-    "Associated Theme": "Commuting",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Distance to place of work - All distances",
-    "Code": "c514all",
-    "Long.Name": "C21514EQ",
-    "Associated Theme": "Commuting",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Distance to place of work - Work mainly at or from home",
-    "Code": "c5141",
-    "Long.Name": "C21514EQ",
-    "Associated Theme": "Commuting",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Distance to place of work - Work outside Northern Ireland or no fixed place of work",
-    "Code": "c5147",
-    "Long.Name": "C21514EQ",
-    "Associated Theme": "Commuting",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Distance to place of work - Work within Northern Ireland: 10km to less than 20km",
-    "Code": "c5145",
-    "Long.Name": "C21514EQ",
-    "Associated Theme": "Commuting",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Distance to place of work - Work within Northern Ireland: 20km and over",
-    "Code": "c5146",
-    "Long.Name": "C21514EQ",
-    "Associated Theme": "Commuting",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Distance to place of work - Work within Northern Ireland: 2km to less than 5km",
-    "Code": "c5143",
-    "Long.Name": "C21514EQ",
-    "Associated Theme": "Commuting",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Distance to place of work - Work within Northern Ireland: 5km to less than 10km",
-    "Code": "c5144",
-    "Long.Name": "C21514EQ",
-    "Associated Theme": "Commuting",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Distance to place of work - Work within Northern Ireland: Less than 2km",
-    "Code": "c5142",
-    "Long.Name": "C21514EQ",
-    "Associated Theme": "Commuting",
+    "Group": "Community",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Economic activity - All",
     "Code": "c501all",
-    "Long.Name": "C21501EQ",
-    "Associated Theme": "Summary status",
+    "Group": "Census ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Economic activity - Economically active: In employment (including full-time students)",
     "Code": "c5011",
-    "Long.Name": "C21501EQ",
-    "Associated Theme": "Summary status",
+    "Group": "Census ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Economic activity - Economically active: Unemployed (including full-time students)",
     "Code": "c5012",
-    "Long.Name": "C21501EQ",
-    "Associated Theme": "Summary status",
+    "Group": "Census ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Economic activity - Economically inactive",
     "Code": "c5013",
-    "Long.Name": "C21501EQ",
-    "Associated Theme": "Summary status",
+    "Group": "Census ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Economic inactivity",
     "Code": "econ",
-    "Long.Name": "ECONINACTEQ",
-    "Associated Theme": "Unemployed",
-    "Nested": "FALSE"
+    "Group": "Labour market status",
+    "Nested": "TRUE"
   },
   {
     "Measure_Name": "Employment rate",
     "Code": "empr",
-    "Long.Name": "EMPRATEEQ",
-    "Associated Theme": "Employed",
-    "Nested": "FALSE"
+    "Group": "Labour market status",
+    "Nested": "TRUE"
   },
   {
     "Measure_Name": "Encourage members of minority ethnic communities to participate in public life",
     "Code": "orgm",
-    "Long.Name": "ORGMECEQ",
-    "Associated Theme": "Community relations",
+    "Group": "Community",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Feeling respected",
     "Code": "resp",
-    "Long.Name": "RESPECTEQ",
-    "Associated Theme": "Community relations",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "General health - All health",
-    "Code": "c508all",
-    "Long.Name": "C21508EQ",
-    "Associated Theme": "General health",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "General health - Bad or very bad health",
-    "Code": "c5083",
-    "Long.Name": "C21508EQ",
-    "Associated Theme": "General health",
+    "Group": "Community",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "General health - Bad/very bad",
     "Code": "hsg2",
-    "Long.Name": "HSGENHEQ",
-    "Associated Theme": "General health",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "General health - Fair health",
-    "Code": "c5082",
-    "Long.Name": "C21508EQ",
-    "Associated Theme": "General health",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "General health - Very good or good health",
-    "Code": "c5081",
-    "Long.Name": "C21508EQ",
-    "Associated Theme": "General health",
+    "Group": "Health conditions and disability ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "General health - Very good/good",
     "Code": "hsg1",
-    "Long.Name": "HSGENHEQ",
-    "Associated Theme": "General health",
+    "Group": "Health conditions and disability ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Good jobs",
     "Code": "good",
-    "Long.Name": "GOODJOBSEQ",
-    "Associated Theme": "Jobs",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Higher Level Apprenticeships in further education",
-    "Code": "sahl",
-    "Long.Name": "SAHLAFEEQ",
-    "Associated Theme": "Apprenticeships",
+    "Group": "Jobs, redundancies and vacancies",
     "Nested": "FALSE"
-  },
-  {
-    "Measure_Name": "Highest level of qualifications - All qualifications level",
-    "Code": "c507all",
-    "Long.Name": "C21507EQ",
-    "Associated Theme": "Qualifications",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Highest level of qualifications - Level 1: 1 to 4 GCSEs, O levels, CSEs (any grades); 1 AS Level; NVQ level 1; or equivalent",
-    "Code": "c5071",
-    "Long.Name": "C21507EQ",
-    "Associated Theme": "Qualifications",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Highest level of qualifications - Level 2: 5 or more GCSEs (A*-C or 9-4), O levels (passes) CSEs (grade 1); 1 A level, 2-3 AS Levels; NVQ level 2, BTEC General, City and Guilds Craft; or equivalent",
-    "Code": "c5072",
-    "Long.Name": "C21507EQ",
-    "Associated Theme": "Qualifications",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Highest level of qualifications - Level 3: 2 or more A Levels, 4 or more AS Levels; NVQ Level 3, BTEC National, OND, ONC, City and Guilds Advanced Craft; or equivalent",
-    "Code": "c5073",
-    "Long.Name": "C21507EQ",
-    "Associated Theme": "Qualifications",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Highest level of qualifications - Level 4 and above: Degree (BA, BSc), foundation degree, NVQ Level 4 and above, HND, HNC, professional qualifications (teaching or nursing, for example), or equivalent",
-    "Code": "c5074",
-    "Long.Name": "C21507EQ",
-    "Associated Theme": "Qualifications",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Highest level of qualifications - No qualifications",
-    "Code": "c5070",
-    "Long.Name": "C21507EQ",
-    "Associated Theme": "Qualifications",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Highest level of qualifications - Other: Apprenticeships; other qualifications, equivalent unknown",
-    "Code": "c5075",
-    "Long.Name": "C21507EQ",
-    "Associated Theme": "Qualifications",
-    "Nested": "TRUE"
   },
   {
     "Measure_Name": "Hours worked - All",
     "Code": "c503all",
-    "Long.Name": "C21503EQ",
-    "Associated Theme": "Hours worked",
+    "Group": "Census ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Hours worked - Full-time: 31-48 hours worked per week",
     "Code": "c5033",
-    "Long.Name": "C21503EQ",
-    "Associated Theme": "Hours worked",
+    "Group": "Census ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Hours worked - Full-time: 49+ hours worked per week",
     "Code": "c5034",
-    "Long.Name": "C21503EQ",
-    "Associated Theme": "Hours worked",
+    "Group": "Census ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Hours worked - Part-time: 15 hours or less worked per week",
     "Code": "c5031",
-    "Long.Name": "C21503EQ",
-    "Associated Theme": "Hours worked",
+    "Group": "Census ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Hours worked - Part-time: 16-30 hours worked per week",
     "Code": "c5032",
-    "Long.Name": "C21503EQ",
-    "Associated Theme": "Hours worked",
+    "Group": "Census ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Income deprivation and inequality - Living in absolute poverty",
     "Code": "inc2",
-    "Long.Name": "INCDEPINEQEQ",
-    "Associated Theme": "Poverty",
+    "Group": "Deprivation and poverty ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Income deprivation and inequality - Living in relative poverty",
     "Code": "inc1",
-    "Long.Name": "INCDEPINEQEQ",
-    "Associated Theme": "Poverty",
+    "Group": "Deprivation and poverty ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Industry of employment - A, B, D, E Agriculture, energy and water",
     "Code": "c5021",
-    "Long.Name": "C21502EQ",
-    "Associated Theme": "Jobs",
+    "Group": "Census ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Industry of employment - All",
     "Code": "c502all",
-    "Long.Name": "C21502EQ",
-    "Associated Theme": "Jobs",
+    "Group": "Census ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Industry of employment - C Manufacturing",
     "Code": "c5022",
-    "Long.Name": "C21502EQ",
-    "Associated Theme": "Jobs",
+    "Group": "Census ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Industry of employment - F Construction",
     "Code": "c5023",
-    "Long.Name": "C21502EQ",
-    "Associated Theme": "Jobs",
+    "Group": "Census ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Industry of employment - G, I Distribution, hotels and restaurants",
     "Code": "c5024",
-    "Long.Name": "C21502EQ",
-    "Associated Theme": "Jobs",
+    "Group": "Census ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Industry of employment - H, J Transport and communication",
     "Code": "c5025",
-    "Long.Name": "C21502EQ",
-    "Associated Theme": "Jobs",
+    "Group": "Census ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Industry of employment - K, L, M, N Financial, Real Estate, Professional and Administrative activities",
     "Code": "c5026",
-    "Long.Name": "C21502EQ",
-    "Associated Theme": "Jobs",
+    "Group": "Census ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Industry of employment - O, P, Q Public administration, education and health",
     "Code": "c5027",
-    "Long.Name": "C21502EQ",
-    "Associated Theme": "Jobs",
+    "Group": "Census ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Industry of employment - R, S, T, U Other",
     "Code": "c5028",
-    "Long.Name": "C21502EQ",
-    "Associated Theme": "Jobs",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Knowledge of Irish - All abilites",
-    "Code": "c505all",
-    "Long.Name": "C21505EQ",
-    "Associated Theme": "Cultural identity",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Knowledge of Irish - No ability in Irish",
-    "Code": "c5056",
-    "Long.Name": "C21505EQ",
-    "Associated Theme": "Cultural identity",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Knowledge of Irish - Other combination of skills",
-    "Code": "c5055",
-    "Long.Name": "C21505EQ",
-    "Associated Theme": "Cultural identity",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Knowledge of Irish - Speaks and reads but does not write Irish",
-    "Code": "c5053",
-    "Long.Name": "C21505EQ",
-    "Associated Theme": "Cultural identity",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Knowledge of Irish - Speaks but does not read or write Irish",
-    "Code": "c5052",
-    "Long.Name": "C21505EQ",
-    "Associated Theme": "Cultural identity",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Knowledge of Irish - Speaks, reads, writes and understands Irish",
-    "Code": "c5054",
-    "Long.Name": "C21505EQ",
-    "Associated Theme": "Cultural identity",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Knowledge of Irish - Understands but does not read, write or speak Irish",
-    "Code": "c5051",
-    "Long.Name": "C21505EQ",
-    "Associated Theme": "Cultural identity",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Knowledge of Ulster Scots - All abilites",
-    "Code": "c506all",
-    "Long.Name": "C21506EQ",
-    "Associated Theme": "Cultural identity",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Knowledge of Ulster Scots - No ability in Ulster Scots",
-    "Code": "c5066",
-    "Long.Name": "C21506EQ",
-    "Associated Theme": "Cultural identity",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Knowledge of Ulster Scots - Other combination of skills",
-    "Code": "c5065",
-    "Long.Name": "C21506EQ",
-    "Associated Theme": "Cultural identity",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Knowledge of Ulster Scots - Speaks and reads but does not write Ulster Scots",
-    "Code": "c5063",
-    "Long.Name": "C21506EQ",
-    "Associated Theme": "Cultural identity",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Knowledge of Ulster Scots - Speaks but does not read or write Ulster Scots",
-    "Code": "c5062",
-    "Long.Name": "C21506EQ",
-    "Associated Theme": "Cultural identity",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Knowledge of Ulster Scots - Speaks, reads, writes and understands Ulster Scots",
-    "Code": "c5064",
-    "Long.Name": "C21506EQ",
-    "Associated Theme": "Cultural identity",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Knowledge of Ulster Scots - Understands but does not read, write or speak Ulster Scots",
-    "Code": "c5061",
-    "Long.Name": "C21506EQ",
-    "Associated Theme": "Cultural identity",
+    "Group": "Census ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Level 2 qualifications",
     "Code": "skil",
-    "Long.Name": "SKILLSEQ",
-    "Associated Theme": "Qualifications",
-    "Nested": "TRUE"
+    "Group": "Education and qualification levels",
+    "Nested": "FALSE"
   },
   {
     "Measure_Name": "Loneliness",
     "Code": "lone",
-    "Long.Name": "LONEEQ",
-    "Associated Theme": "Loneliness",
-    "Nested": "FALSE"
-  },
-  {
-    "Measure_Name": "Long-term health problem or disability - All",
-    "Code": "c509all",
-    "Long.Name": "C21509EQ",
-    "Associated Theme": "Long-term health problem or disability",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Long-term health problem or disability - Day-to-day activities limited",
-    "Code": "c5091",
-    "Long.Name": "C21509EQ",
-    "Associated Theme": "Long-term health problem or disability",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Long-term health problem or disability - Day-to-day not limited",
-    "Code": "c5092",
-    "Long.Name": "C21509EQ",
-    "Associated Theme": "Long-term health problem or disability",
+    "Group": "Individual wellbeing",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Low self-efficacy",
     "Code": "self",
-    "Long.Name": "SELFEFFEQ",
-    "Associated Theme": "Self-efficacy",
-    "Nested": "FALSE"
-  },
-  {
-    "Measure_Name": "Main language - All languages",
-    "Code": "c504all",
-    "Long.Name": "C21504EQ",
-    "Associated Theme": "Cultural identity",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Main language - Arabic",
-    "Code": "c5047",
-    "Long.Name": "C21504EQ",
-    "Associated Theme": "Cultural identity",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Main language - Bulgarian",
-    "Code": "c5048",
-    "Long.Name": "C21504EQ",
-    "Associated Theme": "Cultural identity",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Main language - Chinese (not otherwise specified)",
-    "Code": "c5049",
-    "Long.Name": "C21504EQ",
-    "Associated Theme": "Cultural identity",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Main language - English",
-    "Code": "c5041",
-    "Long.Name": "C21504EQ",
-    "Associated Theme": "Cultural identity",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Main language - Irish",
-    "Code": "c5044",
-    "Long.Name": "C21504EQ",
-    "Associated Theme": "Cultural identity",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Main language - Lithuanian",
-    "Code": "c5043",
-    "Long.Name": "C21504EQ",
-    "Associated Theme": "Cultural identity",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Main language - Other languages",
-    "Code": "c50410",
-    "Long.Name": "C21504EQ",
-    "Associated Theme": "Cultural identity",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Main language - Polish",
-    "Code": "c5042",
-    "Long.Name": "C21504EQ",
-    "Associated Theme": "Cultural identity",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Main language - Portuguese",
-    "Code": "c5046",
-    "Long.Name": "C21504EQ",
-    "Associated Theme": "Cultural identity",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Main language - Romanian",
-    "Code": "c5045",
-    "Long.Name": "C21504EQ",
-    "Associated Theme": "Cultural identity",
+    "Group": "Individual wellbeing",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Method of travel to study - All methods of travel",
     "Code": "c513all",
-    "Long.Name": "C21513EQ",
-    "Associated Theme": "Commuting",
+    "Group": "Census ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Method of travel to study - Bus, minibus or coach (public or private)",
     "Code": "c5134",
-    "Long.Name": "C21513EQ",
-    "Associated Theme": "Commuting",
+    "Group": "Census ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Method of travel to study - Driving a car or van",
     "Code": "c5132",
-    "Long.Name": "C21513EQ",
-    "Associated Theme": "Commuting",
+    "Group": "Census ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Method of travel to study - Mainly at or from home",
     "Code": "c5131",
-    "Long.Name": "C21513EQ",
-    "Associated Theme": "Commuting",
+    "Group": "Census ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Method of travel to study - On foot",
     "Code": "c5135",
-    "Long.Name": "C21513EQ",
-    "Associated Theme": "Commuting",
+    "Group": "Census ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Method of travel to study - Other method",
     "Code": "c5136",
-    "Long.Name": "C21513EQ",
-    "Associated Theme": "Commuting",
+    "Group": "Census ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Method of travel to study - Passenger in a car or van",
     "Code": "c5133",
-    "Long.Name": "C21513EQ",
-    "Associated Theme": "Commuting",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Method of travel to work - All methods of travel",
-    "Code": "c512all",
-    "Long.Name": "C21512EQ",
-    "Associated Theme": "Commuting",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Method of travel to work - Bus, minibus or coach (public or private)",
-    "Code": "c5124",
-    "Long.Name": "C21512EQ",
-    "Associated Theme": "Commuting",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Method of travel to work - Driving a car or van",
-    "Code": "c5122",
-    "Long.Name": "C21512EQ",
-    "Associated Theme": "Commuting",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Method of travel to work - Mainly at or from home",
-    "Code": "c5121",
-    "Long.Name": "C21512EQ",
-    "Associated Theme": "Commuting",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Method of travel to work - On foot",
-    "Code": "c5125",
-    "Long.Name": "C21512EQ",
-    "Associated Theme": "Commuting",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Method of travel to work - Other method",
-    "Code": "c5126",
-    "Long.Name": "C21512EQ",
-    "Associated Theme": "Commuting",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Method of travel to work - Passenger in a car or van",
-    "Code": "c5123",
-    "Long.Name": "C21512EQ",
-    "Associated Theme": "Commuting",
+    "Group": "Census ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Never smoked",
     "Code": "hsns",
-    "Long.Name": "HSNSMOKEQ",
-    "Associated Theme": "Smoking",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Occupation - Administrative and secretarial occupations",
-    "Code": "c5114",
-    "Long.Name": "C21511EQ",
-    "Associated Theme": "Jobs",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Occupation - All occupations",
-    "Code": "c511all",
-    "Long.Name": "C21511EQ",
-    "Associated Theme": "Jobs",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Occupation - Associate professional and technical occupations",
-    "Code": "c5113",
-    "Long.Name": "C21511EQ",
-    "Associated Theme": "Jobs",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Occupation - Caring, leisure and other service occupations",
-    "Code": "c5116",
-    "Long.Name": "C21511EQ",
-    "Associated Theme": "Jobs",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Occupation - Elementary occupations",
-    "Code": "c5119",
-    "Long.Name": "C21511EQ",
-    "Associated Theme": "Jobs",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Occupation - Managers, directors and senior officials",
-    "Code": "c5111",
-    "Long.Name": "C21511EQ",
-    "Associated Theme": "Jobs",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Occupation - Process, plant and machine operatives",
-    "Code": "c5118",
-    "Long.Name": "C21511EQ",
-    "Associated Theme": "Jobs",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Occupation - Professional occupations",
-    "Code": "c5112",
-    "Long.Name": "C21511EQ",
-    "Associated Theme": "Jobs",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Occupation - Sales and customer service occupations",
-    "Code": "c5117",
-    "Long.Name": "C21511EQ",
-    "Associated Theme": "Jobs",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Occupation - Skilled trades occupations",
-    "Code": "c5115",
-    "Long.Name": "C21511EQ",
-    "Associated Theme": "Jobs",
+    "Group": "Health behaviours",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Primary, post primary and special schools - Free school meal entitled pupils",
     "Code": "desfsme",
-    "Long.Name": "DESCEQ",
-    "Associated Theme": "All Schools",
+    "Group": "School enrolments ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Primary, post primary and special schools - Special educational needs pupils with a statement",
     "Code": "desssen",
-    "Long.Name": "DESCEQ",
-    "Associated Theme": "All Schools",
+    "Group": "School enrolments ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Primary, post primary and special schools - Special educational needs pupils without a statement",
     "Code": "desnonssen",
-    "Long.Name": "DESCEQ",
-    "Associated Theme": "All Schools",
+    "Group": "School enrolments ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Primary, post primary and special schools - Total enrolment",
     "Code": "deste",
-    "Long.Name": "DESCEQ",
-    "Associated Theme": "All Schools",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Provision of unpaid care - All",
-    "Code": "c510all",
-    "Long.Name": "C21510EQ",
-    "Associated Theme": "Care at home",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Provision of unpaid care - Provides 1-19 hours unpaid care per week",
-    "Code": "c5102",
-    "Long.Name": "C21510EQ",
-    "Associated Theme": "Care at home",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Provision of unpaid care - Provides 20-49 hours unpaid care per week",
-    "Code": "c5103",
-    "Long.Name": "C21510EQ",
-    "Associated Theme": "Care at home",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Provision of unpaid care - Provides 50+ hours unpaid care per week",
-    "Code": "c5104",
-    "Long.Name": "C21510EQ",
-    "Associated Theme": "Care at home",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Provision of unpaid care - Provides no unpaid care",
-    "Code": "c5101",
-    "Long.Name": "C21510EQ",
-    "Associated Theme": "Care at home",
+    "Group": "School enrolments ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Public bodies take into account the needs of minority ethnic communities",
     "Code": "pubb",
-    "Long.Name": "PUBBODEQ",
-    "Associated Theme": "Community relations",
+    "Group": "Community",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Public transport use",
     "Code": "pubt",
-    "Long.Name": "PUBTRANSEQ",
-    "Associated Theme": "Public transport",
-    "Nested": "FALSE"
+    "Group": "Travel and transport",
+    "Nested": "TRUE"
   },
   {
     "Measure_Name": "Qualifications of school leavers - At least 2 A-levels at grades A*-E (incl. equivalent qualifications)",
     "Code": "sls3",
-    "Long.Name": "SLSAEQ",
-    "Associated Theme": "Qualifications",
+    "Group": "School leavers ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Qualifications of school leavers - At least 3 A-levels at grades A*-C (incl. equivalent qualifications)",
     "Code": "sls1",
-    "Long.Name": "SLSAEQ",
-    "Associated Theme": "Qualifications",
+    "Group": "School leavers ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Qualifications of school leavers - At least 3 A-levels at grades A*-E (incl. equivalent qualifications)",
     "Code": "sls2",
-    "Long.Name": "SLSAEQ",
-    "Associated Theme": "Qualifications",
+    "Group": "School leavers ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Qualifications of school leavers - At least 5 GCSEs at grades A*-C (incl. equivalent qualifications)",
     "Code": "sls4",
-    "Long.Name": "SLSAEQ",
-    "Associated Theme": "Qualifications",
+    "Group": "School leavers ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Qualifications of school leavers - At least 5 GCSEs at grades A*-C (incl. equivalent qualifications) including GCSE English and maths",
     "Code": "sls5",
-    "Long.Name": "SLSAEQ",
-    "Associated Theme": "Qualifications",
+    "Group": "School leavers ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Qualifications of school leavers - Total leavers",
     "Code": "slsall",
-    "Long.Name": "SLSAEQ",
-    "Associated Theme": "Qualifications",
+    "Group": "School leavers ",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Racial prejudice in Northern Ireland",
     "Code": "racp",
-    "Long.Name": "RACPREEQ",
-    "Associated Theme": "Community relations",
+    "Group": "Community",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Refugee welcome",
     "Code": "refw",
-    "Long.Name": "REFWELEQ",
-    "Associated Theme": "Community relations",
+    "Group": "Community",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Refugees contribute to society",
     "Code": "refc",
-    "Long.Name": "REFCONEQ",
-    "Associated Theme": "Community relations",
+    "Group": "Community",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Respected cultural identity",
     "Code": "cult",
-    "Long.Name": "CULTIDEQ",
-    "Associated Theme": "Community relations",
+    "Group": "Community",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Safe towns and city centres",
     "Code": "safe",
-    "Long.Name": "SAFETOWNEQ",
-    "Associated Theme": "Safe towns and city centres",
-    "Nested": "FALSE"
+    "Group": "Community",
+    "Nested": "TRUE"
   },
   {
     "Measure_Name": "Self-reported prejudice against minority ethnic communities",
     "Code": "prej",
-    "Long.Name": "PREJUDEQ",
-    "Associated Theme": "Community relations",
+    "Group": "Community",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Shared community",
     "Code": "shar",
-    "Long.Name": "SHARCOMEQ",
-    "Associated Theme": "Community relations",
+    "Group": "Community",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Smoking",
     "Code": "hssm",
-    "Long.Name": "HSSMOKEQ",
-    "Associated Theme": "Smoking",
+    "Group": "Health behaviours",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Sports and physical activity",
     "Code": "spor",
-    "Long.Name": "SPORTSEQ",
-    "Associated Theme": "Culture, arts, heritage and sport",
+    "Group": "Community",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Students achieving regulated qualifications at level 2 in further education colleges",
     "Code": "sar2",
-    "Long.Name": "SARQL2FEEQ",
-    "Associated Theme": "Achievements",
+    "Group": "Further education",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Students achieving regulated qualifications at level 3 in further education colleges",
     "Code": "sar3",
-    "Long.Name": "SARQL3FEEQ",
-    "Associated Theme": "Achievements",
+    "Group": "Further education",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Use of e-cigarettes",
     "Code": "hsec",
-    "Long.Name": "HSECIGEQ",
-    "Associated Theme": "Smoking",
+    "Group": "Health behaviours",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Usual resident population",
     "Code": "c500",
-    "Long.Name": "C21500EQ",
-    "Associated Theme": "Census population",
+    "Group": "Census",
     "Nested": "FALSE"
   },
   {
     "Measure_Name": "Walking or cycling (active travel)",
     "Code": "walk",
-    "Long.Name": "WALKCYCEQ",
-    "Associated Theme": "Active and sustainable travel",
-    "Nested": "FALSE"
+    "Group": "Travel and transport",
+    "Nested": "TRUE"
   }
 ]
