@@ -72,6 +72,12 @@
     "Nested": "TRUE"
   },
   {
+    "Measure_Name": "Good jobs",
+    "Code": "good",
+    "Group": "Jobs, redundancies and vacancies",
+    "Nested": "FALSE"
+  },
+  {
     "Measure_Name": "Hours worked - All",
     "Code": "c503all",
     "Group": "Census ",
@@ -166,6 +172,12 @@
     "Code": "c5028",
     "Group": "Census ",
     "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Level 2 qualifications",
+    "Code": "skil",
+    "Group": "Education and qualification levels",
+    "Nested": "FALSE"
   },
   {
     "Measure_Name": "Loneliness",
