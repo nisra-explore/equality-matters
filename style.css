@@ -4,6 +4,17 @@
 	margin-left: 0.2em;
 }
 
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
 
 html {
   height: 100%;
@@ -567,8 +578,8 @@ a.cookies-infobar_btn, a.cookies-infobar_btn_reject, a.cookiesbarlink {
     margin-bottom: 0px;
     padding-top: 5px;
     padding-bottom: 10px;
-    font-size: 1em;
-    font-weight: bold;
+    font-size: 1.1em;
+    font-weight: normal;
     justify-content: center;
     width: 100%;
     display: flex;
@@ -1030,15 +1041,19 @@ footer a:hover {
   }
 
 
-  .btn.selected {
-  border: 2px solid #7e6ec4;
+.btn.selected {
+  border: 2px solid #00205B;
   background-color: #fff;
   color: #00205b;
 }
 
+.btn.selected:hover {
+  background-color: #fff;
+  color: #00205B
+}
+
 
   .btn {
-    /* color: #00205B;*/
     border: 2px solid #00205B;
     background-color: #3878c5;
     color: #fff;
@@ -1046,13 +1061,17 @@ footer a:hover {
   }
 
   .btn:hover {
-    background-color: #6093d2;
+    background-color: #2F65A7;
     color: #fff;
-    border: 2px solid #000;
+    border: 2px solid #00205B;
   }
 
-  .btn:focus {
-    border: 2px solid #7e6ec4;
+  .btn:focus,
+  #top-buttons-container button:focus,
+  #downloadButton:focus,
+  #copyTextButton:focus,
+  #copyTextButton2:focus {
+    border: 2px solid #00205B;
     background-color: #fff;
     color: #000;
   }
@@ -1063,8 +1082,21 @@ footer a:hover {
   }
 
   .btn.inactive:hover {
-    background-color: #6093d2; /* hover color for active state */
+    background-color: #2F65A7; /* hover color for active state */
   }
+
+  .close-on-mobile {
+    background-color: #7767C1;
+    border: 2px solid #00205B;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #fff;
+  }
+
+  .close-on-mobile:hover {
+    background-color: #614EB7;
+  }
+
 
   #search-box {
     border: 2px solid #ffffff;
@@ -1151,7 +1183,6 @@ footer a:hover {
     font-size: 12pt;
     margin-top: 20px;
     border-collapse: collapse;
-    table-layout: fixed;
   }
 
   .wrap-cell {
@@ -1202,7 +1233,7 @@ footer a:hover {
   }
 
   /* Clear floats after the columns */
- .row:after {
+ .row::after {
     content: "";
     display: table;
     clear: both;
@@ -1233,6 +1264,11 @@ footer a:hover {
     /* padding: 8px 12px; */
     border: 2px solid #00205B;
     border-radius: 2px;
+    background-color: #3878c5;
+  }
+
+  #downloadButton:hover {
+    background-color: #2F65A7;
   }
 
   #downloadButton:active {
@@ -1246,22 +1282,20 @@ footer a:hover {
     display: inline-block;
 }
 
-  /* format download button for table */
-.copy-button {
+/* format download button for table */
+.copy-button, .copy-buttons {
   position: absolute;
-  top: -33px;
+  /* top: -33px; */
   right: 0%;
   z-index: 10; /*ensures button is above table*/
   border: 2px solid #00205B;
-  border-radius: 5px;
-  background-color: #7767c1;
+  background-color: #7767C1;
   color: #fff;
-  font-weight: bold;
+  border-radius: 2px;
 }
 
 .copy-button:hover {
-  background-color: #6093d2;
-  color: #fff;
+  background-color: #614EB7;
 }
 
 .copy-button:active {
@@ -1269,7 +1303,27 @@ footer a:hover {
   color: #fff
 }
 
+.copy-button:focus {
+  background-color: #fff;
+  color: #000;
+}
 
+.copy-button.inactive {
+  background-color:#3878c5;;
+  color: #fff;
+}
+
+.copy-button.inactive:hover {
+  background-color: #2F65A7; /* hover color for active state */
+}
+
+#copyTextButton, #copyTextButton2 {
+  background-color: #7767C1;
+}
+
+#copyTextButton:hover, #copyTextButton2:hover {
+  background-color: #614EB7;
+}
 
 .mtb {
     margin-top: 20px;
@@ -1289,21 +1343,11 @@ footer a:hover {
   outline: none;
   border: none;
   transition: 0.4s;
+  position: relative;
 }
 
 .active, .accordion-button:hover {
   background-color: #fff;
-}
-
-
-.accordion-button:after {
-  /* plus sign is \02795*/
-  /* down arrow is \2bc6 */
-  content: "\02795";
-  font-size: 20px;
-  color: #404040;
-  float: right;
-  margin-left: 15px;
 }
 
 
@@ -1333,16 +1377,13 @@ footer a:hover {
 }
 
 #selection-form button {
-  border: none;
-  background-color: #7e6ec4;
+  background-color: #3878c5;
   color: #fff;
   margin: 2px;
-  border-radius: 5px;
-  text-align: left;
 }
 
 #selection-form button:hover {
-  background-color: #6093d2;
+  background-color: #2F65A7;
   color: #fff;
 }
 
@@ -1354,10 +1395,8 @@ footer a:hover {
 }
 
 #top-buttons-container button {
-  /* flex: 1 1 auto; */
-  /* text-align: center; */
+  text-align: center;
   padding-left: 10px;
-  text-align: left;
   min-width: 30%; /* Allows buttons to adjust dynamically */
   border-radius: 2px;
 }
@@ -1450,15 +1489,6 @@ footer a:hover {
   gap: 20px;
 }
 
-.toggle-container {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 10px;
-  padding-right: 30px;
-}
-
-
-
 #selection-form-measure button.cen-theme:hover {
   background: #00205b;
   color: white;
@@ -1542,7 +1572,7 @@ footer a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #3878c1;
+  background: #3878c5;
   border: 2px solid #00205B;
   color: #fff;
   text-align: center;
@@ -1552,11 +1582,12 @@ footer a:hover {
   position: relative;
   border-radius: 2px;
   font-size: 13px;
+  min-height: 50px;
   /* No fixed min-height/min-width here → mobile/tablet remain flexible */
 }
 
 #toggle-group-btn {
-  background: #4F95DA;
+  background: #2F65A7;
   color: white;
   border-radius: 999px;
 }
@@ -1565,7 +1596,7 @@ footer a:hover {
   content: '';
   position: absolute;
   inset: 0;
-  border: 2px solid #4F95DA;
+  border: 2px solid #2F65A7;
   border-radius: 999px;
   transition: all 0.3s ease-in-out;
   pointer-events: none;
@@ -1576,7 +1607,7 @@ footer a:hover {
   content: '';
   position: absolute;
   inset: 0;
-  border: 2px solid #4F95DA;
+  border: 2px solid #2F65A7;
   border-radius: 2px;
   transition: all 0.3s ease-in-out;
   pointer-events: none;
@@ -1590,7 +1621,7 @@ footer a:hover {
 }
 
 #selection-form-measure button:hover {
-  background: #4F95DA;
+  background: #2F65A7;
   color: white;
 }
 
@@ -1602,10 +1633,8 @@ footer a:hover {
 #selection-form-pathway button:hover,
 #selection-form-75group button:hover,
 #selection-form-depart button:hover{
-  background: #4F95DA;
+  background: #2F65A7;
   color: white;
-  /* font-weight: bold; */
-  border: 3px solid #00205B;
   padding: 0 16px;
 }
 
@@ -1650,7 +1679,7 @@ footer a:hover {
 }
 
 #home-btn button:hover {
-  background-color: #6093d2;
+  background-color: #2F65A7;
   color: #fff;
 }
 
@@ -1743,19 +1772,6 @@ a.cookiesbarlink {
   margin-bottom: -2.3rem;
 }
 
-.about-btn {
-  color: #fff;
-  font-size: 1rem;
-  padding: 6px 12px;
-  border-radius: 2px;
-}
-
-.about-btn:hover, .all-measures-btn:hover {
-  background-color: #6093d2;
-  color: #fff;
-}
-
-
 .search-container button:hover {
   background: #3878c5;
 }
@@ -1829,32 +1845,51 @@ a.cookiesbarlink {
   position: relative;
   padding-right: 2rem; /* room for caret */
 }
-.btn-accordion::after {
+
+.dropdown-toggle::after,
+.btn-accordion::after,
+.accordion-button::after {
   content: "";
   position: absolute;
   right: .75rem;
   top: 50%;
-  width: 1em;
-  height: 1em;
+  width: 0.8rem;
+  height: 0.8rem;
   transform: translateY(-50%) rotate(90deg);
-  transition: transform .2s ease;
+  transition: transform .4s ease;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
   /* White-stroke outline arrowhead (URL-encoded #fff) */
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpolyline points='8 4 16 12 8 20' fill='none' stroke='%23ffffff' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   opacity: .95;
+  border: none;
 }
-.btn-accordion[aria-expanded='true']::after {
+
+.btn-accordion::after {
+  width: 1rem;
+  height: 1rem;
+}
+
+.accordion-button::after {
+  right: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  /* White-stroke outline arrowhead (URL-encoded #fff) */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpolyline points='8 4 16 12 8 20' fill='none' stroke='%23000000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.dropdown-toggle[aria-expanded='true']::after,
+.dropdown-toggle.show::after,
+.dropdown.open > .dropdown-toggle::after,
+.btn-group.show > .dropdown-toggle::after,
+.btn-accordion[aria-expanded='true']::after,
+.accordion-button[aria-expanded='true']::after {
   transform: translateY(-50%) rotate(-90deg);
 }
-.btn-accordion:focus {
-  background-color: #7e6ec4;
-  border: 2px solid #000;
-  color: #fff;
-}
+
 .btn-accordion:hover {
-  background-color: #7e6ec4;
+  background-color: #2F65A7;
 }
 
 .breadcrumb {
@@ -1875,6 +1910,7 @@ a.cookiesbarlink {
 
 .breadcrumb a:hover {
   text-decoration: underline;
+  color: #7767C1;
 }
 
 .breadcrumb span {
@@ -1917,7 +1953,6 @@ a.cookiesbarlink {
 .main-body {
   flex: 1;
   padding: 20px;
-  background-color: #f9f9f9;
 }
 
 .sidebar {
@@ -1942,27 +1977,20 @@ a.cookiesbarlink {
   margin: 10px 0;
 }
 
-.main-body {
-  flex: 1;
-  padding: 20px;
-  background-color: #f9f9f9;
-}
-
 .toggle-container {
   display: flex;
+  justify-content: flex-end;
   flex-direction: column;
-  gap: 27px; /* Adds space between buttons */
+  gap: 27px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-right: 30px;
 }
 
-.toggle-container button {
-  border: 1px solid black;
-  background-color: white;
-  color: black;
-  padding: 10px 15px;
+.toggle-container button,
+.form-group button {
   margin-bottom: 10px; /* Adds space between buttons */
-  cursor: pointer;
   font-size: 20px;
-  border-radius: 2px;
 }
 
 /* Hide the page until the page is fully rendered */
@@ -2033,19 +2061,20 @@ body{visibility: hidden;}
   background-color: var(--bs-secondary-color, #6c757d); /* follows Bootstrap’s text-secondary */
 }
 
+/* Footer/nav uses masked icon with white stroke and white fill background
+   so it can appear on dark footer backgrounds while reusing same structure */
 footer a[target="_blank"]::after,
 nav a[target="_blank"]::after {
-  content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="11" viewBox="0 0 14 11"><g fill="none" stroke="white" stroke-width="1"><path d="M0 3h2V0h12v8h-2v3H0zm13-2H3v6h10zM2 4H1v4h1zm-1 6h10V8H1z"/></g></svg>');
+  content: "";
+  width: 14px; height: 11px;
+  margin: 0 5px;
   display: inline-block;
-  width: 14px;
-  height: 11px;
-  margin: 0 5px 0 5px;
   vertical-align: text-top;
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="11" viewBox="0 0 14 11"><g fill="none" stroke="white" stroke-width="1"><path d="M0 3h2V0h12v8h-2v3H0zm13-2H3v6h10zM2 4H1v4h1zm-1 6h10V8H1z"/></g></svg>') no-repeat center / contain;
+          mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="11" viewBox="0 0 14 11"><g fill="none" stroke="white" stroke-width="1"><path d="M0 3h2V0h12v8h-2v3H0zm13-2H3v6h10zM2 4H1v4h1zm-1 6h10V8H1z"/></g></svg>') no-repeat center / contain;
+  background-color: #fff;
 }
 
-#all-meas-tbl tr:nth-child(even) {
-    background-color: #E0E0E0; /* Light grey */
-}
 
 
 
@@ -2096,10 +2125,6 @@ nav a[target="_blank"]::after {
   font-weight: bold; /* Optional: make it bold */
 }
 
-.toggle-container {
-  margin-top: 10px; /* space between header and button */
-}
-
 .center-section {
   text-align: left; /* Align text to the left */
   flex: 1; /* Take remaining space */
@@ -2114,12 +2139,7 @@ nav a[target="_blank"]::after {
   margin: auto;
 }
 
-#all-meas-tbl th {
-  white-space: normal;   /* Allows text to wrap */
-  word-wrap: break-word; /* Break long words if needed */
-  text-align: center;    /* Optional: keep header text centered */
-  padding: 8px;          /* Adds spacing for readability */
-}
+
 
 /* backdrop that sits over page but under the panel */
 .overlay-backdrop {
@@ -2178,7 +2198,6 @@ button:focus-visible {
 }
 
 /* Keep your existing look, just ensure blocks size naturally */
-.home-main { padding: 40px 30px 0 30px; box-sizing: border-box; }
 .home-side { display: grid; grid-auto-rows: min-content; gap: 1rem; }
 
 
@@ -2188,6 +2207,23 @@ button:focus-visible {
   box-sizing: border-box;
 }
 
+/* make first two right‑col boxes at least 120px tall (include the one inside the form) */
+#rightCol .home-side > .div-style-bar:first-child,
+#rightCol .home-side > form > .div-style-bar {
+  min-height: 147px;
+}
+
+#rightCol .home-side > .div-style-bar:first-child {
+  padding-left: 2rem !important;
+}
+
+/* centre the single button vertically in its container */
+#all-meas-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Optional: remove any fixed widths from parent containers */
 #home-scrn {
   width: 100%;
@@ -2195,20 +2231,6 @@ button:focus-visible {
 
 /* S75 button look – keep or adapt */
 #selection-form-75group { display: contents; }
-
-.s75-btn {
-  background: #3878c1;
-  border: 2px solid #00205B;
-  color: #fff;
-  min-height: 50px;
-  border-radius: 2px;
-  font-size: 1.1rem;
-}
-.s75-btn:hover {
-  background: #4F95DA;
-  color: #fff;
-  border: 3px solid #00205B;
-}
 
 /* Your existing styles for search and utility bars can remain unchanged */
 
@@ -2286,12 +2308,6 @@ button:focus-visible {
   border-radius: 2px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
   padding: 0.2rem;
-}
-
-.about-btn:hover,
-.all-measures-btn:hover {
-  background-color: #6093d2;
-  color: #fff;
 }
 
 /* --- Generic .grid utility: unchanged (do NOT apply to #s75-groups-container) --- */
@@ -2379,9 +2395,6 @@ html, body {
   flex-direction: column;
 }
 
-#bar_line_chart {
-  max-height: 350px;
-}
 
 #content-centre {
     display: flex;
@@ -2507,11 +2520,6 @@ body.sidebar-open {
   flex-direction: column;
 }
 
-#bar_line_chart {
-  max-height: 350px;
-}
-
-
 /* 1) Root container: fixed max on laptop, fluid on small screens */
 #main-container {
   /* Width shrinks to 100% on small screens, but never exceeds the laptop size you already like */
@@ -2545,18 +2553,8 @@ body.sidebar-open {
   box-sizing: border-box;
 }
 
-/* 4) Tables: allow horizontal scroll only when necessary (no media query needed) */
-#main-container .table-container {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-#main-container table {
-  border-collapse: collapse;
-  /* If your table has many columns, this keeps laptop unchanged,
-     but allows scroll on small screens without breaking the layout */
-  display: block;           /* block flow to enable overflow containment */
-  white-space: nowrap;      /* avoid ugly wrapping of table headers/cells */
-}
+
+
 
 /* 5) Flex/grid children: allow shrinking (prevents accidental overflow) */
 #main-container * {
@@ -2596,10 +2594,6 @@ html, body {
 #dest-scrn, #s75-measure-scrn {
   flex: 1;
   flex-direction: column;
-}
-
-#bar_line_chart {
-  max-height: 350px;
 }
 
 #content-centre {
@@ -2656,11 +2650,6 @@ html, body {
   flex: 1;
   flex-direction: column;
 }
-
-#bar_line_chart {
-  max-height: 350px;
-}
-
 
 
 /* ===============================
@@ -2724,15 +2713,11 @@ html, body {
 }
 
 #open-filters {
-  background-color: #3878c1;  /* blue */
-  color: #fff;                /* white text */
-  border: none;
-  border-radius: 6px;
   padding: 0.5rem 0.75rem;
-  font-size: 1rem;
+  font-size: 1.2rem;
   cursor: pointer;  
   margin-bottom: 1.85rem;   /* adds white space below */
-  margin-top: 1.4rem;
+  margin-top: .6rem;
 }
 
 /* Automatically switches between 1 column (narrow) and 2 columns (wide) */
@@ -2747,6 +2732,14 @@ html, body {
   box-sizing: border-box;
 }
 
+@media (min-width: 992px) {
+  /* Selects container that has exactly one direct .div-style-line child */
+  #chartContainer:has(> .div-style-line:first-child:last-child) {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 1200px;      /* optional cap so it doesn’t over-stretch on ultrawide */
+    margin-inline: auto;    /* keep it centred */
+  }
+}
 /* Give each chart wrapper a stable height so Chart.js doesn't squash */
 #chartContainer .div-style-line{
   height: clamp(260px, 35vh, 360px);
@@ -2773,7 +2766,6 @@ html, body {
     white-space: normal;       /* allow wrapping */
     text-align: center;
     line-height: 1.2;
-    padding: 0.75rem;
   }
 }
 
@@ -2859,68 +2851,22 @@ html, body {
 
 aside {display:none}
 
-/* Keep your existing look, just ensure blocks size naturally */.home-main { padding: 15px 30px 0 0; box-sizing: border-box; }
+/* Keep your existing look, just ensure blocks size naturally */
+.home-main {
+  padding: 15px 30px 0 0;
+  box-sizing: border-box;
+}
+
+/* simple note shown below line charts when present */
+.chart-note {
+  margin-top: 0.25rem; /* slight gap from charts or container */
+  font-style: italic;
+}
 
 .home-side { display: grid; grid-auto-rows: min-content; gap: 1rem; }/* S75 button look – keep or adapt */
 
 #selection-form-75group { display: contents; }
 
-.s75-btn {  
-  background: #3878c1;  
-  border: 2px solid #00205B;  color: #fff;  font-weight: bold;  min-height: 50px;  border-radius: 2px;}
-
-.s75-btn:hover {  background: #4F95DA;  color: #fff;  border: 3px solid #00205B;}
-
-.search-container {  
-  background: white;  
-  padding: 10px 20px;  
-  border-radius: 2px;  
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  
-  display: flex;  
-  align-items: center;  
-  width: 83%;  
-  border: 2px solid #000;}
-  
-.search-container input[type="text"] {  
-  border: none;  
-  outline: none;  
-  flex: 1;  
-  padding: 10px;  
-  font-size: 16px;  
-  border-radius: 50px;  
-  color: black;}
-  
-.search-container button {  
-  background: #00205B; 
-  border: none;  
-  color: white;  
-  padding: 10px 16px;  
-  border-radius: 50px;  
-  cursor: pointer;  
-  font-size: 14px;  
-  transition: background 0.3s ease;
-}
-  
-.search-container button:hover {  
-  background: #3878c5;
-}
-
-#search-container {  
-  position: relative;  
-  width: 300px;
-}
-
-#search-bar {  
-  background-color: white;  
-  color: black;  
-  padding: 8px;  
-  height: 24px;  
-  width: 100%;  
-  border: none;  
-  outline: none;  
-  box-sizing: border-box;  
-  font-size: 20px;
-}
 
 #home_about_button {  
   display: flex;  
@@ -2942,18 +2888,18 @@ aside {display:none}
   padding: 0.2rem;
 }
 
-.all-measures-btn {  
-  background-color: #7e6ec4;  
-  border: 2px solid #00205B;  
-  color: #fff;    
-  font-size: 20px;  
-  padding: 6px 12px;  
-  border-radius: 2px;
+.all-measures-btn {    
+  font-size: 20px;
 }
 
-.about-btn:hover,.all-measures-btn:hover {  
-  background-color: #6093d2;  
-  color: #fff;
+.about-btn {
+  background-color: #7767C1; 
+  font-size: 1rem;
+  padding: 6px 12px;
+}
+
+.about-btn:hover {
+  background-color: #614EB7;
 }
 
 .grid {  
@@ -3006,9 +2952,399 @@ aside {display:none}
 
 @media (min-width: 692px) {
   .s75-btn {
-    min-height: 45px;
+    min-height: 100px;
     min-width: 200px;
-    font-size: 14px;
+    font-size: 20px;
   }
 }
 
+nav.warning a {
+  text-decoration-color: white;
+  text-underline-offset: 3px;
+}
+
+nav.warning a:hover {
+    color: #ffffff;
+    text-decoration-thickness: 2px;
+}
+
+
+/* --- Toolbar layout --- */
+.button-toolbar {
+  display: flex;
+  flex-wrap: wrap;            /* allow the right group to wrap under on small screens */
+  align-items: center;
+  gap: .5rem 1rem;
+  width: 100%;
+}
+
+/* groups */
+.button-toolbar-left,
+.button-toolbar-right {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+/* Large screens: right group flush-right, single row */
+@media (min-width: 992px) {
+  .button-toolbar { flex-wrap: nowrap; }
+  .button-toolbar-right { margin-left: auto; text-align: right; }
+}
+
+/* Small screens: force right group onto next line under the left group */
+@media (max-width: 991.98px) {
+  .button-toolbar-right { flex-basis: 100%; }
+}
+
+/* IMPORTANT:
+   Inside the toolbar only, neutralise the absolute positioning from the global rules:
+   #downloadButton { position:absolute; top:-53px; right:0 }
+   .copy-button   { position:absolute; top:-33px; right:0 }  */
+.button-toolbar-right #downloadButton,
+.button-toolbar-right .copy-button {
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+}
+
+/* Utility: quick visibility toggle */
+.is-hidden { display: none !important; }
+
+@media (min-width: 992px) {
+  .button-toolbar-right { margin-left: auto; }
+}
+
+.button-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem 1rem;
+}
+
+.button-toolbar-left,
+.button-toolbar-right {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+/* large screens → right aligned */
+@media (min-width: 992px) {
+  .button-toolbar { flex-wrap: nowrap; }
+  .button-toolbar-right { margin-left: auto; }
+}
+
+/* small screens → wraps under */
+@media (max-width: 991.98px) {
+  .button-toolbar-right { flex-basis: 100%; }
+}
+
+#downloadButton {
+  position: absolute;
+  top: -53px;
+  right: 0;
+}
+
+.copy-button {
+  position: absolute;
+  top: -33px;
+  right: 0;
+}
+
+.button-toolbar-right #downloadButton,
+.button-toolbar-right .copy-button {
+  position: static !important;
+}
+
+
+@media (min-width: 992px) {
+  .button-toolbar {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  .button-toolbar-right {
+    margin-left: auto;       /* pushes to the far right */
+  }
+}
+/* Toolbar layout */
+.button-toolbar {
+  display: flex;
+  flex-wrap: wrap;          /* allow wrap on small screens */
+  align-items: center;
+  gap: .5rem 1rem;
+  width: 100%;
+}
+
+.button-toolbar-left,
+.button-toolbar-right {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+/* Large screens: single row, right group flush-right */
+@media (min-width: 992px) {
+  .button-toolbar { flex-wrap: nowrap; }
+  .button-toolbar-right { margin-left: auto; text-align: right; }
+}
+
+/* Small screens: right group occupies next line */
+@media (max-width: 991.98px) {
+  .button-toolbar-right { flex-basis: 100%; }
+}
+
+/* Inside the toolbar ONLY, cancel the global absolute positioning */
+.button-toolbar-right #downloadButton,
+.button-toolbar-right .copy-button {
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+}
+
+/* Optional: hide helper class if you decide to use class toggling
+   (we'll use inline style per your function, so this is just a utility) */
+.is-hidden { display: none !important; }
+
+.table-container {  
+  overflow-x: auto;
+  overflow-y: auto;   /* allow vertical scrolling */
+  max-height: 80vh;   /* optional but recommended */
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+  width: 100%;
+}
+
+#all-meas-tbl{
+  border-collapse: collapse;
+  width: 100%;
+  white-space: nowrap;   /* prevent wrap so horizontal scroll triggers */
+  min-width: 640px;      /* adjust as needed */
+}
+
+#all-meas-tbl th,
+#all-meas-tbl td{
+  padding: .5rem .75rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+/* Sticky header */
+#all-meas-tbl thead th{
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  /* height should not be fixed; wrapping determines height */
+}
+
+
+#all-meas-tbl th {
+  white-space: normal;   /* Allows text to wrap */
+  word-wrap: break-word; /* Break long words if needed */
+  text-align: center;    /* Optional: keep header text centered */
+  padding: 8px;          /* Adds spacing for readability */
+    background-color: #00205B;
+  color: #ffffff;
+  cursor: default;
+  position: sticky;
+  top: 0;
+}
+
+#all-meas-tbl tr:nth-child(even) {
+    background-color: #E0E0E0; /* Light grey */
+}
+
+td, th {
+  border: 1px solid black;
+  font-size: 12pt;
+  text-align: center;
+  padding-left: 3px;
+  padding-right: 3px;
+  white-space: nowrap;
+}
+
+#all-meas-tbl{
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: separate; /* safer with sticky columns/headers */
+  border-spacing: 0;
+}
+
+/* First column fixed width + wrapping (from earlier) */
+#all-meas-tbl th:first-child,
+#all-meas-tbl td:first-child{
+  width: 100px; min-width: 100px; max-width: 100px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+/* All other columns fixed width (example) */
+#all-meas-tbl th:not(:first-child),
+#all-meas-tbl td:not(:first-child){
+  width: 100px; min-width: 100px; max-width:100px;
+}
+
+/* Specifically allow THs to wrap (TDs can stay as you set them) */
+#all-meas-tbl th{  
+  position: sticky;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.home-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Small screens only: reorder blocks for the requested sequence
+   1) About/Share
+   2) Home buttons (left column)
+   3) Search + All measures
+   4) Logo
+*/
+
+
+/* Desktop (≥ lg) — pin the About/Share buttons to the top of the sidebar */
+@media (min-width: 992px) {
+  /* Make the sidebar a positioning context */
+  .col-lg-4 .home-side {
+    position: relative;
+  }
+
+  /* Absolutely position the desktop-visible About/Share block at the top-right */
+  .col-lg-4 .home-about-btns.d-lg-flex {
+    position: absolute;
+    top: 0;              /* stick to the top of the sidebar */
+    right: 0;
+    left: 0;             /* stretch across the sidebar width */
+    z-index: 2;          /* ensure it sits above the cards */
+    margin: 0;           /* cancel any margins that add extra vertical space */
+    padding-bottom: .25rem; /* tiny breathing room if you like */
+  }
+
+  /* Push the first card (Search) down enough to clear the pinned buttons */
+  .col-lg-4 .home-side > .div-style-bar:first-of-type {
+    margin-top: 48px;    /* adjust this to match the height of your About/Share row */
+  }
+
+  .col-lg-8 .home-main {
+    margin-top: -68px;    /* adjust this to match the height of your About/Share row */
+  }
+
+  .col-lg-4 .home-side {
+    margin-top: 40px;    /* adjust this to match the height of your About/Share row */
+  }
+
+  .logo-div{
+    padding-left: 15px;
+    padding-bottom: 15px
+  }
+}
+
+/* Mobile font sizes for About page */
+@media (max-width: 692px) {
+  .about-content h2 {
+    font-size: 20pt !important;
+  }
+
+  .about-content h3 {
+    font-size: 14pt !important;
+  }
+
+  .about-content p,
+  .about-content li {
+    font-size: 13pt !important;
+  } 
+}
+
+.multiselect.dropdown-toggle {
+  background-color: #7767C1;  /* default */
+  color: white;
+}
+
+.multiselect.dropdown-toggle:hover {
+  background-color: #614EB7;  /* hover */
+  }
+
+h4.text-start {
+    font-size: 1.25rem;
+}
+
+#all-meas-tbl td:focus-visible{
+    background-color: #cfe2ff;   /* same highlight as hover */
+    outline: 2px solid #3878c5;  /* optional but recommended */
+    cursor: pointer;
+}
+
+/* Freeze header row */
+#all-meas-tbl th {
+    position: sticky;
+    top: 0;
+    z-index: 5;          /* ensure it stays above the cells */
+    background-color: #00205B; /* match your existing header colour */
+    color: white;
+}
+
+/* Freeze the first column (both th + td) */
+#all-meas-tbl th:first-child,
+#all-meas-tbl td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 4;           /* slightly lower than header row */
+    background-color: #E0E0E0; /* prevent bleed from underneath */
+}
+
+/* Ensure header cell in first column stays above the frozen column */
+#all-meas-tbl thead th:first-child {
+    z-index: 6;
+}
+
+/* Freeze the first column */
+#all-meas-tbl th:first-child,
+#all-meas-tbl td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 4;
+background-color: #00205B;
+  color: #ffffff;
+}
+
+
+/* Ensure the first header cell stays above everything */
+#all-meas-tbl thead th:first-child {
+    z-index: 6;
+}
+
+/* Alternating colours ON THE FIRST COLUMN ONLY */
+#all-meas-tbl td:first-child:nth-child(1) {
+    background-color: #00205B;   /* header is handled separately */
+    color: white; /* if you want */
+}
+
+/* Even row cells in the first column */
+#all-meas-tbl tr:nth-child(even) td:first-child {
+    background-color: #E0E0E0; /* light grey */
+    color:black
+}
+
+/* Odd row cells in the first column */
+#all-meas-tbl tr:nth-child(odd) td:first-child {
+    background-color: 
+    #f2f5f8; 
+    color: black
+}
+
+/* Make sure sticky keeps its colour when overlapping */
+#all-meas-tbl td:first-child {
+    background-clip: padding-box;
+}
+
+.cell-active {
+    background-color: #cfe2ff;
+    cursor: pointer;
+    outline: 2px solid #3878c5;
+}

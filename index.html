@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Equality Matters</title>
+    <html lang="en">
     <link rel="icon" type="image" href="img/teo-logo-hex.png">
 
     <!-- imports for bootstrap - jquery and popper are dependencies -->
@@ -50,13 +51,11 @@
       
       <nav class="warning">
         <div class="col-wide middle" style=" text-align: center;">
-          <p style="margin-bottom: 0px;">We welcome your feedback or requests for new data through our 
-            <a href="https://dttselfserve.nidirect.gov.uk/NISRA/RateIt#/Equality_Matters" target="_blank"><span style="color: white;">short survey</span>
-              <!-- <img class = "new-tab" src = "img/opens-new-tab.svg"> -->
+          <p style="margin-bottom: 0px; font-size: 1rem;">This is a prototype version provided for testing and feedback. Please share your views through our 
+            <a href="https://dttselfserve.nidirect.gov.uk/NISRA/RateIt#/Equality_Matters" target="_blank" rel="noopener noreferrer"><span style="color: white;">short survey <span class="visually-hidden">(opens in a new tab)</span></span>
             </a>
-            </p>
-          
-          </div>
+          </p>
+        </div>
       </nav>
 
       <!-- <div id="prototype">This prototype application will be enhanced as further equality indicator data is released.</div> -->
@@ -64,7 +63,7 @@
       <div id="top-container">
         <div id="top-menu" class="grid" style="margin: 0;">
           <div class="nisra-logo-container">
-            <a href="https://www.nisra.gov.uk/" target="_blank"><img id="top-menu-nisra-logo" src="img/nisra-only-white.svg" alt="NISRA logo. Clicking image takes user to NISRA website"></a>
+            <a href="https://www.nisra.gov.uk/" target="_blank" rel="noopener noreferrer"><img id="top-menu-nisra-logo" src="img/nisra-only-white.svg" alt="NISRA logo. Clicking image takes user to NISRA website"></a>
           </div>
           <div id="dashboard-title-container">
             <h1 id="dashboard-title"><a href="index.html">Equality Matters</a></h1>
@@ -84,7 +83,6 @@
                     <aside id="sidebar" class="sidebar">
                       <!-- Header -->
                       <div class="sidebar-header mobile-only">
-                        <!-- Optional: a close button only visible on mobile -->
                         <button type="button" class="close-on-mobile" aria-label="Close" onclick="closeSidebar()">×</button>
                       </div>
 
@@ -93,18 +91,12 @@
                         <div id="home-btn"></div>
 
                         <h3 style="font-weight: normal; font-size: 14pt; margin-bottom: 0; margin-top: 20px;">
-                          Explore other breakdowns for
-                          <p class="measure_title" style="margin-bottom: 10px;"></p>
+                          Available breakdowns for: 
+                          <b><p class="measure_title" style="margin-bottom: 10px;"></p></b>
                         </h3>
 
                         <form id="selection-form" style="list-style-type: none; padding: 0;">
-                          <div id="top-buttons-container"></div>
-
-                          <h3 id="domains-title"
-                              style="display: none; font-weight: normal; font-size: 14pt; margin-bottom: 0; margin-top: 20px;">
-                            Explore other measures by
-                            <p class="eq_grp_name" style="color:#3878c5; font-weight: bold; margin-bottom: 10px;"></p>
-                          </h3>
+                          <div id="top-buttons-container" inert></div>
 
                           <div id="key-metrics-container" style="display: none;"></div>
                         </form>
@@ -119,34 +111,41 @@
 
                   <h2 style="margin-bottom: 30px;"><span class = "measure_title"></span> by <span class = "eq_grp_name"></span></h2>
                   <h3>How do we measure this?</h3>                  
-                <h5><p id = "how_do_we_measure"></p></h5>
+                <h4><p id = "how_do_we_measure"></p></h4>
                 </div>
+<div class="div-style-bar">
 
-                <div class="div-style-bar">
-                  
-                  <!-- <h3><span class = "measure_title"></span> <span class= "latest_year" style = "color:#3878c5;"></span></h3> -->
-                  <h3>Latest year: <span class= "latest_year"></span></h3>
-                  <div id ="barInfoContainer">
-                    <button class="btn" id="chartBtn">View chart</button>
-                    <button class="btn" id="tableBtn">View table</button>
-                  </div>
+  <h3>Latest year: <span class="latest_year"></span></h3>
 
-                  <div id="chartView" class ="chart-container">
-                    <button class="btn" id="downloadButton">Download chart as image</button>
-                    <!-- <div class="chart-container"> -->
-                    <canvas id="bar_line_chart"></canvas>
-                  </div>
+  <!-- BUTTON TOOLBAR -->
+  <div class="button-toolbar">
+    <!-- LEFT GROUP -->
+    <div class="button-toolbar-left">
+      <button type="button" class="btn" id="chartBtn">View chart</button>
+      <button type="button" class="btn" id="tableBtn">View table</button>
+    </div>
 
-                  <div id="tableView" class="table-container">
-                    <button class="copy-button">Copy table</button>
-                    <table id="dataTable">
-                      <thead>
-                      </thead>
-                      <tbody>
-                      </tbody>
-                    </table>
-                  </div>
-                  </div>
+    <!-- RIGHT GROUP -->
+    <div class="button-toolbar-right">
+      <button type="button" class="btn" id="downloadButton">Download chart as image</button>
+<button class="btn copy-button">Copy table</button>
+    </div>
+  </div>
+
+  <!-- CHART VIEW -->
+  <div id="chartView" class="chart-container">
+    <canvas id="bar_line_chart"></canvas>
+  </div>
+
+  <!-- TABLE VIEW -->
+  <div id="tableView" class="table-container">
+    <table id="dataTable">
+      <thead></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+</div>
                     <!-- <h4 ">Summary of <span class= "latest_year"></span> data</h4> -->
                     <button class="accordion-button"><h4 style="margin-top: 20px;" class="accordion-header">Summary of <span class= "latest_year"></span> data </h4>(click to expand or hide) </button>
                     <div class="panel">
@@ -159,11 +158,22 @@
                 <h3 style="margin-top: 30px;">Time trend: <span class="start_year"></span> <span>to</span> <span class="latest_year"></span></h3>
                 <!-- <p style="margin-bottom: 0px;">The following line chart shows data on this measure from <span class= "start_year" style="color:#3878c5; font-weight: bold;"></span> to <span class= "latest_year" style="color:#3878c5; font-weight: bold;"></span> split by <span class = "eq_grp_name" style="color:#3878c5; font-weight: bold;"></span>.</p> -->
                 <p style="margin-bottom: 15px;">The Northern Ireland (NI) value is added for comparison in a blue dashed line.</p>
-              <button class="btn" id="line_chartBtn">View chart</button>
-              <button class="btn" id="line_tableBtn">View table</button>
               
-              <div id="tableView2" class="table-container" style = "display: none;">
-                <button class="copy-button" id="copy-button2">Copy table</button>        
+              
+              <div class="button-toolbar">
+                <!-- LEFT GROUP -->
+                <div class="button-toolbar-left">
+                  <button class="btn" id="line_chartBtn">View chart</button>
+                  <button class="btn" id="line_tableBtn">View table</button>
+                </div>
+
+              <!-- RIGHT GROUP -->
+              <div class="button-toolbar-right">
+                <button class="btn copy-button" id="copy-button2">Copy table</button>        
+              </div>
+            </div>
+            
+              <div id="tableView2" class="table-container" style = "display: none; margin-bottom: 20px;">
                 <table id="dataTable2">
                     <thead>
                         <tr>
@@ -189,8 +199,8 @@
               <div>
                 <br>
                 <h3> Source</h3>
-                <p style="margin-bottom: 10px;">Data originally collected and presented in:<br> <a class = "source_name" id="sourceId" target="_blank"></a></p>
-                <p> Data presented here has been extracted from the NISRA Data Portal:<br> <a class="dataportal_name" id="portalId" target="_blank"></a></p>
+                <p style="margin-bottom: 10px;">Data originally collected and presented in:<br> <a class = "source_name" id="sourceId" target="_blank" rel="noopener noreferrer" ><span class="visually-hidden">(opens in a new tab)</span></a></p>
+                <p> Data presented here has been extracted from the NISRA Data Portal:<br> <a class="dataportal_name" id="portalId" target="_blank" rel="noopener noreferrer"><span class="visually-hidden">(opens in a new tab)</span></a></p>
               </div>
               
             <!-- accordion section    -->
@@ -202,48 +212,62 @@
                 <p id = "groupNotesParagraph" style="margin-bottom: 0px; font-weight: bold;font-size: 18px;">Notes on <span class = "eq_grp_name" style="font-weight: bold;font-size: 18px;"></span></p>
                 <p id = "notes_in_group"></p>
               </div> <!--close panel div-->
-  
-<button id="open-filters" type="button" class="btn btn-outline-secondary d-inline-flex align-items-center gap-1">
-  ☰ Select Breakdown
-</button>
+                <br> 
+                <h3 id = "otherheader"> </h3>
+                
+<div class="eq-footer-area">
 
-
+                <button id="open-filters" type="button" class="btn btn-outline-secondary d-inline-flex align-items-center gap-1">
+                ☰ View other equality groups
+                </button>
+                <h3 id="domains-title"
+                              style="display: none; font-weight: normal; font-size: 14pt; margin-bottom: 0; margin-top: 20px;">
+                            Explore other measures by
+                            <p class="eq_grp_name" style="color:#3878c5; font-weight: bold; margin-bottom: 10px;"></p>
+                          </h3>
+</div>
             </div> <!--closes main content div-->
           </div>
         </div>
       </div>
       </div>
 
+
 <div id="home-scrn" class="home-grid">
-  <!-- Left side: 70% width, main content -->
-  <div class="container my-3"><!-- caps width & centers -->          
-  <div id="home-scrn" class="row g-4 align-items-start"><!-- g-4 adds gap -->
-    
-    <!-- LEFT: home-main -->
-    <div class="col-12 col-lg-8">
-      <div class="home-main">
-        <h2 class="custom-header2">Explore NISRA Equality Data</h2>
-        <h3 class="fw-normal custom-header">
-  Select an equality group to see the information available
-</h3>
-        <!-- Section 75 buttons -->
-        <form id="selection-form-75group" style="list-style-type:none; padding:0;">
-          <!-- We’ll fill #s75-groups-container with buttons via JS -->
-           <div id="s75-groups-container" class="row g-3" style="margin-bottom: 14rem;"></div>
-        </form>
-        <div style="margin-top: auto;">
-          <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">Funded by</p>
-          <a href="https://www.executiveoffice-ni.gov.uk/" target="_blank"><img id="teo-logo" src="img/logo-colour-unstacked-teo.svg" alt="TEO logo. Clicking image takes user to the Executive Office website"></a>
+  <div class="container my-3">
+    <div class="row g-4 align-items-start">
+      
+      <!-- ABOUT / SHARE (new standalone column) -->
+      <div class="col-12" id="aboutShareMobile">
+        <div id="home_about_button" class="d-flex justify-content-end"></div>
+      </div>
+
+      <!-- LEFT COLUMN: home buttons -->
+      <div class="col-12 col-lg-8" id="leftCol">
+        <div class="home-main">
+          <h2 class="custom-header2">Explore NISRA Equality Data</h2>
+          <h3 class="fw-normal custom-header">
+            Select an equality group to see the information available
+          </h3>
+
+          <form id="selection-form-75group" style="list-style-type:none; padding:0;">
+            <div id="s75-groups-container" class="row g-3"></div>
+          </form>
+
+          <!-- LOGO for LARGE screens: appears beneath the home buttons -->
+          <div class="logo-wrapper d-none d-lg-block mt-4">
+            <div class="logo-div">
+              <p class="mb-2" style="font-size: 1.2rem; margin-bottom: 0.5rem;">Funded by</p>
+              <a href="https://www.executiveoffice-ni.gov.uk/" target="_blank" rel="noopener noreferrer"><img id="teo-logo" src="img/logo-colour-unstacked-teo.svg" alt="TEO logo. Clicking image takes user to the Executive Office website"></a>
+            </div>
+          </div>
+          <!-- /LOGO large -->
         </div>
       </div>
-    </div>
 
-    <!-- RIGHT: home-side -->
-    <div class="col-12 col-lg-4" style="padding-right: 0;">
-      <div class="home-side">
-        <div class="home-side-top mb-3">
-          <div id="home_about_button" class="d-flex justify-content-end"></div>
-          <br />
+      <!-- RIGHT COLUMN: search + all measures -->
+      <div class="col-12 col-lg-4" id="rightCol">
+        <div class="home-side">
           <div class="div-style-bar p-4" style="margin-top: 0;">
             <h4 class="text-dark mb-3">Search by keyword or theme</h4>
             <div class="search-container" id="search-container">
@@ -251,22 +275,28 @@
               <div id="dropdown"></div>
             </div>
           </div>
-           </div>
 
-        <div class="home-side-bottom">
           <form>
             <div id="all-meas-btn" class="div-style-bar p-4">
-              <button class="btn all-measures-btn w-100" name="allmeasures">View all available measures</button>
+              <button class="btn all-measures-btn w-100" name="allmeasures">
+                View all available measures
+              </button>
             </div>
-            </form>
+          </form>
+
+          <!-- LOGO for SMALL/MEDIUM screens: appears beneath "View all available measures" -->
+          <div class="logo-wrapper d-block d-lg-none mt-3">
+            <div class="logo-div">
+              <p class="mb-2" style="font-size: 1.2rem; margin-bottom: 0.5rem;">Funded by</p><a href="https://www.executiveoffice-ni.gov.uk/" target="_blank" rel="noopener noreferrer"><img id="teo-logo" src="img/logo-colour-unstacked-teo.svg" alt="TEO logo. Clicking image takes user to the Executive Office website"></a>
+            </div>
+          </div>
+          <!-- /LOGO small -->
         </div>
       </div>
-</div>
 
+    </div>
   </div>
 </div>
-
-      </div>
       <div id="all-measures-scrn">
       <div class="container-fluid container-sm layout-container-inter">
           <div class="main-body">
@@ -275,7 +305,14 @@
               <nav id="breadcrumb-all-measures" class="breadcrumb"></nav>
               <div id="allmeas_about_button"></div>
             </div>
+            <div class="col-12 col-lg-8 text-center mx-auto">
+              <div class="text-lg-start">
+                <h2 class="mb-3">All Measures</h2>
 
+                <h4 class="mb-0 text-start">Click a cell in the matrix below to view the equality statistics.</h4>
+                <h4 class="text-start">If a cell is empty, equality statistics are not currently available.</h4>
+              </div>
+            </div>
 
             
             <div class="all-measures-div">
@@ -297,14 +334,6 @@
               </select>
             </div>
                 </div>
-                <div class="col-12 col-lg-8 text-center mx-auto">
-                <div class="text-lg-start">
-                  <h2 class="mb-1">All Measures Page</h2>
-
-                  <h5 class="mb-0 text-start">Click a cell in the matrix below to view the equality statistics.</h5>
-                  <h5 class="text-start">If a cell is empty, equality statistics are not currently available.</h5>
-                </div>
-              </div>
               </div>
 
               
@@ -312,11 +341,14 @@
   Measures available
 </h2>
 
-              <form id="selection-form-75group" style="list-style-type: none; padding: 0;">
-                <div id="all-measures-container">
-                  <table id="all-meas-tbl" border="1"></table>
-                </div>
-              </form>
+<form id="selection-form-75group" style="list-style-type: none; padding: 0;">
+  <div id="all-measures-container" class="table-container">
+    <table id="all-meas-tbl">
+      <thead></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</form>
 
             </div>
           </div>
@@ -373,7 +405,7 @@
 <div class="row align-items-start gx-3 gx-lg-3 header-row">
   <!-- Left: selector -->
   <div class="col-12 col-lg-5 left-section">
-    <h4 class="mb-2">Group measures by:</h4>
+    <h4 class="mb-0">Filter measures by:</h4>
     <div class="toggle-container">
 
             <select id="multiple-checkboxes" class="form-select w-100" multiple="multiple">
@@ -431,23 +463,23 @@
         <!-- 3 column section -->
         <div class="row mb-3">
           <div class="col-md-4">
-            <h5 class="footer-header">Data Tools</h5>
+            <h4 class="footer-header">Data Tools</h4>
             <ul class="list-unstyled">
-              <li><a href="https://explore.nisra.gov.uk/local-stats/" target="_blank">Local Statistics Explorer</a></li>
-              <li><a href="https://data.nisra.gov.uk" target="_blank">Data Portal</a></li>
-              <li><a href="https://build.nisra.gov.uk/en/" target="_blank">Census Flexible Table Builder</a></li>
+              <li><a href="https://explore.nisra.gov.uk/local-stats/" target="_blank" rel="noopener noreferrer">Local Statistics Explorer <span class="visually-hidden">(opens in a new tab)</span></a></li>
+              <li><a href="https://data.nisra.gov.uk" target="_blank" rel="noopener noreferrer">Data Portal <span class="visually-hidden">(opens in a new tab)</span></a></li>
+              <li><a href="https://build.nisra.gov.uk/en/" target="_blank" rel="noopener noreferrer">Census Flexible Table Builder <span class="visually-hidden">(opens in a new tab)</span></a></li>
             </ul>
           </div>
           <div class="col-md-4">
-            <h5 class="footer-header">Corporate</h5>
+            <h4 class="footer-header">Corporate</h4>
             <ul class="list-unstyled">
-              <li><a href="https://www.nisra.gov.uk/" target="_blank">NISRA website</a></li>
-              <li><a href="https://www.nisra.gov.uk/statistics/about-nisra/careers" target="_blank">Careers</a></li>
-              <li><a href="https://www.nisra.gov.uk/contact" target="_blank">Contact</a></li>
+              <li><a href="https://www.nisra.gov.uk/" target="_blank" rel="noopener noreferrer">NISRA website <span class="visually-hidden">(opens in a new tab)</span></a></li>
+              <li><a href="https://www.nisra.gov.uk/about-us/careers" target="_blank" rel="noopener noreferrer">Careers <span class="visually-hidden">(opens in a new tab)</span></a></li>
+              <li><a href="https://www.nisra.gov.uk/contact" target="_blank" rel="noopener noreferrer">Contact <span class="visually-hidden">(opens in a new tab)</span></a></li>
             </ul>
           </div>
           <div class="col-md-4" style="padding-bottom: 2rem">
-            <h5 class="footer-header">Follow</h5>
+            <h4 class="footer-header">Follow</h4>
             <ul class="list-inline">
               <li class="list-inline-item">
                 <a href="https://www.facebook.com/nisra.gov.uk">
@@ -475,15 +507,15 @@
 
         <!-- Horizontal list with separators -->
         <ul class="list-inline footer-links text-center mb-0">
-          <li class="list-inline-item"><a href="https://www.nisra.gov.uk/crown-copyright" target="_blank">© Crown Copyright</a></li>
+          <li class="list-inline-item"><a href="https://www.nisra.gov.uk/crown-copyright" target="_blank" rel="noopener noreferrer">© Crown Copyright</a></li>
           <li class="list-inline-item">|</li>
-          <li class="list-inline-item"><a href="https://www.nisra.gov.uk/terms-and-conditions" target="_blank">Terms and conditions</a></li>
+          <li class="list-inline-item"><a href="https://www.nisra.gov.uk/terms-and-conditions" target="_blank" rel="noopener noreferrer">Terms and conditions</a></li>
           <li class="list-inline-item">|</li>
-          <li class="list-inline-item"><a href="https://www.nisra.gov.uk/cookies" target="_blank">Cookies</a></li>
+          <li class="list-inline-item"><a href="https://www.nisra.gov.uk/cookies" target="_blank" rel="noopener noreferrer">Cookies</a></li>
           <li class="list-inline-item">|</li>
-          <li class="list-inline-item"><a href="https://www.nisra.gov.uk/nisra-privacy-notice" target="_blank">Privacy</a></li>
+          <li class="list-inline-item"><a href="https://www.nisra.gov.uk/nisra-privacy-notice" target="_blank" rel="noopener noreferrer">Privacy</a></li>
           <li class="list-inline-item">|</li>
-          <li class="list-inline-item"><a href="https://datavis.nisra.gov.uk/dissemination/accessibility-statement-visualisations.html" target="_blank">Accessibility statement</a></li>
+          <li class="list-inline-item"><a href="https://datavis.nisra.gov.uk/dissemination/accessibility-statement-visualisations.html" target="_blank" rel="noopener noreferrer">Accessibility statement</a></li>
         </ul>
 
       </div>
@@ -524,7 +556,7 @@
   let lookupTableDisplayGrp = data.lookup_table_display_grp;
   let lookupTableMeasureTitle = data.lookup_table_measure_title;
   let lookupTableDatasetLong = data.lookup_table_dataset_long;
-
+console.log("lookupTableMeasureTitle", lookupTableMeasureTitle)
   function filterVariablesByName(data, matchStrings) {
     if (!Array.isArray(matchStrings) || matchStrings.length !== 2) {
         throw new Error("matchStrings must be an array of exactly two strings");
@@ -929,8 +961,36 @@ function wrapByCharCountHTML(text, maxChars = 17) {
   return `${escapeHtml(line1)}<br>${escapeHtml(line2)}`;
 }
 
+
+(function rememberParams() {
+  try {
+    const u = new URL(window.location.href);
+    const s75 = u.searchParams.get('s75');
+    const key = u.searchParams.get('key');
+    const home = u.searchParams.get('home');
+    const allmeasures = u.searchParams.get('allmeasures');
+
+    // Only save when at least one relevant param exists
+    if (s75 || key || home || allmeasures) {
+      const payload = {
+        href: u.toString(),
+        s75,
+        key,
+        home,
+        allmeasures,
+        ts: Date.now()
+      };
+      localStorage.setItem('lastParams', JSON.stringify(payload));
+    }
+  } catch (e) {
+    console.warn('rememberParams failed:', e);
+  }
+})();
+
 document.addEventListener('DOMContentLoaded', function () {
   
+  document.getElementById("otherheader").innerHTML = `Explore more on ${measureTitle}`;
+
   buildBreadcrumb();
  
   if (location.href.includes('key')) {
@@ -991,6 +1051,19 @@ for (const code in lookup_table_dept_name) {
     department: codeToLongName[deptCode] || deptCode // long name or fallback
   };
 }
+
+// Track last interaction type for focus management
+let lastInteractionWasKeyboard = false;
+
+document.addEventListener('keydown', (e) => {
+  // Set to true for navigation keys
+  if (['Tab', 'Enter', ' ', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+    lastInteractionWasKeyboard = true;
+  }
+});
+
+document.addEventListener('mousedown', () => lastInteractionWasKeyboard = false);
+document.addEventListener('touchstart', () => lastInteractionWasKeyboard = false);
 
 
 /**
@@ -1092,12 +1165,27 @@ fetch('./measure_group_lookup.json')
   .catch(error => console.error('Error loading JSON:', error));
 
 // Multiselect initialization
-$('#multiple-checkboxes').multiselect({
+const $multiselect = $('#multiple-checkboxes');
+$multiselect.multiselect({
   includeSelectAllOption: false,
   buttonWidth: '180px',
   nonSelectedText: 'Department', // Placeholder text
   buttonText: function(options, select) {
     return 'Department'; // Always show this text
+  },
+  onDropdownShow: function(event) {
+    this.$button.attr('aria-expanded', 'true');
+  },
+  onDropdownHide: function(event) {
+    this.$button.attr('aria-expanded', 'false');
+  }
+});
+
+// Ensure initial state for rotate arrow
+$multiselect.each(function() {
+  const button = $(this).siblings('.btn-group').find('.dropdown-toggle');
+  if (button.length) {
+    button.attr('aria-expanded', 'false');
   }
 });
 
@@ -1216,6 +1304,12 @@ function restoreBackgroundInert() {
 /** ---- Accessible overlay management ---- **/
 
 function closeAllNestedOverlays() {
+  // Reset arrow state on the opener button
+  const opener = document.body.__overlayOpener;
+  if (opener && opener instanceof HTMLElement) {
+    opener.setAttribute('aria-expanded', 'false');
+  }
+
   // Remove panel and backdrop
   document.querySelectorAll(".nested-overlay-panel").forEach(p => p.remove());
   document.querySelectorAll(".overlay-backdrop").forEach(b => b.remove());
@@ -1224,12 +1318,13 @@ function closeAllNestedOverlays() {
   restoreBackgroundInert();
   document.body.classList.remove('body--no-scroll');
 
-  // Restore focus to the opener if we saved it
-  const opener = document.body.__overlayOpener;
-  if (opener && opener instanceof HTMLElement) {
-    opener.focus();
-    delete document.body.__overlayOpener;
+  // Restore focus to the opener only for keyboard navigation
+  if (lastInteractionWasKeyboard) {
+    if (opener && opener instanceof HTMLElement) {
+      opener.focus();
+    }
   }
+  delete document.body.__overlayOpener;
 
   // Remove global key handler
   document.removeEventListener('keydown', trapKeydown, true);
@@ -1279,6 +1374,11 @@ function trapKeydown(e) {
 
 function openNestedOverlay(anchorEl, innerHtml, { label = '', labelledById = '' } = {}) {
   closeAllNestedOverlays();
+
+  // Set open state for arrow rotation
+  if (anchorEl && anchorEl instanceof HTMLElement) {
+    anchorEl.setAttribute('aria-expanded', 'true');
+  }
 
   // Save the opener to restore focus later
   document.body.__overlayOpener = anchorEl;
@@ -1338,12 +1438,14 @@ function openNestedOverlay(anchorEl, innerHtml, { label = '', labelledById = '' 
   document.body.classList.add('body--no-scroll');
   makeBackgroundInertExcept([panel, backdrop]);
 
-  // Focus handling: move focus to the first focusable in panel, else panel itself
-  const focusables = getFocusableElements(panel);
-  if (focusables.length) {
-    focusables[0].focus();
-  } else {
-    panel.focus();
+  // Focus handling: move focus to the first focusable in panel only for keyboard navigation
+  if (lastInteractionWasKeyboard) {
+    const focusables = getFocusableElements(panel);
+    if (focusables.length) {
+      focusables[0].focus();
+    } else {
+      panel.focus();
+    }
   }
 
   // Enable keyboard trap
@@ -1419,7 +1521,8 @@ function renderButtons(dataArray) {
               type="button"
               class="btn btn-primary btn-block text-left btn-accordion nested-overlay-trigger"
               data-overlay-id="${overlayId}"
-              data-overlay-title-id="${titleId}">
+              data-overlay-title-id="${titleId}"
+              aria-expanded="false">
               ${groupName}
             </button>
           </div>
@@ -1430,7 +1533,7 @@ function renderButtons(dataArray) {
     // Store accessible overlay content
     window.__nestedOverlayContent[overlayId] = `
       <div class="p-2">
-        <h2 id="${titleId}" class="h5 m-0">${groupName}</h2>
+        <h2 id="${titleId}" class="h4 m-0">${groupName}</h2>
         <div class="mt-2">
           ${childButtons}
         </div>
@@ -1446,6 +1549,7 @@ function renderButtons(dataArray) {
   // Wire up overlay triggers
   buttonRow.querySelectorAll(".nested-overlay-trigger").forEach(btn => {
     btn.addEventListener("click", () => {
+      btn.setAttribute("aria-expanded", "true");
       const id = btn.getAttribute("data-overlay-id");
       const labelledById = btn.getAttribute("data-overlay-title-id");
       openNestedOverlay(btn, window.__nestedOverlayContent[id] || "", { labelledById });
@@ -1574,6 +1678,7 @@ document.addEventListener('click', function (e) {
     all_meas_scrn.style.display = "block";
   }
 
+  
   // if block denoting action when a button is clicked from the home screen - returns measures within s75 selection
   if (window_url.indexOf("?") > -1 && window_url.indexOf("home=") > -1) {
     home_scrn.style.display = "none";
@@ -1814,7 +1919,6 @@ function updateMeasuresHeaderForDepartments(selectedDepts, allDepts) {
   headerEl.textContent = `Measures available for ${formatted}`;
 }
 
-
 $(function () {
   // Populate multiselect with long department names from enrichedLookups
   const $deptSelect = $('#departmentSelect');
@@ -1851,77 +1955,99 @@ $(function () {
     }
   });
 
+  // -------------------------------
+  // Table references
+  // -------------------------------
   const table = document.getElementById('all-meas-tbl');
+  const thead = table.querySelector('thead');
+  const tbody = table.querySelector('tbody');
 
-  // Create header row
-  const headerRow = document.createElement('tr');
-  const thMeasure = document.createElement('th');
-  thMeasure.textContent = 'Measure';
-  headerRow.appendChild(thMeasure);
+  // -------------------------------
+  // Build table header
+  // -------------------------------
+  function buildHeader() {
+    thead.innerHTML = ''; // clear any existing header
 
-  for (const grpKey in lookupTableDisplayGrp) {
-    const th = document.createElement('th');
-    th.textContent = lookupTableDisplayGrp[grpKey][0];
-    headerRow.appendChild(th);
+    const headerRow = document.createElement('tr');
+
+    const thMeasure = document.createElement('th');
+    thMeasure.textContent = 'Measure';
+    headerRow.appendChild(thMeasure);
+
+    for (const grpKey in lookupTableDisplayGrp) {
+      const th = document.createElement('th');
+      th.textContent = lookupTableDisplayGrp[grpKey][0];
+      headerRow.appendChild(th);
+    }
+
+    thead.appendChild(headerRow);
   }
-  table.appendChild(headerRow);
 
-  // Render table rows filtered by selected departments
+  // -------------------------------
+  // Render table body (filtered)
+  // -------------------------------
   function renderTable(selectedDepartmentsArray = []) {
     // Clear previous rows
-    table.querySelectorAll('tr:not(:first-child)').forEach(row => row.remove());
+    tbody.innerHTML = '';
 
     for (const measureKey in lookupTableMeasureTitle) {
       const department = enrichedLookups[measureKey]?.department?.trim();
       if (!department) continue;
 
-      // Show all if no selection OR filter by selected departments
-      if (selectedDepartmentsArray.length === 0 || selectedDepartmentsArray.includes(department)) {
-        const row = document.createElement('tr');
+      const includeRow =
+        selectedDepartmentsArray.length === 0 ||
+        selectedDepartmentsArray.includes(department);
 
-        const tdTitle = document.createElement('td');
-        tdTitle.classList.add('wrap-cell');
-        tdTitle.textContent = lookupTableMeasureTitle[measureKey][0];
-        row.appendChild(tdTitle);
+      if (!includeRow) continue;
 
-        for (const grpKey in lookupTableDisplayGrp) {
-          const td = document.createElement('td');
+      const row = document.createElement('tr');
 
-          if (availableLinks[measureKey]?.includes(grpKey)) {
-            td.style.cursor = 'pointer';
-            td.setAttribute('tabindex', '0'); // Make cell focusable
-            td.setAttribute('role', 'link');  // Screen reader: behaves like a link
+      // Measure title cell
+      const tdTitle = document.createElement('td');
+      tdTitle.classList.add('wrap-cell');
+      tdTitle.textContent = lookupTableMeasureTitle[measureKey][0];
+      row.appendChild(tdTitle);
 
-            // Add descriptive label for screen readers
-            const measureName = lookupTableMeasureTitle[measureKey][0];
-            const groupName = lookupTableDisplayGrp[grpKey][0];
-            td.setAttribute('aria-label', `Click for ${measureName} by ${groupName}`);
+      // Group columns
+      for (const grpKey in lookupTableDisplayGrp) {
+        const td = document.createElement('td');
 
-            // Click navigation
-            td.addEventListener('click', () => {
+        if (availableLinks[measureKey]?.includes(grpKey)) {
+          td.style.cursor = 'pointer';
+          td.setAttribute('tabindex', '0'); // focusable
+          td.setAttribute('role', 'link');  // SR hint
+
+          const measureName = lookupTableMeasureTitle[measureKey][0];
+          const groupName = lookupTableDisplayGrp[grpKey][0];
+          td.setAttribute('aria-label', `Click for ${measureName} by ${groupName}`);
+
+          // Click navigation
+          td.addEventListener('click', () => {
+            window.location.href = `?s75=${grpKey}&key=${measureKey}`;
+          });
+
+          // Keyboard navigation
+          td.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
               window.location.href = `?s75=${grpKey}&key=${measureKey}`;
-            });
+            }
+          });
 
-            // Keyboard navigation
-            td.addEventListener('keydown', (event) => {
-              if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                window.location.href = `?s75=${grpKey}&key=${measureKey}`;
-              }
-            });
-
-            td.innerHTML = '<div class="navy-dot"></div>';
-          }
-
-          row.appendChild(td);
+          td.innerHTML = '<div class="navy-dot"></div>';
         }
-        table.appendChild(row);
+
+        row.appendChild(td);
       }
+
+      tbody.appendChild(row);
     }
   }
 
-  // Initial header and table render
-  // Default header: "No filters applied - showing all measures"
+  // -------------------------------
+  // Initial render
+  // -------------------------------
+  buildHeader();
   updateMeasuresHeaderForDepartments([], uniqueDepartments);
   renderTable();
 });
@@ -2001,7 +2127,23 @@ window.closeSidebar = function () {
   document.body.classList.remove('sidebar-open');
 };
 
+const breakdownBtn = document.getElementById("open-filters"); // or your actual button
+const container = document.getElementById("top-buttons-container");
+
+breakdownBtn.addEventListener("click", () => {
+  container.inert = false;
+  sidebar.inert = false;
+
+  // Move focus into the first option
+  const firstBtn = container.querySelector("button");
+  if (firstBtn) firstBtn.focus();
+});
+
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
+  
   const btn = document.getElementById('open-filters');
   if (btn) btn.addEventListener('click', window.openSidebar);
 
@@ -2012,6 +2154,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // (Optional) Focus the first focusable element when opened
   const sidebar = document.getElementById('sidebar');
+  
   const focusFirst = () => {
     const focusable = sidebar?.querySelector(
       'button, a, input, select, textarea, [tabindex]:not([tabindex="-1"])'
@@ -2024,6 +2167,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+const sidebar = document.getElementById('sidebar');
+sidebar.inert = true;
 
 // action taken to update url once a s75 measure given - this being actioned triggers the below if block and populates the dest page based on the key and s75 in the url
 const urlParams = new URLSearchParams(window.location.search);
@@ -2105,11 +2251,18 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
       group = localStorage.getItem("s75");
       // Retrieve the stored 's75' value
     }
-      if (window.location.href != base_url + "?s75=" + group + "&key=" + ind) {
-    // If the URL is not already formatted correctly with the selected values
-    window.location.href = base_url + "?s75=" + group + "&key=" + ind;
-    // Redirect to the updated URL to ensure correct parameters are set
-  }}}
+    //   if (window.location.href != base_url + "?s75=" + group + "&key=" + ind) {
+    // // If the URL is not already formatted correctly with the selected values
+    // window.location.href = base_url + "?s75=" + group + "&key=" + ind;
+    // // Redirect to the updated URL to ensure correct parameters are set
+
+    //FIX: Replace the redirect with a safe URL update (MG)
+      const expectedUrl = `${base_url}?s75=${group}&key=${ind}`;
+      if (window.location.href !== expectedUrl) {
+        history.replaceState(null, "", expectedUrl);
+     }
+
+  }}
 
   if (window_url.indexOf("?") > -1) {
   // run if there is a '?' in the url
@@ -2295,6 +2448,25 @@ function getS75InclusionsFromLineData(data, invertedLookupEqCode) {
     return inclusions;
 }
 
+// Clean value function to handle various non-numeric cases (MG)
+function cleanValue(v, ni) {
+    if (
+        v === null ||
+        v === undefined ||
+        v === "NA" ||
+        v === "N/A" ||
+        v === "" ||
+        v === "-" ||
+        v === "*" ||
+        Number.isNaN(v) ||
+        (v === "0" && Number(ni) > 0) 
+    ) {
+        return null;
+    }
+    return Number(v);
+}
+
+
   Chart.register(ChartDataLabels);
 
   // determine maxValue of the current bar data
@@ -2417,6 +2589,34 @@ const niBelowAxisLabelPlugin = {
 // register plugin
 Chart.register(niBelowAxisLabelPlugin);
 
+
+function wrapByChars(str, max = 18) {
+  if (!str) return [''];
+  const words = String(str).split(' ');
+  const lines = [];
+  let line = '';
+  for (const w of words) {
+    const trial = line ? line + ' ' + w : w;
+    if (trial.length > max) { if (line) lines.push(line); line = w; }
+    else { line = trial; }
+  }
+  if (line) lines.push(line);
+  return lines;
+}
+
+function getBarWidth(ctx) {
+  const chart = ctx.chart;
+  const meta = chart.getDatasetMeta(ctx.datasetIndex);
+  const rect = meta.data[ctx.dataIndex];
+
+  // x scale transforms value → pixels
+  const xScale = chart.scales.x;
+  const start = xScale.getPixelForValue(0);
+  const end = xScale.getPixelForValue(ctx.dataset.data[ctx.dataIndex]);
+
+  return Math.abs(end - start);
+}
+
   // Bar chart function
   function createBarChart(cat_labels, bar_data, ni_line) {
     const chartCanvas = document.getElementById('bar_line_chart');
@@ -2472,23 +2672,46 @@ Chart.register(niBelowAxisLabelPlugin);
             label:`Group value`,
             data: bar_data,
             backgroundColor: '#00205B',
-            datalabels: {
-              display: true,
-              anchor: 'start',
-              align: 'end',
-              formatter: (value) => `${value}%`,
-              color: '#fff',      // Set the label color
-              font: {
-                size: 22
-              }
-            },
+          // inside your dataset
+          datalabels: {
+  display: true,
+
+  // Decide inside/outside based on *actual bar width in pixels*
+  anchor: (ctx) => {
+    const width = getBarWidth(ctx);
+    const THRESH_PX = 50;      // ← adjust this value
+    return width < THRESH_PX ? 'end' : 'start';
+  },
+
+  align: (ctx) => {
+    const width = getBarWidth(ctx);
+    const THRESH_PX = 50;
+    return width < THRESH_PX ? 'right' : 'right';
+  },
+
+  offset: (ctx) => {
+    const width = getBarWidth(ctx);
+    const THRESH_PX = 50;
+    return width < THRESH_PX ? 5 : 4;
+  },
+
+  color: (ctx) => {
+    const width = getBarWidth(ctx);
+    const THRESH_PX = 50;
+    return width < THRESH_PX ? '#000' : '#fff';
+  },
+
+  formatter: (value) => `${value}%`,
+  font: { size: 22 }
+},
+
             order: 2
           }]
         },
         options: {
           indexAxis: 'y',
           responsive: true,
-          maintainAspectRatio: false, // ✅ REQUIRED
+          maintainAspectRatio: false, 
           layout: {
             padding: {
               bottom: 70
@@ -2518,31 +2741,64 @@ Chart.register(niBelowAxisLabelPlugin);
             annotation: annotationsConfig,
           },
           scales: {
-            y: {
-              grid: {
-                display: false
-              },
-              border: {
-                display: true,
-                width: 3,
-                color: '#00205B'
-              },
-              ticks: {
-                display: true,
-                font: {
-                  size: 16
-                }
-              }
-            },
-          x: {
-            grid: { display: false },
-            border: { display: false },
-            min: 0,
-            max: maxValue + barPadding,
-            ticks: { display: false }
+  y: {
+    grid: { display: false },
+    border: {
+      display: true,
+      width: 3,
+      color: '#00205B'
+    },
+    ticks: {
+      display: true,
+      autoSkip: false,          // ← don't hide long labels
+      padding: 6,
+      crossAlign: 'near',
+      font: { size: 16 },
+      callback: (value, index) => wrapByChars(String(cat_labels[index]), 18)
+    },
+
+    // ⬇️ ensure the y-axis reserves enough width for the longest wrapped line
+    afterFit(scale) {
+      try {
+        const ctx = scale.ctx;
+        ctx.save();
+
+        // Match tick font exactly
+        const tickFont = Chart.helpers.toFont(scale.options.ticks.font);
+        ctx.font = tickFont.string;
+
+        let maxLineWidth = 0;
+        const maxCharsPerLine = 18; // keep in sync with your callback
+
+        for (const lbl of cat_labels) {
+          const lines = wrapByChars(String(lbl), maxCharsPerLine);
+          for (const line of lines) {
+            const w = ctx.measureText(line).width;
+            if (w > maxLineWidth) maxLineWidth = w;
           }
         }
+
+        const tickPadding = scale.options.ticks?.padding ?? 6;
+        const safety = 12; // a bit of extra breathing room
+        const desired = Math.ceil(maxLineWidth + tickPadding + safety);
+
+        if (scale.width < desired) scale.width = desired;
+
+        ctx.restore();
+      } catch (e) {
+        // fail-safe: no-op if anything goes wrong
       }
+    }
+  },
+
+  x: {
+    grid: { display: false },
+    border: { display: false },
+    min: 0,
+    ticks: { display: false }
+  }
+}
+      } 
     });
   } else {
     barInfoContainer.style.display = "none";
@@ -2550,6 +2806,7 @@ Chart.register(niBelowAxisLabelPlugin);
       '<center style="font-weight:bold;font-size:18pt;">Current year data is not available</center>';
   }
 };
+
 
   const latest_year = document.querySelectorAll('.latest_year');
   for (let i = 0; i < latest_year.length; i++) {
@@ -2653,6 +2910,26 @@ Chart.register(niBelowAxisLabelPlugin);
   }
 
 
+  // Link to your Notes section/page (adjust as needed) (MG)
+  const NOTES_URL = '#notes'; // e.g., '/methodology/notes' or '#notes'
+
+  /**
+   * Returns the HTML for the CI caveat note (or an empty string if no CIs).
+   * - hasCIs: true if LCI/UCI exist in the current view
+   */
+  function buildCiNote(hasCIs) {
+    if (!hasCIs) return '';
+    return `
+      <div style="margin-top: 10px;" class="ci-note" role="note" aria-label="Interpretation note">
+        <strong>Note:</strong> 
+        These results are based on a sample survey, not the entire population, so they are estimates and include some uncertainty. The lower confidence
+        interval (LCI) and upper confidence interval (UCI) show the range within which the true population value is likely to lie. Differences between groups
+        shown in tables, charts or commentary may not be statistically significant (that is, they may be due to normal sampling variation).
+      </div>
+    `;
+  }
+
+
   function populateTable() {
     const tableBody = document.getElementById("dataTable").getElementsByTagName("tbody")[0];
     dataTable.classList.add('dest-table');
@@ -2665,6 +2942,9 @@ Chart.register(niBelowAxisLabelPlugin);
     const allLciNull = eqGrpLciCatBarData.every(val => val ===null);
     const allUciNull = eqGrpUciCatBarData.every(val => val ===null);
     const realTabValCount = eqGrpCatBarData.filter(value => value !== null).length;
+
+    // Do we have any confidence intervals for this dataset? (MG) - if we have at least 1 real value and not all LCI or UCI values are null, then we have CIs to display
+    const hasCIs = (realTabValCount >= 1) && (!allLciNull || !allUciNull);
 
     if (realTabValCount >=1){
 
@@ -2721,24 +3001,51 @@ Chart.register(niBelowAxisLabelPlugin);
 
           tableBody.appendChild(row);
 
-          // Store data as an object
+          // // Store data as an object
+          // tableDataArray.push({
+          //     category: eqGrpCatLabels[i],
+          //     percentage: parseFloat(eqGrpCatBarData[i]), // Convert to number
+          //     niAverage: parseFloat(niValue) // Convert to number
+          // });
+          // Store cleaned data as an object - to replace the code above (MG)
+          const cleanedPercentage = cleanValue(eqGrpCatBarData[i], niValue);
+          const cleanedNI = cleanValue(niValue, niValue);
+
           tableDataArray.push({
               category: eqGrpCatLabels[i],
-              percentage: parseFloat(eqGrpCatBarData[i]), // Convert to number
-              niAverage: parseFloat(niValue) // Convert to number
+              percentage: cleanedPercentage,
+              niAverage: cleanedNI
           });
-    }}else{
+            
+        }}else{
       document.getElementById('dataTable').innerHTML = '<center style="font-weight: bold; font-size: 18pt;">Current year data is not available for this measure</center>';
 
     }
 
     // Generate summary using the new function
-    const summaryText = generateSummaryText(tableDataArray, niAvgLine, measureTitle, eqGrpDisplayName, how_measure);
+    const summaryText = generateSummaryText(tableDataArray, niAvgLine, measureTitle, eqGrpDisplayName, how_measure, hasCIs);
+
+    // NEW: Build the CI note (only when CIs exist) (MG)
+    const noteHtml = buildCiNote(hasCIs);
 
     // Update all elements with the class 'data_summary'
     document.querySelectorAll('.data_summary').forEach(el => {
         el.innerHTML = summaryText;
     });
+
+    // NEW: Add the same note under the table (MG) - check if it already exists to avoid duplicates when re-populating the table
+    const tableEl = document.getElementById("dataTable");
+    let tableNoteEl = document.getElementById("table_ci_note");
+    if (!tableNoteEl) {
+      tableNoteEl = document.createElement("div");
+      tableNoteEl.id = "table_ci_note";
+      tableNoteEl.className = "ci-note";
+      // Insert immediately after the table
+      tableEl.insertAdjacentElement('afterend', tableNoteEl);
+    }
+    tableNoteEl.innerHTML = noteHtml; // if noteHtml === '' this effectively hides 
+
+
 
     console.log("Summary:", summaryText); // Debugging log
 
@@ -2838,18 +3145,27 @@ for (let i = 0; i < yearLabels.length; i++) {
     
     let yearData = {
         year: parseInt(year), // Convert to number
+        yearLabel: year, // Keep original label for display
         data: {},
-        niAverage: parseFloat(niLineData[i]) || 0
+        //niAverage: parseFloat(niLineData[i]) || 0 - removed to use cleanValue function (MG)
+        niAverage: cleanValue(niLineData[i], niLineData[i])
     };
 
     // Assign values for each age group
-    Object.keys(eqGrpCatLineData4).forEach(group => {
-        yearData.data[group] = parseFloat(eqGrpCatLineData4[group][i]) || 0;
-    });
+    Object.keys(eqGrpCatLineData4).forEach(group => {  
+        //yearData.data[group] = parseFloat(eqGrpCatLineData4[group][i]) || 0; - removed to use cleanValue function (MG)
+        const raw = eqGrpCatLineData4[group][i]; 
+        const cleaned = cleanValue(raw, niLineData[i]); // or cleanValue(raw, raw) 
+        yearData.data[group] = cleaned;
+      });
 
     tableDataArray2.push(yearData);
 }
-console.log("Tests:", tableDataArray2);
+//console.log("Tests:", tableDataArray2);
+
+console.log("NI DATA RAW:", niLineData);
+console.log("TABLE DATA:", tableDataArray2);
+
 
 const summaryText2 = generateSummaryText2(
     tableDataArray2, 
@@ -2902,9 +3218,32 @@ function prepareMeasureText(str) {
 }
 
 
+// Detect whether the input number contains a decimal, then format accordingly
+function formatLikeInput(num) {
+    if (num === null || num === undefined || isNaN(num)) return num;
+
+    const hasDecimal = String(num).includes(".");
+
+    return hasDecimal
+        ? Number(num).toFixed(1)   // keep 1 decimal place
+        : Number(num).toFixed(0);   // keep whole number
+}
+
+// Same logic but for differences (absolute values)
+function formatDifference(num) {
+    if (num === null || num === undefined || isNaN(num)) return num;
+
+    const hasDecimal = String(num).includes(".");
+
+    return hasDecimal
+        ? Number(num).toFixed(1)
+        : Number(num).toFixed(0);
+}
+``
+
 
 // Function to generate summary in the requested format
-function generateSummaryText(tableData, niAverage, measureTitle, eqGrpDisplayName, howMeasure) {
+function generateSummaryText(tableData, niAverage, measureTitle, eqGrpDisplayName, howMeasure, hasCIs = false) {
     if (!Array.isArray(tableData) || tableData.length === 0) {
         console.warn("No valid data to summarize.");
         return "No data available for summary.";
@@ -2930,8 +3269,8 @@ function generateSummaryText(tableData, niAverage, measureTitle, eqGrpDisplayNam
 
         categoriesWithDiff.push({
             category: category,
-            percentage: percentage.toFixed(0),
-            difference: Math.abs(diff).toFixed(0),
+            percentage: formatLikeInput(percentage), // Format percentage to 1 decimal place where appropriate (MG)
+            difference: formatDifference(Math.abs(diff)), // Format difference to 1 decimal place where appropriate (MG)
             direction: direction,
             isValid: true
         });
@@ -2961,7 +3300,7 @@ function generateSummaryText(tableData, niAverage, measureTitle, eqGrpDisplayNam
     if (niAverage !== 100) {
 
         summaryText = `${measureTitle} ${latestYear}<br>`;
-        summaryText += `This measure records the <span>${prepareMeasureText(howMeasure)}</span> The NI value for ${measureTitle} is ${niAverage}%.<br>`;
+        summaryText += `This measure records the <span>${prepareMeasureText(howMeasure)}</span> The NI value for ${measureTitle} is ${formatLikeInput(niAverage)}%.<br>`;
         summaryText += `Looking at differences by ${eqGrpDisplayName} compared to the NI value:<br>`;
 
         // Output every valid category in the original eqGrpCatLabels order
@@ -2992,70 +3331,329 @@ function generateSummaryText(tableData, niAverage, measureTitle, eqGrpDisplayNam
         });
     }
 
+    
+    // Append CI note (if applicable) (MG)
+    summaryText += buildCiNote(hasCIs);
+
+
     return summaryText;
 }
 
+// ************************************************************************************************************************
+// function completely rewritten to meet the new summary requirements (MG)
 function generateSummaryText2(tableData, niAverage, measureTitle, ageGroups, howMeasure) {
     if (!Array.isArray(tableData) || tableData.length < 2) {
         console.warn("Not enough data to summarize.");
         return "Not enough data available for summary.";
     }
 
-    const firstYearLabel = tableData[0].year;
-    const lastYearLabel = tableData[tableData.length - 1].year;
+    // Detect NI=100 special-case (MG) - if all rows have niAverage of 100, we can skip the difference calculations and just report the group values and trends
+    const niAlways100 = tableData.every(r => Number(r.niAverage) === 100);
+
+    // Round to 1 decimal place (MG)
+    const round1 = x => Math.round(x * 10) / 10;  
+
+    // Helper function to format difference text (MG)
+            function diffText(n) {
+            if (n === 0) return "the same as the NI value";
+            const absVal = Math.abs(n);
+            const label = absVal === 1 ? "percentage point" : "percentage points";
+            return n > 0 ? `${absVal} ${label} above` : `${absVal} ${label} below`;
+        }
+
+
+    // helper to count valid points for a group (MG) - may be useful for deciding whether to include certain groups or not, depending on how many valid points they have
+    function countValid(group) {
+        return tableData.reduce((acc, row) => {
+            const v = row?.data?.[group];
+            return acc + (v != null && !isNaN(v) ? 1 : 0);
+        }, 0);
+    }
+
+    // helper to get first/last valid endpoints for a group (MG) - may be useful for deciding how to word the summary, e.g. whether to say "increased from X in 2001 to Y in 2021" or just "was X in 2001 and Y in 2021" if there are no valid points in between
+    function getEndpoints(group) {
+        const firstValid = tableData.find(r => r?.data?.[group] != null && !isNaN(r.data[group]));
+        const lastValid  = [...tableData].reverse().find(r => r?.data?.[group] != null && !isNaN(r.data[group]));
+        return { firstValid, lastValid };
+    }
+
+
+
+
+    // ========== NEW: detect 1 or 2‑category case ==========
+    const isSmallCategorySet = ageGroups.length <= 2;
+    
+
+    // ============================================================================================
+    // 1) SMALL CATEGORY MODE (1–2 groups) — unless NI always 100
+    // ============================================================================================
+    if (isSmallCategorySet && !niAlways100) {
+
+        let summaryText = `${measureTitle} ${startYear} to ${latestYear}<br>`;
+        summaryText += `This measure records the <span>${prepareMeasureText(howMeasure)}</span><br>`;
+        summaryText += `Looking at trends by ${eqGrpDisplayName} compared to the NI value:<br>`;
+
+        ageGroups.forEach(group => {
+
+            const validCount = countValid(group);
+
+            // NEW: Suppress sentence if the group has < 2 valid points (MG)
+            if (validCount < 2) {
+                // do not emit a sentence for this group
+                return;
+            }
+
+            // NEW: use helper to get endpoints (MG)
+            const { firstValid, lastValid } = getEndpoints(group);
+              if (!firstValid || !lastValid) {
+                  // nothing to say if endpoints are missing
+                  return;
+              }
+
+              // If first and last are the same year (paranoia guard), also suppress
+              if (firstValid.yearLabel === lastValid.yearLabel) {
+                  return;
+              }
+
+            const firstDiff = round1(firstValid.data[group] - firstValid.niAverage);
+            const lastDiff  = round1(lastValid.data[group] - lastValid.niAverage);
+
+            const movement =
+                lastDiff > firstDiff ? "increased" :
+                lastDiff < firstDiff ? "decreased" :
+                "remained broadly similar";
+
+            // NEW special wording if no change between years (MG)
+           if (firstDiff === lastDiff) {
+                const txt = diffText(firstDiff);
+                summaryText +=
+                    firstDiff === 0
+                        ? `${group}: This group was ${txt} in ${firstValid.yearLabel} and ${lastValid.yearLabel}.<br>`
+                        : `${group}: This group was ${txt} the NI value in ${firstValid.yearLabel} and ${lastValid.yearLabel}.<br>`;
+            } else {
+                const startPhrase = firstDiff === 0 ? "the same as the NI value" : `${diffText(firstDiff)} the NI value`;
+                const endPhrase   = lastDiff === 0 ? "the same as the NI value" : `${diffText(lastDiff)} the NI value`;
+
+                summaryText += `
+                    ${group}: This group ${movement} from ${startPhrase}
+                    in ${firstValid.yearLabel} to ${endPhrase} in ${lastValid.yearLabel}.<br>
+                `;
+            }
+        });
+
+        // THIS RETURN GUARANTEES WE STOP HERE
+        return summaryText;
+    }
+
+    // ============================================================================================
+    // 2) LARGE CATEGORY MODE (3+ groups)
+    // ============================================================================================
 
     let diffValues = {};
 
     ageGroups.forEach(group => {
-        const firstRow = tableData[0];
-        const lastRow = tableData[tableData.length - 1];
 
-        const firstGroupVal = firstRow?.data[group] || 0;
-        const firstNI = firstRow?.niAverage || 0;
-        const firstDiff = Math.round(firstGroupVal - firstNI);
+        // NEW: skip groups with < 2 valid points in the 3+ category mode as well (MG) - this ensures we are not trying to interpret trends for groups with very sparse data, which could be misleading
+        if (countValid(group) < 2) return;
 
-        const lastGroupVal = lastRow?.data[group] || 0;
-        const lastNI = lastRow?.niAverage || 0;
-        const lastDiff = Math.round(lastGroupVal - lastNI);
+        //  Find first/last year with real data (MG) - we will need the endpoints to interpret the trends, but we have already ensured there are at least 2 valid points, so this should be safe
+         const { firstValid, lastValid } = getEndpoints(group);
+        if (!firstValid || !lastValid) return;
 
+        // Also skip if endpoints are the same year (degenerate trend) (MG)
+        if (firstValid.yearLabel === lastValid.yearLabel) return;
+
+        // const firstGroupVal = firstRow?.data[group] ?? 0;
+        // const firstNI = firstRow?.niAverage ?? 0;
+        // const firstDiff = round1(firstGroupVal - firstNI); // Round to 1 decimal place (MG);          
+
+        // const lastGroupVal = lastRow?.data[group] ?? 0;
+        // const lastNI = lastRow?.niAverage ?? 0;
+        // const lastDiff = round1(lastGroupVal - lastNI); // Round to 1 decimal place (MG);
+
+        const firstDiff = round1(firstValid.data[group] - firstValid.niAverage);
+        const lastDiff  = round1(lastValid.data[group] - lastValid.niAverage);
+        
         diffValues[group] = {
             firstDiff,
             lastDiff,
-            change: lastDiff - firstDiff
+            change: round1(lastDiff - firstDiff),
+            firstYearLabel: firstValid.yearLabel, //(MG)
+            lastYearLabel: lastValid.yearLabel // (MG) 
+      
+            // Store raw values for NI=100 mode (MG)
+            // firstVal: firstGroupVal,
+            // lastVal: lastGroupVal
         };
     });
 
+    // Sort by change
     const sortedDiffs = Object.entries(diffValues).sort((a, b) => b[1].change - a[1].change);
     const biggestIncrease = sortedDiffs[0];
     const biggestDecrease = sortedDiffs[sortedDiffs.length - 1];
 
-    function toFinancialYear(year) {
-    const nextYear = (parseInt(year) + 1).toString().slice(-2); // Gets last two digits
-    return `${year}/${nextYear}`; 
-    }
+// ### BRANCH STARTS HERE
+    // function toFinancialYear(year) {
+    // const nextYear = (parseInt(year) + 1).toString().slice(-2); // Gets last two digits
+    // return `${year}/${nextYear}`; 
+    // }
 
-    const firstYearLabels = toFinancialYear(tableData[0].year);
-    const lastYearLabels = toFinancialYear(tableData[tableData.length - 1].year);
+    // const firstYearLabels = toFinancialYear(tableData[0].year);
+    // const lastYearLabels = toFinancialYear(tableData[tableData.length - 1].year);
     
+    const fmt = x => formatDifference(Math.abs(x)) // for consistent display as 1 dp where appropriate (MG)
+
     let summaryText = `${measureTitle} ${startYear} to ${latestYear}<br>`;
     summaryText += `This measure records the <span>${prepareMeasureText(howMeasure)}</span><br>`;
+
+
+    // =======================================================
+    // CHANGED BLOCK START — NI=100 SPECIAL CASE HANDLING (MG)
+    // =======================================================
+
+  // =======================================================
+// NI=100 SPECIAL CASE HANDLING
+// =======================================================
+if (niAlways100) {
+    summaryText += `Looking at trends by ${eqGrpDisplayName}:<br>`;
+
+    function getRawEndpoints(group) {
+        const { firstValid, lastValid } = getEndpoints(group);
+        if (!firstValid || !lastValid) return null;
+        if (firstValid.yearLabel === lastValid.yearLabel) return null; // guard
+
+        return {
+            firstVal: firstValid.data[group],
+            lastVal:  lastValid.data[group],
+            firstYear: firstValid.yearLabel,
+            lastYear:  lastValid.yearLabel
+        };
+    }
+
+    // Build a flat list of group endpoint changes for reuse
+    const endpoints = ageGroups
+        .map(g => ({ group: g, ep: getRawEndpoints(g) }))
+        .filter(x => x.ep && countValid(x.group) >= 2);
+
+    // If absolutely no usable endpoints, bail out
+    if (endpoints.length === 0) {
+        summaryText += `There was no change over time in any group during this period.<br>`;
+        return summaryText;
+    }
+
+    // Compute changes to find biggest increase/decrease
+    const withChange = endpoints.map(({ group, ep }) => ({
+        group,
+        ...ep,
+        change: (ep.lastVal ?? 0) - (ep.firstVal ?? 0)
+    }));
+
+    // Detect if any change at all
+    const anyChange = withChange.some(x => x.change !== 0);
+
+    if (!anyChange) {
+        summaryText += `There was no change over time in any group during this period.<br>`;
+        return summaryText;
+    }
+
+    // Branch on small vs large category set to avoid duplicate styles
+    if (isSmallCategorySet) {
+        // -------- SMALL CATEGORY STYLE (1–2 groups), but using RAW % values --------
+        withChange.forEach(({ group, firstVal, lastVal, firstYear, lastYear }) => {
+            const movement =
+                lastVal > firstVal ? "increased" :
+                lastVal < firstVal ? "decreased" :
+                "remained broadly similar";
+
+            summaryText += `${group}: This group ${movement} from ${firstVal}% in ${firstYear} to ${lastVal}% in ${lastYear}.<br>`;
+        });
+
+        return summaryText;
+    } else {
+        // -------- LARGE CATEGORY STYLE (3+ groups), only highlights using RAW % values --------
+        // Sort by change ascending/descending
+        const incEntry = [...withChange].sort((a, b) => b.change - a.change)[0]; // biggest increase
+        const decEntry = [...withChange].sort((a, b) => a.change - b.change)[0]; // greatest decrease
+
+        if (incEntry && incEntry.change > 0) {
+            summaryText += `${incEntry.group}: This group showed the highest increase from ${incEntry.firstVal}% in ${incEntry.firstYear} to ${incEntry.lastVal}% in ${incEntry.lastYear}.<br>`;
+        }
+
+        if (decEntry && decEntry.change < 0) {
+            summaryText += `${decEntry.group}: This group showed the greatest decrease from ${decEntry.firstVal}% in ${decEntry.firstYear} to ${decEntry.lastVal}% in ${decEntry.lastYear}.<br>`;
+        }
+
+        return summaryText;
+    }
+}
+  
+  // ### MAIN STARTS HERE
+
+    // =========================================================
+    //       STANDARD CASE (relative to NI value, unchanged)
+    // =========================================================
     summaryText += `Looking at trends by ${eqGrpDisplayName} compared to the NI value:<br>`;
 
-    summaryText += `${biggestIncrease[0]}: This group showed the highest increase relative to the NI value from ${Math.abs(biggestIncrease[1].firstDiff)} percentage points ${
+    summaryText += `${biggestIncrease[0]}: This group showed the highest increase relative to the NI value from ${fmt(biggestIncrease[1].firstDiff)} percentage points ${
         biggestIncrease[1].firstDiff >= 0 ? "above" : "below"
-    } the NI value in ${startYear} to ${Math.abs(biggestIncrease[1].lastDiff)} percentage points ${
+    } the NI value in ${startYear} to ${fmt(biggestIncrease[1].lastDiff)} percentage points ${
         biggestIncrease[1].lastDiff >= 0 ? "above" : "below"
     } in ${latestYear}.<br>`;
 
-    summaryText += `${biggestDecrease[0]}: This group showed the greatest decrease relative to the NI value from ${Math.abs(biggestDecrease[1].firstDiff)} percentage points ${
+    summaryText += `${biggestDecrease[0]}: This group showed the greatest decrease relative to the NI value from ${fmt(biggestDecrease[1].firstDiff)} percentage points ${
         biggestDecrease[1].firstDiff >= 0 ? "above" : "below"
-    } the NI value in ${startYear} to ${Math.abs(biggestDecrease[1].lastDiff)} percentage points ${
+    } the NI value in ${startYear} to ${fmt(biggestDecrease[1].lastDiff)} percentage points ${
         biggestDecrease[1].lastDiff >= 0 ? "above" : "below"
     } in ${latestYear}.<br>`;
 
+//     return summaryText;
+
+
+//     // After computing biggestIncrease and biggestDecrease... (MG)
+
+//     // Ensure both entries exist before using them
+//     const incEntry = biggestIncrease || null;
+//     const decEntry = biggestDecrease || null;
+
+//     const inc = incEntry?.[1] || null;
+//     const dec = decEntry?.[1] || null;
+
+//     // Compute validity safely
+//     const hasValidIncrease =
+//         inc &&
+//         inc.firstDiff !== null &&
+//         inc.lastDiff !== null &&
+//         inc.change !== 0;
+
+//     const hasValidDecrease =
+//         dec &&
+//         dec.firstDiff !== null &&
+//         dec.lastDiff !== null &&
+//         dec.change !== 0;
+
+//     let summaryText = `${measureTitle} ${startYear} to ${latestYear}<br>`;
+//     summaryText += `This measure records the <span>${prepareMeasureText(howMeasure)}</span><br>`;
+//     // If neither increase nor decrease is valid, output no significant changes message (MG)
+//     if ((hasValidIncrease && incEntry || hasValidDecrease && decEntry) === false) {
+//         summaryText += `No significant changes were observed in any group relative to the NI value during this period.<br>`;
+//         return summaryText;
+//     }
+//     summaryText += `Looking at trends by ${eqGrpDisplayName} compared to the NI value:<br>`;
+
+// // Only print the increase sentence if it represents a real change
+// if (hasValidIncrease && incEntry) {
+//     summaryText += `${incEntry[0]}: This group showed the highest increase relative to the NI value from ${diffText(inc.firstDiff)} in ${inc.firstYearLabel} to ${diffText(inc.lastDiff)} in ${inc.lastYearLabel}.<br>`;
+// }
+
+// // Only print the decrease sentence if it represents a real change
+// if (hasValidDecrease && decEntry) {
+//     summaryText += `${decEntry[0]}: This group showed the greatest decrease relative to the NI value from ${diffText(dec.firstDiff)} in ${dec.firstYearLabel} to ${diffText(dec.lastDiff)} in ${dec.lastYearLabel}.<br>`;
+// }
+
     return summaryText;
 }
-
+// ************************************************************************************************************************
+// ## MAIN FINISHES HERE
 
 document.addEventListener("DOMContentLoaded", () => {
   const button = document.querySelector(".copy-button");
@@ -3174,110 +3772,203 @@ document.addEventListener("DOMContentLoaded", () => {
    }
    Chart.register(backgroundColorPlugin);
 
-  function downloadChart() {
-    if (chartInstance) {
-        const chartCanvas = chartInstance.canvas;
-        const extraTitleSpace = 35;
-        const extraWatermarkTitleSpace = 50;
-        const extraSpacingBetweenTitleAndSubheading = 15; // Space between title & subheading
-        const extraSpacingAfterSubheading = 15; // Space between subheading and "Measure split by"
-        const originalWidth = chartCanvas.width;
-        const originalHeight = chartCanvas.height;
+    //************************************************************************************************************************************
+    function downloadChart() {  // Final cleaned version (MG) this should now allow the title to wrap
+      if (!chartInstance) return;
 
-        // Get the subheading text
-        let measureText = document.getElementById("how_do_we_measure").innerText || "";
-        measureText = measureText.slice(0, measureText.length - 1); // Trim last character if needed
-        let groupName = document.querySelector(".eq_grp_name").innerText.toLowerCase();
-        
-        // Capitalize the first letter of groupName
-        groupName = groupName.charAt(0).toUpperCase() + groupName.slice(1);
-        
-        const subHeading = `${measureText}`; // Main subheading text
-        const groupHeading = "Split by"; // Static text
+      const chartCanvas = chartInstance.canvas;
+      // const originalWidth = chartCanvas.width;
+      // const originalHeight = chartCanvas.height;
+      
+      // REAL CSS DISPLAY SIZE (the size you actually see on screen)
+      const rect = chartCanvas.getBoundingClientRect();
+      const originalWidth = Math.round(rect.width);
+      const originalHeight = Math.round(rect.height);
 
-        // Create a new canvas
-        const tempCanvas = document.createElement('canvas');
-        tempCanvas.width = originalWidth;
-        const ctx = tempCanvas.getContext('2d');
 
-        // Calculate text wrapping for subheading
-        ctx.font = '24px sans-serif';
-        const maxWidth = originalWidth * 0.8; // Limit width to 80% of the canvas to allow for margins
-        const lineHeight = 30;
-        const subHeadingLines = wrapText(ctx, subHeading, maxWidth);
-        const extraMeasureSpace = (subHeadingLines.length * lineHeight) + lineHeight + extraSpacingAfterSubheading;
+      // --- Read subheading and group name from DOM ---
+      let measureText = (document.getElementById("how_do_we_measure")?.innerText || "").trim();
+      let groupName = (document.querySelector(".eq_grp_name")?.innerText || "").trim();
+      if (groupName) groupName = groupName.charAt(0).toUpperCase() + groupName.slice(1);
 
-        // Adjust canvas height
-        tempCanvas.height = originalHeight + extraTitleSpace + extraMeasureSpace + extraWatermarkTitleSpace + extraSpacingBetweenTitleAndSubheading;
+      const subHeading = `${measureText}`;
+      const groupHeading = "Split by";
 
-        // Fill background
-        ctx.fillStyle = 'white';
-        ctx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+      // --- Create export canvas ---
+      const tempCanvas = document.createElement('canvas');
+      const ctx = tempCanvas.getContext('2d');
 
-        // Add title
+      // --- HiDPI scaling (sharp PNGs) ---
+      const dpr = window.devicePixelRatio || 1;
+      const outWidth = originalWidth; // final PNG width in CSS px
+
+      // ---------- TEXT WRAPPING HELPER ----------
+      function wrapTextLines(text, maxWidth) {
+        ctx.save();
+        // relies on whatever ctx.font is set to by caller
+        const words = (text || "").split(/\s+/);
+        const lines = [];
+        let line = '';
+        for (const w of words) {
+          const test = line ? `${line} ${w}` : w;
+          if (ctx.measureText(test).width <= maxWidth) {
+            line = test;
+          } else {
+            if (line) lines.push(line);
+            line = w;
+          }
+        }
+        if (line) lines.push(line);
+        ctx.restore();
+        return lines;
+      }
+
+      // ---------- TYPOGRAPHY ----------
+      const titleFont = 'bold 30px sans-serif';
+      const subFont = '24px sans-serif';
+      const groupHeadingFont = '24px sans-serif';
+      const groupNameFont = 'bold 24px sans-serif';
+
+      // ---------- FIRST: compute all sizes in CSS px (unscaled) ----------
+      // Title wrapping (set font before measuring)
+      ctx.font = titleFont;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+
+      const measuredTitle = `${measureTitle} ${latestYear}`;
+      const titleMaxWidth = outWidth * 0.95; // wrap at 95% width
+      const titleLineHeight = 34;           // line height for title
+      const titleLines = wrapTextLines(measuredTitle, titleMaxWidth);
+      const totalTitleHeight = Math.max(1, titleLines.length) * titleLineHeight;
+
+      const titleTopPadding = 10;
+      const titleBottomPadding = 10;
+      const topMargin = titleTopPadding + totalTitleHeight + titleBottomPadding;
+
+      // Subheading wrapping
+      ctx.font = subFont;
+      const lineHeight = 30;         // subheading line height
+      const maxTextWidth = outWidth * 0.9; // wrap at 90% width
+      const subHeadingLines = wrapTextLines(subHeading, maxTextWidth);
+
+      const extraSpacingBetweenTitleAndSubheading = 15;
+      const extraSpacingAfterSubheading = 15;
+      const groupLineHeight = 28;     // "Split by ..." single line
+      const minGapBelowTitle = 16;    // safety space before chart
+      const extraWatermarkSpace = 50;
+
+      // Height occupied by the subheading + spacing + "Split by" line
+      const subBlockHeight = subHeading
+        ? (extraSpacingBetweenTitleAndSubheading +
+          (subHeadingLines.length * lineHeight) +
+          extraSpacingAfterSubheading +
+          groupLineHeight)
+        : 0;
+
+      // Final export canvas height (CSS px)
+      const outHeight = topMargin + subBlockHeight + minGapBelowTitle + originalHeight + extraWatermarkSpace;
+
+      // ---------- Set canvas pixel buffer, THEN scale ----------
+      tempCanvas.width  = Math.floor(outWidth  * dpr);
+      tempCanvas.height = Math.floor(outHeight * dpr);
+
+      // Optional: set CSS size for preview clarity (not required for download)
+      tempCanvas.style.width  = `${outWidth}px`;
+      tempCanvas.style.height = `${outHeight}px`;
+
+      // Scale after both width & height are set
+      ctx.scale(dpr, dpr);
+
+      // ---------- DRAW: background first ----------
+      ctx.fillStyle = 'white';
+      ctx.fillRect(0, 0, outWidth, outHeight);
+
+      // ---------- DRAW: wrapped title ----------
+      ctx.font = titleFont;
+      ctx.fillStyle = 'black';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+
+      let yTitle = titleTopPadding;
+      for (const line of titleLines) {
+        ctx.fillText(line, outWidth / 2, yTitle);
+        yTitle += titleLineHeight;
+      }
+
+      // ---------- DRAW: subheading (centered, wrapped) ----------
+      let y = topMargin; // immediately after title block
+      if (subHeading) {
+        y += extraSpacingBetweenTitleAndSubheading;
+
+        ctx.font = subFont;
         ctx.fillStyle = 'black';
-        ctx.font = 'bold 30px sans-serif';
         ctx.textAlign = 'center';
-        ctx.fillText(measureTitle + ' ' + latestYear, originalWidth / 2, 25);
+        ctx.textBaseline = 'top';
 
-        // Add extra space before subheading
-        let yPosition = 50 + extraSpacingBetweenTitleAndSubheading;
+        for (const line of subHeadingLines) {
+          ctx.fillText(line, outWidth / 2, y);
+          y += lineHeight;
+        }
 
-        // Draw subheading (normal text) line by line
-        ctx.font = '24px sans-serif';
-        ctx.fillStyle = 'black';
-        subHeadingLines.forEach(line => {
-            ctx.fillText(line, originalWidth / 2, yPosition);
-            yPosition += lineHeight;
-        });
+        // spacing after subheading
+        y += extraSpacingAfterSubheading;
 
-        // Move down slightly for "Measure split by {groupName}"
-        yPosition += extraSpacingAfterSubheading;
-
-        // Set text alignment to left for natural spacing
+        // ---------- DRAW: "Split by <Group>" as a centered unit ----------
         ctx.textAlign = 'left';
 
-        // Find total text width to center them as a unit
-        ctx.font = '24px sans-serif';
+        ctx.font = groupHeadingFont;
         const groupHeadingWidth = ctx.measureText(groupHeading).width;
-        ctx.font = 'bold 24px sans-serif';
+
+        ctx.font = groupNameFont;
         const groupNameWidth = ctx.measureText(groupName).width;
-        const totalWidth = groupHeadingWidth + groupNameWidth + 10; // 10px spacing
-        const startX = (originalWidth - totalWidth) / 2;
 
-        // Draw "Measure split by" in normal text
-        ctx.font = '24px sans-serif';
+        const combinedWidth = groupHeadingWidth + 10 + groupNameWidth; // 10px gap
+        const startX = (outWidth - combinedWidth) / 2;
+
+        // "Split by"
+        ctx.font = groupHeadingFont;
         ctx.fillStyle = 'black';
-        ctx.fillText(groupHeading, startX, yPosition);
+        ctx.fillText(groupHeading, startX, y);
 
-        // Draw groupName in bold and blue (#3878c5), right after "Measure split by"
-        ctx.font = 'bold 24px sans-serif';
+        // groupName
+        ctx.font = groupNameFont;
         ctx.fillStyle = '#3878c5';
-        ctx.fillText(groupName, startX + groupHeadingWidth + 5, yPosition); // 5px space
+        ctx.fillText(groupName, startX + groupHeadingWidth + 10, y);
 
-        // Draw the chart
-        ctx.drawImage(chartCanvas, 0, extraTitleSpace + extraMeasureSpace + extraSpacingBetweenTitleAndSubheading);
+        y += groupLineHeight;
+      }
 
-        // Load and add watermark
-        const watermark = new Image();
-        watermark.src = 'img/nisra-only-colour.png';
-        watermark.onload = function () {
-            const wmWidth = watermark.width * 0.5;
-            const wmHeight = watermark.height * 0.5;
-            const wmX = tempCanvas.width - wmWidth - 10;
-            const wmY = tempCanvas.height - wmHeight - 10;
+      // ---------- DRAW: the chart bitmap ----------
+      const chartY =
+        topMargin +
+        subBlockHeight +      // subheading + spacing + "Split by"
+        minGapBelowTitle;     // safety gap
 
-            ctx.drawImage(watermark, wmX, wmY, wmWidth, wmHeight);
+      ctx.drawImage(chartCanvas, 0, chartY, originalWidth, originalHeight);
 
-            // Download chart
-            const link = document.createElement('a');
-            const chart_image_filename = measureTitle + ` ` + latestYear.slice(0, 4) + `-` + latestYear.slice(5, 7) + `.png`;
-            link.href = tempCanvas.toDataURL('image/png');
-            link.download = chart_image_filename;
-            link.click();
-        };
+      // ---------- DRAW: watermark (after image loads) ----------
+      const watermark = new Image();
+      watermark.src = 'img/nisra-only-colour.png';
+      watermark.onload = function () {
+        const wmScale = 0.5; // 50% of intrinsic
+        const wmWidth  = watermark.width  * wmScale;
+        const wmHeight = watermark.height * wmScale;
+        const wmX = outWidth - wmWidth - 10;
+        const wmY = outHeight - wmHeight - 10;
+
+        ctx.drawImage(watermark, wmX, wmY, wmWidth, wmHeight);
+
+        // ---------- DOWNLOAD ----------
+        const link = document.createElement('a');
+        const chart_image_filename =
+          `${measureTitle} ${latestYear.slice(0, 4)}-${latestYear.slice(5, 7)}.png`;
+        link.href = tempCanvas.toDataURL('image/png');
+        link.download = chart_image_filename;
+        link.click();
+      };
     }
-  }
+//************************************************************************************************************************************
+
 
   // Function to wrap text into multiple lines
   function wrapText(ctx, text, maxWidth) {
@@ -3299,8 +3990,70 @@ document.addEventListener("DOMContentLoaded", () => {
   }
  
   // click event listeners for view chart and view table buttons
+
+// Ensure the copy button is hidden on load 
+const copyBtn2   = document.getElementById('copy-button2');
+const chartBtn   = document.getElementById('line_chartBtn');
+const tableBtn   = document.getElementById('line_tableBtn');
+
+if (copyBtn2) copyBtn2.style.display = 'none';
+
+tableBtn.addEventListener('click', () => {
+  if (copyBtn2) copyBtn2.style.display = 'inline-flex'; 
+});
+
+chartBtn.addEventListener('click', () => {
+  if (copyBtn2) copyBtn2.style.display = 'none'; 
+});
+
+// Wire up the two top-left buttons
+  document.getElementById('chartBtn')
+    ?.addEventListener('click', () => showsView('chartView'));
+  document.getElementById('tableBtn')
+    ?.addEventListener('click', () => showsView('tableView'));
+ // click event listeners for view chart and view table buttons
   document.getElementById('chartBtn').addEventListener('click', () => showView('chartView'));
   document.getElementById('tableBtn').addEventListener('click', () => showView('tableView'));
+
+  function showsView(viewId) {
+    const chartView   = document.getElementById('chartView');
+    const tableView   = document.getElementById('tableView');
+    const downloadBtn = document.getElementById('downloadButton');
+    const copyBtn     = document.querySelector('.copy-button');
+
+    const isChart = viewId === 'chartView';
+
+    // Toggle active view (if elements exist)
+    if (chartView && tableView) {
+      chartView.classList.toggle('active', isChart);
+      tableView.classList.toggle('active', !isChart);
+    }
+
+    // Toggle utility buttons (inline styles per your approach)
+    if (downloadBtn) downloadBtn.style.display = isChart ? 'inline-block' : 'none';
+    if (copyBtn)     copyBtn.style.display     = isChart ? 'none'        : 'inline-block';
+  }
+
+  // --- Initial state on load ---
+  // If you want chart first:
+  showsView('chartView');
+  // If you want table first, use:
+  // showsView('tableView');
+
+  // ✅ Hide Copy by default and show the correct buttons on first render
+  document.addEventListener('DOMContentLoaded', () => {
+    // If your app marks one view as active on load, we respect that.
+    const chartIsActive = document.getElementById('chartView')?.classList.contains('active');
+    const tableIsActive = document.getElementById('tableView')?.classList.contains('active');
+
+    if (tableIsActive) {
+      showsView('tableView');
+    } else {
+      // Default to chart view if no active state is set
+      showsView('chartView');
+    }
+  });
+
 
   // Button event listeners for section 2
   document.getElementById('line_chartBtn').addEventListener('click', () => showView('chartContainer'));
@@ -3310,23 +4063,30 @@ document.addEventListener("DOMContentLoaded", () => {
   const tableView = document.getElementById("tableView");
   const chartView = document.getElementById("chartView");
   const chartButton = document.getElementById('chartBtn');
+  const tableButton = document.getElementById('tableBtn');
 
   const tableView2 = document.getElementById("tableView2");
   const chartView2 = document.getElementById("chartContainer");
   const chartButton2 = document.getElementById('line_chartBtn');
 
   const legend = document.querySelector('.chart-legend');
+  const tableButton2 = document.getElementById('line_tableBtn');
 
   // Handle the first section: Table/Chart Toggle
   if (viewId === 'tableView') {
     tableView.style.display = "block";
     chartView.style.display = "none";
 
-    // Add 'inactive' class to chartButton to avoid inline coding here and remove 'selected'
-    chartButton.classList.add('inactive');
-    chartButton.classList.remove('selected');
-    /* chartButton.style.backgroundColor = '#7e6ec4';
-    chartButton.style.color = '#fff'; */
+    // Toggle active/inactive styling for both buttons
+    if (chartButton) {
+      chartButton.classList.add('inactive');
+      chartButton.classList.remove('selected');
+    }
+    if (tableButton) {
+      tableButton.classList.remove('inactive');
+      tableButton.classList.add('selected');
+    }
+
     // Only destroy the bar chart when it's in the 'chartView'
     if (chartInstance && chartView.style.display === "block") {
       chartInstance.destroy();
@@ -3336,11 +4096,16 @@ document.addEventListener("DOMContentLoaded", () => {
     tableView.style.display = "none";
     chartView.style.display = "block";
 
-    // Remove 'inactive' and switch to 'selected' styling for chart button
-  chartButton.classList.remove('inactive');
-  chartButton.classList.add('selected');
-    /* chartButton.style.backgroundColor = '#fff';
-    chartButton.style.color = '#00205b'; */
+    // Toggle active/inactive styling for both buttons
+    if (chartButton) {
+      chartButton.classList.remove('inactive');
+      chartButton.classList.add('selected');
+    }
+    if (tableButton) {
+      tableButton.classList.add('inactive');
+      tableButton.classList.remove('selected');
+    }
+
     if (!chartInstance) {
       createBarChart(eqGrpCatLabels, eqGrpCatBarData, niAvgLine);
     }
@@ -3350,13 +4115,17 @@ document.addEventListener("DOMContentLoaded", () => {
   if (viewId === 'tableView2') {
     tableView2.style.display = "block";
     chartView2.style.display = "none";
-    chartButton2.classList.add('inactive');
-    chartButton2.classList.remove('selected');
-   /*  chartButton2.style.backgroundColor = '#7e6ec4';
-    chartButton2.style.color = '#fff'; */
+    if (chartButton2) {
+      chartButton2.classList.add('inactive');
+      chartButton2.classList.remove('selected');
+    }
+    if (tableButton2) {
+      tableButton2.classList.remove('inactive');
+      tableButton2.classList.add('selected');
+    }
     legend.style.display = 'none'; // Hide the legend
     // Don't destroy the bar chart here
-    populateTable2()
+    populateTable2();
     if (lineChartInstance) {
       lineChartInstance.destroy();
       lineChartInstance = null;
@@ -3364,14 +4133,17 @@ document.addEventListener("DOMContentLoaded", () => {
   } else if (viewId === 'chartContainer') {
     tableView2.style.display = "none";
     chartView2.style.display = "grid";
-    chartButton2.classList.remove('inactive');
-    chartButton2.classList.add('selected');
-    /* chartButton2.style.backgroundColor = '#fff';
-    chartButton2.style.color = '#00205b'; */
-    if (nonNull !== 1){
+    if (chartButton2) {
+      chartButton2.classList.remove('inactive');
+      chartButton2.classList.add('selected');
+    }
+    if (tableButton2) {
+      tableButton2.classList.add('inactive');
+      tableButton2.classList.remove('selected');
+    }
+    if (nonNull !== 1) {
       legend.style.display = 'block';
     }
-     // dont Show the legend
     // Only destroy the line chart when necessary
     if (!lineChartInstance) {
       createMultipleLineCharts(eqGrpCatLineData, niLineData, containerId, eqGrpCatLabels, yearLabels);
@@ -3451,131 +4223,220 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-  // js to open and close accordion
+  // js to open and close accordion with ARIA
   let acc = document.getElementsByClassName("accordion-button");
-  let i;
+  for (let i = 0; i < acc.length; i++) {
+    const button = acc[i];
+    const panel = button.nextElementSibling;
 
-  for (i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function() {
-      /* Toggle between adding and removing the "active" class,
-      to highlight the button that controls the panel */
+    // Ensure ARIA attributes and structural roles
+    button.setAttribute('aria-expanded', 'false');
+    button.setAttribute('role', 'button');
+    if (!button.id) button.id = `accordion-button-${i}`;
+
+    if (panel) {
+      if (!panel.id) panel.id = `accordion-panel-${i}`;
+      panel.setAttribute('role', 'region');
+      panel.setAttribute('aria-labelledby', button.id);
+      panel.style.maxHeight = null;
+      panel.style.overflow = 'hidden';
+      panel.setAttribute('aria-hidden', 'true');
+      button.setAttribute('aria-controls', panel.id);
+    }
+
+    button.addEventListener("click", function() {
       this.classList.toggle("active");
+      const isExpanded = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', String(!isExpanded));
 
-      /* Toggle between hiding and showing the active panel */
-      let panel = this.nextElementSibling;
-      if (panel.style.maxHeight) {
-        panel.style.maxHeight = null;
-      } else {
-        panel.style.maxHeight = panel.scrollHeight + "px";
+      if (panel) {
+        if (panel.style.maxHeight) {
+          panel.style.maxHeight = null;
+          panel.setAttribute('aria-hidden', 'true');
+        } else {
+          panel.style.maxHeight = panel.scrollHeight + "px";
+          panel.setAttribute('aria-hidden', 'false');
+        }
       }
     });
   }
   
+  // new function to create multiple line charts based on the data provided (MG)
   function createMultipleLineCharts(dataObject, secondSeriesValues, containerId, categoryLabels, years) {
-    // Get the container where charts will be appended
-    const container = document.getElementById(containerId);
 
-    // Clear the container to avoid duplicates
+    const container = document.getElementById(containerId);
+    // remove any stale note appended on a previous call
+    const oldNote = document.getElementById(`${containerId}-note`);
+    if (oldNote) oldNote.remove();
+
     container.innerHTML = '';
 
-    // Check if the legend already exists, if not, create it
-    let legend = document.querySelector('.chart-legend');
-    if (!legend) {
-        // Create a new legend if it doesn't exist
-        legend = document.createElement('div');
-        legend.classList.add('chart-legend'); // Add class for styling
+    const chartInfoContainer = window.chartInfoContainer || null;
+    const lineDataSummaryContainer = window.lineDataSummaryContainer || null;
 
-        // Define the legend entries
-        legend.innerHTML = `
-            <div style="display: flex; gap: 20px; justify-content: center; align-items: center; margin-bottom: 20px;">
-                <div style="display: flex; align-items: center; gap: 5px;">
-                    <span style="width: 20px; height: 4px; background-color: #00205b; display: inline-block;"></span>
-                    <span>Group Value (%)</span>
-                </div>
-                <div style="display: flex; align-items: center; gap: 5px;">
-                    <span style="width: 20px; height: 4px; background-color: #3b80ae; display: inline-block; border-bottom: 2px dashed #3b80ae;"></span>
-                    <span>NI Value (%)</span>
-                </div>
-            </div>
-        `;
+    // --------- Pre-check: can ANY series be rendered (>=2 valid points)? ---------
+    const seriesArrays = Object.values(dataObject);
+    const canRenderAny = seriesArrays.some(arr => {
+        if (!Array.isArray(arr)) return false;
+        const validPoints = arr.filter(v => v !== null && !isNaN(v)).length;
+        return validPoints >= 2;
+    });
 
-        // Insert the legend before the container without affecting the layout
-        container.parentNode.insertBefore(legend, container);
+    // Legend scoped per container
+    const legendId = `${containerId}-legend`;
+    const getLegend = () => document.getElementById(legendId);
+
+    // Helper: hide legend without removing it
+    const hideLegend = () => {
+        const legend = getLegend();
+        if (legend) legend.style.display = "none";
+    };
+
+    // ----------------------------------------------------------------------
+    // OPTION B — Full-width, pixel-perfect centered fallback message
+    // ----------------------------------------------------------------------
+    const showNoHistoricDataMessage = () => {
+        hideLegend();
+
+        // Reset container to ensure width is measurable
+        container.style.display = "block";
+        container.style.width = "100%";
+
+        // Measure container width AFTER DOM placement
+        const measuredWidth = container.getBoundingClientRect().width;
+
+        container.innerHTML = `
+            <div style="
+                width:${measuredWidth}px;
+                margin:0 auto;
+                min-height:260px;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+            ">
+                <div style="
+                    font-size:18pt;
+                    white-space:nowrap;
+                    text-align:center;
+                ">
+                    Historic data is not available for this measure
+                </div>
+            </div>`;
+    };
+
+    // ---- EARLY EXIT — IF NO SERIES HAS >= 2 VALID POINTS ----
+    if (!canRenderAny) {
+        if (chartInfoContainer) chartInfoContainer.style.display = 'none';
+        if (lineDataSummaryContainer) lineDataSummaryContainer.style.display = 'none';
+        showNoHistoricDataMessage();
+        return;
     }
 
-    // Get all keys from the dataObject
+    // --------- Create or reuse legend ---------
+    let legend = getLegend();
+    if (!legend) {
+        legend = document.createElement('div');
+        legend.id = legendId;
+        legend.classList.add('chart-legend');
+        legend.style.display = 'none';
+        legend.innerHTML = `
+          <div style="display:flex; gap:20px; justify-content:center; align-items:center; margin-bottom:20px;">
+            <div style="display:flex; align-items:center; gap:5px;">
+              <span style="width:20px; height:4px; background-color:#00205b; display:inline-block;"></span>
+              <span>Group Value (%)</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:5px;">
+              <span style="width:20px; height:4px; background-color:#3b80ae; display:inline-block; border-bottom:2px dashed #3b80ae;"></span>
+              <span>NI Value (%)</span>
+            </div>
+          </div>
+        `;
+        container.parentNode.insertBefore(legend, container);
+    } else {
+        legend.style.display = "none";
+    }
+
+    console.group(`createMultipleLineCharts: ${containerId}`);
+    console.log("keys:", Object.keys(dataObject));
+    console.log("years:", years);
+    console.groupEnd();
+
     const keys = Object.keys(dataObject);
+    let chartsRendered = 0;
 
-    // Loop through each key in the dataObject
     keys.forEach((key, index) => {
-        // Generate a unique ID for the canvas element
-        const canvasId = `chartCanvas${index}`;
-
-        const chartDiv = document.createElement("div");
-        chartDiv.classList.add('div-style-line'); // Add a class for styling
-
-        // Create a canvas element for each chart
-        const canvas = document.createElement('canvas');
-        canvas.id = canvasId;
-
-        chartDiv.appendChild(canvas);
-
-        // Append the canvas to the container
-        container.appendChild(chartDiv);
-
-        // Get the data for the current series
         const firstSeriesData = dataObject[key];
 
-        var arr = firstSeriesData;
-        var count = 0;
-        var x = (arr.length-1);
-        while (x--) {
-            if (arr[x] === null){
-                count++;                  
-            }     
-        }
-        console.log(count); 
-        nonNull = firstSeriesData.length - count;
+        console.group(`series ${key}`);
+        console.log(firstSeriesData);
 
-        // Ensure the length of secondSeriesValues matches firstSeriesData
-        if (!firstSeriesData || secondSeriesValues.length !== firstSeriesData.length) {
-            console.warn(`Invalid data for key "${key}"`);
+        if (!Array.isArray(firstSeriesData)) {
+            console.warn(`Invalid series for key "${key}"`);
+            console.groupEnd();
             return;
         }
 
-        // Get the category label for the current chart
-        const categoryLabel = categoryLabels && categoryLabels[index]
-            ? categoryLabels[index]
-            : `Category ${index + 1}`;
+        const validPoints = firstSeriesData.filter(v => v !== null && !isNaN(v)).length;
+        console.log("validPoints:", validPoints);
 
-        // Create the labels array using categoryLabel and the years array
-        const labels = firstSeriesData.map((_, i) => `${categoryLabel} - ${years[i] || `Year ${i + 1}`}`);
+        if (validPoints < 2) {
+            console.log("Skipping: fewer than 2 valid points");
+            console.groupEnd();
+            return;
+        }
 
-        const labelyears = years; 
+        // Normalize NI series
+        let niSeries = secondSeriesValues;
+        if (!Array.isArray(niSeries)) {
+            niSeries = Array(firstSeriesData.length).fill(niSeries);
+        } else if (niSeries.length !== firstSeriesData.length) {
+            if (niSeries.length > firstSeriesData.length) {
+                niSeries = niSeries.slice(0, firstSeriesData.length);
+            } else {
+                niSeries = [...niSeries, ...Array(firstSeriesData.length - niSeries.length).fill(null)];
+            }
+        }
 
-        // Create the context for the chart
-        const ctx = canvas.getContext('2d');
+        const categoryLabel =
+            categoryLabels && categoryLabels[index]
+                ? categoryLabels[index]
+                : `Category ${index + 1}`;
 
-        if (nonNull !== 1) {
-            // Create the chart instance
+        const labels = firstSeriesData.map((_, i) =>
+            `${categoryLabel} - ${years[i] || `Year ${i + 1}`}`
+        );
+
+        const chartDiv = document.createElement("div");
+        chartDiv.classList.add("div-style-line");
+
+        const canvas = document.createElement("canvas");
+        canvas.id = `chartCanvas${containerId}-${index}`;
+        chartDiv.appendChild(canvas);
+        container.appendChild(chartDiv);
+
+        const ctx = canvas.getContext("2d");
+
+        try {
+            legend.style.display = "";
+
             new Chart(ctx, {
-                type: 'line',
+                type: "line",
                 data: {
                     labels,
                     datasets: [
                         {
-                            label: `Group value`,
+                            label: "Group value",
                             data: firstSeriesData,
-                            borderColor: '#00205b',
+                            borderColor: "#00205b",
                             pointRadius: 0,
                             borderWidth: 4
                         },
                         {
-                            label: `NI value`,
-                            data: secondSeriesValues,
+                            label: "NI value",
+                            data: niSeries,
                             fill: false,
                             borderDash: [15, 5],
-                            borderColor: '#3b80ae',
+                            borderColor: "#3b80ae",
                             pointRadius: 0,
                             borderWidth: 2
                         },
@@ -3600,46 +4461,53 @@ document.addEventListener("DOMContentLoaded", () => {
                     },
                     scales: {
                         x: {
-                            grid: {
-                                display: false
-                            },
+                            grid: { display: false },
                             ticks: {
-                                callback:function (value, tickIndex, ticks) {
-                                    if (tickIndex === 0 || tickIndex === labelyears.length - 1) {
-                                        return labelyears[tickIndex];
-                                    }
+                                callback(value, tickIndex) {
+                                    if (tickIndex === 0 || tickIndex === years.length - 1)
+                                        return years[tickIndex];
                                     return null;
                                 }
                             },
-                            border: {
-                                display: true
-                            }
+                            border: { display: true }
                         },
                         y: {
                             min: 0,
-                            grid: {
-                                display: false
-                            },
-                            ticks: {
-                                maxTicksLimit: 5
-                            },
-                            border: {
-                                display: true
-                            }
+                            grid: { display: false },
+                            ticks: { maxTicksLimit: 5 },
+                            border: { display: true }
                         }
                     }
-                },
+                }
             });
 
-        } else {
-            chartInfoContainer.style.display = "none";
-            lineDataSummaryContainer.style.display = "none";
-            legend.style.display = "none";
-            container.innerHTML = '<center style="font-weight: bold; font-size: 18pt;">Historic data is not available for this measure</center>';
+            chartsRendered += 1;
+
+        } catch (err) {
+            console.error("Chart render error:", err);
         }
 
+        console.groupEnd();
     });
+
+    // add a note below the chart container if any charts were rendered
+    if (chartsRendered > 0) {
+        const noteDiv = document.createElement('div');
+        noteDiv.id = `${containerId}-note`;
+        noteDiv.className = 'chart-note';
+        noteDiv.innerHTML = '<p><b>Note:</b> Gaps in time series represent unavailable data for those periods.</p>';
+        container.insertAdjacentElement('afterend', noteDiv);
+    }
+
+    // --------- FINAL FALLBACK: all series skipped ---------
+    if (chartsRendered === 0) {
+        if (chartInfoContainer) chartInfoContainer.style.display = "none";
+        if (lineDataSummaryContainer) lineDataSummaryContainer.style.display = "none";
+        showNoHistoricDataMessage();
+    }
 }
+
+
 
   const containerId = 'chartContainer'; // Make sure this div exists in your HTML
 
@@ -3647,22 +4515,141 @@ document.addEventListener("DOMContentLoaded", () => {
   createMultipleLineCharts(eqGrpCatLineData, niLineData, containerId, eqGrpCatLabels, yearLabels);
 
 
+(function rememberParams() {
+  try {
+    const u = new URL(window.location.href);
+    const s75 = u.searchParams.get('s75');
+    const key = u.searchParams.get('key');
+    const home = u.searchParams.get('home');
+    const allmeasures = u.searchParams.get('allmeasures');
+
+    if (s75 || key || home || allmeasures) {
+      localStorage.setItem('lastParams', JSON.stringify({
+        href: u.toString(), s75, key, home, allmeasures, ts: Date.now()
+      }));
+    }
+  } catch (e) {
+    console.warn('rememberParams failed:', e);
+  }
+})();
+
 function getQueryParams() {
   const params = new URLSearchParams(window.location.search);
   return {
     home: params.get('home'),
     s75: params.get('s75'),
     key: params.get('key'),
-    allmeasures: params.get('allmeasures')
+    allmeasures: params.get('allmeasures'),
+    about: params.get('about'),
   };
 }
 
 
+
+(function persistNavContextV3() {
+  try {
+    const curUrl = new URL(window.location.href);
+
+    // Current page params
+    const cur = {
+      home: curUrl.searchParams.get('home'),
+      allmeasures: curUrl.searchParams.get('allmeasures'),
+      s75: curUrl.searchParams.get('s75'),
+      key: curUrl.searchParams.get('key'),
+      href: curUrl.toString(),
+      ts: Date.now()
+    };
+
+    // Same-origin referrer (for origin recovery when landing on Destination)
+    let ref = { home: null, allmeasures: null, s75: null, key: null, href: null };
+    if (document.referrer) {
+      try {
+        const refUrl = new URL(document.referrer, window.location.origin);
+        if (refUrl.origin === window.location.origin) {
+          ref = {
+            home: refUrl.searchParams.get('home'),
+            allmeasures: refUrl.searchParams.get('allmeasures'),
+            s75: refUrl.searchParams.get('s75'),
+            key: refUrl.searchParams.get('key'),
+            href: refUrl.toString()
+          };
+        }
+      } catch {}
+    }
+
+    const prev = JSON.parse(localStorage.getItem('lastParams') || '{}');
+
+    const isDestination = !!(cur.s75 && cur.key);
+    const hasHome = cur.home !== null && cur.home !== undefined;
+    const hasAll = cur.allmeasures !== null && cur.allmeasures !== undefined;
+
+    // Normalize empty allmeasures to '1' (your app sometimes links to ?allmeasures=)
+    const normalizeAll = (v) => v === '' ? '1' : v;
+
+    // Compute origin to use on THIS load
+    let nextHome = prev.home ?? null;
+    let nextAll  = prev.allmeasures ?? null;
+
+    if (hasHome) {
+      // Explicit section origin wins
+      nextHome = cur.home;
+      nextAll  = null;
+    } else if (hasAll) {
+      // Explicit "All Measures" origin wins
+      nextAll  = normalizeAll(cur.allmeasures);
+      nextHome = null;
+    } else if (isDestination) {
+      // Destination WITHOUT explicit origin: try to carry it over
+      // 1) prefer previous
+      // 2) else try same-origin referrer
+      if (nextHome == null && nextAll == null) {
+        if (ref.home) {
+          nextHome = ref.home;
+        } else if (ref.allmeasures !== null && ref.allmeasures !== undefined) {
+          nextAll = normalizeAll(ref.allmeasures);
+        }
+      }
+    } else {
+      // Plain screens with no params & not destination -> leave existing origin as-is (or clear if you prefer)
+      // If you want to clear origin on bare Home loads, uncomment:
+      // if (!hasHome && !hasAll) { nextHome = null; nextAll = null; }
+    }
+
+    // Carry the rest forward sensibly
+    const next = {
+      href: cur.href,
+      ts: cur.ts,
+      home: nextHome,
+      allmeasures: nextAll,
+      s75: cur.s75 ?? prev.s75 ?? ref.s75 ?? null,
+      key: cur.key ?? prev.key ?? ref.key ?? null
+    };
+
+    localStorage.setItem('lastParams', JSON.stringify(next));
+
+    // Optional: keep legacy key in sync only when origin is explicit
+    if (hasHome || hasAll) {
+      localStorage.setItem('lastRelevantUrl', next.href);
+    }
+
+    // 🔎 DEBUG
+    console.log('[NAV-PERSIST v3]', {
+      cur,
+      refPicked: { home: ref.home, allmeasures: ref.allmeasures },
+      prev,
+      next
+    });
+  } catch (e) {
+    console.warn('persistNavContextV3 failed:', e);
+  }
+})();
+
+
 function buildBreadcrumb() {
-  const { home, s75, key, allmeasures } = getQueryParams();
+  const { home, s75, key, allmeasures, about } = getQueryParams();
 
   // Helpers
-  const sep = () => document.createTextNode(' \u003e '); // " > "
+  const sep = () => document.createTextNode(' >\u00A0');
   const makeHomeLink = () => {
     const a = document.createElement('a');
     a.href = 'index.html';
@@ -3738,6 +4725,31 @@ function buildBreadcrumb() {
       container.appendChild(document.createTextNode(' > All Measures'));
        }
   }
+
+  // -------- Case 4: about= → breadcrumb-about --------
+if (about) {
+  const container = document.getElementById('breadcrumb-about');
+  if (container) {
+    container.innerHTML = '';
+
+    const homeLink = makeHomeLink();
+    container.appendChild(homeLink);
+    container.appendChild(sep());
+
+    // Middle crumb: Age Group
+    const midLink = document.createElement('a');
+    midLink.href = `index.html?s75=${s75}`;
+    midLink.textContent = lookupTableDisplayGrp[s75] || 'Age Group';
+    container.appendChild(midLink);
+    container.appendChild(sep());
+
+    // Final crumb: Destination
+    const destLink = document.createElement('a');
+    destLink.href = `index.html?s75=${s75}&key=${key}`;
+    destLink.textContent = 'Destination';
+    container.appendChild(destLink);
+  }
+}
 }
 
   // About and Share buttons
