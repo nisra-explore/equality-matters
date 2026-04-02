@@ -2125,6 +2125,11 @@ nav a[target="_blank"]::after {
   font-weight: bold; /* Optional: make it bold */
 }
 
+.left-section h3 {
+  font-size: 20px; /* Change to any size you want */
+  font-weight: bold; /* Optional: make it bold */
+}
+
 .center-section {
   text-align: left; /* Align text to the left */
   flex: 1; /* Take remaining space */
@@ -2651,6 +2656,31 @@ html, body {
   flex-direction: column;
 }
 
+/* Let the table compute consistent column widths (MG) */
+  #dataTable {
+    table-layout: fixed;   /* Recommended so max-width is respected */
+    width: 100%;
+  }
+
+  /* Default: keep single line for shorter headers (optional) */
+  th.measure_title_table {
+    white-space: nowrap;
+    text-overflow: ellipsis;  /* only visible if overflow hidden is added */
+    overflow: hidden;         /* optional if you want ellipsis for short headers */
+  }
+
+  /* When long: wrap and set a comfortable width (MG) */ 
+  th.measure_title_table.wrap-when-long {
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    max-width: 60ch; /* roughly 60 characters wide */
+    overflow: visible;
+    text-overflow: unset;
+  }
+
+
+
 
 /* ===============================
    MOBILE POPUP SIDEBAR
@@ -3173,17 +3203,14 @@ td, th {
 /* First column fixed width + wrapping (from earlier) */
 #all-meas-tbl th:first-child,
 #all-meas-tbl td:first-child{
-  width: 100px; min-width: 100px; max-width: 100px;
+  width: 150px; 
   white-space: normal;
-  overflow-wrap: anywhere;
-  word-break: break-word;
-  hyphens: auto;
 }
 
 /* All other columns fixed width (example) */
 #all-meas-tbl th:not(:first-child),
 #all-meas-tbl td:not(:first-child){
-  width: 100px; min-width: 100px; max-width:100px;
+  width: 110px; 
 }
 
 /* Specifically allow THs to wrap (TDs can stay as you set them) */
@@ -3270,7 +3297,7 @@ td, th {
   background-color: #614EB7;  /* hover */
   }
 
-h4.text-start {
+h3.text-start {
     font-size: 1.25rem;
 }
 
@@ -3348,3 +3375,99 @@ background-color: #00205B;
     cursor: pointer;
     outline: 2px solid #3878c5;
 }
+
+#versions-table {
+  width: 100%;
+}
+
+#versions-table .versions-row {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 2fr;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #ccc;
+  align-items: start;
+}
+
+#versions-table .versions-header {
+  font-weight: 700;
+}
+
+#versions-table .versions-cell {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+  #versions-table .versions-header {
+    display: none;
+  }
+
+  #versions-table .versions-row {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+  }
+
+  #versions-table .versions-cell::before {
+    content: attr(data-label);
+    display: block;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+}
+
+.table-scroll-wrapper {
+    width: 100%;
+    display: block;
+}
+
+.dest-table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.dest-table th,
+.dest-table td {
+    word-break: break-word;
+}
+
+.wrap-when-long {
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+/* Long measure header gets more room */
+.dest-table.measure-col-wide th.measure_title_table,
+.dest-table.measure-col-wide td:nth-child(2) {
+    width: 45%;
+}
+
+.dest-table.measure-col-wide th.eq_grp_name,
+.dest-table.measure-col-wide td:nth-child(1) {
+    width: 20%;
+}
+
+/* Mobile / tablet */
+@media (max-width: 900px) {
+    .table-scroll-wrapper {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        display: block;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .dest-table {
+        width: 900px !important;
+        min-width: 900px !important;
+        max-width: none !important;
+    }
+}
+

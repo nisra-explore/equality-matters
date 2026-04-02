@@ -138,7 +138,7 @@
   </div>
 
   <!-- TABLE VIEW -->
-  <div id="tableView" class="table-container">
+  <div id="tableView" class="table-container table-scroll-wrapper">
     <table id="dataTable">
       <thead></thead>
       <tbody></tbody>
@@ -309,8 +309,8 @@
               <div class="text-lg-start">
                 <h2 class="mb-3">All Measures</h2>
 
-                <h4 class="mb-0 text-start">Click a cell in the matrix below to view the equality statistics.</h4>
-                <h4 class="text-start">If a cell is empty, equality statistics are not currently available.</h4>
+                <h3 class="mb-0 text-start">Click a cell in the matrix below to view the equality statistics.</h3>
+                <h3 class="text-start">If a cell is empty, equality statistics are not currently available.</h3>
               </div>
             </div>
 
@@ -318,7 +318,7 @@
             <div class="all-measures-div">
 <div class="row align-items-start">
                   <div class="left-section">
-                  <h4>Filter measures by:</h4>
+                  <h3>Filter measures by:</h3>
                               <div class="form-group">
               <select id="departmentSelect" class="form-control" multiple="multiple" role = "listbox" aria-multiselectable="true" aria-label="Department filter. Use spacebar to select and deselect options.">
                   <option value="Census">Census 2021</option>
@@ -483,22 +483,27 @@
             <ul class="list-inline">
               <li class="list-inline-item">
                 <a href="https://www.facebook.com/nisra.gov.uk">
-                  <img src="img/facebook-brands-solid-full.svg" alt="icon links to NISRA Facebook page" class="img-50">
+                  <img src="img/facebook-brands-solid-full.svg" alt="Facebook" class="img-50">
                 </a>
               </li>
               <li class="list-inline-item">
                 <a href="https://x.com/NISRA/">
-                  <img src="img/x-twitter-brands-solid-full.svg"alt="icon links to NISRA X page" class="img-50"/>
+                  <img src="img/x-twitter-brands-solid-full.svg"alt="X" class="img-50"/>
                 </a>
               </li>
               <li class="list-inline-item">
                 <a href="https://www.youtube.com/user/nisrastats">
-                  <img src="img/youtube-brands-solid-full.svg" alt="icon links to NISRA Youtube channel" class="img-50"/>
+                  <img src="img/youtube-brands-solid-full.svg" alt="Youtube" class="img-50"/>
                 </a>
               </li>
               <li class="list-inline-item">
                 <a href="https://www.linkedin.com/company/northern-ireland-statistics-and-research-agency/">
-                  <img src="img/linkedin-in-brands-solid-full.svg" alt="icon links to NISRA linkedin" class="img-50"/>
+                  <img src="img/linkedin-in-brands-solid-full.svg" alt="LinkedIn" class="img-50"/>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://www.instagram.com/nisra.gov.uk/">
+                  <img src="img/instagram-brands-solid-full.svg" alt="Instagram" role="img" class="img-50"/>
                 </a>
               </li>
             </ul>
@@ -556,20 +561,27 @@
   let lookupTableDisplayGrp = data.lookup_table_display_grp;
   let lookupTableMeasureTitle = data.lookup_table_measure_title;
   let lookupTableDatasetLong = data.lookup_table_dataset_long;
-console.log("lookupTableMeasureTitle", lookupTableMeasureTitle)
-  function filterVariablesByName(data, matchStrings) {
-    if (!Array.isArray(matchStrings) || matchStrings.length !== 2) {
-        throw new Error("matchStrings must be an array of exactly two strings");
+  
+  console.log("lookupTableMeasureTitle", lookupTableMeasureTitle)
+
+  // Updated function to ensure more precise matching of measure and second token (MG)
+  function filterVariablesByName(data, [measureId, secondToken]) {
+    const out = [];
+
+    for (const [key, value] of Object.entries(data)) {
+      // strict measure match: only c5041_
+      const measure = key.split('_')[0];
+      if (measure !== measureId) continue;
+
+      // strict second-part match: e.g. "_sex_category_labels"
+      if (!key.endsWith(secondToken)) continue;
+
+      out.push(value);
     }
 
-    const [match1, match2] = matchStrings;
-
-    const filtered = Object.entries(data)
-        .filter(([key]) => key.includes(match1) && key.includes(match2))
-        .map(([, value]) => value); // Extract only the values
-
-    return filtered.flat(); // Flatten the array if the values are arrays
+    return out.flat();
   }
+
 
   // deals with the filling of the new nested button grid on S75 measures scrn
   (function () {
@@ -660,12 +672,18 @@ console.log("lookupTableMeasureTitle", lookupTableMeasureTitle)
     for (const val of lookupValues) {
       const re = new RegExp(`(?:^|_)${escapeRegExp(val)}(?:_|$)`); // whole token match
       for (const [key, value] of Object.entries(data)) {
-        if (
-          key.includes(matchString) &&
-          re.test(key) &&                 // matches EQ101 as a full token, not EQ1010
-          !key.includes("_lci_") &&
-          !key.includes("_uci_")
-        ) {
+        // if (
+        //   key.includes(matchString) &&
+        //   re.test(key) &&                 // matches EQ101 as a full token, not EQ1010
+        //   !key.includes("_lci_") &&
+        //   !key.includes("_uci_")
+        // ) {
+        // (MG) Previous condition was too broad and could match unintended keys (e.g., c50410 when looking for c5041)
+        const measure = key.split('_')[0];
+
+        if (measure === matchString && re.test(key)
+            && !key.includes("_lci_") 
+            && !key.includes("_uci_")) {
           filtered.push([key, value]);
           break;
         }
@@ -695,10 +713,16 @@ console.log("lookupTableMeasureTitle", lookupTableMeasureTitle)
     const lci_filtered = [];
  
     for (const val of lookupValues) {
+        // Ensure val (e.g., EQ201) is matched as a whole token between underscores
+        const reVal = new RegExp(`(?:^|_)${val}(?:_|$)`);
+
         for (const [key, value] of Object.entries(data)) {
-            if (key.includes(matchString) && key.includes(val) && key.includes("_lci_")) {
+            //if (key.includes(matchString) && key.includes(val) && key.includes("_lci_")) {
+            // (MG) Updated condition to ensure val is matched as a whole token, not as part of another token (e.g., c50410 when looking for c5041)
+            const measure = key.split('_')[0];
+            if (measure === matchString && reVal.test(key) && key.includes("_lci_")) { // (MG) Added regex test for whole token match
               lci_filtered.push([key, value]);
-                break;  // Move to the next value once a match is found
+              break;  // Move to the next value once a match is found
             }
         }
     }
@@ -725,10 +749,15 @@ console.log("lookupTableMeasureTitle", lookupTableMeasureTitle)
     const uci_filtered = [];
  
     for (const val of lookupValues) {
+        const reVal = new RegExp(`(?:^|_)${val}(?:_|$)`);
+
         for (const [key, value] of Object.entries(data)) {
-            if (key.includes(matchString) && key.includes(val) && key.includes("_uci_")) {
+            //if (key.includes(matchString) && key.includes(val) && key.includes("_uci_")) {
+            // (MG) Updated condition to ensure val is matched as a whole token, not as part of another token (e.g., c50410 when looking for c5041)
+            const measure = key.split('_')[0];
+            if (measure === matchString && reVal.test(key) && key.includes("_uci_")) { // (MG) Added regex test for whole token match
               uci_filtered.push([key, value]);
-                break;  // Move to the next value once a match is found
+              break;  // Move to the next value once a match is found
             }
         }
     }
@@ -797,10 +826,25 @@ console.log("lookupTableMeasureTitle", lookupTableMeasureTitle)
         throw new Error(`Value for key "${matchString}" in lookupTable must be a non-empty array`);
     }
 
-    // Filter `data` keys that match any value in the lookupValues array
-    const filteredKeys = Object.keys(data).filter(key =>
-        lookupValues.some(val => key.includes(val))
+    // Build token regexes for EQ codes (e.g., match "_EQ201_" but not "_EQ2010_")
+    const eqTokenRegexes = lookupValues.map(
+      eq => new RegExp(String.raw`(?:^|_)${eq}(?:_|$)`)
     );
+
+    // Filter `data` keys that match any value in the lookupValues array
+    // const filteredKeys = Object.keys(data).filter(key =>
+    //     lookupValues.some(val => key.includes(val))
+    // );
+    
+    // Consider only *_line_data keys to avoid lci/uci pollution in this discovery step (MG)
+    const filteredKeys = Object.keys(data).filter(key => {
+      if (!key.endsWith('_line_data')) return false;                // keep only line data
+      // If you DO want to include CI keys, remove the line above and add explicit excludes:
+      // if (key.includes('_lci_') || key.includes('_uci_')) return false;
+      
+      // Keep key if it contains any EQ token
+      return eqTokenRegexes.some(re => re.test(key));
+    });
 
     // Extract unique prefixes (up to the first '_') from the filtered keys
     const uniquePrefixes = [...new Set(filteredKeys.map(key => key.split('_')[0]))];
@@ -860,7 +904,9 @@ console.log("lookupTableMeasureTitle", lookupTableMeasureTitle)
       }
 
       // Filter keys in `data` that contain `matchString`
-      const matchedKeys = Object.keys(data).filter(key => key.includes(matchString));
+      //const matchedKeys = Object.keys(data).filter(key => key.includes(matchString));
+      // (MG) Updated to ensure matchString is matched as a whole token at the start of the key, not as part of another token (e.g., c50410 when looking for c5041)
+      const matchedKeys = Object.keys(data).filter(key => key.split('_')[0] === matchString);
 
       console.log("Matchstring", matchString)
       console.log("LookupTable", lookupTable)
@@ -919,6 +965,15 @@ console.log("lookupTableMeasureTitle", lookupTableMeasureTitle)
   dest_scrn.style.display = "none";
  // home_scrn.style.display = "none";
   all_meas_scrn.style.display = "none";
+
+
+
+const urlParams = new URLSearchParams(window.location.search);
+
+const selectedS75 = urlParams.get("s75");
+const measureKey = urlParams.get("key");
+const home       = urlParams.get("home");
+const allmeasures = urlParams.get("allmeasures");
 
 
   
@@ -1024,7 +1079,6 @@ document.addEventListener('DOMContentLoaded', function () {
   console.log("Links", availableLinks)
 
 const dept_long_names = {
-  "Census 2021": "cen",
   "Department of Health": "doh",
   "Department for Infrastructure": "dfi",
   "Department for Communities": "dfc",
@@ -1456,116 +1510,6 @@ function openNestedOverlay(anchorEl, innerHtml, { label = '', labelledById = '' 
 }
 
 
-// Render buttons function
-function renderButtons(dataArray) {
-  const buttonRow = document.getElementById("buttonRow");
-  buttonRow.innerHTML = "";
-
-  const nestedGroups = {};
-  const nonNested = [];
-
-  // Partition data into nested groups and non-nested items
-  dataArray.forEach(item => {
-    if (item.Nested === 'TRUE') {
-      if (!nestedGroups[item.Group]) nestedGroups[item.Group] = [];
-      nestedGroups[item.Group].push(item);
-    } else {
-      nonNested.push(item);
-    }
-  });
-
-  // Render non-nested buttons
-  nonNested.forEach(item => {
-    const label = item.Measure_Name || enrichedLookup[item.Code]?.measure || 'Unnamed Measure';
-    buttonRow.innerHTML += `
-      <div class="col-6 col-md-4 mb-4">
-        <div class="card w-100">
-          <div class="card-header p-0">
-            <button form="measuresPageForm" type="submit" name="key" value="${item.Code}"
-              class="btn btn-outline-primary btn-block">
-              ${label}
-            </button>
-          </div>
-        </div>
-      </div>
-    `;
-  });
-
-  // Render nested groups
-  let collapseIndex = 0;
-  window.__nestedOverlayContent = {}; // reset each render
-
-  for (const [groupName, items] of Object.entries(nestedGroups)) {
-    const overlayId = `overlay${collapseIndex}`;
-    const titleId = `ovl-title-${collapseIndex}`;
-
-    // Build inner child buttons
-    const childButtons = items.map(item => {
-      const label = item.Measure_Name || enrichedLookup[item.Code]?.measure || 'Unnamed Measure';
-      return `
-        <div class="mb-2">
-          <button form="measuresPageForm" type="submit" name="key" value="${item.Code}"
-            class="btn btn-outline-primary btn-block">
-            ${label}
-          </button>
-        </div>
-      `;
-    }).join("");
-
-    // Outer (parent) button that triggers overlay
-    buttonRow.innerHTML += `
-      <div class="col-6 col-md-4 mb-4 d-flex justify-content-center">
-        <div class="card w-100">
-          <div class="card-header p-0">
-            <button
-              type="button"
-              class="btn btn-primary btn-block text-left btn-accordion nested-overlay-trigger"
-              data-overlay-id="${overlayId}"
-              data-overlay-title-id="${titleId}"
-              aria-expanded="false">
-              ${groupName}
-            </button>
-          </div>
-        </div>
-      </div>
-    `;
-
-    // Store accessible overlay content
-    window.__nestedOverlayContent[overlayId] = `
-      <div class="p-2">
-        <h2 id="${titleId}" class="h4 m-0">${groupName}</h2>
-        <div class="mt-2">
-          ${childButtons}
-        </div>
-        <div class="mt-3 d-flex justify-content-end">
-          <button type="button" class="btn btn-sm btn-outline-secondary js-overlay-close">Close</button>
-        </div>
-      </div>
-    `;
-
-    collapseIndex++;
-  }
-
-  // Wire up overlay triggers
-  buttonRow.querySelectorAll(".nested-overlay-trigger").forEach(btn => {
-    btn.addEventListener("click", () => {
-      btn.setAttribute("aria-expanded", "true");
-      const id = btn.getAttribute("data-overlay-id");
-      const labelledById = btn.getAttribute("data-overlay-title-id");
-      openNestedOverlay(btn, window.__nestedOverlayContent[id] || "", { labelledById });
-    });
-
-    btn.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        const id = btn.getAttribute("data-overlay-id");
-        const labelledById = btn.getAttribute("data-overlay-title-id");
-        openNestedOverlay(btn, window.__nestedOverlayContent[id] || "", { labelledById });
-      }
-    });
-  });
-}
-
   // Function to check and store the relevant URL
   function storeRelevantUrl() {
     const currentUrl = window.location.href;
@@ -1718,10 +1662,10 @@ document.addEventListener('click', function (e) {
   }
 
   const deptLookup = {};  
-  const urlParams = new URLSearchParams(window.location.search);
-  const selectedS75 = urlParams.get('home'); // e.g. 'age'
+  // const urlParams = new URLSearchParams(window.location.search); (MG - removed as declared earlier)
+  // const selectedS75 = urlParams.get('home'); // e.g. 'age'
 
-    const deptLookupLong = {};
+  const deptLookupLong = {};
   // Step 2: Enrich measure titles using deptLookup
   const enrichedLookup = {};
 
@@ -1732,6 +1676,115 @@ document.addEventListener('click', function (e) {
       measure: measureName,
       department: deptName
     };
+  }
+
+  // Render buttons function
+  function renderButtons(dataArray) {
+    const buttonRow = document.getElementById("buttonRow");
+    buttonRow.innerHTML = "";
+
+    const nestedGroups = {};
+    const nonNested = [];
+
+    // Partition data into nested groups and non-nested items
+    dataArray.forEach(item => {      
+      if (item.Nested === 'TRUE') {
+          const groupKey = item["Associated Theme"] ?? "Other";
+          if (!nestedGroups[groupKey]) nestedGroups[groupKey] = [];
+          nestedGroups[groupKey].push(item);
+      } else {
+          nonNested.push(item);
+      }
+    });
+
+    // Render non-nested buttons
+    nonNested.forEach(item => {
+      const label = item.Measure_Name || enrichedLookup[item.Code]?.measure || 'Unnamed Measure';
+      buttonRow.innerHTML += `
+        <div class="col-6 col-md-4 mb-4">
+          <div class="card w-100">
+            <div class="card-header p-0">
+              <button form="measuresPageForm" type="submit" name="key" value="${item.Code}"
+                class="btn btn-outline-primary btn-block">
+                ${label}
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+
+    // Render nested groups
+    let collapseIndex = 0;
+    window.__nestedOverlayContent = {}; // reset each render
+
+    for (const [groupName, items] of Object.entries(nestedGroups)) {
+      const overlayId = `overlay${collapseIndex}`;
+      const titleId = `ovl-title-${collapseIndex}`;
+
+      // Build inner child buttons
+      const childButtons = items.map(item => {
+        const label = item.Measure_Name || enrichedLookup[item.Code]?.measure || 'Unnamed Measure';
+        return `
+          <div class="mb-2">
+            <button form="measuresPageForm" type="submit" name="key" value="${item.Code}"
+              class="btn btn-outline-primary btn-block">
+              ${label}
+            </button>
+          </div>
+        `;
+      }).join("");
+
+      // Outer (parent) button that triggers overlay
+      buttonRow.innerHTML += `
+        <div class="col-6 col-md-4 mb-4 d-flex justify-content-center">
+          <div class="card w-100">
+            <div class="card-header p-0">
+              <button
+                type="button"
+                class="btn btn-primary btn-block text-left btn-accordion nested-overlay-trigger"
+                data-overlay-id="${overlayId}"
+                data-overlay-title-id="${titleId}">
+                ${groupName}
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+
+      // Store accessible overlay content
+      window.__nestedOverlayContent[overlayId] = `
+        <div class="p-2">
+          <h2 id="${titleId}" class="h5 m-0">${groupName}</h2>
+          <div class="mt-2">
+            ${childButtons}
+          </div>
+          <div class="mt-3 d-flex justify-content-end">
+            <button type="button" class="btn btn-sm btn-outline-secondary js-overlay-close">Close</button>
+          </div>
+        </div>
+      `;
+
+      collapseIndex++;
+    }
+
+    // Wire up overlay triggers
+    buttonRow.querySelectorAll(".nested-overlay-trigger").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const id = btn.getAttribute("data-overlay-id");
+        const labelledById = btn.getAttribute("data-overlay-title-id");
+        openNestedOverlay(btn, window.__nestedOverlayContent[id] || "", { labelledById });
+      });
+
+      btn.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          const id = btn.getAttribute("data-overlay-id");
+          const labelledById = btn.getAttribute("data-overlay-title-id");
+          openNestedOverlay(btn, window.__nestedOverlayContent[id] || "", { labelledById });
+        }
+      });
+    });
   }
 
   const intermeascontainer = document.getElementById('key-metrics-container-inter');
@@ -2172,7 +2225,7 @@ const sidebar = document.getElementById('sidebar');
 sidebar.inert = true;
 
 // action taken to update url once a s75 measure given - this being actioned triggers the below if block and populates the dest page based on the key and s75 in the url
-const urlParams = new URLSearchParams(window.location.search);
+// const urlParams = new URLSearchParams(window.location.search);
 const key = urlParams.get("key");
 const s75 = urlParams.get("s75");
 
@@ -2200,6 +2253,46 @@ if (key && !s75) {
   // Optional: store current values for future use
   if (s75) localStorage.setItem("s75", s75);
   if (key) localStorage.setItem("key", key);
+}
+
+// Exception list for s75 and key combinations to treat as NI value = 100
+const ni100Exceptions = [
+    { s75: 'marital', key: /^c504[1-9]$/},  // Main language by marital status (C5041-C50410) - 10 would be included with 1    
+    { s75: 'ori', key: /^c504[1-9]$/ },     // Main language by sexual orientation (C5041-C50410) - 10 would be included with 1
+    { s75: 'marital', key: /^c505[1-6]$/},  // Knowledge of Irish by marital status (C5051-C5056)
+    { s75: 'ori', key: /^c505[1-6]$/ },     // Knowledge of Irish by sexual orientation (C5051-C5056)
+    { s75: 'marital', key: /^c506[1-6]$/},  // Knowledge of Ulster Scots by marital status (C5061-C5066)
+    { s75: 'ori', key: /^c506[1-6]$/ },     // Knowledge of Ulster Scots by sexual orientation (C5061-C5066)
+    { s75: 'marital', key: /^c508[1-3]$/},  // General health by marital status (C5081-C5083)
+    { s75: 'ori', key: /^c508[1-3]$/ },     // General health by sexual orientation (C5081-C5083)
+    { s75: 'marital', key: /^c509[1-2]$/ }, // Long-term health problem by marital status (C5091-C5092)
+    { s75: 'ori', key: /^c509[1-2]$/ },     // Long-term health problem by sexual orientation (C5091-C5092)
+    { s75: 'marital', key: /^c510[1-6]$/ }, // Provision of unpaid care by marital status (C5101-C5106)
+    { s75: 'ori', key: /^c510[1-6]$/ },     // Provision of unpaid care by sexual orientation (C5101-C5106)
+    { s75: 'marital', key: /^c513[1-6]$/ }, // Method of travel to study by marital status (C5131-C5136)
+    { s75: 'ori', key: /^c513[1-6]$/ },     // Method of travel to study by sexual orientation (C5131-C5136)
+    { s75: 'marital', key: /^c515[1-6]$/ }, // Distance to place of study by marital status (C5151-C5156)
+    { s75: 'ori', key: /^c515[1-6]$/ },     // Distance to place of study by sexual orientation (C5151-C5156)
+    { s75: 'sex', key: 'inc1' },            // Income deprivation - relative by sex
+    { s75: 'sex', key: 'inc2' },            // Income deprivation - absolute by sex
+    { s75: 'depend', key: 'pubt' },         // Public transport usage by dependant status
+    { s75: 'religion', key: 'pubt' },       // Public transport usage by religion
+    { s75: 'depend', key: 'walk' },         // Walking/cycling to work by dependant status
+    { s75: 'religion', key: 'walk' }        // Walking/cycling to work by religion
+    // Add more exceptions here as needed (MG)
+];
+
+function isNi100Exception(s75Category, measureKeyToCheck) {
+  if (!s75Category || !measureKeyToCheck) return false;
+
+  return ni100Exceptions.some(ex => {
+    const groupMatch = ex.s75 === s75Category;
+    const keyMatch = typeof ex.key === 'string'
+      ? ex.key === measureKeyToCheck
+      : ex.key.test(measureKeyToCheck);
+
+    return groupMatch && keyMatch;
+  });
 }
 
 if (window_url.indexOf("?") > -1 && window_url.indexOf("s75=") > -1) {
@@ -2280,8 +2373,16 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
   // ################################################################################
 
   let yearLabels = filterVariablesByName(data, [ind, 'line_labels']);
-  let niLineData = filterVariablesByName(data, [ind, 'ni_']);
+  //let niLineData = filterVariablesByName(data, [ind, 'ni_']); ()
+  let niLineData = filterVariablesByName(data, [ind, "_ni_line_data"]);
   let niAvgLine = niLineData[niLineData.length - 1];
+
+  // Check if this s75 and key combination should be treated as NI = 100
+  let isException = isNi100Exception(group, ind);
+
+  if (isException) {
+      niAvgLine = 100;
+  }
   let eqGrpCatLabelsName =  "_" + group + "_category_labels";
   let eqGrpCatLabels = filterVariablesByName(data, [ind, eqGrpCatLabelsName]);
   let eqGrpCatLineData = filterVariablesByLookup(data, group, ind, lookupTableEqCode);
@@ -2298,6 +2399,14 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
   let s75CatNotesLabelsName =  "_" + group + "_section75_notes";
   let s75CatNotesLabels = filterVariablesByName(data, [ind, s75CatNotesLabelsName]);
   let furtherInfo = data[`${ind}_further_information`];
+  if (isException) {
+      const note = "<br><br> The NI value has been suppressed from the charts above as the population base for these calculated percentages is different";
+      if (s75CatNotesLabels && s75CatNotesLabels.length > 0) {
+          s75CatNotesLabels += note;
+      } else {
+          furtherInfo += note;
+      }
+  }
   let s75grps = returnAvailableS75ByLookup(data,ind,invertedLookupEqCode);
 
   console.log('Year Labels:', yearLabels);
@@ -2323,6 +2432,7 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
   console.log('matchString', ind);
 
   let chartInstance = null;
+  let lineChartInstance = null;
 
 function returnAvailableS75GroupsForAllMeasures(data, lookupTable) {
     if (typeof lookupTable !== 'object' || lookupTable === null) {
@@ -2339,7 +2449,8 @@ function returnAvailableS75GroupsForAllMeasures(data, lookupTable) {
 
     // For each measure code, find matching keys and extract EQ codes
     measureCodes.forEach(measureCode => {
-        const matchedKeys = Object.keys(data).filter(key => key.includes(measureCode));
+        //const matchedKeys = Object.keys(data).filter(key => key.includes(measureCode)); (MG) line replaced to ensure only keys with the pattern measureCode_EQxxx are included, avoiding unrelated keys that contain the measure code
+        const matchedKeys = Object.keys(data).filter(key => key.includes(measureCode + "_"));
         matchedKeys.forEach(key => {
             const matches = key.match(eqPattern);
             if (matches) {
@@ -2559,11 +2670,11 @@ const niBelowAxisLabelPlugin = {
     ctx.textAlign = "center";
     ctx.textBaseline = "top";
 
-    const padding = 6;
+    const padding = 6;    
     const lineHeight = 22;
 
-    // Measure text width
-    const widest = Math.max(...textLines.map(t => ctx.measureText(t).width));
+    // Measure text width and trim lines to remove trailing spaces
+    const widest = Math.max(...textLines.map(t => ctx.measureText(t.trim()).width));
     const boxWidth = widest + padding * 2;
     const boxHeight = textLines.length * lineHeight + padding * 2;
 
@@ -2579,7 +2690,7 @@ const niBelowAxisLabelPlugin = {
     // Text lines
     ctx.fillStyle = "black";
     textLines.forEach((line, i) => {
-      ctx.fillText(line, x, y + i * lineHeight);
+      ctx.fillText(line.trim(), x, y + i * lineHeight);
     });
 
     ctx.restore();
@@ -2617,6 +2728,7 @@ function getBarWidth(ctx) {
   return Math.abs(end - start);
 }
 
+  // /////////////////////////////////////////////////////////////////////////////////////////////////////
   // Bar chart function
   function createBarChart(cat_labels, bar_data, ni_line) {
     const chartCanvas = document.getElementById('bar_line_chart');
@@ -2641,7 +2753,8 @@ function getBarWidth(ctx) {
     const ctx_bar_line_chart = chartCanvas.getContext('2d');
 
     let annotationsConfig = {};
-    const realBarValCount = bar_data.filter(value => value !== null).length;
+    //const realBarValCount = bar_data.filter(value => value !== null).length; (MG) replaced with more robust check to ensure only valid numbers are counted, avoiding issues with non-numeric placeholders that may be present in the data
+    const realBarValCount = bar_data.filter(v => typeof v === 'number' && !isNaN(v)).length;
 
     if (ni_line !== 100){
       annotationsConfig = {
@@ -2714,7 +2827,8 @@ function getBarWidth(ctx) {
           maintainAspectRatio: false, 
           layout: {
             padding: {
-              bottom: 70
+              bottom: 70,              
+              right: 12
             }
           },
           events: [], // turn off hover labels //
@@ -2724,7 +2838,7 @@ function getBarWidth(ctx) {
             },
                       niBelowAxisLabel: {
             niValue: ni_line,
-            textLines: ["NI", `${ni_line}%`]
+            textLines: ["NI", `${ni_line}%`],            
           },
 
             // suppress datalabels globally for this chart - turned on individually for each dataset as needed
@@ -2801,11 +2915,16 @@ function getBarWidth(ctx) {
       } 
     });
   } else {
+    //barInfoContainer.style.display = "none"; (MG)
+    if (typeof barInfoContainer !== "undefined" && barInfoContainer !== null) {
     barInfoContainer.style.display = "none";
+}
     chartContainer.innerHTML =
       '<center style="font-weight:bold;font-size:18pt;">Current year data is not available</center>';
   }
 };
+
+
 
 
   const latest_year = document.querySelectorAll('.latest_year');
@@ -2930,124 +3049,271 @@ function getBarWidth(ctx) {
   }
 
 
-  function populateTable() {
-    const tableBody = document.getElementById("dataTable").getElementsByTagName("tbody")[0];
-    dataTable.classList.add('dest-table');
-    tableBody.innerHTML = "";
+  // function populateTable() {
+  //   const tableBody = document.getElementById("dataTable").getElementsByTagName("tbody")[0];
+  //   dataTable.classList.add('dest-table');
+  //   tableBody.innerHTML = "";
 
-    // Ensure niAvgLine is treated as a single value (if it's not an array)
+  //   // Ensure niAvgLine is treated as a single value (if it's not an array)
+  //   const niValue = Array.isArray(niAvgLine) ? niAvgLine[0] : niAvgLine;
+  //   const tableDataArray = [];
+
+  //   const allLciNull = eqGrpLciCatBarData.every(val => val ===null);
+  //   const allUciNull = eqGrpUciCatBarData.every(val => val ===null);
+  //   const realTabValCount = eqGrpCatBarData.filter(value => value !== null).length;
+
+  //   // Do we have any confidence intervals for this dataset? (MG) - if we have at least 1 real value and not all LCI or UCI values are null, then we have CIs to display
+  //   const hasCIs = (realTabValCount >= 1) && (!allLciNull || !allUciNull);
+
+  //   if (realTabValCount >=1){
+
+  //     const headerRow = document.createElement("tr");
+  //     const headers = [eqGrpDisplayName,measureTitle];
+  //     if(!allLciNull) headers.push("LCI (%)");
+  //     if(!allUciNull) headers.push("UCI (%)");
+  //     if(niValue !== 100) headers.push("NI Value (%)");
+
+  //     headers.forEach((headerText,index) => {
+  //       const headerCell = document.createElement("th");
+        
+  //     // Ensure headerText is a string
+  //     const text = Array.isArray(headerText) ? headerText[0] : headerText;
+
+  //       // console.log("Header:", index, headerText, headerText.length);
+  //       if (index === 0) {
+  //         headerCell.className = "eq_grp_name";
+  //         headerCell.textContent = text;
+  //       } else if (index === 1){
+  //         headerCell.className = "measure_title_table";
+  //         headerCell.textContent = text;
+
+  //       // If longer than 60 characters, enable wrapping and constrain width (MG)
+  //       if (text && text.length > 60) {
+  //         headerCell.classList.add("wrap-when-long");
+  //         // Optional: show the full text on hover as a tooltip
+  //         headerCell.title = text;
+  //       }
+
+  //       }  else {
+  //         headerCell.textContent = text;
+  //       }
+  //       headerRow.appendChild(headerCell);
+  //     });
+  //     document.getElementById("dataTable").getElementsByTagName("thead")[0].appendChild(headerRow);
+
+  //     for (let i = 0; i < eqGrpCatLabels.length; i++) {
+  //         const row = document.createElement("tr");
+
+  //         const ageCell = document.createElement("td");
+  //         ageCell.textContent = eqGrpCatLabels[i];
+  //         row.appendChild(ageCell);
+
+  //         const povCell = document.createElement("td");
+  //         povCell.textContent = eqGrpCatBarData[i] !== null ? eqGrpCatBarData[i] : "N/A";
+  //         row.appendChild(povCell);
+
+  //         if (!allLciNull && realTabValCount >=1){
+  //           const lcipovCell = document.createElement("td");
+  //           lcipovCell.textContent = eqGrpLciCatBarData[i] !== null ? eqGrpLciCatBarData[i] : "N/A";
+  //           row.appendChild(lcipovCell);
+  //         }
+
+  //         if (!allUciNull && realTabValCount >=1){
+  //           const ucipovCell = document.createElement("td");
+  //           ucipovCell.textContent = eqGrpUciCatBarData[i] !== null ? eqGrpUciCatBarData[i] : "N/A";
+  //           row.appendChild(ucipovCell);
+  //         }
+
+  //         if (niValue !== 100){
+  //           const niCell = document.createElement("td");
+  //           niCell.textContent = niValue;
+  //           row.appendChild(niCell);
+  //         }
+
+  //         tableBody.appendChild(row);
+
+  //         // // Store data as an object
+  //         // tableDataArray.push({
+  //         //     category: eqGrpCatLabels[i],
+  //         //     percentage: parseFloat(eqGrpCatBarData[i]), // Convert to number
+  //         //     niAverage: parseFloat(niValue) // Convert to number
+  //         // });
+  //         // Store cleaned data as an object - to replace the code above (MG)
+  //         const cleanedPercentage = cleanValue(eqGrpCatBarData[i], niValue);
+  //         const cleanedNI = cleanValue(niValue, niValue);
+
+  //         tableDataArray.push({
+  //             category: eqGrpCatLabels[i],
+  //             percentage: cleanedPercentage,
+  //             niAverage: cleanedNI
+  //         });
+            
+  //       }}else{
+  //     document.getElementById('dataTable').innerHTML = '<center style="font-weight: bold; font-size: 18pt;">Current year data is not available for this measure</center>';
+
+  //   }
+
+  //   // Generate summary using the new function
+  //   const summaryText = generateSummaryText(tableDataArray, niAvgLine, measureTitle, eqGrpDisplayName, how_measure, hasCIs);
+
+  //   // NEW: Build the CI note (only when CIs exist) (MG)
+  //   const noteHtml = buildCiNote(hasCIs);
+
+  //   // Update all elements with the class 'data_summary'
+  //   document.querySelectorAll('.data_summary').forEach(el => {
+  //       el.innerHTML = summaryText;
+  //   });
+
+  //   // NEW: Add the same note under the table (MG) - check if it already exists to avoid duplicates when re-populating the table
+  //   const tableEl = document.getElementById("dataTable");
+  //   let tableNoteEl = document.getElementById("table_ci_note");
+  //   if (!tableNoteEl) {
+  //     tableNoteEl = document.createElement("div");
+  //     tableNoteEl.id = "table_ci_note";
+  //     tableNoteEl.className = "ci-note";
+  //     // Insert immediately after the table
+  //     tableEl.insertAdjacentElement('afterend', tableNoteEl);
+  //   }
+  //   tableNoteEl.innerHTML = noteHtml; // if noteHtml === '' this effectively hides 
+
+
+
+  //   console.log("Summary:", summaryText); // Debugging log
+
+  //   return {
+  //       tableData: tableDataArray,
+  //       summary: summaryText
+  //   };
+  // }
+
+  function populateTable() {
+    const table = document.getElementById("dataTable");
+    const thead = table.getElementsByTagName("thead")[0];
+    const tableBody = table.getElementsByTagName("tbody")[0];
+
+    table.classList.add("dest-table");
+    table.classList.remove("measure-col-wide");
+
+    tableBody.innerHTML = "";
+    thead.innerHTML = "";
+
     const niValue = Array.isArray(niAvgLine) ? niAvgLine[0] : niAvgLine;
     const tableDataArray = [];
 
-    const allLciNull = eqGrpLciCatBarData.every(val => val ===null);
-    const allUciNull = eqGrpUciCatBarData.every(val => val ===null);
+    const allLciNull = eqGrpLciCatBarData.every(val => val === null);
+    const allUciNull = eqGrpUciCatBarData.every(val => val === null);
     const realTabValCount = eqGrpCatBarData.filter(value => value !== null).length;
 
-    // Do we have any confidence intervals for this dataset? (MG) - if we have at least 1 real value and not all LCI or UCI values are null, then we have CIs to display
     const hasCIs = (realTabValCount >= 1) && (!allLciNull || !allUciNull);
 
-    if (realTabValCount >=1){
+    if (realTabValCount >= 1) {
+        const headerRow = document.createElement("tr");
+        const headers = [eqGrpDisplayName, measureTitle];
 
-      const headerRow = document.createElement("tr");
-      const headers = [eqGrpDisplayName,measureTitle];
-      if(!allLciNull) headers.push("LCI (%)");
-      if(!allUciNull) headers.push("UCI (%)");
-      if(niValue !== 100) headers.push("NI Value (%)");
+        if (!allLciNull) headers.push("LCI (%)");
+        if (!allUciNull) headers.push("UCI (%)");
+        if (niValue !== 100) headers.push("NI Value (%)");
 
-      headers.forEach((headerText,index) => {
-        const headerCell = document.createElement("th");
-        
-        if (index === 0) {
-          headerCell.className = "eq_grp_name";
-          headerCell.textContent = headerText;
-        } else if (index === 1){
-          headerCell.className = "measure_title_table";
-          headerCell.textContent = headerText;
-        }  else {
-          headerCell.textContent = headerText;
+        const measureText = Array.isArray(measureTitle) ? measureTitle[0] : measureTitle;
+        const isLongMeasureHeader = measureText && measureText.length > 60;
+
+        if (isLongMeasureHeader) {
+            table.classList.add("measure-col-wide");
         }
-        headerRow.appendChild(headerCell);
-      });
-      document.getElementById("dataTable").getElementsByTagName("thead")[0].appendChild(headerRow);
 
-      for (let i = 0; i < eqGrpCatLabels.length; i++) {
-          const row = document.createElement("tr");
+        headers.forEach((headerText, index) => {
+            const headerCell = document.createElement("th");
+            const text = Array.isArray(headerText) ? headerText[0] : headerText;
 
-          const ageCell = document.createElement("td");
-          ageCell.textContent = eqGrpCatLabels[i];
-          row.appendChild(ageCell);
+            if (index === 0) {
+                headerCell.className = "eq_grp_name";
+                headerCell.textContent = text;
+            } else if (index === 1) {
+                headerCell.className = "measure_title_table";
+                headerCell.textContent = text;
+                headerCell.classList.add("wrap-when-long");
 
-          const povCell = document.createElement("td");
-          povCell.textContent = eqGrpCatBarData[i] !== null ? eqGrpCatBarData[i] : "N/A";
-          row.appendChild(povCell);
+                if (isLongMeasureHeader) {
+                    headerCell.title = text;
+                }
+            } else {
+                headerCell.textContent = text;
+            }
 
-          if (!allLciNull && realTabValCount >=1){
-            const lcipovCell = document.createElement("td");
-            lcipovCell.textContent = eqGrpLciCatBarData[i] !== null ? eqGrpLciCatBarData[i] : "N/A";
-            row.appendChild(lcipovCell);
-          }
+            headerRow.appendChild(headerCell);
+        });
 
-          if (!allUciNull && realTabValCount >=1){
-            const ucipovCell = document.createElement("td");
-            ucipovCell.textContent = eqGrpUciCatBarData[i] !== null ? eqGrpUciCatBarData[i] : "N/A";
-            row.appendChild(ucipovCell);
-          }
+        thead.appendChild(headerRow);
 
-          if (niValue !== 100){
-            const niCell = document.createElement("td");
-            niCell.textContent = niValue;
-            row.appendChild(niCell);
-          }
+        for (let i = 0; i < eqGrpCatLabels.length; i++) {
+            const row = document.createElement("tr");
 
-          tableBody.appendChild(row);
+            const ageCell = document.createElement("td");
+            ageCell.textContent = eqGrpCatLabels[i];
+            row.appendChild(ageCell);
 
-          // // Store data as an object
-          // tableDataArray.push({
-          //     category: eqGrpCatLabels[i],
-          //     percentage: parseFloat(eqGrpCatBarData[i]), // Convert to number
-          //     niAverage: parseFloat(niValue) // Convert to number
-          // });
-          // Store cleaned data as an object - to replace the code above (MG)
-          const cleanedPercentage = cleanValue(eqGrpCatBarData[i], niValue);
-          const cleanedNI = cleanValue(niValue, niValue);
+            const povCell = document.createElement("td");
+            povCell.textContent = eqGrpCatBarData[i] !== null ? eqGrpCatBarData[i] : "N/A";
+            row.appendChild(povCell);
 
-          tableDataArray.push({
-              category: eqGrpCatLabels[i],
-              percentage: cleanedPercentage,
-              niAverage: cleanedNI
-          });
-            
-        }}else{
-      document.getElementById('dataTable').innerHTML = '<center style="font-weight: bold; font-size: 18pt;">Current year data is not available for this measure</center>';
+            if (!allLciNull) {
+                const lcipovCell = document.createElement("td");
+                lcipovCell.textContent = eqGrpLciCatBarData[i] !== null ? eqGrpLciCatBarData[i] : "N/A";
+                row.appendChild(lcipovCell);
+            }
 
+            if (!allUciNull) {
+                const ucipovCell = document.createElement("td");
+                ucipovCell.textContent = eqGrpUciCatBarData[i] !== null ? eqGrpUciCatBarData[i] : "N/A";
+                row.appendChild(ucipovCell);
+            }
+
+            if (niValue !== 100) {
+                const niCell = document.createElement("td");
+                niCell.textContent = niValue;
+                row.appendChild(niCell);
+            }
+
+            tableBody.appendChild(row);
+
+            const cleanedPercentage = cleanValue(eqGrpCatBarData[i], niValue);
+            const cleanedNI = cleanValue(niValue, niValue);
+
+            tableDataArray.push({
+                category: eqGrpCatLabels[i],
+                percentage: cleanedPercentage,
+                niAverage: cleanedNI
+            });
+        }
+    } else {
+        table.innerHTML = '<center style="font-weight: bold; font-size: 18pt;">Current year data is not available for this measure</center>';
     }
 
-    // Generate summary using the new function
-    const summaryText = generateSummaryText(tableDataArray, niAvgLine, measureTitle, eqGrpDisplayName, how_measure, hasCIs);
+    const summaryText = generateSummaryText(
+        tableDataArray,
+        niAvgLine,
+        measureTitle,
+        eqGrpDisplayName,
+        how_measure,
+        hasCIs
+    );
 
-    // NEW: Build the CI note (only when CIs exist) (MG)
     const noteHtml = buildCiNote(hasCIs);
 
-    // Update all elements with the class 'data_summary'
-    document.querySelectorAll('.data_summary').forEach(el => {
+    document.querySelectorAll(".data_summary").forEach(el => {
         el.innerHTML = summaryText;
     });
 
-    // NEW: Add the same note under the table (MG) - check if it already exists to avoid duplicates when re-populating the table
-    const tableEl = document.getElementById("dataTable");
     let tableNoteEl = document.getElementById("table_ci_note");
     if (!tableNoteEl) {
-      tableNoteEl = document.createElement("div");
-      tableNoteEl.id = "table_ci_note";
-      tableNoteEl.className = "ci-note";
-      // Insert immediately after the table
-      tableEl.insertAdjacentElement('afterend', tableNoteEl);
+        tableNoteEl = document.createElement("div");
+        tableNoteEl.id = "table_ci_note";
+        tableNoteEl.className = "ci-note";
+        table.insertAdjacentElement("afterend", tableNoteEl);
     }
-    tableNoteEl.innerHTML = noteHtml; // if noteHtml === '' this effectively hides 
+    tableNoteEl.innerHTML = noteHtml;
 
-
-
-    console.log("Summary:", summaryText); // Debugging log
+    console.log("Summary:", summaryText);
 
     return {
         tableData: tableDataArray,
@@ -3056,133 +3322,254 @@ function getBarWidth(ctx) {
   }
 
   function populateTable2() {
-  const tableBody2 = document.getElementById("dataTable2").getElementsByTagName("tbody")[0];
-  dataTable2.classList.add('dest-table');
-  tableBody2.innerHTML = "";
-
-  // Replace the keys in the object with the new labels from the array
-  let updatedObject = Object.keys(eqGrpCatLineData).reduce((acc, key, index) => {
-    acc[eqGrpCatLabels[index]] = eqGrpCatLineData[key]; // Use new label from the array
-  return acc;
-                 }, {});
-
-  let ni_line_object = {"NI Value": niLineData}
-  let year_object = {Year: yearLabels}
-  //  let ni_object = {...eqGrpCatLineData}
-  
-  let eqGrpCatLineData2 = {...year_object, ...updatedObject,
-    ...ni_line_object
-  }
-  
-  // Update the header dynamically based on eqGrpCatLineData
-  const ageGroups = Object.keys(eqGrpCatLineData2);
-  
-  // Clear the existing header
-  const ageGroupHeaders = document.getElementById("ageGroupHeaders");
-  ageGroupHeaders.innerHTML = ""; // Clear existing headers
-
-  // Add each age group as a separate header in the table
-  ageGroups.forEach(group => {
-    const th = document.createElement("th");
-    th.textContent = group; // Set age group label as column header
-    ageGroupHeaders.appendChild(th);
-  });
-
-  // Assume niAvgLine is a dynamic array or value for National Index values
-  const niValue = Array.isArray(niAvgLine) ? niAvgLine[0] : niAvgLine;
-
-  // Table data container
-  const tableDataArray = [];
-
-  // Check if the data is available for the selected years
-  if (yearLabels && yearLabels.length > 0) {
-    for (let i = 0; i < yearLabels.length; i++) {
-        const row = document.createElement("tr");
+      
+      // ✅ Always rebuild fresh copies to avoid mutation between S75/key switches (MG)
+      const rawEqGrpCatLineData = JSON.parse(JSON.stringify(eqGrpCatLineData));
+      let rawNiLineData = Array.isArray(niLineData) ? [...niLineData] : [];
+      const rawYearLabels = Array.isArray(yearLabels) ? [...yearLabels] : [];
 
 
-        // Add dynamic cells for each age group
-        ageGroups.forEach(group => {
-            const ageCell = document.createElement("td");
-            ageCell.textContent = eqGrpCatLineData2[group][i] || "N/A"; // Handle missing data
-            row.appendChild(ageCell);
-        });
+      const tableBody2 = document.getElementById("dataTable2").getElementsByTagName("tbody")[0];
+      dataTable2.classList.add('dest-table');
+      tableBody2.innerHTML = "";
 
-        tableBody2.appendChild(row);
+    // --------------------------
+    // 1. BUILD BASE OBJECTS
+    // --------------------------
 
-        // Store data for summary generation
-        tableDataArray.push({
-            year: yearLabels[i],
-            data: ageGroups.reduce((acc, group, index) => {
-                acc[group] = parseFloat(eqGrpCatLineData2[group][i]) || 0;
-                return acc;
-            }, {}),
-            niAverage: parseFloat(niValue) || 0
-        });
-    }
-  } else {
-    document.getElementById('dataTable2').innerHTML = '<center style="font-weight: bold; font-size: 18pt;">Current year data is not available for this measure</center>';
-  }
+      let originalKeysMap = {};  // ✅ NEW
 
-  // Create a new object with labels replaced by the array values
-const eqGrpCatLineData4 = Object.keys(eqGrpCatLineData).reduce((acc, key, index) => {
-  acc[eqGrpCatLabels[index]] = eqGrpCatLineData[key]; // Replace key with value from arr
-  return acc;
-}, {});
+      let updatedObject = Object.keys(rawEqGrpCatLineData).reduce((acc, key, index) => {
+          const newLabel = eqGrpCatLabels[index];   // ✅ FIX — define newLabel properly
 
-const yearLabels2 = ["2001/02", "2002/03", "2003/04"];
+          acc[newLabel] = rawEqGrpCatLineData[key];    // ✅ label → array of values
+          originalKeysMap[newLabel] = key;          // ✅ store mapping label → original key
 
-const eqGrpCatLineData3 = {
-    "16-24": [12, 22, 62],
-    "25-34": [0, 32, 42], // 2001 is missing, assumed 0
-    "35-49": [52, 32, 12]
-};
-const niLineData2 = [12, 11, 10]; // Example placeholder values
+          return acc;
+      }, {});
 
-let tableDataArray2 = [];
+      // let ni_line_object = {"NI Value": rawNiLineData}
+      // let year_object = {Year: rawYearLabels}
+      // //  let ni_object = {...rawEqGrpCatLineData}
+      
 
-for (let i = 0; i < yearLabels.length; i++) {
-    let year = yearLabels[i];
-    
-    let yearData = {
-        year: parseInt(year), // Convert to number
-        yearLabel: year, // Keep original label for display
-        data: {},
-        //niAverage: parseFloat(niLineData[i]) || 0 - removed to use cleanValue function (MG)
-        niAverage: cleanValue(niLineData[i], niLineData[i])
+    let rawEqGrpCatLineData2 = {
+        Year: rawYearLabels,
+        ...updatedObject,
+        "NI Value": rawNiLineData
     };
 
-    // Assign values for each age group
-    Object.keys(eqGrpCatLineData4).forEach(group => {  
-        //yearData.data[group] = parseFloat(eqGrpCatLineData4[group][i]) || 0; - removed to use cleanValue function (MG)
-        const raw = eqGrpCatLineData4[group][i]; 
-        const cleaned = cleanValue(raw, niLineData[i]); // or cleanValue(raw, raw) 
-        yearData.data[group] = cleaned;
+
+
+      // // Assume niAvgLine is a dynamic array or value for National Index values
+      // const niValue = Array.isArray(niAvgLine) ? niAvgLine[0] : niAvgLine;
+
+      // // Table data container
+      // const tableDataArray = [];
+
+      // // Check if the data is available for the selected years
+      // if (rawYearLabels && rawYearLabels.length > 0) {
+      //   for (let i = 0; i < rawYearLabels.length; i++) {
+
+      //       // Store data for summary generation
+      //       tableDataArray.push({
+      //           year: rawYearLabels[i],
+      //           data: Object.keys(rawEqGrpCatLineData2).reduce((acc, group) => {
+      //               acc[group] = parseFloat(rawEqGrpCatLineData2[group][i]) || 0;
+      //               return acc;
+      //           }, {}),
+      //           niAverage: parseFloat(niValue) || 0
+      //       });
+      //   }
+      // } else {
+      //   document.getElementById('dataTable2').innerHTML = '<center style="font-weight: bold; font-size: 18pt;">Current year data is not available for this measure</center>';
+      // }
+
+        // Create a new object with labels replaced by the array values
+      const rawEqGrpCatLineData4 = Object.keys(rawEqGrpCatLineData).reduce((acc, key, index) => {
+        acc[eqGrpCatLabels[index]] = rawEqGrpCatLineData[key]; // Replace key with value from arr
+        return acc;
+      }, {});
+
+
+    // --------------------------
+    // 2. BUILD CLEAN tableDataArray2
+    // --------------------------
+
+      let tableDataArray2 = [];
+
+
+
+    // const rawYearLabels2 = ["2001/02", "2002/03", "2003/04"];
+
+    // const rawEqGrpCatLineData3 = {
+    //     "16-24": [12, 22, 62],
+    //     "25-34": [0, 32, 42], // 2001 is missing, assumed 0
+    //     "35-49": [52, 32, 12]
+    // };
+    // const rawNiLineData2 = [12, 11, 10]; // Example placeholder values
+
+
+
+    for (let i = 0; i < rawYearLabels.length; i++) {
+        let year = rawYearLabels[i];
+        
+        let yearData = {
+            year: parseInt(year), // Convert to number
+            yearLabel: year, // Keep original label for display
+            data: {},
+            //niAverage: parseFloat(rawNiLineData[i]) || 0 - removed to use cleanValue function (MG)
+            niAverage: cleanValue(rawNiLineData[i], rawNiLineData[i])
+        };
+
+        // Assign values for each age group
+        Object.keys(rawEqGrpCatLineData4).forEach(group => {  
+            //yearData.data[group] = parseFloat(rawEqGrpCatLineData4[group][i]) || 0; - removed to use cleanValue function (MG)
+            const raw = rawEqGrpCatLineData4[group][i]; 
+            const cleaned = cleanValue(raw, rawNiLineData[i]); // or cleanValue(raw, raw) 
+            yearData.data[group] = cleaned;
+          });
+
+        tableDataArray2.push(yearData);
+    }
+    //console.log("Tests:", tableDataArray2);
+
+
+    // --------------------------
+    // 3. DETERMINE currentKey
+    // --------------------------
+
+    // ✅ Determine real data key using your label→key map if needed
+    let currentKey = measureKey;
+
+    // If measureKey missing from URL, infer from first label
+    if (!currentKey) {
+        const firstGroupLabel = Object.keys(rawEqGrpCatLineData4)[0];
+        currentKey = originalKeysMap[firstGroupLabel];
+    }
+
+    // ------------------------------------------------------
+    // ✅ Detect NI=100 exception, same rules as generateSummaryText2 (MG)
+    // ------------------------------------------------------
+    
+    // --------------------------
+    // 4. DETECT NI=100 EXCEPTION
+    // --------------------------
+
+    let niAlways100 = tableDataArray2.every(r => Number(r.niAverage) === 100);
+
+
+
+    // Apply rule-based exceptions (ni100Exceptions)
+    const checkKey = measureKey || ind;  // fallback to 'ind' if measureKey undefined
+    const checkS75 = selectedS75 || group; // fallback to URL param or current group
+
+    const isException = isNi100Exception(checkS75, checkKey);
+
+    if (isException) {
+      niAlways100 = true;
+    }
+
+    // ------------------------------------------------------
+    // ✅ If NI is exception → remove NI Value column (MG)
+    // ------------------------------------------------------
+  
+    // --------------------------
+    // 5. REMOVE NI COLUMN IF NEEDED
+    // --------------------------
+
+    if (niAlways100) {
+        delete rawEqGrpCatLineData2["NI Value"];
+        delete rawEqGrpCatLineData4["NI Value"];  
+        rawNiLineData = []; // ensure no NI series is passed to charts
+    }
+
+    // --------------------------
+    // 6. BUILD HEADERS
+    // --------------------------
+
+      // Update the header dynamically based on rawEqGrpCatLineData
+      const ageGroups = Object.keys(rawEqGrpCatLineData2);
+      
+      // Clear the existing header
+      const ageGroupHeaders = document.getElementById("ageGroupHeaders");
+      ageGroupHeaders.innerHTML = ""; // Clear existing headers
+
+      // Add each age group as a separate header in the table
+      ageGroups.forEach(group => {
+        const th = document.createElement("th");
+        th.textContent = group; // Set age group label as column header
+        ageGroupHeaders.appendChild(th);
       });
 
-    tableDataArray2.push(yearData);
-}
-//console.log("Tests:", tableDataArray2);
-
-console.log("NI DATA RAW:", niLineData);
-console.log("TABLE DATA:", tableDataArray2);
 
 
-const summaryText2 = generateSummaryText2(
-    tableDataArray2, 
-    niLineData[0], 
-    measureTitle, 
-    Object.keys(eqGrpCatLineData4), 
-    how_measure
-);
+    // console.log("NI DATA RAW:", rawNiLineData);
+    // console.log("TABLE DATA:", tableDataArray2);
 
-document.getElementById('data_summary_2').innerHTML = summaryText2;
-  
-return {
-    tableData: tableDataArray2,
-    summary: summaryText2
-  };
 
-}
+    // ✅ Extract S75 category and measure key from URL
+    // const urlParams = new URLSearchParams(window.location.search);
+    // const selectedS75 = urlParams.get("s75");   // marital, ori, sex, age, etc.
+    // const measureKey  = urlParams.get("key");   // c5041, inc1, pubt, walk, etc.
+
+
+
+    // console.log("DEBUG: selectedS75 =", selectedS75);
+    // console.log("DEBUG: currentKey =", currentKey);
+
+
+
+    // --- BUILD TABLE ROWS AFTER HEADER ---
+    
+    // --------------------------
+    // 7. BUILD TABLE ROWS
+    // --------------------------
+
+
+    tableBody2.innerHTML = "";
+
+    if (rawYearLabels && rawYearLabels.length > 0) {
+        for (let i = 0; i < rawYearLabels.length; i++) {
+            const row = document.createElement("tr");
+
+            ageGroups.forEach(group => {
+                const ageCell = document.createElement("td");
+                ageCell.textContent = rawEqGrpCatLineData2[group][i] ?? "N/A";
+                row.appendChild(ageCell);
+            });
+
+            tableBody2.appendChild(row);
+        }
+    } else {
+        document.getElementById('dataTable2').innerHTML =
+            '<center style="font-weight: bold; font-size: 18pt;">Current year data is not available for this measure</center>';
+    }
+
+
+    // --------------------------
+    // 8. SUMMARY TEXT
+    // --------------------------
+
+
+    const summaryText2 = generateSummaryText2(
+        tableDataArray2,
+        rawNiLineData[0],
+        measureTitle,
+        Object.keys(rawEqGrpCatLineData4),
+        how_measure,
+        currentKey,     // ✅ measure key (c5041, inc1, etc.)
+        selectedS75     // ✅ S75 category (marital, ori, sex, age, etc.)
+    );
+
+    document.getElementById('data_summary_2').innerHTML = summaryText2;
+      
+    return {
+        tableData: tableDataArray2,
+        summary: summaryText2
+      };
+
+  }
 
 function toLowercase(str) {
   return String(str || '').toLowerCase();
@@ -3207,9 +3594,17 @@ function prepareMeasureText(str) {
     .replace(/\\/g, "")               // remove stray backslashes
     .trim();
 
-  const lowered = cleaned.charAt(0).toLowerCase() + cleaned.slice(1);
+  // const lowered = cleaned.charAt(0).toLowerCase() + cleaned.slice(1);
+  
+  // (MG) - replaced the line above with logic to preserve case for strings starting with 3+ uppercase letters, to handle cases like "LGBTQ+"
+  //If starts with 3+ uppercase letters, don't change the case
+  let processed = cleaned;
+  if (!/^[A-Z]{3,}/.test(cleaned)) {
+    processed = cleaned.charAt(0).toLowerCase() + cleaned.slice(1);
+  }
 
-  return lowered
+  //return lowered (MG) - replaced with logic to preserve case for strings starting with 3+ uppercase letters, to handle cases like "LGBTQ+"
+  return processed
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
@@ -3241,13 +3636,21 @@ function formatDifference(num) {
 }
 ``
 
-
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Function to generate summary in the requested format
 function generateSummaryText(tableData, niAverage, measureTitle, eqGrpDisplayName, howMeasure, hasCIs = false) {
+    console.debug("generateSummaryText called", { tableData, niAverage, measureTitle, eqGrpDisplayName, howMeasure, hasCIs });
     if (!Array.isArray(tableData) || tableData.length === 0) {
         console.warn("No valid data to summarize.");
         return "No data available for summary.";
     }
+
+    const activeKey = measureKey || ind;
+    const activeS75 = selectedS75 || group;
+    const isException = isNi100Exception(activeS75, activeKey);
+
+    // For declared exceptions (e.g. religion/walk), do not use NI suppression text.
+    // We proceed to 100%-style summary behaviour below.
 
     let categoriesWithDiff = [];
 
@@ -3299,7 +3702,9 @@ function generateSummaryText(tableData, niAverage, measureTitle, eqGrpDisplayNam
 
     if (niAverage !== 100) {
 
-        summaryText = `${measureTitle} ${latestYear}<br>`;
+        const title = measureTitle?.[0] ?? "";
+        summaryText = `${title}${title.includes("Census") ? "" : " " + latestYear}<br>`;
+
         summaryText += `This measure records the <span>${prepareMeasureText(howMeasure)}</span> The NI value for ${measureTitle} is ${formatLikeInput(niAverage)}%.<br>`;
         summaryText += `Looking at differences by ${eqGrpDisplayName} compared to the NI value:<br>`;
 
@@ -3314,7 +3719,7 @@ function generateSummaryText(tableData, niAverage, measureTitle, eqGrpDisplayNam
             }
         });
     } else {
-        summaryText = `${toTitleCase(measureTitle)} - ${latestYear} Census<br>`;
+        summaryText = `${measureTitle} ${latestYear}<br>`;
         summaryText += `The ${toLowercase(measureTitle)} is broken down by ${eqGrpDisplayName} as follows:<br>`;
 
         // Output categories in original order; bold the highest/lowest among 'lower' direction items
@@ -3341,25 +3746,53 @@ function generateSummaryText(tableData, niAverage, measureTitle, eqGrpDisplayNam
 
 // ************************************************************************************************************************
 // function completely rewritten to meet the new summary requirements (MG)
-function generateSummaryText2(tableData, niAverage, measureTitle, ageGroups, howMeasure) {
+function generateSummaryText2(tableData, niAverage, measureTitle, ageGroups, howMeasure, currentKey, selectedS75) {
+    console.debug("generateSummaryText2 called", { tableData, niAverage, measureTitle, ageGroups, howMeasure, currentKey, selectedS75 });
     if (!Array.isArray(tableData) || tableData.length < 2) {
         console.warn("Not enough data to summarize.");
         return "Not enough data available for summary.";
     }
 
     // Detect NI=100 special-case (MG) - if all rows have niAverage of 100, we can skip the difference calculations and just report the group values and trends
-    const niAlways100 = tableData.every(r => Number(r.niAverage) === 100);
+    let niAlways100 = tableData.every(r => Number(r.niAverage) === 100);
+
+    // ✅ NEW: also force NI=100 mode for exception keys AND matching S75
+    let isException = false;
+    if (currentKey && selectedS75) {
+        isException = ni100Exceptions.some(ex => {
+            const keyMatch =
+                typeof ex.key === "string"
+                    ? ex.key === currentKey
+                    : ex.key.test(currentKey);
+
+            const s75Match = ex.s75 === selectedS75;
+
+            return keyMatch && s75Match;
+        });
+
+      if (isException) {
+          niAlways100 = true;
+      }
+  }
+
+    // ✅ If NI was suppressed from the source raw data, treat as special NI=100 mode too
+    if (!niAlways100 && (niAverage === undefined || niAverage === null || isNaN(niAverage))) {
+        niAlways100 = true;
+        console.debug("generateSummaryText2: forced niAlways100 because niAverage is missing/invalid", {niAverage, currentKey, selectedS75});
+    }
+
+    console.debug("generateSummaryText2: ni flags", {isException, niAlways100, currentKey, selectedS75});
 
     // Round to 1 decimal place (MG)
     const round1 = x => Math.round(x * 10) / 10;  
 
     // Helper function to format difference text (MG)
-            function diffText(n) {
+    function diffText(n) {
             if (n === 0) return "the same as the NI value";
             const absVal = Math.abs(n);
             const label = absVal === 1 ? "percentage point" : "percentage points";
             return n > 0 ? `${absVal} ${label} above` : `${absVal} ${label} below`;
-        }
+    }
 
 
     // helper to count valid points for a group (MG) - may be useful for deciding whether to include certain groups or not, depending on how many valid points they have
@@ -3445,67 +3878,6 @@ function generateSummaryText2(tableData, niAverage, measureTitle, ageGroups, how
         return summaryText;
     }
 
-    // ============================================================================================
-    // 2) LARGE CATEGORY MODE (3+ groups)
-    // ============================================================================================
-
-    let diffValues = {};
-
-    ageGroups.forEach(group => {
-
-        // NEW: skip groups with < 2 valid points in the 3+ category mode as well (MG) - this ensures we are not trying to interpret trends for groups with very sparse data, which could be misleading
-        if (countValid(group) < 2) return;
-
-        //  Find first/last year with real data (MG) - we will need the endpoints to interpret the trends, but we have already ensured there are at least 2 valid points, so this should be safe
-         const { firstValid, lastValid } = getEndpoints(group);
-        if (!firstValid || !lastValid) return;
-
-        // Also skip if endpoints are the same year (degenerate trend) (MG)
-        if (firstValid.yearLabel === lastValid.yearLabel) return;
-
-        // const firstGroupVal = firstRow?.data[group] ?? 0;
-        // const firstNI = firstRow?.niAverage ?? 0;
-        // const firstDiff = round1(firstGroupVal - firstNI); // Round to 1 decimal place (MG);          
-
-        // const lastGroupVal = lastRow?.data[group] ?? 0;
-        // const lastNI = lastRow?.niAverage ?? 0;
-        // const lastDiff = round1(lastGroupVal - lastNI); // Round to 1 decimal place (MG);
-
-        const firstDiff = round1(firstValid.data[group] - firstValid.niAverage);
-        const lastDiff  = round1(lastValid.data[group] - lastValid.niAverage);
-        
-        diffValues[group] = {
-            firstDiff,
-            lastDiff,
-            change: round1(lastDiff - firstDiff),
-            firstYearLabel: firstValid.yearLabel, //(MG)
-            lastYearLabel: lastValid.yearLabel // (MG) 
-      
-            // Store raw values for NI=100 mode (MG)
-            // firstVal: firstGroupVal,
-            // lastVal: lastGroupVal
-        };
-    });
-
-    // Sort by change
-    const sortedDiffs = Object.entries(diffValues).sort((a, b) => b[1].change - a[1].change);
-    const biggestIncrease = sortedDiffs[0];
-    const biggestDecrease = sortedDiffs[sortedDiffs.length - 1];
-
-// ### BRANCH STARTS HERE
-    // function toFinancialYear(year) {
-    // const nextYear = (parseInt(year) + 1).toString().slice(-2); // Gets last two digits
-    // return `${year}/${nextYear}`; 
-    // }
-
-    // const firstYearLabels = toFinancialYear(tableData[0].year);
-    // const lastYearLabels = toFinancialYear(tableData[tableData.length - 1].year);
-    
-    const fmt = x => formatDifference(Math.abs(x)) // for consistent display as 1 dp where appropriate (MG)
-
-    let summaryText = `${measureTitle} ${startYear} to ${latestYear}<br>`;
-    summaryText += `This measure records the <span>${prepareMeasureText(howMeasure)}</span><br>`;
-
 
     // =======================================================
     // CHANGED BLOCK START — NI=100 SPECIAL CASE HANDLING (MG)
@@ -3515,6 +3887,10 @@ function generateSummaryText2(tableData, niAverage, measureTitle, ageGroups, how
 // NI=100 SPECIAL CASE HANDLING
 // =======================================================
 if (niAlways100) {
+  
+    let summaryText = `${measureTitle} ${startYear} to ${latestYear}<br>`;
+    summaryText += `This measure records the <span>${prepareMeasureText(howMeasure)}</span><br>`;
+
     summaryText += `Looking at trends by ${eqGrpDisplayName}:<br>`;
 
     function getRawEndpoints(group) {
@@ -3586,7 +3962,73 @@ if (niAlways100) {
         return summaryText;
     }
 }
+
+
+    // ============================================================================================
+    // 2) LARGE CATEGORY MODE (3+ groups)
+    // ============================================================================================
+    // if added to ensure the exception works
+    if (!isSmallCategorySet && !niAlways100) {
+      let diffValues = {};
+
+      
+      ageGroups.forEach(group => {
+
+          // NEW: skip groups with < 2 valid points in the 3+ category mode as well (MG) - this ensures we are not trying to interpret trends for groups with very sparse data, which could be misleading
+          if (countValid(group) < 2) return;
+
+          //  Find first/last year with real data (MG) - we will need the endpoints to interpret the trends, but we have already ensured there are at least 2 valid points, so this should be safe
+          const { firstValid, lastValid } = getEndpoints(group);
+          if (!firstValid || !lastValid) return;
+
+          // Also skip if endpoints are the same year (degenerate trend) (MG)
+          if (firstValid.yearLabel === lastValid.yearLabel) return;
+
+          // const firstGroupVal = firstRow?.data[group] ?? 0;
+          // const firstNI = firstRow?.niAverage ?? 0;
+          // const firstDiff = round1(firstGroupVal - firstNI); // Round to 1 decimal place (MG);          
+
+          // const lastGroupVal = lastRow?.data[group] ?? 0;
+          // const lastNI = lastRow?.niAverage ?? 0;
+          // const lastDiff = round1(lastGroupVal - lastNI); // Round to 1 decimal place (MG);
+
+          const firstDiff = round1(firstValid.data[group] - firstValid.niAverage);
+          const lastDiff  = round1(lastValid.data[group] - lastValid.niAverage);
+          
+          diffValues[group] = {
+              firstDiff,
+              lastDiff,
+              change: round1(lastDiff - firstDiff),
+              firstYearLabel: firstValid.yearLabel, //(MG)
+              lastYearLabel: lastValid.yearLabel // (MG) 
+        
+              // Store raw values for NI=100 mode (MG)
+              // firstVal: firstGroupVal,
+              // lastVal: lastGroupVal
+          };
+      });
+
+      // Sort by change
+      const sortedDiffs = Object.entries(diffValues).sort((a, b) => b[1].change - a[1].change);
+      const biggestIncrease = sortedDiffs[0];
+      const biggestDecrease = sortedDiffs[sortedDiffs.length - 1];
+
+  // ### BRANCH STARTS HERE
+      // function toFinancialYear(year) {
+      // const nextYear = (parseInt(year) + 1).toString().slice(-2); // Gets last two digits
+      // return `${year}/${nextYear}`; 
+      // }
+
+      // const firstYearLabels = toFinancialYear(tableData[0].year);
+      // const lastYearLabels = toFinancialYear(tableData[tableData.length - 1].year);
+      
+      const fmt = x => formatDifference(Math.abs(x)) // for consistent display as 1 dp where appropriate (MG)
+
+      let summaryText = `${measureTitle} ${startYear} to ${latestYear}<br>`;
+      summaryText += `This measure records the <span>${prepareMeasureText(howMeasure)}</span><br>`;
   
+
+ 
   // ### MAIN STARTS HERE
 
     // =========================================================
@@ -3596,62 +4038,21 @@ if (niAlways100) {
 
     summaryText += `${biggestIncrease[0]}: This group showed the highest increase relative to the NI value from ${fmt(biggestIncrease[1].firstDiff)} percentage points ${
         biggestIncrease[1].firstDiff >= 0 ? "above" : "below"
-    } the NI value in ${startYear} to ${fmt(biggestIncrease[1].lastDiff)} percentage points ${
+    } the NI value in ${biggestIncrease[1].firstYearLabel} to ${fmt(biggestIncrease[1].lastDiff)} percentage points ${
         biggestIncrease[1].lastDiff >= 0 ? "above" : "below"
-    } in ${latestYear}.<br>`;
+    } in ${biggestIncrease[1].lastYearLabel}.<br>`;
 
     summaryText += `${biggestDecrease[0]}: This group showed the greatest decrease relative to the NI value from ${fmt(biggestDecrease[1].firstDiff)} percentage points ${
         biggestDecrease[1].firstDiff >= 0 ? "above" : "below"
-    } the NI value in ${startYear} to ${fmt(biggestDecrease[1].lastDiff)} percentage points ${
+    } the NI value in ${biggestDecrease[1].firstYearLabel} to ${fmt(biggestDecrease[1].lastDiff)} percentage points ${
         biggestDecrease[1].lastDiff >= 0 ? "above" : "below"
-    } in ${latestYear}.<br>`;
-
-//     return summaryText;
-
-
-//     // After computing biggestIncrease and biggestDecrease... (MG)
-
-//     // Ensure both entries exist before using them
-//     const incEntry = biggestIncrease || null;
-//     const decEntry = biggestDecrease || null;
-
-//     const inc = incEntry?.[1] || null;
-//     const dec = decEntry?.[1] || null;
-
-//     // Compute validity safely
-//     const hasValidIncrease =
-//         inc &&
-//         inc.firstDiff !== null &&
-//         inc.lastDiff !== null &&
-//         inc.change !== 0;
-
-//     const hasValidDecrease =
-//         dec &&
-//         dec.firstDiff !== null &&
-//         dec.lastDiff !== null &&
-//         dec.change !== 0;
-
-//     let summaryText = `${measureTitle} ${startYear} to ${latestYear}<br>`;
-//     summaryText += `This measure records the <span>${prepareMeasureText(howMeasure)}</span><br>`;
-//     // If neither increase nor decrease is valid, output no significant changes message (MG)
-//     if ((hasValidIncrease && incEntry || hasValidDecrease && decEntry) === false) {
-//         summaryText += `No significant changes were observed in any group relative to the NI value during this period.<br>`;
-//         return summaryText;
-//     }
-//     summaryText += `Looking at trends by ${eqGrpDisplayName} compared to the NI value:<br>`;
-
-// // Only print the increase sentence if it represents a real change
-// if (hasValidIncrease && incEntry) {
-//     summaryText += `${incEntry[0]}: This group showed the highest increase relative to the NI value from ${diffText(inc.firstDiff)} in ${inc.firstYearLabel} to ${diffText(inc.lastDiff)} in ${inc.lastYearLabel}.<br>`;
-// }
-
-// // Only print the decrease sentence if it represents a real change
-// if (hasValidDecrease && decEntry) {
-//     summaryText += `${decEntry[0]}: This group showed the greatest decrease relative to the NI value from ${diffText(dec.firstDiff)} in ${dec.firstYearLabel} to ${diffText(dec.lastDiff)} in ${dec.lastYearLabel}.<br>`;
-// }
+    } in ${biggestDecrease[1].lastYearLabel}.<br>`;
 
     return summaryText;
+  }  
 }
+  
+
 // ************************************************************************************************************************
 // ## MAIN FINISHES HERE
 
@@ -3991,12 +4392,17 @@ document.addEventListener("DOMContentLoaded", () => {
  
   // click event listeners for view chart and view table buttons
 
-// Ensure the copy button is hidden on load 
+// Ensure the top copy button / download button default on load
 const copyBtn2   = document.getElementById('copy-button2');
 const chartBtn   = document.getElementById('line_chartBtn');
 const tableBtn   = document.getElementById('line_tableBtn');
 
-if (copyBtn2) copyBtn2.style.display = 'none';
+const downloadBtn = document.getElementById('downloadButton');
+const copyBtn     = document.querySelector('.copy-button');
+
+if (downloadBtn) downloadBtn.style.display = 'inline-block';
+if (copyBtn)     copyBtn.style.display = 'none';
+if (copyBtn2)    copyBtn2.style.display = 'none';
 
 tableBtn.addEventListener('click', () => {
   if (copyBtn2) copyBtn2.style.display = 'inline-flex'; 
@@ -4008,9 +4414,9 @@ chartBtn.addEventListener('click', () => {
 
 // Wire up the two top-left buttons
   document.getElementById('chartBtn')
-    ?.addEventListener('click', () => showsView('chartView'));
+    ?.addEventListener('click', () => showView('chartView'));
   document.getElementById('tableBtn')
-    ?.addEventListener('click', () => showsView('tableView'));
+    ?.addEventListener('click', () => showView('tableView'));
  // click event listeners for view chart and view table buttons
   document.getElementById('chartBtn').addEventListener('click', () => showView('chartView'));
   document.getElementById('tableBtn').addEventListener('click', () => showView('tableView'));
@@ -4034,7 +4440,7 @@ chartBtn.addEventListener('click', () => {
     if (copyBtn)     copyBtn.style.display     = isChart ? 'none'        : 'inline-block';
   }
 
-  // --- Initial state on load ---
+ // --- Initial state on load ---
   // If you want chart first:
   showsView('chartView');
   // If you want table first, use:
@@ -4072,10 +4478,22 @@ chartBtn.addEventListener('click', () => {
   const legend = document.querySelector('.chart-legend');
   const tableButton2 = document.getElementById('line_tableBtn');
 
+  if (viewId === 'tableView' || viewId === 'chartView') {
+    if (!tableView || !chartView || !chartButton || !tableButton) {
+      console.warn('showView: required top-section DOM elements are missing', { viewId, tableView, chartView, chartButton, tableButton });
+    }
+  }
+
+  if (viewId === 'tableView2' || viewId === 'chartContainer') {
+    if (!tableView2 || !chartView2 || !chartButton2 || !tableButton2 || !legend) {
+      console.warn('showView: required bottom-section DOM elements are missing', { viewId, tableView2, chartView2, chartButton2, tableButton2, legend });
+    }
+  }
+
   // Handle the first section: Table/Chart Toggle
   if (viewId === 'tableView') {
-    tableView.style.display = "block";
-    chartView.style.display = "none";
+    if (tableView) tableView.style.display = "block";
+    if (chartView) chartView.style.display = "none";
 
     // Toggle active/inactive styling for both buttons
     if (chartButton) {
@@ -4088,7 +4506,7 @@ chartBtn.addEventListener('click', () => {
     }
 
     // Only destroy the bar chart when it's in the 'chartView'
-    if (chartInstance && chartView.style.display === "block") {
+    if (chartInstance && chartView?.style?.display === "block") {
       chartInstance.destroy();
       chartInstance = null;
     }
@@ -4109,6 +4527,14 @@ chartBtn.addEventListener('click', () => {
     if (!chartInstance) {
       createBarChart(eqGrpCatLabels, eqGrpCatBarData, niAvgLine);
     }
+  }
+
+  // Keep first-section utility buttons synced with first-section selected view only
+  if (viewId === 'tableView' || viewId === 'chartView') {
+    const downloadBtn = document.getElementById('downloadButton');
+    const copyBtn = document.querySelector('.copy-button');
+    if (downloadBtn) downloadBtn.style.display = viewId === 'chartView' ? 'inline-block' : 'none';
+    if (copyBtn)     copyBtn.style.display     = viewId === 'chartView' ? 'none' : 'inline-block';
   }
 
   // Handle the second section: Line Chart/Table Toggle
@@ -4146,7 +4572,37 @@ chartBtn.addEventListener('click', () => {
     }
     // Only destroy the line chart when necessary
     if (!lineChartInstance) {
-      createMultipleLineCharts(eqGrpCatLineData, niLineData, containerId, eqGrpCatLabels, yearLabels);
+
+       // ✅ Build the NI‑suppressed table and use its clean data
+      const result2 = populateTable2();
+      const cleanedTable = result2.tableData;
+
+      // ✅ Convert tableDataArray2 → per‑group series for the chart
+      const cleanedSeries = cleanedTable.reduce((acc, row) => {
+          Object.entries(row.data).forEach(([group, value]) => {
+              if (!acc[group]) acc[group] = [];
+              acc[group].push(value);
+          });
+          return acc;
+      }, {});
+
+      // ✅ NI series (suppressed if NIAlways100)
+      const cleanedNI = cleanedTable.map(r => r.niAverage);
+
+      // ✅ category labels
+      const cleanedLabels = Object.keys(cleanedSeries);
+
+      // ✅ year labels
+      const cleanedYears = cleanedTable.map(r => r.yearLabel);
+
+      // ✅ Now the chart receives *only NI‑suppressed data*
+      createMultipleLineCharts(
+          cleanedSeries,
+          cleanedNI,
+          containerId,
+          cleanedLabels,
+          cleanedYears
+      );
     }
   }
 }
@@ -4216,9 +4672,10 @@ chartBtn.addEventListener('click', () => {
   // Update padding dynamically on resize
   window.addEventListener('resize', () => {
     barPadding = calculateBarPadding(); // Recalculate padding
-    chart.options.scales.x.max = maxValue + barPadding; // Update max value
-    chart.update(); // Redraw the chart
-
+    if (chartInstance) {
+      chartInstance.options.scales.x.max = maxValue + barPadding; // Update max value
+      chartInstance.update(); // Redraw the chart
+    }
   });
 
 
@@ -4292,6 +4749,35 @@ chartBtn.addEventListener('click', () => {
         if (legend) legend.style.display = "none";
     };
 
+
+    // ------------------------------------------------------
+    // ✅ NI=100 Exception Detection (same rules as populateTable2)
+    // ------------------------------------------------------
+
+    // Detect if NI series is all 100 (raw NI data passed in secondSeriesValues)
+    let niAlways100 = false;
+
+    if (Array.isArray(secondSeriesValues)) {
+        niAlways100 = secondSeriesValues.every(v => Number(v) === 100);
+    }
+
+    // Detect configured exception (s75, key) from global state
+    const activeS75 = selectedS75 || group;
+    const activeKey = measureKey || ind;
+
+    if (isNi100Exception(activeS75, activeKey)) {
+        niAlways100 = true;
+    }
+
+    // ------------------------------------------------------
+    // ✅ If exception → remove NI comparison series entirely
+    // ------------------------------------------------------
+    if (niAlways100) {
+        secondSeriesValues = null;        // disables NI series
+    }
+    
+
+
     // ----------------------------------------------------------------------
     // OPTION B — Full-width, pixel-perfect centered fallback message
     // ----------------------------------------------------------------------
@@ -4302,12 +4788,8 @@ chartBtn.addEventListener('click', () => {
         container.style.display = "block";
         container.style.width = "100%";
 
-        // Measure container width AFTER DOM placement
-        const measuredWidth = container.getBoundingClientRect().width;
-
         container.innerHTML = `
             <div style="
-                width:${measuredWidth}px;
                 margin:0 auto;
                 min-height:260px;
                 display:flex;
@@ -4315,8 +4797,10 @@ chartBtn.addEventListener('click', () => {
                 justify-content:center;
             ">
                 <div style="
-                    font-size:18pt;
-                    white-space:nowrap;
+                    font-size:18pt;                    
+                    white-space: normal;
+                    word-break: break-word;
+                    text-align: center;
                     text-align:center;
                 ">
                     Historic data is not available for this measure
@@ -4387,13 +4871,17 @@ chartBtn.addEventListener('click', () => {
 
         // Normalize NI series
         let niSeries = secondSeriesValues;
-        if (!Array.isArray(niSeries)) {
-            niSeries = Array(firstSeriesData.length).fill(niSeries);
-        } else if (niSeries.length !== firstSeriesData.length) {
-            if (niSeries.length > firstSeriesData.length) {
-                niSeries = niSeries.slice(0, firstSeriesData.length);
-            } else {
-                niSeries = [...niSeries, ...Array(firstSeriesData.length - niSeries.length).fill(null)];
+
+        // ✅ If NI is suppressed, skip normalisation entirely
+        if (niSeries !== null) {
+            if (!Array.isArray(niSeries)) {
+                niSeries = Array(firstSeriesData.length).fill(niSeries);
+            } else if (niSeries.length !== firstSeriesData.length) {
+                if (niSeries.length > firstSeriesData.length) {
+                    niSeries = niSeries.slice(0, firstSeriesData.length);
+                } else {
+                    niSeries = [...niSeries, ...Array(firstSeriesData.length - niSeries.length).fill(null)];
+                }
             }
         }
 
@@ -4417,30 +4905,37 @@ chartBtn.addEventListener('click', () => {
         const ctx = canvas.getContext("2d");
 
         try {
-            legend.style.display = "";
+            legend.style.display = (secondSeriesValues !== null) ? "" : "none";
+
+        const datasets = [
+            {
+                label: "Group value",
+                data: firstSeriesData,
+                borderColor: "#00205b",
+                pointRadius: 0,
+                borderWidth: 4
+            }
+        ];
+
+        // ✅ Add NI dataset ONLY if not suppressed
+        if (secondSeriesValues !== null) {
+            datasets.push({
+                label: "NI value",
+                data: niSeries,
+                fill: false,
+                borderDash: [15, 5],
+                borderColor: "#3b80ae",
+                pointRadius: 0,
+                borderWidth: 2
+            });
+        }
+
 
             new Chart(ctx, {
                 type: "line",
                 data: {
                     labels,
-                    datasets: [
-                        {
-                            label: "Group value",
-                            data: firstSeriesData,
-                            borderColor: "#00205b",
-                            pointRadius: 0,
-                            borderWidth: 4
-                        },
-                        {
-                            label: "NI value",
-                            data: niSeries,
-                            fill: false,
-                            borderDash: [15, 5],
-                            borderColor: "#3b80ae",
-                            pointRadius: 0,
-                            borderWidth: 2
-                        },
-                    ],
+                    datasets: datasets,
                 },                
                   options: {
                     responsive: true,
@@ -4511,8 +5006,36 @@ chartBtn.addEventListener('click', () => {
 
   const containerId = 'chartContainer'; // Make sure this div exists in your HTML
 
-  // Call the function
-  createMultipleLineCharts(eqGrpCatLineData, niLineData, containerId, eqGrpCatLabels, yearLabels);
+  // ✅ Build the NI‑suppressed table and use its clean data
+const result2 = populateTable2();
+const cleanedTable = result2.tableData;
+
+// ✅ Convert tableDataArray2 → per‑group series for the chart
+const cleanedSeries = cleanedTable.reduce((acc, row) => {
+    Object.entries(row.data).forEach(([group, value]) => {
+        if (!acc[group]) acc[group] = [];
+        acc[group].push(value);
+    });
+    return acc;
+}, {});
+
+// ✅ NI series (suppressed if NIAlways100)
+const cleanedNI = cleanedTable.map(r => r.niAverage);
+
+// ✅ category labels
+const cleanedLabels = Object.keys(cleanedSeries);
+
+// ✅ year labels
+const cleanedYears = cleanedTable.map(r => r.yearLabel);
+
+// ✅ Now the chart receives *only NI‑suppressed data*
+createMultipleLineCharts(
+    cleanedSeries,
+    cleanedNI,
+    containerId,
+    cleanedLabels,
+    cleanedYears
+);
 
 
 (function rememberParams() {
@@ -4785,5 +5308,7 @@ if (about) {
       container.appendChild(shareButton);
       return container;
   }
+
+  // version 31-03-2026 17:12
 
 </script>
