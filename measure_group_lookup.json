@@ -1,5 +1,138 @@
 [
   {
+    "Measure_Name": "Advanced digital skills - Advanced skills",
+    "Code": "dsl4",
+    "Long.Name": "DSLVLEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Advanced digital skills - Intermediate skills",
+    "Code": "dsl3",
+    "Long.Name": "DSLVLEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Advanced digital skills - internet functions - Accessed or downloaded media online",
+    "Code": "dsi9",
+    "Long.Name": "DSIFEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Advanced digital skills - internet functions - Created a digital profile for personal or professional purposes",
+    "Code": "dsi5",
+    "Long.Name": "DSIFEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Advanced digital skills - internet functions - Created or made changes to files integrating text, pictures, tables or charts",
+    "Code": "dsi11",
+    "Long.Name": "DSIFEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Advanced digital skills - internet functions - Downloading or installing software or apps",
+    "Code": "dsi7",
+    "Long.Name": "DSIFEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Advanced digital skills - internet functions - Filled out an online form",
+    "Code": "dsi6",
+    "Long.Name": "DSIFEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Advanced digital skills - internet functions - Identified a suspicious or malicious email",
+    "Code": "dsi14",
+    "Long.Name": "DSIFEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Advanced digital skills - internet functions - Installed and/or configured protection software and services",
+    "Code": "dsi13",
+    "Long.Name": "DSIFEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Advanced digital skills - internet functions - Managed or analysed data using spreadsheet software",
+    "Code": "dsi12",
+    "Long.Name": "DSIFEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Advanced digital skills - internet functions - Restricted or refused access to personal information",
+    "Code": "dsi15",
+    "Long.Name": "DSIFEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Advanced digital skills - internet functions - Transferred files between folders, devices, or on the cloud",
+    "Code": "dsi8",
+    "Long.Name": "DSIFEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Advanced digital skills - internet functions - Used advanced features of a search engine",
+    "Code": "dsi1",
+    "Long.Name": "DSIFEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Advanced digital skills - internet functions - Used advanced video conferencing features",
+    "Code": "dsi4",
+    "Long.Name": "DSIFEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Advanced digital skills - internet functions - Verified information or content found on the internet",
+    "Code": "dsi2",
+    "Long.Name": "DSIFEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Advanced digital skills - internet functions - When I face a technical problem, I am able to find solutions on the internet",
+    "Code": "dsi3",
+    "Long.Name": "DSIFEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Advanced digital skills - internet functions - Written code in a programming language",
+    "Code": "dsi10",
+    "Long.Name": "DSIFEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Advanced digital skills - No skills",
+    "Code": "dsl1",
+    "Long.Name": "DSLVLEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Advanced digital skills - Novice skills",
+    "Code": "dsl2",
+    "Long.Name": "DSLVLEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
     "Measure_Name": "Arts and cultural activities participation",
     "Code": "artc",
     "Long.Name": "ARTCULEQ",
@@ -11,6 +144,118 @@
     "Code": "asya",
     "Long.Name": "ASYALLEQ",
     "Associated Theme": "Community",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Basic digital skills - Above basic skills",
+    "Code": "bdsl3",
+    "Long.Name": "BDSLVLEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Basic digital skills - Basic skills",
+    "Code": "bdsl2",
+    "Long.Name": "BDSLVLEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Basic digital skills - internet functions - Finding info on non-public goods/services",
+    "Code": "bdsi5",
+    "Long.Name": "BDSIFEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Basic digital skills - internet functions - Identifying secure websites",
+    "Code": "bdsi12",
+    "Long.Name": "BDSIFEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Basic digital skills - internet functions - Internet banking",
+    "Code": "bdsi3",
+    "Long.Name": "BDSIFEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Basic digital skills - internet functions - Online purchases",
+    "Code": "bdsi1",
+    "Long.Name": "BDSIFEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Basic digital skills - internet functions - Participating in social networks",
+    "Code": "bdsi9",
+    "Long.Name": "BDSIFEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Basic digital skills - internet functions - Reading newspapers or news websites online",
+    "Code": "bdsi10",
+    "Long.Name": "BDSIFEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Basic digital skills - internet functions - Recognising suspicious links",
+    "Code": "bdsi13",
+    "Long.Name": "BDSIFEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Basic digital skills - internet functions - Seeking health-related info",
+    "Code": "bdsi6",
+    "Long.Name": "BDSIFEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Basic digital skills - internet functions - Selling online",
+    "Code": "bdsi2",
+    "Long.Name": "BDSIFEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Basic digital skills - internet functions - Sending/receiving emails",
+    "Code": "bdsi7",
+    "Long.Name": "BDSIFEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Basic digital skills - internet functions - Setting privacy settings",
+    "Code": "bdsi11",
+    "Long.Name": "BDSIFEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Basic digital skills - internet functions - Telephoning/video calls",
+    "Code": "bdsi8",
+    "Long.Name": "BDSIFEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Basic digital skills - internet functions - Used online learning resources",
+    "Code": "bdsi4",
+    "Long.Name": "BDSIFEQ",
+    "Associated Theme": "Qualifications and skills",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Basic digital skills - No skills",
+    "Code": "bdsl1",
+    "Long.Name": "BDSLVLEQ",
+    "Associated Theme": "Qualifications and skills",
     "Nested": "TRUE"
   },
   {
@@ -686,6 +931,20 @@
     "Nested": "TRUE"
   },
   {
+    "Measure_Name": "Personal safety",
+    "Code": "tper",
+    "Long.Name": "TPERSAFETYEQ",
+    "Associated Theme": "Experiences and attitudes to crime",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Prevalence of crime",
+    "Code": "tcri",
+    "Long.Name": "TCRIMEEQ",
+    "Associated Theme": "Experiences and attitudes to crime",
+    "Nested": "TRUE"
+  },
+  {
     "Measure_Name": "Primary, post primary and special schools - Free school meal entitled pupils",
     "Code": "desfsme",
     "Long.Name": "DESCEQ",
@@ -878,14 +1137,21 @@
     "Measure_Name": "Usual resident population",
     "Code": "c500",
     "Long.Name": "C21500EQ",
-    "Associated Theme": "Population and migration",
-    "Nested": "TRUE"
+    "Associated Theme": "Usual Resident Population",
+    "Nested": "FALSE"
   },
   {
     "Measure_Name": "Walking or cycling (active travel)",
     "Code": "walk",
     "Long.Name": "WALKCYCEQ",
     "Associated Theme": "Travel and transport",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Worry about crime",
+    "Code": "twor",
+    "Long.Name": "TWORRYCRIMEEQ",
+    "Associated Theme": "Experiences and attitudes to crime",
     "Nested": "TRUE"
   }
 ]

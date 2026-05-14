@@ -3,9 +3,8 @@
   <head>
     <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Equality Matters</title>
+ <link rel="icon" href="img/favicon.ico" type="image/vnd.microsoft.icon" />    <title>Equality Matters</title>
     <html lang="en">
-    <link rel="icon" type="image" href="img/teo-logo-hex.png">
 
     <!-- imports for bootstrap - jquery and popper are dependencies -->
     <script src="https://cdn.jsdelivr.net/gh/jquery/jquery@3.4.1/dist/jquery.min.js"></script>
@@ -41,6 +40,8 @@
     <!-- <script type="module">
       import * as data from './data.js';
     </script> -->
+
+    
   </head>
 
 
@@ -318,7 +319,7 @@
             <div class="all-measures-div">
 <div class="row align-items-start">
                   <div class="left-section">
-                  <h3>Filter measures by:</h3>
+                  <h3>Filter measures <br> produced by:</h3>
                               <div class="form-group">
               <select id="departmentSelect" class="form-control" multiple="multiple" role = "listbox" aria-multiselectable="true" aria-label="Department filter. Use spacebar to select and deselect options.">
                   <option value="Census">Census 2021</option>
@@ -405,7 +406,7 @@
 <div class="row align-items-start gx-3 gx-lg-3 header-row">
   <!-- Left: selector -->
   <div class="col-12 col-lg-5 left-section">
-    <h4 class="mb-0">Filter measures by:</h4>
+    <h4 class="mb-0">Filter measures <br> produced by:</h4>
     <div class="toggle-container">
 
             <select id="multiple-checkboxes" class="form-select w-100" multiple="multiple" role="listbox" aria-multiselectable="true" aria-label="Department filter. Use spacebar to select and deselect options.">
@@ -1697,6 +1698,16 @@ document.addEventListener('click', function (e) {
       }
     });
 
+    nonNested.sort((a, b) => {
+      const aLabel = a.Measure_Name || enrichedLookup[a.Code]?.measure || 'Unnamed Measure';
+      const bLabel = b.Measure_Name || enrichedLookup[b.Code]?.measure || 'Unnamed Measure';
+
+      const aPriority = aLabel === "Usual resident population" ? 0 : 1;
+      const bPriority = bLabel === "Usual resident population" ? 0 : 1;
+
+      return aPriority - bPriority;
+    });
+
     // Render non-nested buttons
     nonNested.forEach(item => {
       const label = item.Measure_Name || enrichedLookup[item.Code]?.measure || 'Unnamed Measure';
@@ -2728,6 +2739,11 @@ function getBarWidth(ctx) {
   return Math.abs(end - start);
 }
 
+function formatPercent(num) {
+  if (num === null || num === undefined || isNaN(num)) return "N/A";
+  return Math.abs(Number(num)).toFixed(1);
+}
+
   // /////////////////////////////////////////////////////////////////////////////////////////////////////
   // Bar chart function
   function createBarChart(cat_labels, bar_data, ni_line) {
@@ -2813,8 +2829,7 @@ function getBarWidth(ctx) {
     const THRESH_PX = 50;
     return width < THRESH_PX ? '#000' : '#fff';
   },
-
-  formatter: (value) => `${value}%`,
+  formatter: (value) => `${formatPercent(value)}%`,
   font: { size: 22 }
 },
 
@@ -2838,8 +2853,11 @@ function getBarWidth(ctx) {
             },
                       niBelowAxisLabel: {
             niValue: ni_line,
-            textLines: ["NI", `${ni_line}%`],            
-          },
+            textLines: [
+              "NI",
+              `${formatPercent(ni_line)}%`
+            ],
+                    },
 
             // suppress datalabels globally for this chart - turned on individually for each dataset as needed
             datalabels: {
@@ -3253,24 +3271,24 @@ function getBarWidth(ctx) {
             row.appendChild(ageCell);
 
             const povCell = document.createElement("td");
-            povCell.textContent = eqGrpCatBarData[i] !== null ? eqGrpCatBarData[i] : "N/A";
+            povCell.textContent = `${formatPercent(eqGrpCatBarData[i])}`;
             row.appendChild(povCell);
 
             if (!allLciNull) {
                 const lcipovCell = document.createElement("td");
-                lcipovCell.textContent = eqGrpLciCatBarData[i] !== null ? eqGrpLciCatBarData[i] : "N/A";
+                lcipovCell.textContent = formatPercent(eqGrpLciCatBarData[i]);
                 row.appendChild(lcipovCell);
             }
 
             if (!allUciNull) {
                 const ucipovCell = document.createElement("td");
-                ucipovCell.textContent = eqGrpUciCatBarData[i] !== null ? eqGrpUciCatBarData[i] : "N/A";
+                ucipovCell.textContent = formatPercent(eqGrpUciCatBarData[i]);
                 row.appendChild(ucipovCell);
             }
 
             if (niValue !== 100) {
                 const niCell = document.createElement("td");
-                niCell.textContent = niValue;
+                niCell.textContent = formatPercent(niValue);
                 row.appendChild(niCell);
             }
 
@@ -3534,8 +3552,14 @@ function getBarWidth(ctx) {
             const row = document.createElement("tr");
 
             ageGroups.forEach(group => {
-                const ageCell = document.createElement("td");
-                ageCell.textContent = rawEqGrpCatLineData2[group][i] ?? "N/A";
+                const ageCell = document.createElement("td");                
+            if (group === "Year") {
+              ageCell.textContent = rawEqGrpCatLineData2[group][i];
+            } else {
+              ageCell.textContent = formatPercent(
+                rawEqGrpCatLineData2[group][i]
+              );
+            };
                 row.appendChild(ageCell);
             });
 
@@ -3705,16 +3729,16 @@ function generateSummaryText(tableData, niAverage, measureTitle, eqGrpDisplayNam
         const title = measureTitle?.[0] ?? "";
         summaryText = `${title}${title.includes("Census") ? "" : " " + latestYear}<br>`;
 
-        summaryText += `This measure records the <span>${prepareMeasureText(howMeasure)}</span> The NI value for ${measureTitle} is ${formatLikeInput(niAverage)}%.<br>`;
+        summaryText += `This measure records the <span>${prepareMeasureText(howMeasure)}</span> The NI value for ${measureTitle} is ${formatPercent(niAverage)}%.<br>`;
         summaryText += `Looking at differences by ${eqGrpDisplayName} compared to the NI value:<br>`;
 
         // Output every valid category in the original eqGrpCatLabels order
         validCategories.forEach(entry => {
             let pointLabel = entry.difference === "1" ? "percentage point" : "percentage points";
             if (entry.direction === "same") {
-                summaryText += `${entry.category}: ${entry.percentage}% (the same as the NI value)<br>`;
+                summaryText += `${entry.category}: ${formatPercent(entry.percentage)}% (the same as the NI value)<br>`;
             } else {
-                let formattedText = `${entry.category}: ${entry.percentage}% (${entry.difference} ${pointLabel} ${entry.direction})<br>`;
+                let formattedText = `${entry.category}: ${formatPercent(entry.percentage)}% (${formatPercent(entry.difference)} ${pointLabel} ${entry.direction})<br>`;
                 summaryText += formattedText;
             }
         });
@@ -3724,7 +3748,7 @@ function generateSummaryText(tableData, niAverage, measureTitle, eqGrpDisplayNam
 
         // Output categories in original order; bold the highest/lowest among 'lower' direction items
         validCategories.forEach(entry => {
-            let formattedText = `${entry.category}: ${entry.percentage}%<br>`;
+            let formattedText = `${entry.category}: ${formatPercent(entry.percentage)}%<br>`;
             summaryText += formattedText;
         });
     }
@@ -3791,7 +3815,7 @@ function generateSummaryText2(tableData, niAverage, measureTitle, ageGroups, how
             if (n === 0) return "the same as the NI value";
             const absVal = Math.abs(n);
             const label = absVal === 1 ? "percentage point" : "percentage points";
-            return n > 0 ? `${absVal} ${label} above` : `${absVal} ${label} below`;
+            return n > 0 ? `${formatPercent(absVal)} ${label} above` : `${formatPercent(absVal)} ${label} below`;
     }
 
 
@@ -3952,11 +3976,11 @@ if (niAlways100) {
         const decEntry = [...withChange].sort((a, b) => a.change - b.change)[0]; // greatest decrease
 
         if (incEntry && incEntry.change > 0) {
-            summaryText += `${incEntry.group}: This group showed the highest increase from ${incEntry.firstVal}% in ${incEntry.firstYear} to ${incEntry.lastVal}% in ${incEntry.lastYear}.<br>`;
+            summaryText += `${incEntry.group}: This group showed the highest increase from ${formatPercent(incEntry.firstVal)}% in ${incEntry.firstYear} to ${formatPercent(incEntry.lastVal)}% in ${incEntry.lastYear}.<br>`;
         }
 
         if (decEntry && decEntry.change < 0) {
-            summaryText += `${decEntry.group}: This group showed the greatest decrease from ${decEntry.firstVal}% in ${decEntry.firstYear} to ${decEntry.lastVal}% in ${decEntry.lastYear}.<br>`;
+            summaryText += `${decEntry.group}: This group showed the greatest decrease from ${formatPercent(decEntry.firstVal)}% in ${decEntry.firstYear} to $${formatPercent(decEntry.lastVal)}% in ${decEntry.lastYear}.<br>`;
         }
 
         return summaryText;
@@ -4036,15 +4060,15 @@ if (niAlways100) {
     // =========================================================
     summaryText += `Looking at trends by ${eqGrpDisplayName} compared to the NI value:<br>`;
 
-    summaryText += `${biggestIncrease[0]}: This group showed the highest increase relative to the NI value from ${fmt(biggestIncrease[1].firstDiff)} percentage points ${
+    summaryText += `${biggestIncrease[0]}: This group showed the highest increase relative to the NI value from ${formatPercent(biggestIncrease[1].firstDiff)} percentage points ${
         biggestIncrease[1].firstDiff >= 0 ? "above" : "below"
-    } the NI value in ${biggestIncrease[1].firstYearLabel} to ${fmt(biggestIncrease[1].lastDiff)} percentage points ${
+    } the NI value in ${biggestIncrease[1].firstYearLabel} to ${formatPercent(biggestIncrease[1].lastDiff)} percentage points ${
         biggestIncrease[1].lastDiff >= 0 ? "above" : "below"
     } in ${biggestIncrease[1].lastYearLabel}.<br>`;
 
-    summaryText += `${biggestDecrease[0]}: This group showed the greatest decrease relative to the NI value from ${fmt(biggestDecrease[1].firstDiff)} percentage points ${
+    summaryText += `${biggestDecrease[0]}: This group showed the greatest decrease relative to the NI value from ${formatPercent(biggestDecrease[1].firstDiff)} percentage points ${
         biggestDecrease[1].firstDiff >= 0 ? "above" : "below"
-    } the NI value in ${biggestDecrease[1].firstYearLabel} to ${fmt(biggestDecrease[1].lastDiff)} percentage points ${
+    } the NI value in ${biggestDecrease[1].firstYearLabel} to ${formatPercent(biggestDecrease[1].lastDiff)} percentage points ${
         biggestDecrease[1].lastDiff >= 0 ? "above" : "below"
     } in ${biggestDecrease[1].lastYearLabel}.<br>`;
 
@@ -4948,6 +4972,20 @@ chartBtn.addEventListener('click', () => {
                     plugins: {
                       legend: { display: false },
                       datalabels: { display: false },
+
+                      tooltip: {
+                        callbacks: {
+                          label: function (context) {
+                            const label = context.dataset.label || "";
+                            const value = context.raw;
+
+                            // Line-chart data is always percentages (never Year),
+                            // so we can safely format here.
+                            return `${label}: ${formatPercent(value)}%`;
+                          }
+                        }
+                      },
+
                       title: {
                         display: true,
                         text: categoryLabel,
