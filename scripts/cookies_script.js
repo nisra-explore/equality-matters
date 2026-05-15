@@ -11,7 +11,7 @@ function loadGoogleAnalytics() {
     j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
     f.parentNode.insertBefore(j,f);
 })
-(window,document,'script','dataLayer','GTM-KF6WGSG');
+(window,document,'script','dataLayer','GTM-WKK8ZWP');
 
 }
 
@@ -35,7 +35,7 @@ function showCookieBanner() {
   cookieBanner.id = 'cookie-banner';
   cookieBanner.classList.add('cookies-infobar');
   cookieBanner.innerHTML = 
-  '<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KF6WGSG" height = "0" width = "0" style = "display:none; visibility:hidden;"></iframe>' +
+  '<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WKK8ZWP" height = "0" width = "0" style = "display:none; visibility:hidden;"></iframe>' +
   '<div class = "container">' +
   '<p><strong>Cookies on Equality Matters</strong></p>' +
   '<p>This prototype web page places small amounts of information known as cookies on your device. <a href = "https://www.nisra.gov.uk/cookies" class = "cookiesbarlink" target = "_blank" rel = "noopener noreferrer">Find out more about cookies</a>.</p>' +
