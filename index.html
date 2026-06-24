@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="img/favicon.ico" type="image/vnd.microsoft.icon" />  <title>Equality Matters</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <link rel="icon" href="img/favicon.ico" type="image/vnd.microsoft.icon" />    <title>Equality Matters</title>
+    <html lang="en">
 
     <!-- imports for bootstrap - jquery and popper are dependencies -->
     <script src="https://cdn.jsdelivr.net/gh/jquery/jquery@3.4.1/dist/jquery.min.js"></script>
@@ -31,13 +32,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
     <link rel ="stylesheet" href ="style.css">
-    
-    <link rel="icon" href="img/icon/favicon.ico" type="image/vnd.microsoft.icon" />
-    <link rel="icon" type="image/png" href="img/icon/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="img/icon/favicon.svg" />
-    <link rel="shortcut icon" href="img/icon/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="img/icon/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="Equality Matters" />
 
     <!-- <script src = "scripts/cookies_script.js"></script> -->
 
@@ -564,12 +558,24 @@
     title: value.title
   }));
 
+  const datasetTitleLookup = Object.fromEntries(
+    datasetsWithTitles.map(({ dataset, title }) => [dataset, title])
+  );
+
   let lookupTableEqCode = data.lookup_table_eq_code;
   let lookupTableDisplayGrp = data.lookup_table_display_grp;
   let lookupTableMeasureTitle = data.lookup_table_measure_title;
   let lookupTableDatasetLong = data.lookup_table_dataset_long;
   
+  const sortedMeasureKeys = Object.keys(lookupTableMeasureTitle || {}).sort((a, b) => {
+    // Sort by the actual measure title that appears in the table
+    const titleA = (lookupTableMeasureTitle[a] && lookupTableMeasureTitle[a][0]) || a;
+    const titleB = (lookupTableMeasureTitle[b] && lookupTableMeasureTitle[b][0]) || b;
+    return titleA.localeCompare(titleB, undefined, { sensitivity: 'base' });
+  });
+
   console.log("lookupTableMeasureTitle", lookupTableMeasureTitle)
+  console.log("All Measures sorted keys", sortedMeasureKeys)
 
   // Updated function to ensure more precise matching of measure and second token (MG)
   function filterVariablesByName(data, [measureId, secondToken]) {
@@ -778,11 +784,14 @@
         throw new Error("lookupTable must be a valid object");
     }
 
-    if (!Object.prototype.hasOwnProperty.call(lookupTable, key)) {
-        throw new Error(`Key "${key}" not found in lookupTable`);
+    if (key === undefined || key === null || key === "") {
+        return undefined;
     }
 
-    // Return the corresponding value from the lookup table
+    if (!Object.prototype.hasOwnProperty.call(lookupTable, key)) {
+        return undefined;
+    }
+
     return lookupTable[key];
   }
 
@@ -907,7 +916,7 @@
       }
 
       if (typeof matchString !== 'string' || matchString.trim() === "") {
-          throw new Error("matchString must be a non-empty string");
+          return [];
       }
 
       // Filter keys in `data` that contain `matchString`
@@ -2060,7 +2069,7 @@ $(function () {
     // Clear previous rows
     tbody.innerHTML = '';
 
-    for (const measureKey in lookupTableMeasureTitle) {
+    for (const measureKey of sortedMeasureKeys) {
       const department = enrichedLookups[measureKey]?.department?.trim();
       if (!department) continue;
 
@@ -2157,7 +2166,10 @@ for (const key in lookupTableDisplayGrp) {
   }
 
   const s75_btns = destcontainer.getElementsByTagName('button');
-  const s75AvaiMeasures = returnAvailableS75ByLookup(data, ind, invertedLookupEqCode);
+  const activeMeasureKey = measureKey || ind;
+  const s75AvaiMeasures = activeMeasureKey
+    ? returnAvailableS75ByLookup(data, activeMeasureKey, invertedLookupEqCode)
+    : Object.keys(lookupTableDisplayGrp);
 
   for (let n = 0; n < s75_btns.length; n++) {
     if (s75AvaiMeasures.includes(s75_btns[n].value)) {
@@ -2374,8 +2386,8 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
 
   }}
 
-  if (window_url.indexOf("?") > -1) {
-  // run if there is a '?' in the url
+  if (window_url.indexOf("?") > -1 && ind && group) {
+  // run if there is a '?' in the url and both key and s75 group are available
 
   // Update document title
   measureTitle = lookupValueByKey(ind, lookupTableMeasureTitle);
@@ -2389,33 +2401,58 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
   // ################################################################################
   // ################################################################################
 
-  let yearLabels = filterVariablesByName(data, [ind, 'line_labels']);
-  //let niLineData = filterVariablesByName(data, [ind, 'ni_']); ()
-  let niLineData = filterVariablesByName(data, [ind, "_ni_line_data"]);
-  let niAvgLine = niLineData[niLineData.length - 1];
+  let yearLabels = [];
+  let niLineData = [];
+  let niAvgLine = 0;
+  let isException = false;
+  let eqGrpCatLabelsName = "";
+  let eqGrpCatLabels = [];
+  let eqGrpCatLineData = {};
+  let eqGrpLciCatLineData = {};
+  let eqGrpUciCatLineData = {};
+  let eqGrpCatBarData = [];
+  let eqGrpLciCatBarData = [];
+  let eqGrpUciCatBarData = [];
+  let numEQGrpCats = 0;
+  let startYear;
+  let latestYear;
+  let datasetLongName;
+  let s75CatMeasuresTitle = [];
+  let s75CatNotesLabelsName = "";
+  let s75CatNotesLabels = [];
+  let furtherInfo;
+  let s75grps = [];
+  let chartInstance = null;
+  let lineChartInstance = null;
+
+  if (ind && group) {
+    yearLabels = filterVariablesByName(data, [ind, 'line_labels']);
+    //let niLineData = filterVariablesByName(data, [ind, 'ni_']); ()
+    niLineData = filterVariablesByName(data, [ind, "_ni_line_data"]);
+    niAvgLine = niLineData[niLineData.length - 1];
 
   // Check if this s75 and key combination should be treated as NI = 100
-  let isException = isNi100Exception(group, ind);
+  isException = isNi100Exception(group, ind);
 
   if (isException) {
       niAvgLine = 100;
   }
-  let eqGrpCatLabelsName =  "_" + group + "_category_labels";
-  let eqGrpCatLabels = filterVariablesByName(data, [ind, eqGrpCatLabelsName]);
-  let eqGrpCatLineData = filterVariablesByLookup(data, group, ind, lookupTableEqCode);
-  let eqGrpLciCatLineData = filterLciVariablesByLookup(data, group, ind, lookupTableEqCode);
-  let eqGrpUciCatLineData = filterUciVariablesByLookup(data, group, ind, lookupTableEqCode);
-  let eqGrpCatBarData = Object.values(eqGrpCatLineData).map(value => value[value.length - 1]);
-  let eqGrpLciCatBarData = Object.values(eqGrpLciCatLineData).map(value => value[value.length - 1]);
-  let eqGrpUciCatBarData = Object.values(eqGrpUciCatLineData).map(value => value[value.length - 1]);
-  let numEQGrpCats = eqGrpCatLabels.length;
-  let startYear = filterMetadataFromData(data, ind, "start_year");
-  let latestYear = filterMetadataFromData(data, ind, "end_year");
-  let datasetLongName = lookupValueByKey(ind, lookupTableDatasetLong);
-  let s75CatMeasuresTitle = mapPrefixesToLookup(s75CatMeasures, lookupTableMeasureTitle);
-  let s75CatNotesLabelsName =  "_" + group + "_section75_notes";
-  let s75CatNotesLabels = filterVariablesByName(data, [ind, s75CatNotesLabelsName]);
-  let furtherInfo = data[`${ind}_further_information`];
+  eqGrpCatLabelsName =  "_" + group + "_category_labels";
+  eqGrpCatLabels = filterVariablesByName(data, [ind, eqGrpCatLabelsName]);
+  eqGrpCatLineData = filterVariablesByLookup(data, group, ind, lookupTableEqCode);
+  eqGrpLciCatLineData = filterLciVariablesByLookup(data, group, ind, lookupTableEqCode);
+  eqGrpUciCatLineData = filterUciVariablesByLookup(data, group, ind, lookupTableEqCode);
+  eqGrpCatBarData = Object.values(eqGrpCatLineData).map(value => value[value.length - 1]);
+  eqGrpLciCatBarData = Object.values(eqGrpLciCatLineData).map(value => value[value.length - 1]);
+  eqGrpUciCatBarData = Object.values(eqGrpUciCatLineData).map(value => value[value.length - 1]);
+  numEQGrpCats = eqGrpCatLabels.length;
+  startYear = filterMetadataFromData(data, ind, "start_year");
+  latestYear = filterMetadataFromData(data, ind, "end_year");
+  datasetLongName = lookupValueByKey(ind, lookupTableDatasetLong);
+  s75CatMeasuresTitle = mapPrefixesToLookup(s75CatMeasures, lookupTableMeasureTitle);
+  s75CatNotesLabelsName =  "_" + group + "_section75_notes";
+  s75CatNotesLabels = filterVariablesByName(data, [ind, s75CatNotesLabelsName]);
+  furtherInfo = data[`${ind}_further_information`];
   if (isException) {
       const note = "<br><br> The NI value has been suppressed from the charts above as the population base for these calculated percentages is different";
       if (s75CatNotesLabels && s75CatNotesLabels.length > 0) {
@@ -2424,7 +2461,7 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
           furtherInfo += note;
       }
   }
-  let s75grps = returnAvailableS75ByLookup(data,ind,invertedLookupEqCode);
+  s75grps = ind ? returnAvailableS75ByLookup(data,ind,invertedLookupEqCode) : [];
 
   console.log('Year Labels:', yearLabels);
   console.log('N.I. Line Data:', niLineData);
@@ -2448,8 +2485,9 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
   console.log('Section 75 Available Groups:', s75grps);
   console.log('matchString', ind);
 
-  let chartInstance = null;
-  let lineChartInstance = null;
+  chartInstance = null;
+  lineChartInstance = null;
+  }
 
 function returnAvailableS75GroupsForAllMeasures(data, lookupTable) {
     if (typeof lookupTable !== 'object' || lookupTable === null) {
@@ -2777,27 +2815,25 @@ function formatPercent(num) {
     let annotationsConfig = {};
     //const realBarValCount = bar_data.filter(value => value !== null).length; (MG) replaced with more robust check to ensure only valid numbers are counted, avoiding issues with non-numeric placeholders that may be present in the data
     const realBarValCount = bar_data.filter(v => typeof v === 'number' && !isNaN(v)).length;
+    const showNiAnnotation = Number(ni_line) !== 100;
 
-    if (ni_line !== 100){
+    if (showNiAnnotation){
       annotationsConfig = {
-  annotations: {
-    avg_line: {
-      type: 'line',
-      xMin: ni_line,
-      xMax: ni_line,
-      borderColor: '#3b80ae',
-      borderWidth: 5,
+        annotations: {
+          avg_line: {
+            type: 'line',
+            xMin: ni_line,
+            xMax: ni_line,
+            borderColor: '#3b80ae',
+            borderWidth: 5,
+            // ⬇️ Turn off clipping for this annotation
+            clip: false,
+            label: { display: false },
+          },
+        },
+      };
+    }
 
-      // ⬇️ Turn off clipping for this annotation
-      clip: false,
-
-      label: {
-      display: false},
-      clip: false
-    },
-  },
-};
-      }        
     if (realBarValCount >=1){
       chartInstance = new Chart(ctx_bar_line_chart, {
         type: 'bar',
@@ -2858,12 +2894,12 @@ function formatPercent(num) {
               display: false
             },
                       niBelowAxisLabel: {
-            niValue: ni_line,
-            textLines: [
-              "NI",
-              `${formatPercent(ni_line)}%`
-            ],
-                    },
+              niValue: ni_line,
+              textLines: showNiAnnotation ? [
+                "NI",
+                `${formatPercent(ni_line)}%`
+              ] : [],
+            },
 
             // suppress datalabels globally for this chart - turned on individually for each dataset as needed
             datalabels: {
@@ -3232,7 +3268,11 @@ function formatPercent(num) {
 
     if (realTabValCount >= 1) {
         const headerRow = document.createElement("tr");
-        const headers = [eqGrpDisplayName, measureTitle];
+        const measureWithPercent = Array.isArray(measureTitle)
+            ? measureTitle.map(t => `${t} (%)`)
+            : `${measureTitle} (%)`;
+
+        const headers = [eqGrpDisplayName, measureWithPercent];
 
         if (!allLciNull) headers.push("LCI (%)");
         if (!allUciNull) headers.push("UCI (%)");
@@ -3352,9 +3392,14 @@ function formatPercent(num) {
       let rawNiLineData = Array.isArray(niLineData) ? [...niLineData] : [];
       const rawYearLabels = Array.isArray(yearLabels) ? [...yearLabels] : [];
 
+      const table2 = document.getElementById("dataTable2");
+      if (!table2) {
+        console.warn('populateTable2: missing element #dataTable2');
+        return { tableData: [], summary: '' };
+      }
 
-      const tableBody2 = document.getElementById("dataTable2").getElementsByTagName("tbody")[0];
-      dataTable2.classList.add('dest-table');
+      const tableBody2 = table2.tBodies[0] || table2.createTBody();
+      table2.classList.add('dest-table');
       tableBody2.innerHTML = "";
 
     // --------------------------
@@ -3517,14 +3562,23 @@ function formatPercent(num) {
       
       // Clear the existing header
       const ageGroupHeaders = document.getElementById("ageGroupHeaders");
+      if (!ageGroupHeaders) {
+        console.warn('populateTable2: missing element #ageGroupHeaders (likely on allmeasures page)');
+        return { tableData: tableDataArray2, summary: '' };
+      }
       ageGroupHeaders.innerHTML = ""; // Clear existing headers
 
       // Add each age group as a separate header in the table
       ageGroups.forEach(group => {
         const th = document.createElement("th");
-        th.textContent = group; // Set age group label as column header
-        ageGroupHeaders.appendChild(th);
-      });
+      if (group === "Year") {
+        th.textContent = group;
+      } else {
+        th.textContent = `${group} (%)`;
+      }
+
+      ageGroupHeaders.appendChild(th);
+    });  
 
 
 
@@ -3572,7 +3626,7 @@ function formatPercent(num) {
             tableBody2.appendChild(row);
         }
     } else {
-        document.getElementById('dataTable2').innerHTML =
+        table2.innerHTML =
             '<center style="font-weight: bold; font-size: 18pt;">Current year data is not available for this measure</center>';
     }
 
@@ -4065,23 +4119,19 @@ if (niAlways100) {
     //       STANDARD CASE (relative to NI value, unchanged)
     // =========================================================
     summaryText += `Looking at trends by ${eqGrpDisplayName} compared to the NI value:<br>`;
+    
+    summaryText += `${biggestIncrease[0]}: This group showed the highest increase relative to the NI value from ${describeDiff(biggestIncrease[1].firstDiff)} in ${biggestIncrease[1].firstYearLabel} to ${describeDiff(biggestIncrease[1].lastDiff)} in ${biggestIncrease[1].lastYearLabel}.<br>`;
 
-    summaryText += `${biggestIncrease[0]}: This group showed the highest increase relative to the NI value from ${formatPercent(biggestIncrease[1].firstDiff)} percentage points ${
-        biggestIncrease[1].firstDiff >= 0 ? "above" : "below"
-    } the NI value in ${biggestIncrease[1].firstYearLabel} to ${formatPercent(biggestIncrease[1].lastDiff)} percentage points ${
-        biggestIncrease[1].lastDiff >= 0 ? "above" : "below"
-    } in ${biggestIncrease[1].lastYearLabel}.<br>`;
-
-    summaryText += `${biggestDecrease[0]}: This group showed the greatest decrease relative to the NI value from ${formatPercent(biggestDecrease[1].firstDiff)} percentage points ${
-        biggestDecrease[1].firstDiff >= 0 ? "above" : "below"
-    } the NI value in ${biggestDecrease[1].firstYearLabel} to ${formatPercent(biggestDecrease[1].lastDiff)} percentage points ${
-        biggestDecrease[1].lastDiff >= 0 ? "above" : "below"
-    } in ${biggestDecrease[1].lastYearLabel}.<br>`;
+    summaryText += `${biggestDecrease[0]}: This group showed the greatest decrease relative to the NI value from ${describeDiff(biggestDecrease[1].firstDiff)} in ${biggestDecrease[1].firstYearLabel} to ${describeDiff(biggestDecrease[1].lastDiff)} in ${biggestDecrease[1].lastYearLabel}.<br>`;
 
     return summaryText;
   }  
 }
   
+function describeDiff(diff) {
+    if (diff === 0) return "the same as the NI value";
+    return `${formatPercent(diff)} percentage points ${diff >= 0 ? "above" : "below"}`;
+}
 
 // ************************************************************************************************************************
 // ## MAIN FINISHES HERE
@@ -4541,8 +4591,8 @@ chartBtn.addEventListener('click', () => {
       chartInstance = null;
     }
   } else if (viewId === 'chartView') {
-    tableView.style.display = "none";
-    chartView.style.display = "block";
+    if (tableView) tableView.style.display = "none";
+    if (chartView) chartView.style.display = "block";
 
     // Toggle active/inactive styling for both buttons
     if (chartButton) {
@@ -4587,8 +4637,8 @@ chartBtn.addEventListener('click', () => {
       lineChartInstance = null;
     }
   } else if (viewId === 'chartContainer') {
-    tableView2.style.display = "none";
-    chartView2.style.display = "grid";
+    if (tableView2) tableView2.style.display = "none";
+    if (chartView2) chartView2.style.display = "grid";
     if (chartButton2) {
       chartButton2.classList.remove('inactive');
       chartButton2.classList.add('selected');
@@ -4597,7 +4647,7 @@ chartBtn.addEventListener('click', () => {
       tableButton2.classList.add('inactive');
       tableButton2.classList.remove('selected');
     }
-    if (nonNull !== 1) {
+    if (legend && nonNull !== 1) {
       legend.style.display = 'block';
     }
     // Only destroy the line chart when necessary
@@ -4640,9 +4690,12 @@ chartBtn.addEventListener('click', () => {
   // Function to populate the table and create charts
   window.onload = function() {
     populateTable();
-    populateTable2();
-    showView('chartView');
-    showView('chartContainer');
+    // Skip populateTable2() on the allmeasures page
+    if (!urlParams.has('allmeasures')) {
+      populateTable2();
+      showView('chartView');
+      showView('chartContainer');
+    }
   };
 
   // funcitonality for click button copying of descriptive text
@@ -5354,10 +5407,5 @@ if (about) {
   }
 
   // version 31-03-2026 17:12
-
-var link = document.createElement('link');
-link.rel = 'icon';
-link.href = '/equality-matters/img/favicon.ico';
-document.head.appendChild(link);
 
 </script>
