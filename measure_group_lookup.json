@@ -406,6 +406,76 @@
     "Nested": "TRUE"
   },
   {
+    "Measure_Name": "Farm size - Large",
+    "Code": "fsi4",
+    "Long.Name": "FARMSIZEEQ",
+    "Associated Theme": "Agriculture",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Farm size - Medium",
+    "Code": "fsi3",
+    "Long.Name": "FARMSIZEEQ",
+    "Associated Theme": "Agriculture",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Farm size - Small",
+    "Code": "fsi2",
+    "Long.Name": "FARMSIZEEQ",
+    "Associated Theme": "Agriculture",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Farm size - Very small",
+    "Code": "fsi1",
+    "Long.Name": "FARMSIZEEQ",
+    "Associated Theme": "Agriculture",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Farm type - Cattle sheep less favoured areas",
+    "Code": "fty4",
+    "Long.Name": "FARMTYPEEQ",
+    "Associated Theme": "Agriculture",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Farm type - Cattle sheep lowland",
+    "Code": "fty5",
+    "Long.Name": "FARMTYPEEQ",
+    "Associated Theme": "Agriculture",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Farm type - Dairy",
+    "Code": "fty3",
+    "Long.Name": "FARMTYPEEQ",
+    "Associated Theme": "Agriculture",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Farm type - General cropping",
+    "Code": "fty1",
+    "Long.Name": "FARMTYPEEQ",
+    "Associated Theme": "Agriculture",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Farm type - Mixed, cereals, horticulture and other types",
+    "Code": "fty6",
+    "Long.Name": "FARMTYPEEQ",
+    "Associated Theme": "Agriculture",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Farm type - Pigs and poultry",
+    "Code": "fty2",
+    "Long.Name": "FARMTYPEEQ",
+    "Associated Theme": "Agriculture",
+    "Nested": "TRUE"
+  },
+  {
     "Measure_Name": "Feeling respected",
     "Code": "resp",
     "Long.Name": "RESPECTEQ",
@@ -455,52 +525,59 @@
     "Nested": "TRUE"
   },
   {
+    "Measure_Name": "Higher Level Apprenticeship in further education - Starts",
+    "Code": "sfes",
+    "Long.Name": "SAHLAFESTARTSEQ",
+    "Associated Theme": "Training and apprenticeships",
+    "Nested": "TRUE"
+  },
+  {
     "Measure_Name": "Higher Level Apprenticeships in further education – Final year achievement",
-    "Code": "sahl",
+    "Code": "sfee",
     "Long.Name": "SAHLAFEEQ",
     "Associated Theme": "Training and apprenticeships",
-    "Nested": "FALSE"
+    "Nested": "TRUE"
   },
   {
     "Measure_Name": "Highest level of qualifications - Level 1: 1 to 4 GCSEs, O levels, CSEs (any grades); 1 AS Level; NVQ level 1; or equivalent (Census 2021)",
     "Code": "c5071",
     "Long.Name": "C21507EQ",
-    "Associated Theme": "Education and qualification levels",
+    "Associated Theme": "Qualifications and skills",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Highest level of qualifications - Level 2: 5 or more GCSEs (A*-C or 9-4), O levels (passes) CSEs (grade 1); 1 A level, 2-3 AS Levels; NVQ level 2, BTEC General, City and Guilds Craft; or equivalent (Census 2021)",
     "Code": "c5072",
     "Long.Name": "C21507EQ",
-    "Associated Theme": "Education and qualification levels",
+    "Associated Theme": "Qualifications and skills",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Highest level of qualifications - Level 3: 2 or more A Levels, 4 or more AS Levels; NVQ Level 3, BTEC National, OND, ONC, City and Guilds Advanced Craft; or equivalent (Census 2021)",
     "Code": "c5073",
     "Long.Name": "C21507EQ",
-    "Associated Theme": "Education and qualification levels",
+    "Associated Theme": "Qualifications and skills",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Highest level of qualifications - Level 4 and above: Degree (BA, BSc), foundation degree, NVQ Level 4 and above, HND, HNC, professional qualifications (teaching or nursing, for example), or equivalent (Census 2021)",
     "Code": "c5074",
     "Long.Name": "C21507EQ",
-    "Associated Theme": "Education and qualification levels",
+    "Associated Theme": "Qualifications and skills",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Highest level of qualifications - No qualifications (Census 2021)",
     "Code": "c5070",
     "Long.Name": "C21507EQ",
-    "Associated Theme": "Education and qualification levels",
+    "Associated Theme": "Qualifications and skills",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Highest level of qualifications - Other: Apprenticeships; other qualifications, equivalent unknown (Census 2021)",
     "Code": "c5075",
     "Long.Name": "C21507EQ",
-    "Associated Theme": "Education and qualification levels",
+    "Associated Theme": "Qualifications and skills",
     "Nested": "TRUE"
   },
   {
@@ -675,7 +752,7 @@
     "Measure_Name": "Level 2 qualifications",
     "Code": "skil",
     "Long.Name": "SKILLSEQ",
-    "Associated Theme": "Education and qualification levels",
+    "Associated Theme": "Qualifications and skills",
     "Nested": "TRUE"
   },
   {
@@ -704,6 +781,27 @@
     "Code": "self",
     "Long.Name": "SELFEFFEQ",
     "Associated Theme": "Individual wellbeing",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Main farmers by land designation - Mainly disadvantaged area",
+    "Code": "lan2",
+    "Long.Name": "LANDDESEQ",
+    "Associated Theme": "Agriculture",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Main farmers by land designation - Mainly lowland",
+    "Code": "lan3",
+    "Long.Name": "LANDDESEQ",
+    "Associated Theme": "Agriculture",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Main farmers by land designation - Mainly severly disadvantaged area",
+    "Code": "lan1",
+    "Long.Name": "LANDDESEQ",
+    "Associated Theme": "Agriculture",
     "Nested": "TRUE"
   },
   {
@@ -1137,8 +1235,15 @@
     "Measure_Name": "Usual resident population",
     "Code": "c500",
     "Long.Name": "C21500EQ",
-    "Associated Theme": "Usual Resident Population",
-    "Nested": "FALSE"
+    "Associated Theme": "Population and migration",
+    "Nested": "TRUE"
+  },
+  {
+    "Measure_Name": "Usual resident population - Rural",
+    "Code": "rura",
+    "Long.Name": "RURALPOPEQ",
+    "Associated Theme": "Agriculture",
+    "Nested": "TRUE"
   },
   {
     "Measure_Name": "Walking or cycling (active travel)",

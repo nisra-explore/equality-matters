@@ -2429,14 +2429,48 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
     yearLabels = filterVariablesByName(data, [ind, 'line_labels']);
     //let niLineData = filterVariablesByName(data, [ind, 'ni_']); ()
     niLineData = filterVariablesByName(data, [ind, "_ni_line_data"]);
+    
     niAvgLine = niLineData[niLineData.length - 1];
-
+if (
+  niAvgLine === null ||
+  niAvgLine === undefined ||
+  niAvgLine === "NA" ||
+  niAvgLine === "N/A" ||
+  Number.isNaN(Number(niAvgLine))
+) {
+  niAvgLine = null;
+}
   // Check if this s75 and key combination should be treated as NI = 100
   isException = isNi100Exception(group, ind);
 
   if (isException) {
-      niAvgLine = 100;
+    niAvgLine = 100;
+  } else {
+    const rawNiValue = niLineData[niLineData.length - 1];
+    
+    const niValue =
+      niAvgLine === null ||
+      niAvgLine === undefined ||
+      niAvgLine === "" ||
+      String(niAvgLine).trim() === "" ||
+      niAvgLine === "NA" ||
+      niAvgLine === "N/A" ||
+      Number.isNaN(Number(niAvgLine))
+    ? null
+    : Number(niAvgLine);
+
+   niAvgLine =
+    rawNiValue === null ||
+    rawNiValue === undefined ||
+    rawNiValue === "" ||
+    String(rawNiValue).trim() === "" ||
+    rawNiValue === "NA" ||
+    rawNiValue === "N/A" ||
+    Number.isNaN(Number(rawNiValue))
+    ? null
+    : Number(rawNiValue);
   }
+
   eqGrpCatLabelsName =  "_" + group + "_category_labels";
   eqGrpCatLabels = filterVariablesByName(data, [ind, eqGrpCatLabelsName]);
   eqGrpCatLineData = filterVariablesByLookup(data, group, ind, lookupTableEqCode);
@@ -2636,8 +2670,17 @@ function cleanValue(v, ni) {
   Chart.register(ChartDataLabels);
 
   // determine maxValue of the current bar data
-  const maxValue = Math.max(...eqGrpCatBarData);
-  const maxAvgDiff = niAvgLine - maxValue;
+  let maxValue = 0;
+  let maxAvgDiff = 0;
+  let niValue = null;
+
+  if (niAvgLine !== null && niAvgLine !== undefined) {
+    maxValue = Math.max(...eqGrpCatBarData, 0);
+    maxAvgDiff = niAvgLine - maxValue;
+  } else {
+    maxValue = Math.max(...eqGrpCatBarData, 0);
+    maxAvgDiff = 0;
+  }
 
   // Function to calculate padding based on screen size
   function calculateBarPadding() {
@@ -2698,7 +2741,6 @@ function cleanValue(v, ni) {
   }
 
   console.log("max value:", maxValue);
-  console.log("average value:", niAvgLine);
   console.log("avg diff:", maxAvgDiff)
 
   // Initial padding - needs to be different when the average value is close or the same as the max value - set thresholds
@@ -2815,7 +2857,7 @@ function formatPercent(num) {
     let annotationsConfig = {};
     //const realBarValCount = bar_data.filter(value => value !== null).length; (MG) replaced with more robust check to ensure only valid numbers are counted, avoiding issues with non-numeric placeholders that may be present in the data
     const realBarValCount = bar_data.filter(v => typeof v === 'number' && !isNaN(v)).length;
-    const showNiAnnotation = Number(ni_line) !== 100;
+    const showNiAnnotation = ni_line !== null && Number(ni_line) !== 100;
 
     if (showNiAnnotation){
       annotationsConfig = {
@@ -3114,7 +3156,6 @@ function formatPercent(num) {
   //   dataTable.classList.add('dest-table');
   //   tableBody.innerHTML = "";
 
-  //   // Ensure niAvgLine is treated as a single value (if it's not an array)
   //   const niValue = Array.isArray(niAvgLine) ? niAvgLine[0] : niAvgLine;
   //   const tableDataArray = [];
 
@@ -3257,7 +3298,11 @@ function formatPercent(num) {
     tableBody.innerHTML = "";
     thead.innerHTML = "";
 
-    const niValue = Array.isArray(niAvgLine) ? niAvgLine[0] : niAvgLine;
+    let niValue = null;
+    if (niAvgLine !== null) {
+      niValue = Array.isArray(niAvgLine) ? niAvgLine[0] : niAvgLine;
+    }
+
     const tableDataArray = [];
 
     const allLciNull = eqGrpLciCatBarData.every(val => val === null);
@@ -3276,7 +3321,7 @@ function formatPercent(num) {
 
         if (!allLciNull) headers.push("LCI (%)");
         if (!allUciNull) headers.push("UCI (%)");
-        if (niValue !== 100) headers.push("NI Value (%)");
+        if (niValue !== null && niValue !== 100) headers.push("NI Value (%)");
 
         const measureText = Array.isArray(measureTitle) ? measureTitle[0] : measureTitle;
         const isLongMeasureHeader = measureText && measureText.length > 60;
@@ -3332,10 +3377,10 @@ function formatPercent(num) {
                 row.appendChild(ucipovCell);
             }
 
-            if (niValue !== 100) {
-                const niCell = document.createElement("td");
-                niCell.textContent = formatPercent(niValue);
-                row.appendChild(niCell);
+            if (niValue !== null && niValue !== 100) {
+              const niCell = document.createElement("td");
+              niCell.textContent = formatPercent(niValue);
+              row.appendChild(niCell);
             }
 
             tableBody.appendChild(row);
@@ -3525,7 +3570,11 @@ function formatPercent(num) {
     // 4. DETECT NI=100 EXCEPTION
     // --------------------------
 
-    let niAlways100 = tableDataArray2.every(r => Number(r.niAverage) === 100);
+    // robust numeric check for NI==100 (handles strings, nulls and floating errors)
+    let niAlways100 = tableDataArray2.length > 0 && tableDataArray2.every(r => {
+      const n = Number(r.niAverage);
+      return !Number.isNaN(n) && Math.abs(n - 100) < 1e-9;
+    });
 
 
 
@@ -3738,29 +3787,44 @@ function generateSummaryText(tableData, niAverage, measureTitle, eqGrpDisplayNam
 
     let categoriesWithDiff = [];
 
+    // Determine whether NI is a usable numeric value
+    const niNumeric = (niAverage !== null && niAverage !== undefined && !Number.isNaN(Number(niAverage)))
+      ? Number(niAverage)
+      : null;
+
     // Calculate differences and store categories with values
     tableData.forEach(row => {
-        let category = row.category;
-        let percentage = parseFloat(row.percentage);
+      const category = row.category;
+      const percentageRaw = row.percentage;
+      const percentageNum = Number(percentageRaw);
 
-        if (isNaN(percentage)) {
-            categoriesWithDiff.push({
-                category: category,
-                isValid: false
-            });
-            return;
-        }
+      // Treat missing/invalid percentages as invalid
+      if (percentageRaw === null || percentageRaw === undefined || Number.isNaN(percentageNum)) {
+        categoriesWithDiff.push({ category, isValid: false });
+        return;
+      }
 
-        let diff = percentage - niAverage;
-        let direction = diff > 0 ? "higher" : diff < 0 ? "lower" : "same";
+      // If NI is numeric, compute diffs; otherwise just record the percentage
+      if (niNumeric !== null) {
+        const diff = percentageNum - niNumeric;
+        const direction = diff > 0 ? "higher" : diff < 0 ? "lower" : "same";
 
         categoriesWithDiff.push({
-            category: category,
-            percentage: formatLikeInput(percentage), // Format percentage to 1 decimal place where appropriate (MG)
-            difference: formatDifference(Math.abs(diff)), // Format difference to 1 decimal place where appropriate (MG)
-            direction: direction,
-            isValid: true
+          category,
+          percentage: formatLikeInput(percentageNum),
+          difference: formatDifference(Math.abs(diff)),
+          direction,
+          isValid: true
         });
+      } else {
+        categoriesWithDiff.push({
+          category,
+          percentage: formatLikeInput(percentageNum),
+          difference: null,
+          direction: null,
+          isValid: true
+        });
+      }
     });
 
     // Separate valid and invalid categories
@@ -3784,33 +3848,42 @@ function generateSummaryText(tableData, niAverage, measureTitle, eqGrpDisplayNam
 
     let summaryText = {};
 
-    if (niAverage !== 100) {
+    // If NI is not available, list percentages without comparisons
+    if (niNumeric === null) {
+      const title = measureTitle?.[0] ?? "";
+      summaryText = `${title}${title.includes("Census") ? "" : " " + latestYear}<br>`;
+      summaryText += `This measure records the <span>${prepareMeasureText(howMeasure)}</span><br>`;
+      summaryText += `The NI value is not available. The distribution by ${eqGrpDisplayName} is:<br>`;
 
-        const title = measureTitle?.[0] ?? "";
-        summaryText = `${title}${title.includes("Census") ? "" : " " + latestYear}<br>`;
+      validCategories.forEach(entry => {
+        summaryText += `${entry.category}: ${formatPercent(entry.percentage)}%<br>`;
+      });
+    } else if (niAverage !== 100) {
+      const title = measureTitle?.[0] ?? "";
+      summaryText = `${title}${title.includes("Census") ? "" : " " + latestYear}<br>`;
 
-        summaryText += `This measure records the <span>${prepareMeasureText(howMeasure)}</span> The NI value for ${measureTitle} is ${formatPercent(niAverage)}%.<br>`;
-        summaryText += `Looking at differences by ${eqGrpDisplayName} compared to the NI value:<br>`;
+      summaryText += `This measure records the <span>${prepareMeasureText(howMeasure)}</span> The NI value for ${measureTitle} is ${formatPercent(niNumeric)}%.<br>`;
+      summaryText += `Looking at differences by ${eqGrpDisplayName} compared to the NI value:<br>`;
 
-        // Output every valid category in the original eqGrpCatLabels order
-        validCategories.forEach(entry => {
-            let pointLabel = entry.difference === "1" ? "percentage point" : "percentage points";
-            if (entry.direction === "same") {
-                summaryText += `${entry.category}: ${formatPercent(entry.percentage)}% (the same as the NI value)<br>`;
-            } else {
-                let formattedText = `${entry.category}: ${formatPercent(entry.percentage)}% (${formatPercent(entry.difference)} ${pointLabel} ${entry.direction})<br>`;
-                summaryText += formattedText;
-            }
-        });
+      // Output every valid category in the original eqGrpCatLabels order
+      validCategories.forEach(entry => {
+        let pointLabel = entry.difference === "1" ? "percentage point" : "percentage points";
+        if (entry.direction === "same") {
+          summaryText += `${entry.category}: ${formatPercent(entry.percentage)}% (the same as the NI value)<br>`;
+        } else {
+          let formattedText = `${entry.category}: ${formatPercent(entry.percentage)}% (${entry.difference} ${pointLabel} ${entry.direction})<br>`;
+          summaryText += formattedText;
+        }
+      });
     } else {
-        summaryText = `${measureTitle} ${latestYear}<br>`;
-        summaryText += `The ${toLowercase(measureTitle)} is broken down by ${eqGrpDisplayName} as follows:<br>`;
+      summaryText = `${measureTitle} ${latestYear}<br>`;
+      summaryText += `The ${toLowercase(measureTitle)} is broken down by ${eqGrpDisplayName} as follows:<br>`;
 
-        // Output categories in original order; bold the highest/lowest among 'lower' direction items
-        validCategories.forEach(entry => {
-            let formattedText = `${entry.category}: ${formatPercent(entry.percentage)}%<br>`;
-            summaryText += formattedText;
-        });
+      // Output categories in original order; bold the highest/lowest among 'lower' direction items
+      validCategories.forEach(entry => {
+        let formattedText = `${entry.category}: ${formatPercent(entry.percentage)}%<br>`;
+        summaryText += formattedText;
+      });
     }
 
     // Add invalid category summary text
@@ -3838,7 +3911,11 @@ function generateSummaryText2(tableData, niAverage, measureTitle, ageGroups, how
     }
 
     // Detect NI=100 special-case (MG) - if all rows have niAverage of 100, we can skip the difference calculations and just report the group values and trends
-    let niAlways100 = tableData.every(r => Number(r.niAverage) === 100);
+    // robust numeric check for NI==100 (handles strings, nulls and floating errors)
+    let niAlways100 = tableData.length > 0 && tableData.every(r => {
+      const n = Number(r.niAverage);
+      return !Number.isNaN(n) && Math.abs(n - 100) < 1e-9;
+    });
 
     // ✅ NEW: also force NI=100 mode for exception keys AND matching S75
     let isException = false;
@@ -4840,8 +4917,11 @@ chartBtn.addEventListener('click', () => {
     // Detect if NI series is all 100 (raw NI data passed in secondSeriesValues)
     let niAlways100 = false;
 
-    if (Array.isArray(secondSeriesValues)) {
-        niAlways100 = secondSeriesValues.every(v => Number(v) === 100);
+    if (Array.isArray(secondSeriesValues) && secondSeriesValues.length > 0) {
+      niAlways100 = secondSeriesValues.every(v => {
+        const n = Number(v);
+        return !Number.isNaN(n) && Math.abs(n - 100) < 1e-9;
+      });
     }
 
     // Detect configured exception (s75, key) from global state
