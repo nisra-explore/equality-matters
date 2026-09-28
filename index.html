@@ -1222,7 +1222,29 @@ fetch('./measure_group_lookup.json')
     const $deptSelect = $('#multiple-checkboxes');
     $deptSelect.empty(); // Clear previous options
 
-    departmentsForGroup.forEach(dept => {
+    const departmentOrder = [
+      "Department of Agriculture, Environment and Rural Affairs",
+      "Department for Communities",
+      "Department for the Economy",
+      "Department of Education",
+      "Department of Finance",
+      "Department of Health",
+      "Department for Infrastructure",
+      "Department of Justice",
+      "The Executive Office"
+    ];
+    
+    const sortedDepartmentsForGroup = [...departmentsForGroup].sort((a, b) => {
+      const aIndex = departmentOrder.indexOf(a);
+      const bIndex = departmentOrder.indexOf(b);
+    
+      const aOrder = aIndex === -1 ? departmentOrder.length : aIndex;
+      const bOrder = bIndex === -1 ? departmentOrder.length : bIndex;
+    
+      return aOrder - bOrder;
+    });
+
+    sortedDepartmentsForGroup.forEach(dept => {
       $deptSelect.append(`<option value="${dept}">${dept}</option>`);
     });
 
@@ -2009,7 +2031,29 @@ $(function () {
       .map(d => d?.department?.trim())
       .filter(Boolean)
   )];
-
+  // customer departmnet order for sorting
+  const departmentOrder = [
+    "Department of Agriculture, Environment and Rural Affairs",
+    "Department for Communities",
+    "Department for the Economy",
+    "Department of Education",
+    "Department of Finance",
+    "Department of Health",
+    "Department for Infrastructure",
+    "Department of Justice",
+    "The Executive Office"
+  ];
+  
+  uniqueDepartments.sort((a, b) => {
+    const aIndex = departmentOrder.indexOf(a);
+    const bIndex = departmentOrder.indexOf(b);
+  
+    const aOrder = aIndex === -1 ? departmentOrder.length : aIndex;
+    const bOrder = bIndex === -1 ? departmentOrder.length : bIndex;
+  
+    return aOrder - bOrder;
+  });
+  
   uniqueDepartments.forEach(dept => {
     $deptSelect.append(`<option value="${dept}">${dept}</option>`);
   });
