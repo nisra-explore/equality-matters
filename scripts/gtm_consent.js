@@ -9,8 +9,7 @@
         window.dataLayer = window.dataLayer || [];
 
 		window.dataLayer.push({
-		  contentTitle: "Northern Ireland Local Statistics Explorer",
-		  releaseDate: "20220823",
+		  contentTitle: "Equality Matters",
 		  contentType: "exploratory"
 		});
 
