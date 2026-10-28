@@ -1,63 +1,233 @@
-function loadGoogleAnalytics() {
+export function initCookieConsent(options = {}) {
+  const {
+    bannerId = "cookie-banner",
+    storageKey = "nisra_consent_v2",
+    consentVersion = 1,
+    consentMaxAgeDays = 365
+  } = options;
 
-  (function(w, d, s, l, i){
-    w[l] = w[l]||[];
-    w[l].push({'gtm.start': new Date().getTime(),
-                event:'gtm.js'});
-    var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s),
-        dl = l !='dataLayer'?'&l='+l: '';
-    j.async = true;
-    j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-    f.parentNode.insertBefore(j,f);
-})
-(window,document,'script','dataLayer','GTM-WKK8ZWP');
+  const cookieBanner = document.getElementById(
+    bannerId
+  );
 
-}
+  if (!cookieBanner) {
+    return;
+  }
 
-function showCookieBanner() {
-  const cookieAnswered = localStorage.getItem('cookie_answered');
-  const cookieDate = localStorage.getItem('cookie_date');
-  const today = new Date();
+  function acceptedConsent() {
+    return {
+      analytics_storage: "granted",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+      functionality_storage: "granted",
+      security_storage: "granted"
+    };
+  }
 
-  if (cookieAnswered && cookieDate) {
-    const diff = (today - new Date(cookieDate)) / 1000 / 60 / 60 / 24;
-    if (diff > 365) {
-      localStorage.removeItem("cookie_answered");
-      localStorage.removeItem("cookie_date");
-    } else {
-      return; 
+  function deniedConsent() {
+    return {
+      analytics_storage: "denied",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+      functionality_storage: "granted",
+      security_storage: "granted"
+    };
+  }
+
+  function updateConsent(consentState) {
+    window.gtag(
+      "consent",
+      "update",
+      consentState
+    );
+  }
+
+  function saveChoice(choice) {
+    const record = {
+      choice,
+      version: consentVersion,
+      timestamp: new Date().toISOString()
+    };
+
+    try {
+      localStorage.setItem(
+        storageKey,
+        JSON.stringify(record)
+      );
+
+      return true;
+    } catch (error) {
+      return false;
     }
   }
 
-  // Create banner only if not answered
-  const cookieBanner = document.createElement('div');
-  cookieBanner.id = 'cookie-banner';
-  cookieBanner.classList.add('cookies-infobar');
-  cookieBanner.innerHTML = 
-  '<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WKK8ZWP" height = "0" width = "0" style = "display:none; visibility:hidden;"></iframe>' +
-  '<div class = "container">' +
-  '<p><strong>Cookies on Equality Matters</strong></p>' +
-  '<p>This prototype web page places small amounts of information known as cookies on your device. <a href = "https://www.nisra.gov.uk/cookies" class = "cookiesbarlink" target = "_blank" rel = "noopener noreferrer">Find out more about cookies</a>.</p>' +
-  '<button id = "accept-cookies" class = "cookies-infobar_btn">Accept cookies</button>' +
-  '<button id = "reject-cookies" class = "cookies-infobar_btn_reject">Reject cookies</button>' +
-  '</div>';
+  function getSavedChoice() {
+    try {
+      const stored = localStorage.getItem(
+        storageKey
+      );
 
-  document.body.prepend(cookieBanner);
+      if (!stored) {
+        return null;
+      }
 
-  // Add button actions
-  document.getElementById('accept-cookies').onclick = function () {
-    localStorage.setItem('cookie_answered', "true");
-    localStorage.setItem('cookie_date', today);
-    cookieBanner.remove();
-    loadGoogleAnalytics();
-  };
+      const record = JSON.parse(stored);
+      const timestamp = Date.parse(
+        record.timestamp
+      );
 
-  document.getElementById('reject-cookies').onclick = function () {
-    localStorage.setItem('cookie_answered', "true");
-    localStorage.setItem('cookie_date', today);
-    cookieBanner.remove();
-  };
+      const maximumAge =
+        consentMaxAgeDays *
+        24 *
+        60 *
+        60 *
+        1000;
+
+      const age =
+        Date.now() - timestamp;
+
+      const validChoice =
+        record.choice === "accepted" ||
+        record.choice === "rejected";
+
+      const validVersion =
+        record.version === consentVersion;
+
+      const validTimestamp =
+        Number.isFinite(timestamp) &&
+        age >= 0 &&
+        age <= maximumAge;
+
+      if (
+        !validChoice ||
+        !validVersion ||
+        !validTimestamp
+      ) {
+        localStorage.removeItem(
+          storageKey
+        );
+
+        return null;
+      }
+
+      return record.choice;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function hideBanner() {
+    cookieBanner.style.display = "none";
+  }
+
+  function showBanner() {
+    cookieBanner.style.display = "block";
+  }
+
+  cookieBanner.classList.add(
+    "cookies-infobar"
+  );
+
+  cookieBanner.innerHTML = `
+    <div class="container">
+      <p>
+        <strong>
+          Cookies on the NISRA Local Statistics Explorer
+        </strong>
+      </p>
+
+      <p>
+        We use essential storage to remember your cookie choice.
+        With your permission, we use analytics cookies to help us
+        understand how people use this service and make improvements.
+
+        <a
+          href="https://www.nisra.gov.uk/cookies"
+          class="cookiesbarlink"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Find out more about cookies
+        </a>.
+      </p>
+
+      <button
+        id="accept-cookies"
+        type="button"
+        class="cookies-infobar_btn"
+      >
+        Accept analytics cookies
+      </button>
+
+      <button
+        id="reject-cookies"
+        type="button"
+        class="cookies-infobar_btn_reject"
+      >
+        Reject analytics cookies
+      </button>
+    </div>
+  `;
+
+  const acceptBtn = document.getElementById(
+    "accept-cookies"
+  );
+
+  const rejectBtn = document.getElementById(
+    "reject-cookies"
+  );
+
+  const savedChoice = getSavedChoice();
+
+  if (savedChoice) {
+    hideBanner();
+  } else {
+    showBanner();
+  }
+
+  acceptBtn?.addEventListener(
+    "click",
+    () => {
+      
+      updateConsent(
+        acceptedConsent()
+      );
+
+      saveChoice(
+        "accepted"
+      );
+
+      window.dataLayer.push({
+        event: "nisra_consent_updated",
+        consent_choice: "accepted"
+      });
+
+      hideBanner();
+    }
+  );
+
+  rejectBtn?.addEventListener(
+    "click",
+    () => {
+      updateConsent(
+        deniedConsent()
+      );
+
+      saveChoice(
+        "rejected"
+      );
+
+      window.dataLayer.push({
+        event: "nisra_consent_updated",
+        consent_choice: "rejected"
+      });
+
+      hideBanner();
+    }
+  );
+
+  window.showNisraCookieSettings =
+    showBanner;
 }
-
-window.onload = showCookieBanner;
