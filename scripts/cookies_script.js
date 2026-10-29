@@ -1,4 +1,4 @@
-export function initCookieConsent(options = {}) {
+function initCookieConsent(options = {}) {
   const {
     bannerId = "cookie-banner",
     storageKey = "nisra_consent_v2",
@@ -230,4 +230,8 @@ export function initCookieConsent(options = {}) {
 
   window.showNisraCookieSettings =
     showBanner;
+
+    initCookieConsent({
+      bannerId: "cookie-banner"
+    });
 }
