@@ -3471,3 +3471,73 @@ background-color: #00205B;
     }
 }
 
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding-top: 140px;
+}
+
+.cookies-infobar {
+    background: #00205b;
+    color: #ffffff;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    z-index: 9999;
+
+    padding: 14px 0;
+
+    box-sizing: border-box;
+
+    border-bottom: 4px solid #3878c5;
+}
+
+
+.cookies-infobar p {
+    margin: 0 0 10px 0;
+}
+.cookies-infobar a {
+    color: #68a41e;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+
+.cookies-infobar_btn {
+    background: #68a41e;
+    color: #ffffff;
+
+    border: none;
+
+    padding: 8px 12px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+
+.cookies-infobar_btn_reject {
+    background: #6f6f6f;
+    color: #ffffff;
+
+    border: none;
+
+    padding: 8px 12px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+.cookiesbarlink {
+    color: #ffffff;
+}
+
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}

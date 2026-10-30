@@ -1,237 +1,237 @@
-function initCookieConsent(options = {}) {
-  const {
-    bannerId = "cookie-banner",
-    storageKey = "nisra_consent_v2",
-    consentVersion = 1,
-    consentMaxAgeDays = 365
-  } = options;
+// function initCookieConsent(options = {}) {
+//   const {
+//     bannerId = "cookie-banner",
+//     storageKey = "nisra_consent_v2",
+//     consentVersion = 1,
+//     consentMaxAgeDays = 365
+//   } = options;
 
-  const cookieBanner = document.getElementById(
-    bannerId
-  );
+//   const cookieBanner = document.getElementById(
+//     bannerId
+//   );
 
-  if (!cookieBanner) {
-    return;
-  }
+//   if (!cookieBanner) {
+//     return;
+//   }
 
-  function acceptedConsent() {
-    return {
-      analytics_storage: "granted",
-      ad_storage: "denied",
-      ad_user_data: "denied",
-      ad_personalization: "denied",
-      functionality_storage: "granted",
-      security_storage: "granted"
-    };
-  }
+//   function acceptedConsent() {
+//     return {
+//       analytics_storage: "granted",
+//       ad_storage: "denied",
+//       ad_user_data: "denied",
+//       ad_personalization: "denied",
+//       functionality_storage: "granted",
+//       security_storage: "granted"
+//     };
+//   }
 
-  function deniedConsent() {
-    return {
-      analytics_storage: "denied",
-      ad_storage: "denied",
-      ad_user_data: "denied",
-      ad_personalization: "denied",
-      functionality_storage: "granted",
-      security_storage: "granted"
-    };
-  }
+//   function deniedConsent() {
+//     return {
+//       analytics_storage: "denied",
+//       ad_storage: "denied",
+//       ad_user_data: "denied",
+//       ad_personalization: "denied",
+//       functionality_storage: "granted",
+//       security_storage: "granted"
+//     };
+//   }
 
-  function updateConsent(consentState) {
-    window.gtag(
-      "consent",
-      "update",
-      consentState
-    );
-  }
+//   function updateConsent(consentState) {
+//     window.gtag(
+//       "consent",
+//       "update",
+//       consentState
+//     );
+//   }
 
-  function saveChoice(choice) {
-    const record = {
-      choice,
-      version: consentVersion,
-      timestamp: new Date().toISOString()
-    };
+//   function saveChoice(choice) {
+//     const record = {
+//       choice,
+//       version: consentVersion,
+//       timestamp: new Date().toISOString()
+//     };
 
-    try {
-      localStorage.setItem(
-        storageKey,
-        JSON.stringify(record)
-      );
+//     try {
+//       localStorage.setItem(
+//         storageKey,
+//         JSON.stringify(record)
+//       );
 
-      return true;
-    } catch (error) {
-      return false;
-    }
-  }
+//       return true;
+//     } catch (error) {
+//       return false;
+//     }
+//   }
 
-  function getSavedChoice() {
-    try {
-      const stored = localStorage.getItem(
-        storageKey
-      );
+//   function getSavedChoice() {
+//     try {
+//       const stored = localStorage.getItem(
+//         storageKey
+//       );
 
-      if (!stored) {
-        return null;
-      }
+//       if (!stored) {
+//         return null;
+//       }
 
-      const record = JSON.parse(stored);
-      const timestamp = Date.parse(
-        record.timestamp
-      );
+//       const record = JSON.parse(stored);
+//       const timestamp = Date.parse(
+//         record.timestamp
+//       );
 
-      const maximumAge =
-        consentMaxAgeDays *
-        24 *
-        60 *
-        60 *
-        1000;
+//       const maximumAge =
+//         consentMaxAgeDays *
+//         24 *
+//         60 *
+//         60 *
+//         1000;
 
-      const age =
-        Date.now() - timestamp;
+//       const age =
+//         Date.now() - timestamp;
 
-      const validChoice =
-        record.choice === "accepted" ||
-        record.choice === "rejected";
+//       const validChoice =
+//         record.choice === "accepted" ||
+//         record.choice === "rejected";
 
-      const validVersion =
-        record.version === consentVersion;
+//       const validVersion =
+//         record.version === consentVersion;
 
-      const validTimestamp =
-        Number.isFinite(timestamp) &&
-        age >= 0 &&
-        age <= maximumAge;
+//       const validTimestamp =
+//         Number.isFinite(timestamp) &&
+//         age >= 0 &&
+//         age <= maximumAge;
 
-      if (
-        !validChoice ||
-        !validVersion ||
-        !validTimestamp
-      ) {
-        localStorage.removeItem(
-          storageKey
-        );
+//       if (
+//         !validChoice ||
+//         !validVersion ||
+//         !validTimestamp
+//       ) {
+//         localStorage.removeItem(
+//           storageKey
+//         );
 
-        return null;
-      }
+//         return null;
+//       }
 
-      return record.choice;
-    } catch (error) {
-      return null;
-    }
-  }
+//       return record.choice;
+//     } catch (error) {
+//       return null;
+//     }
+//   }
 
-  function hideBanner() {
-    cookieBanner.style.display = "none";
-  }
+//   function hideBanner() {
+//     cookieBanner.style.display = "none";
+//   }
 
-  function showBanner() {
-    cookieBanner.style.display = "block";
-  }
+//   function showBanner() {
+//     cookieBanner.style.display = "block";
+//   }
 
-  cookieBanner.classList.add(
-    "cookies-infobar"
-  );
+//   cookieBanner.classList.add(
+//     "cookies-infobar"
+//   );
 
-  cookieBanner.innerHTML = `
-    <div class="container">
-      <p>
-        <strong>
-          Cookies on the NISRA Local Statistics Explorer
-        </strong>
-      </p>
+//   cookieBanner.innerHTML = `
+//     <div class="container">
+//       <p>
+//         <strong>
+//           Cookies on the NISRA Local Statistics Explorer
+//         </strong>
+//       </p>
 
-      <p>
-        We use essential storage to remember your cookie choice.
-        With your permission, we use analytics cookies to help us
-        understand how people use this service and make improvements.
+//       <p>
+//         We use essential storage to remember your cookie choice.
+//         With your permission, we use analytics cookies to help us
+//         understand how people use this service and make improvements.
 
-        <a
-          href="https://www.nisra.gov.uk/cookies"
-          class="cookiesbarlink"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Find out more about cookies
-        </a>.
-      </p>
+//         <a
+//           href="https://www.nisra.gov.uk/cookies"
+//           class="cookiesbarlink"
+//           target="_blank"
+//           rel="noopener noreferrer"
+//         >
+//           Find out more about cookies
+//         </a>.
+//       </p>
 
-      <button
-        id="accept-cookies"
-        type="button"
-        class="cookies-infobar_btn"
-      >
-        Accept analytics cookies
-      </button>
+//       <button
+//         id="accept-cookies"
+//         type="button"
+//         class="cookies-infobar_btn"
+//       >
+//         Accept analytics cookies
+//       </button>
 
-      <button
-        id="reject-cookies"
-        type="button"
-        class="cookies-infobar_btn_reject"
-      >
-        Reject analytics cookies
-      </button>
-    </div>
-  `;
+//       <button
+//         id="reject-cookies"
+//         type="button"
+//         class="cookies-infobar_btn_reject"
+//       >
+//         Reject analytics cookies
+//       </button>
+//     </div>
+//   `;
 
-  const acceptBtn = document.getElementById(
-    "accept-cookies"
-  );
+//   const acceptBtn = document.getElementById(
+//     "accept-cookies"
+//   );
 
-  const rejectBtn = document.getElementById(
-    "reject-cookies"
-  );
+//   const rejectBtn = document.getElementById(
+//     "reject-cookies"
+//   );
 
-  const savedChoice = getSavedChoice();
+//   const savedChoice = getSavedChoice();
 
-  if (savedChoice) {
-    hideBanner();
-  } else {
-    showBanner();
-  }
+//   if (savedChoice) {
+//     hideBanner();
+//   } else {
+//     showBanner();
+//   }
 
-  acceptBtn?.addEventListener(
-    "click",
-    () => {
+//   acceptBtn?.addEventListener(
+//     "click",
+//     () => {
       
-      updateConsent(
-        acceptedConsent()
-      );
+//       updateConsent(
+//         acceptedConsent()
+//       );
 
-      saveChoice(
-        "accepted"
-      );
+//       saveChoice(
+//         "accepted"
+//       );
 
-      window.dataLayer.push({
-        event: "nisra_consent_updated",
-        consent_choice: "accepted"
-      });
+//       window.dataLayer.push({
+//         event: "nisra_consent_updated",
+//         consent_choice: "accepted"
+//       });
 
-      hideBanner();
-    }
-  );
+//       hideBanner();
+//     }
+//   );
 
-  rejectBtn?.addEventListener(
-    "click",
-    () => {
-      updateConsent(
-        deniedConsent()
-      );
+//   rejectBtn?.addEventListener(
+//     "click",
+//     () => {
+//       updateConsent(
+//         deniedConsent()
+//       );
 
-      saveChoice(
-        "rejected"
-      );
+//       saveChoice(
+//         "rejected"
+//       );
 
-      window.dataLayer.push({
-        event: "nisra_consent_updated",
-        consent_choice: "rejected"
-      });
+//       window.dataLayer.push({
+//         event: "nisra_consent_updated",
+//         consent_choice: "rejected"
+//       });
 
-      hideBanner();
-    }
-  );
+//       hideBanner();
+//     }
+//   );
 
-  window.showNisraCookieSettings =
-    showBanner;
+//   window.showNisraCookieSettings =
+//     showBanner;
 
-    initCookieConsent({
-      bannerId: "cookie-banner"
-    });
-}
+//     initCookieConsent({
+//       bannerId: "cookie-banner"
+//     });
+// }
