@@ -3937,3 +3937,72 @@ background-color: #00205B;
     justify-content: flex-start;
     margin-top: 10px;
 }
+
+.subtheme-details {
+  margin-bottom: 1rem;
+}
+ 
+.subtheme-summary {
+  position: relative;
+  padding-right: 2rem;
+  list-style: none;
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+ 
+/* Hide browser's default arrow */
+.subtheme-summary::-webkit-details-marker {
+  display: none;
+}
+ 
+.subtheme-summary::marker {
+  display: none;
+}
+ 
+/* Same arrow as the main theme buttons */
+.subtheme-summary::after {
+  content: "";
+  position: absolute;
+  right: .75rem;
+  top: 50%;
+  width: 1rem;
+  height: 1rem;
+  transform: translateY(-50%) rotate(90deg);
+  transition: transform .4s ease;
+ 
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+ 
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpolyline points='8 4 16 12 8 20' fill='none' stroke='%23ffffff' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+ 
+/* Rotate when open */
+.subtheme-details[open] .subtheme-summary::after {
+  transform: translateY(-50%) rotate(-90deg);
+}
+ 
+.subtheme-summary:focus,
+.subtheme-summary:focus-visible {
+  background-color: #3878c5;
+  color: #fff;
+  outline: 3px solid #d62828;
+  outline-offset: 2px;
+}
+ 
+.subtheme-details[open] > .subtheme-summary,
+.subtheme-details[open] > .subtheme-summary:focus,
+.subtheme-details[open] > .subtheme-summary:focus-visible {
+  background-color: #3878c5;
+  color: #fff;
+}
+ 
+.subtheme-content {
+    margin-left: 25px;
+}
+ 
+.subtheme-content .btn,
+.nested-overlay-panel .btn-outline-primary {
+    text-align: center !important;
+}
