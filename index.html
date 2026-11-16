@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
- <link rel="icon" href="img/favicon.ico" type="image/vnd.microsoft.icon" />    <title>Equality Matters</title>
-    <html lang="en">
+ <link rel="icon" href="img/favicon-new.png" type="image/png" />    <title>Equality Matters</title>
+    
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- imports for bootstrap - jquery and popper are dependencies -->
     <script src="https://cdn.jsdelivr.net/gh/jquery/jquery@3.4.1/dist/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/gh/twbs/bootstrap@v4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/gh/FezVrasta/popper.js@v1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/twbs/bootstrap@v4.5.2/dist/js/bootstrap.min.js"></script>
 
-    <!-- fontawesome import -->
-    <script src="https://kit.fontawesome.com/ee3848f0f5.js" crossorigin="anonymous"></script>
+    <!-- bootstrap icons import -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <!-- chart.js and add ons -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
@@ -41,399 +42,6 @@
       import * as data from './data.js';
     </script> -->
 
-    <script>
-(function () {
-  'use strict';
-
-  var GTM_CONTAINER_ID = 'GTM-WKK8ZWP';
-  var CONSENT_STORAGE_KEY = 'nisra_consent_v2';
-  var CONSENT_VERSION = 1;
-  var CONSENT_MAX_AGE_DAYS = 365;
-
-  window.dataLayer = window.dataLayer || [];
-
-  window.gtag = window.gtag || function () {
-    window.dataLayer.push(arguments);
-  };
-
-  /*
-   * Advanced Consent Mode v2 default state
-   */
-  window.gtag('consent', 'default', {
-    analytics_storage: 'denied',
-    ad_storage: 'denied',
-    ad_user_data: 'denied',
-    ad_personalization: 'denied',
-    functionality_storage: 'granted',
-    security_storage: 'granted'
-     });
-
-  function deniedConsent() {
-    return {
-      analytics_storage: 'denied',
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied',
-      functionality_storage: 'granted',
-      security_storage: 'granted'
-    };
-  }
-
-  function acceptedConsent() {
-    return {
-      analytics_storage: 'granted',
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied',
-      functionality_storage: 'granted',
-      security_storage: 'granted'
-    };
-  }
-
-  function updateConsent(consentState) {
-  window.gtag(
-    'consent',
-    'update',
-    consentState
-  );
-}
-
-function saveChoice(choice) {
-
-  var record = {
-    choice: choice,
-    version: CONSENT_VERSION,
-    timestamp: new Date().toISOString()
-  };
-
-  try {
-
-    localStorage.setItem(
-      CONSENT_STORAGE_KEY,
-      JSON.stringify(record)
-    );
-
-    return true;
-
-  } catch (error) {
-
-    /*
-     * Storage may be unavailable.
-     * Consent can still be applied to the current page.
-     */
-    return false;
-
-  }
-}
-
-  function removeSavedChoice() {
-
-  try {
-
-    localStorage.removeItem(
-      CONSENT_STORAGE_KEY
-    );
-
-  } catch (error) {
-
-    /*
-     * Storage may be unavailable.
-     * The denied consent default remains in effect.
-     */
-
-  }
-}
-
-  function getSavedChoice() {
-
-  try {
-
-    var stored =
-      localStorage.getItem(
-        CONSENT_STORAGE_KEY
-      );
-
-    if (!stored) {
-      return null;
-    }
-
-    var record =
-      JSON.parse(stored);
-
-    var timestamp =
-      Date.parse(
-        record.timestamp
-      );
-
-    var maximumAge =
-      CONSENT_MAX_AGE_DAYS *
-      24 *
-      60 *
-      60 *
-      1000;
-
-    var age =
-      Date.now() -
-      timestamp;
-
-    var validChoice =
-      record.choice === 'accepted' ||
-      record.choice === 'rejected';
-
-    var validVersion =
-      record.version ===
-      CONSENT_VERSION;
-
-    var validTimestamp =
-      Number.isFinite(
-        timestamp
-      ) &&
-      age >= 0 &&
-      age <= maximumAge;
-
-    if (
-      !validChoice ||
-      !validVersion ||
-      !validTimestamp
-    ) {
-
-      removeSavedChoice();
-
-      return null;
-    }
-
-    return record.choice;
-
-  } catch (error) {
-
-    removeSavedChoice();
-
-    return null;
-
-  }
-}
-
-  /*
-   * Apply stored choice
-   */
-  var savedChoice =
-    getSavedChoice();
-
-  if (savedChoice === 'accepted') {
-
-    updateConsent(
-      acceptedConsent()
-    );
-
-  } else if (
-    savedChoice === 'rejected'
-  ) {
-
-    updateConsent(
-      deniedConsent()
-    );
-
-  }
-/*
- * Load GTM for Advanced Consent Mode
- */
-(function loadGoogleTagManager() {
-
-  window.dataLayer = window.dataLayer || [];
-
-  /*
-   * Required GTM page-load event.
-   * This enables standard All Pages triggers.
-   */
-  window.dataLayer.push({
-    'gtm.start': new Date().getTime(),
-    event: 'gtm.js'
-  });
-
-  var firstScript =
-    document.getElementsByTagName(
-      'script'
-    )[0];
-
-  var gtmScript =
-    document.createElement(
-      'script'
-    );
-
-  gtmScript.async = true;
-
-  gtmScript.src =
-    'https://www.googletagmanager.com/gtm.js?id=' +
-    encodeURIComponent(
-      GTM_CONTAINER_ID
-    );
-
-  firstScript.parentNode.insertBefore(
-    gtmScript,
-    firstScript
-  );
-
-})();
-  /*
-   * Build banner
-   */
-  function initialiseCookieBanner() {
-
-    var cookieBanner =
-      document.getElementById(
-        'cookie-banner'
-      );
-
-    if (!cookieBanner) {
-      return;
-    }
-
-    cookieBanner.classList.add(
-      'cookies-infobar'
-    );
-
- cookieBanner.innerHTML =
-  '<div style="max-width:1200px;margin:0 auto;padding:0 25px;">' +
-
-  '<div style="' +
-  'font-size:18px;' +
-  'font-weight:bold;' +
-  'margin-bottom:10px;' +
-  '">' +
-  'Cookies on the NISRA Data Visualisations website' +
-  '</div>' +
-
-  '<div style="' +
-  'font-size:14px;' +
-  'line-height:1.5;' +
-  'margin-bottom:12px;' +
-  '">' +
-
-  'We use essential storage to remember your cookie choice. ' +
-  'With your permission, we use analytics cookies to help us understand how people use this service and make improvements. ' +
-
-  '<a href="https://www.nisra.gov.uk/cookies" ' +
-  'style="' +
-  'color:#68a41e;' +
-  'font-weight:bold;' +
-  'text-decoration:underline;' +
-  '">' +
-  'Find out more about cookies' +
-  '</a>' +
-
-  '</div>' +
-
-  '<button id="accept-cookies" type="button" ' +
-  'style="' +
-  'background:#68a41e;' +
-  'color:#ffffff;' +
-  'border:none;' +
-  'padding:8px 14px;' +
-  'margin-right:8px;' +
-  'cursor:pointer;' +
-  'font-size:14px;' +
-  '">' +
-  'Accept analytics cookies' +
-  '</button>' +
-
-  '<button id="reject-cookies" type="button" ' +
-  'style="' +
-  'background:#6f6f6f;' +
-  'color:#ffffff;' +
-  'border:none;' +
-  'padding:8px 14px;' +
-  'cursor:pointer;' +
-  'font-size:14px;' +
-  '">' +
-  'Reject analytics cookies' +
-  '</button>' +
-
-  '</div>';
-
-
-    function hideBanner() {
-      cookieBanner.style.display =
-        'none';
-    }
-
-    function showBanner() {
-      cookieBanner.style.display =
-        'block';
-    }
-
-    document
-      .getElementById(
-        'accept-cookies'
-      )
-      .addEventListener(
-        'click',
-        function () {
-
-          updateConsent(
-            acceptedConsent()
-          );
-
-          saveChoice(
-            'accepted'
-          );
-
-          window.dataLayer.push({
-            event:
-              'nisra_consent_updated',
-            consent_choice:
-              'accepted'
-          });
-
-          hideBanner();
-
-        }
-      );
-
-    document
-      .getElementById(
-        'reject-cookies'
-      )
-      .addEventListener(
-        'click',
-        function () {
-
-          updateConsent(
-            deniedConsent()
-          );
-
-          saveChoice(
-            'rejected'
-          );
-
-          window.dataLayer.push({
-            event:
-              'nisra_consent_updated',
-            consent_choice:
-              'rejected'
-          });
-
-          hideBanner();
-
-        }
-      );
-
-    if (savedChoice) {
-      hideBanner();
-    } else {
-      showBanner();
-    }
-
-    window.showNisraCookieSettings =
-      showBanner;
-  }
-
-  document.addEventListener(
-    'DOMContentLoaded',
-    initialiseCookieBanner
-  );
-
-})();
-</script>
     
   </head>
 
@@ -441,33 +49,35 @@ function saveChoice(choice) {
   <body>
     <div class="wrapper">
 
-      <div id="cookie-banner"></div>
-
+    <!-- Skip to main for keyboard users -->
+    <div id="skip-link">
+      <a href="#main-content">Skip to main content</a>
+    </div>
+    
       <nav class="warning">
         <div class="col-wide middle" style=" text-align: center;">
-          <p style="margin-bottom: 0px; font-size: 1rem;">This is a prototype version provided for testing and feedback. Please share your views through our 
+          <p style="margin-bottom: 0px; font-size: 1rem;">This is an early release version under active development. We welcome your feedback through our  
             <a href="https://dttselfserve.nidirect.gov.uk/NISRA/RateIt#/Equality_Matters" target="_blank" rel="noopener noreferrer"><span style="color: white;">short survey <span class="visually-hidden">(opens in a new tab)</span></span>
             </a>
           </p>
         </div>
       </nav>
 
-      <!-- <div id="prototype">This prototype application will be enhanced as further equality indicator data is released.</div> -->
-
       <div id="top-container">
-        <div id="top-menu" class="grid" style="margin: 0;">
+        <div id="top-menu" class="grid">
           <div class="nisra-logo-container">
-            <a href="https://www.nisra.gov.uk/" target="_blank" rel="noopener noreferrer"><img id="top-menu-nisra-logo" src="img/nisra-only-white.svg" alt="NISRA logo. Clicking image takes user to NISRA website"></a>
+            <a href="https://www.nisra.gov.uk/"><img id="top-menu-nisra-logo" src="img/nisra-only-white.svg" alt="NISRA homepage"></a>
           </div>
           <div id="dashboard-title-container">
             <h1 id="dashboard-title"><a href="index.html">Equality Matters</a></h1>
           </div>
         </div>
+        
       </div>
 
-     <!--  <hr style="border-top: 10px solid #cedc20; margin: 0"> -->
+      <hr style="border-top: 10px solid #68a41e; margin: 0">
 
-      <main>
+      <main id="main-content" tabindex="-1">
 
       <div id = "dest-scrn">
         <div id="content-centre">
@@ -496,7 +106,7 @@ function saveChoice(choice) {
                         </form>
                       </div>
                     </aside>
-              <div id="main-content" class="screen">                
+              <div id="destination-content" class="screen">                
                 <div class="intro">
                   <div class = "breadcrumb-about-div">
                     <nav id="breadcrumb-destination" class="breadcrumb"></nav>
@@ -512,41 +122,83 @@ function saveChoice(choice) {
   <h3>Latest year: <span class="latest_year"></span></h3>
 
   <!-- BUTTON TOOLBAR -->
-  <div class="button-toolbar">
+  <div class="button-toolbar" id="previewToolbar">
     <!-- LEFT GROUP -->
     <div class="button-toolbar-left">
-      <button type="button" class="btn" id="chartBtn">View chart</button>
-      <button type="button" class="btn" id="tableBtn">View table</button>
+      
+      <ul class="nav nav-tabs card-header-tabs" id="previewTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="chartBtn" type="button" role="tab" aria-controls="chartView" aria-selected="true">
+            Chart
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="tableBtn" type="button" role="tab" aria-controls="tableView" aria-selected="false">
+            Table
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="summarybtn" type="button" role="tab" aria-controls="summaryView" aria-selected="false">
+            Text summary
+          </button>
+        </li>
+      </ul>
     </div>
 
-    <!-- RIGHT GROUP -->
-    <div class="button-toolbar-right">
-      <button type="button" class="btn" id="downloadButton">Download chart as image</button>
-<button class="btn copy-button">Copy table</button>
-    </div>
+    
   </div>
 
   <!-- CHART VIEW -->
-  <div id="chartView" class="chart-container">
+  <div id="chartView" class="chart-container" role="tabpanel" aria-labelledby="chartBtn">
     <canvas id="bar_line_chart"></canvas>
-  </div>
+ 
+        </div>
+
+
 
   <!-- TABLE VIEW -->
-  <div id="tableView" class="table-container table-scroll-wrapper">
+  <div id="tableView" class="table-container table-scroll-wrapper" role="tabpanel" aria-labelledby="tableBtn">
     <table id="dataTable">
       <thead></thead>
       <tbody></tbody>
     </table>
   </div>
+    
+  <div id="summaryView" style="display: none;" role="tabpanel" aria-labelledby="summarybtn">
+    <h4 style="margin-top: 20px;">Summary of <span class="latest_year"></span> data</h4>
+    <p class="data_summary" style="margin-bottom: 10px; margin-top: 10px;"></p>
+  </div>
 
+  <div class="button-container">
+
+<div class="dropdown">
+
+    <button
+        class="dropdown-toggle"
+        id="downloadDropdown"
+        type="button">
+        Download
+    </button>
+
+    <div class="dropdown-menu">
+
+        <button id="downloadButton">
+            Download chart as image
+        </button>
+
+        <button class="copy-button">
+            Copy table
+        </button>
+
+        <button id="copyTextButton">
+            Copy summary text
+        </button>
+
+    </div>
+    </div>
 </div>
-                    <!-- <h4 ">Summary of <span class= "latest_year"></span> data</h4> -->
-                    <button class="accordion-button"><h4 style="margin-top: 20px;" class="accordion-header">Summary of <span class= "latest_year"></span> data </h4>(click to expand or hide) </button>
-                    <div class="panel">
-                    <p class="data_summary" style="margin-bottom: 10px; margin-top: 10px;"></p>
-                    <button class="btn" id="copyTextButton" style="margin-bottom: 10px;">Copy Summary Text</button>
-                    </div>
-                
+</div>
+        
 
             <div id="chartInfoContainer">
                 <h3 style="margin-top: 30px;">Time trend: <span class="start_year"></span> <span>to</span> <span class="latest_year"></span></h3>
@@ -583,7 +235,7 @@ function saveChoice(choice) {
             <div id="chartContainer" class="grid" style="margin-top: 30px;"></div>
             <div id ="lineDataSummaryContainer">
               <!-- <h4 style="margin-top: 20px;">Change over time summary</h4> -->
-              <button class="accordion-button"><h4 class="accordion-header">Change over time summary </h4>(click to expand or hide) </button>
+              <button class="accordion-button"><h4 class="accordion-header">Change over time summary </h4> </button>
               <div class="panel">
               <p class="data_summary" id = "data_summary_2" style="margin-bottom: 10px; margin-top: 10px;"></p>
               <button class="btn" id="copyTextButton2" style="margin-bottom: 10px;">Copy Data Summary</button>
@@ -599,7 +251,7 @@ function saveChoice(choice) {
               
             <!-- accordion section    -->
               <!-- <h3>Notes</h3> -->
-            <button class="accordion-button"><h3 class="accordion-header">Notes </h3>(click to expand or hide) </button>
+            <button class="accordion-button"><h3 class="accordion-header">Notes </h3> </button>
               <div class="panel">
                 <p id = "measureNotesParagraph" style="margin-bottom: 0px; font-weight: bold;font-size: 18px;">Notes on <span class = "measure_title" style="font-weight: bold;font-size: 18px;"></span></p>
                 <p id = "notes_in_measure"></p>
@@ -652,7 +304,7 @@ function saveChoice(choice) {
           <div class="logo-wrapper d-none d-lg-block mt-4">
             <div class="logo-div">
               <p class="mb-2" style="font-size: 1.2rem; margin-bottom: 0.5rem;">Funded by</p>
-              <a href="https://www.executiveoffice-ni.gov.uk/" target="_blank" rel="noopener noreferrer"><img id="teo-logo" src="img/logo-colour-unstacked-teo.svg" alt="TEO logo. Clicking image takes user to the Executive Office website"></a>
+              <a href="https://www.executiveoffice-ni.gov.uk/" ><img id="teo-logo" src="img/logo-colour-unstacked-teo.svg" alt="The Executive Office homepage"></a>
             </div>
           </div>
           <!-- /LOGO large -->
@@ -663,13 +315,16 @@ function saveChoice(choice) {
       <div class="col-12 col-lg-4" id="rightCol">
         <div class="home-side">
           <div class="div-style-bar p-4" style="margin-top: 0;">
-            <h4 class="text-dark mb-3">Search by keyword or theme</h4>
-            <div class="search-container" id="search-container">
-              <input type="text" id="search-bar" placeholder="Search..." aria-label="Search"/>
+            <h4 class="text-dark mb-3">Search this site</h4>
+            <div class="search-container w-100" id="search-container">
+              <input type="text" id="search-bar" placeholder="Enter keyword or theme..." aria-label="Search"/>
+              <button class="btn" id="search-button" aria-label="Search button"><i class="bi bi-search"></i></button>
               <div id="dropdown"></div>
             </div>
           </div>
 
+          
+          </div>
           <form>
             <div id="all-meas-btn" class="div-style-bar p-4">
               <button class="btn all-measures-btn w-100" name="allmeasures">
@@ -859,40 +514,40 @@ function saveChoice(choice) {
           <div class="col-md-4">
             <h4 class="footer-header">Data Tools</h4>
             <ul class="list-unstyled">
-              <li><a href="https://explore.nisra.gov.uk/local-stats/" target="_blank" rel="noopener noreferrer">Local Statistics Explorer <span class="visually-hidden">(opens in a new tab)</span></a></li>
-              <li><a href="https://data.nisra.gov.uk" target="_blank" rel="noopener noreferrer">Data Portal <span class="visually-hidden">(opens in a new tab)</span></a></li>
-              <li><a href="https://build.nisra.gov.uk/en/" target="_blank" rel="noopener noreferrer">Census Flexible Table Builder <span class="visually-hidden">(opens in a new tab)</span></a></li>
+              <li><a href="https://explore.nisra.gov.uk/local-stats/" >Local Statistics Explorer </a></li>
+              <li><a href="https://data.nisra.gov.uk" >Data Portal </a></li>
+              <li><a href="https://build.nisra.gov.uk/en/" >Census Flexible Table Builder </a></li>
             </ul>
           </div>
           <div class="col-md-4">
             <h4 class="footer-header">Corporate</h4>
             <ul class="list-unstyled">
-              <li><a href="https://www.nisra.gov.uk/" target="_blank" rel="noopener noreferrer">NISRA website <span class="visually-hidden">(opens in a new tab)</span></a></li>
-              <li><a href="https://www.nisra.gov.uk/about-us/careers" target="_blank" rel="noopener noreferrer">Careers <span class="visually-hidden">(opens in a new tab)</span></a></li>
-              <li><a href="https://www.nisra.gov.uk/contact" target="_blank" rel="noopener noreferrer">Contact <span class="visually-hidden">(opens in a new tab)</span></a></li>
+              <li><a href="https://www.nisra.gov.uk/" >NISRA website </a></li>
+              <li><a href="https://www.nisra.gov.uk/about-us/careers" >Careers </a></li>
+              <li><a href="https://www.nisra.gov.uk/contact" >Contact</a></li>
             </ul>
           </div>
-          <div class="col-md-4" style="padding-bottom: 2rem">
+          <div class="col-md-4 footer-social" style="padding-bottom: 2rem">
             <h4 class="footer-header">Follow</h4>
             <ul class="list-inline">
               <li class="list-inline-item">
                 <a href="https://www.facebook.com/nisra.gov.uk">
-                  <img src="img/facebook-brands-solid-full.svg" alt="Facebook" class="img-50">
+                  <img src="img/facebook-brands-solid-full.svg" alt="Facebook" role="img" class="img-50"/>
                 </a>
               </li>
               <li class="list-inline-item">
                 <a href="https://x.com/NISRA/">
-                  <img src="img/x-twitter-brands-solid-full.svg"alt="X" class="img-50"/>
+                  <img src="img/x-twitter-brands-solid-full.svg" alt="X" role="img" class="img-50"/>
                 </a>
               </li>
               <li class="list-inline-item">
                 <a href="https://www.youtube.com/user/nisrastats">
-                  <img src="img/youtube-brands-solid-full.svg" alt="Youtube" class="img-50"/>
+                  <img src="img/youtube-brands-solid-full.svg" alt="Youtube" role="img" class="img-50"/>
                 </a>
               </li>
               <li class="list-inline-item">
                 <a href="https://www.linkedin.com/company/northern-ireland-statistics-and-research-agency/">
-                  <img src="img/linkedin-in-brands-solid-full.svg" alt="LinkedIn" class="img-50"/>
+                  <img src="img/linkedin-in-brands-solid-full.svg" alt="LinkedIn" role="img" class="img-50"/>
                 </a>
               </li>
               <li class="list-inline-item">
@@ -906,15 +561,15 @@ function saveChoice(choice) {
 
         <!-- Horizontal list with separators -->
         <ul class="list-inline footer-links text-center mb-0">
-          <li class="list-inline-item"><a href="https://www.nisra.gov.uk/crown-copyright" target="_blank" rel="noopener noreferrer">© Crown Copyright</a></li>
+          <li class="list-inline-item"><a href="https://www.nisra.gov.uk/crown-copyright" >© Crown Copyright</a></li>
           <li class="list-inline-item">|</li>
-          <li class="list-inline-item"><a href="https://www.nisra.gov.uk/terms-and-conditions" target="_blank" rel="noopener noreferrer">Terms and conditions</a></li>
+          <li class="list-inline-item"><a href="https://www.nisra.gov.uk/terms-and-conditions" >Terms and conditions</a></li>
           <li class="list-inline-item">|</li>
-          <li class="list-inline-item"><a href="https://www.nisra.gov.uk/cookies" target="_blank" rel="noopener noreferrer">Cookies</a></li>
+          <li class="list-inline-item"><a href="https://www.nisra.gov.uk/cookies" >Cookies</a></li>
           <li class="list-inline-item">|</li>
-          <li class="list-inline-item"><a href="https://www.nisra.gov.uk/nisra-privacy-notice" target="_blank" rel="noopener noreferrer">Privacy</a></li>
+          <li class="list-inline-item"><a href="https://www.nisra.gov.uk/nisra-privacy-notice" >Privacy</a></li>
           <li class="list-inline-item">|</li>
-          <li class="list-inline-item"><a href="https://datavis.nisra.gov.uk/dissemination/accessibility-statement-visualisations.html" target="_blank" rel="noopener noreferrer">Accessibility statement</a></li>
+          <li class="list-inline-item"><a href="https://datavis.nisra.gov.uk/dissemination/accessibility-statement-visualisations.html" >Accessibility statement</a></li>
         </ul>
 
       </div>
@@ -936,6 +591,13 @@ function saveChoice(choice) {
   import * as data from './data.js';
 
   console.log("Dataset: ", data )
+
+const dropdown = document.getElementById("downloadDropdown");
+const menu = document.querySelector(".dropdown-menu");
+
+dropdown.addEventListener("click", () => {
+    menu.classList.toggle("show");
+});
 
   const measure_code = Object.entries(data)
     .filter(([key, value]) => key.endsWith('_metadata') && value.dataset)
@@ -2120,10 +1782,20 @@ document.addEventListener('click', function (e) {
     // Partition data into nested groups and non-nested items
     dataArray.forEach(item => {      
       if (item.Nested === 'TRUE') {
-          const groupKey = item["Associated Theme"] ?? "Other";
-          if (!nestedGroups[groupKey]) nestedGroups[groupKey] = [];
-          nestedGroups[groupKey].push(item);
-      } else {
+
+    const theme = item["Associated Theme"] ?? "Other";
+    const subTheme = item["SubTheme"] ?? "Other";
+
+    if (!nestedGroups[theme]) {
+          nestedGroups[theme] = {};
+      }
+
+      if (!nestedGroups[theme][subTheme]) {
+          nestedGroups[theme][subTheme] = [];
+      }
+
+      nestedGroups[theme][subTheme].push(item);
+    } else {
           nonNested.push(item);
       }
     });
@@ -2159,22 +1831,66 @@ document.addEventListener('click', function (e) {
     let collapseIndex = 0;
     window.__nestedOverlayContent = {}; // reset each render
 
-    for (const [groupName, items] of Object.entries(nestedGroups)) {
+    // for (const [groupName, items] of Object.entries(nestedGroups)) {
+    for (const [groupName, items] of Object.entries(nestedGroups)
+      .sort(([groupA], [groupB]) =>
+      groupA.localeCompare(groupB, undefined, { sensitivity: 'base' })
+      )) {
       const overlayId = `overlay${collapseIndex}`;
       const titleId = `ovl-title-${collapseIndex}`;
 
-      // Build inner child buttons
-      const childButtons = items.map(item => {
-        const label = item.Measure_Name || enrichedLookup[item.Code]?.measure || 'Unnamed Measure';
-        return `
-          <div class="mb-2">
-            <button form="measuresPageForm" type="submit" name="key" value="${item.Code}"
-              class="btn btn-outline-primary btn-block">
-              ${label}
-            </button>
-          </div>
-        `;
-      }).join("");
+      // Build inner child buttons grouped by SubTheme
+      const childButtons = Object.entries(items)
+        .sort(([a], [b]) =>
+          a.localeCompare(b, undefined, { sensitivity: 'base' })
+        )
+        .map(([subTheme, subItems]) => {
+
+          const buttons = subItems
+            .sort((a, b) => {
+              const aLabel = a.Measure_Name || enrichedLookup[a.Code]?.measure || '';
+              const bLabel = b.Measure_Name || enrichedLookup[b.Code]?.measure || '';
+              return aLabel.localeCompare(bLabel, undefined, { sensitivity: 'base' });
+            })
+            .map(item => {
+              const label = item.Measure_Name || enrichedLookup[item.Code]?.measure || 'Unnamed Measure';
+
+              return `
+                <div class="mb-2 ms-3">
+                  <button form="measuresPageForm"
+                          type="submit"
+                          name="key"
+                          value="${item.Code}"
+                          class="btn btn-outline-primary btn-block">
+                    ${label}
+                  </button>
+                </div>
+              `;
+            })
+            .join("");
+
+          const useAccordion =
+            subItems.length > 1 &&
+            subItems[0].useSubThemeAccordion === "Yes";
+            console.log(subItems[0]);
+
+          if (!useAccordion) {
+            return buttons;
+          }
+
+          return `
+            <details class="mb-3 subtheme-details">
+              <summary class="btn btn-primary btn-block text-left subtheme-summary">
+                ${subTheme}
+              </summary>
+
+              <div class="mt-2 subtheme-content">
+                ${buttons}
+              </div>
+            </details>
+          `;
+        })
+        .join("");
 
       // Outer (parent) button that triggers overlay
       buttonRow.innerHTML += `
@@ -2216,6 +1932,36 @@ document.addEventListener('click', function (e) {
         const labelledById = btn.getAttribute("data-overlay-title-id");
         openNestedOverlay(btn, window.__nestedOverlayContent[id] || "", { labelledById });
       });
+
+      setTimeout(() => {
+
+        document
+          .querySelectorAll(".subtheme-accordion")
+          .forEach(acc => {
+
+            acc.addEventListener("click", () => {
+
+              const panel = document.getElementById(
+                acc.getAttribute("data-target")
+              );
+
+              const expanded =
+                acc.getAttribute("aria-expanded") === "true";
+
+              acc.setAttribute(
+                "aria-expanded",
+                (!expanded).toString()
+              );
+
+              panel.style.display =
+                expanded ? "none" : "block";
+            });
+
+          });
+
+      }, 0);
+
+
 
       btn.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
@@ -4995,7 +4741,6 @@ const downloadBtn = document.getElementById('downloadButton');
 const copyBtn     = document.querySelector('.copy-button');
 
 if (downloadBtn) downloadBtn.style.display = 'inline-block';
-if (copyBtn)     copyBtn.style.display = 'none';
 if (copyBtn2)    copyBtn2.style.display = 'none';
 
 tableBtn.addEventListener('click', () => {
@@ -5011,9 +4756,8 @@ chartBtn.addEventListener('click', () => {
     ?.addEventListener('click', () => showView('chartView'));
   document.getElementById('tableBtn')
     ?.addEventListener('click', () => showView('tableView'));
- // click event listeners for view chart and view table buttons
-  document.getElementById('chartBtn').addEventListener('click', () => showView('chartView'));
-  document.getElementById('tableBtn').addEventListener('click', () => showView('tableView'));
+  document.getElementById('summarybtn')
+    ?.addEventListener('click', () => showView('summaryView'));
 
   function showsView(viewId) {
     const chartView   = document.getElementById('chartView');
@@ -5031,7 +4775,6 @@ chartBtn.addEventListener('click', () => {
 
     // Toggle utility buttons (inline styles per your approach)
     if (downloadBtn) downloadBtn.style.display = isChart ? 'inline-block' : 'none';
-    if (copyBtn)     copyBtn.style.display     = isChart ? 'none'        : 'inline-block';
   }
 
  // --- Initial state on load ---
@@ -5062,8 +4805,10 @@ chartBtn.addEventListener('click', () => {
   function showView(viewId) {
   const tableView = document.getElementById("tableView");
   const chartView = document.getElementById("chartView");
-  const chartButton = document.getElementById('chartBtn');
-  const tableButton = document.getElementById('tableBtn');
+    const summaryView = document.getElementById("summaryView");
+    const chartButton = document.getElementById('chartBtn');
+    const tableButton = document.getElementById('tableBtn');
+    const summaryButton = document.getElementById('summarybtn');
 
   const tableView2 = document.getElementById("tableView2");
   const chartView2 = document.getElementById("chartContainer");
@@ -5072,9 +4817,9 @@ chartBtn.addEventListener('click', () => {
   const legend = document.querySelector('.chart-legend');
   const tableButton2 = document.getElementById('line_tableBtn');
 
-  if (viewId === 'tableView' || viewId === 'chartView') {
-    if (!tableView || !chartView || !chartButton || !tableButton) {
-      console.warn('showView: required top-section DOM elements are missing', { viewId, tableView, chartView, chartButton, tableButton });
+  if (viewId === 'tableView' || viewId === 'chartView' || viewId === 'summaryView') {
+    if (!tableView || !chartView || !summaryView || !chartButton || !tableButton || !summaryButton) {
+      console.warn('showView: required top-section DOM elements are missing', { viewId, tableView, chartView, summaryView, chartButton, tableButton, summaryButton });
     }
   }
 
@@ -5084,20 +4829,11 @@ chartBtn.addEventListener('click', () => {
     }
   }
 
-  // Handle the first section: Table/Chart Toggle
+  // Handle the first section: Chart/Table/Summary toggle
   if (viewId === 'tableView') {
     if (tableView) tableView.style.display = "block";
     if (chartView) chartView.style.display = "none";
-
-    // Toggle active/inactive styling for both buttons
-    if (chartButton) {
-      chartButton.classList.add('inactive');
-      chartButton.classList.remove('selected');
-    }
-    if (tableButton) {
-      tableButton.classList.remove('inactive');
-      tableButton.classList.add('selected');
-    }
+    if (summaryView) summaryView.style.display = "none";
 
     // Only destroy the bar chart when it's in the 'chartView'
     if (chartInstance && chartView?.style?.display === "block") {
@@ -5107,29 +4843,32 @@ chartBtn.addEventListener('click', () => {
   } else if (viewId === 'chartView') {
     if (tableView) tableView.style.display = "none";
     if (chartView) chartView.style.display = "block";
-
-    // Toggle active/inactive styling for both buttons
-    if (chartButton) {
-      chartButton.classList.remove('inactive');
-      chartButton.classList.add('selected');
-    }
-    if (tableButton) {
-      tableButton.classList.add('inactive');
-      tableButton.classList.remove('selected');
-    }
+    if (summaryView) summaryView.style.display = "none";
 
     if (!chartInstance) {
       createBarChart(eqGrpCatLabels, eqGrpCatBarData, niAvgLine);
     }
+  } else if (viewId === 'summaryView') {
+    if (tableView) tableView.style.display = "none";
+    if (chartView) chartView.style.display = "none";
+    if (summaryView) summaryView.style.display = "block";
   }
 
-  // Keep first-section utility buttons synced with first-section selected view only
-  if (viewId === 'tableView' || viewId === 'chartView') {
-    const downloadBtn = document.getElementById('downloadButton');
-    const copyBtn = document.querySelector('.copy-button');
-    if (downloadBtn) downloadBtn.style.display = viewId === 'chartView' ? 'inline-block' : 'none';
-    if (copyBtn)     copyBtn.style.display     = viewId === 'chartView' ? 'none' : 'inline-block';
+  if (viewId === 'tableView' || viewId === 'chartView' || viewId === 'summaryView') {
+    const selectedButton = {
+      tableView: tableButton,
+      chartView: chartButton,
+      summaryView: summaryButton
+    }[viewId];
+
+    [chartButton, tableButton, summaryButton].forEach(button => {
+      const isSelected = button === selectedButton;
+      button?.classList.toggle('active', isSelected);
+      button?.setAttribute('aria-selected', String(isSelected));
+    });
   }
+
+ 
 
   // Handle the second section: Line Chart/Table Toggle
   if (viewId === 'tableView2') {

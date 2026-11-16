@@ -4,6 +4,8 @@
     "Code": "dsl4",
     "Long.Name": "DSLVLEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Advanced digital skills",
     "Nested": "TRUE"
   },
   {
@@ -11,6 +13,8 @@
     "Code": "dsl3",
     "Long.Name": "DSLVLEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Advanced digital skills",
     "Nested": "TRUE"
   },
   {
@@ -18,6 +22,8 @@
     "Code": "dsi9",
     "Long.Name": "DSIFEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Advanced digital skills - internet functions",
     "Nested": "TRUE"
   },
   {
@@ -25,6 +31,8 @@
     "Code": "dsi5",
     "Long.Name": "DSIFEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Advanced digital skills - internet functions",
     "Nested": "TRUE"
   },
   {
@@ -32,6 +40,8 @@
     "Code": "dsi11",
     "Long.Name": "DSIFEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Advanced digital skills - internet functions",
     "Nested": "TRUE"
   },
   {
@@ -39,6 +49,8 @@
     "Code": "dsi7",
     "Long.Name": "DSIFEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Advanced digital skills - internet functions",
     "Nested": "TRUE"
   },
   {
@@ -46,6 +58,8 @@
     "Code": "dsi6",
     "Long.Name": "DSIFEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Advanced digital skills - internet functions",
     "Nested": "TRUE"
   },
   {
@@ -53,6 +67,8 @@
     "Code": "dsi14",
     "Long.Name": "DSIFEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Advanced digital skills - internet functions",
     "Nested": "TRUE"
   },
   {
@@ -60,6 +76,8 @@
     "Code": "dsi13",
     "Long.Name": "DSIFEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Advanced digital skills - internet functions",
     "Nested": "TRUE"
   },
   {
@@ -67,6 +85,8 @@
     "Code": "dsi12",
     "Long.Name": "DSIFEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Advanced digital skills - internet functions",
     "Nested": "TRUE"
   },
   {
@@ -74,6 +94,8 @@
     "Code": "dsi15",
     "Long.Name": "DSIFEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Advanced digital skills - internet functions",
     "Nested": "TRUE"
   },
   {
@@ -81,6 +103,8 @@
     "Code": "dsi8",
     "Long.Name": "DSIFEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Advanced digital skills - internet functions",
     "Nested": "TRUE"
   },
   {
@@ -88,6 +112,8 @@
     "Code": "dsi1",
     "Long.Name": "DSIFEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Advanced digital skills - internet functions",
     "Nested": "TRUE"
   },
   {
@@ -95,6 +121,8 @@
     "Code": "dsi4",
     "Long.Name": "DSIFEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Advanced digital skills - internet functions",
     "Nested": "TRUE"
   },
   {
@@ -102,6 +130,8 @@
     "Code": "dsi2",
     "Long.Name": "DSIFEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Advanced digital skills - internet functions",
     "Nested": "TRUE"
   },
   {
@@ -109,6 +139,8 @@
     "Code": "dsi3",
     "Long.Name": "DSIFEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Advanced digital skills - internet functions",
     "Nested": "TRUE"
   },
   {
@@ -116,6 +148,8 @@
     "Code": "dsi10",
     "Long.Name": "DSIFEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Advanced digital skills - internet functions",
     "Nested": "TRUE"
   },
   {
@@ -123,6 +157,8 @@
     "Code": "dsl1",
     "Long.Name": "DSLVLEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Advanced digital skills",
     "Nested": "TRUE"
   },
   {
@@ -130,6 +166,8 @@
     "Code": "dsl2",
     "Long.Name": "DSLVLEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Advanced digital skills",
     "Nested": "TRUE"
   },
   {
@@ -137,6 +175,8 @@
     "Code": "artc",
     "Long.Name": "ARTCULEQ",
     "Associated Theme": "Community",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Arts and cultural activities participation",
     "Nested": "TRUE"
   },
   {
@@ -144,6 +184,8 @@
     "Code": "asya",
     "Long.Name": "ASYALLEQ",
     "Associated Theme": "Community",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Asylum seekers allowed in Northern Ireland",
     "Nested": "TRUE"
   },
   {
@@ -151,6 +193,8 @@
     "Code": "bdsl3",
     "Long.Name": "BDSLVLEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Basic digital skills",
     "Nested": "TRUE"
   },
   {
@@ -158,6 +202,8 @@
     "Code": "bdsl2",
     "Long.Name": "BDSLVLEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Basic digital skills",
     "Nested": "TRUE"
   },
   {
@@ -165,6 +211,8 @@
     "Code": "bdsi5",
     "Long.Name": "BDSIFEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Basic digital skills - internet functions",
     "Nested": "TRUE"
   },
   {
@@ -172,6 +220,8 @@
     "Code": "bdsi12",
     "Long.Name": "BDSIFEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Basic digital skills - internet functions",
     "Nested": "TRUE"
   },
   {
@@ -179,6 +229,8 @@
     "Code": "bdsi3",
     "Long.Name": "BDSIFEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Basic digital skills - internet functions",
     "Nested": "TRUE"
   },
   {
@@ -186,6 +238,8 @@
     "Code": "bdsi1",
     "Long.Name": "BDSIFEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Basic digital skills - internet functions",
     "Nested": "TRUE"
   },
   {
@@ -193,6 +247,8 @@
     "Code": "bdsi9",
     "Long.Name": "BDSIFEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Basic digital skills - internet functions",
     "Nested": "TRUE"
   },
   {
@@ -200,6 +256,8 @@
     "Code": "bdsi10",
     "Long.Name": "BDSIFEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Basic digital skills - internet functions",
     "Nested": "TRUE"
   },
   {
@@ -207,6 +265,8 @@
     "Code": "bdsi13",
     "Long.Name": "BDSIFEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Basic digital skills - internet functions",
     "Nested": "TRUE"
   },
   {
@@ -214,6 +274,8 @@
     "Code": "bdsi6",
     "Long.Name": "BDSIFEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Basic digital skills - internet functions",
     "Nested": "TRUE"
   },
   {
@@ -221,6 +283,8 @@
     "Code": "bdsi2",
     "Long.Name": "BDSIFEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Basic digital skills - internet functions",
     "Nested": "TRUE"
   },
   {
@@ -228,6 +292,8 @@
     "Code": "bdsi7",
     "Long.Name": "BDSIFEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Basic digital skills - internet functions",
     "Nested": "TRUE"
   },
   {
@@ -235,6 +301,8 @@
     "Code": "bdsi11",
     "Long.Name": "BDSIFEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Basic digital skills - internet functions",
     "Nested": "TRUE"
   },
   {
@@ -242,6 +310,8 @@
     "Code": "bdsi8",
     "Long.Name": "BDSIFEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Basic digital skills - internet functions",
     "Nested": "TRUE"
   },
   {
@@ -249,6 +319,8 @@
     "Code": "bdsi4",
     "Long.Name": "BDSIFEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Basic digital skills - internet functions",
     "Nested": "TRUE"
   },
   {
@@ -256,6 +328,8 @@
     "Code": "bdsl1",
     "Long.Name": "BDSLVLEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Basic digital skills",
     "Nested": "TRUE"
   },
   {
@@ -263,6 +337,8 @@
     "Code": "comr",
     "Long.Name": "COMRELEQ",
     "Associated Theme": "Community",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Community relations",
     "Nested": "TRUE"
   },
   {
@@ -270,6 +346,8 @@
     "Code": "culr",
     "Long.Name": "CULRICEQ",
     "Associated Theme": "Community",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Culture and traditions of people from different minority ethnic groups",
     "Nested": "TRUE"
   },
   {
@@ -277,6 +355,8 @@
     "Code": "c5156",
     "Long.Name": "C21515EQ",
     "Associated Theme": "Travel and transport",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Distance to place of study",
     "Nested": "TRUE"
   },
   {
@@ -284,6 +364,8 @@
     "Code": "c5154",
     "Long.Name": "C21515EQ",
     "Associated Theme": "Travel and transport",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Distance to place of study",
     "Nested": "TRUE"
   },
   {
@@ -291,6 +373,8 @@
     "Code": "c5155",
     "Long.Name": "C21515EQ",
     "Associated Theme": "Travel and transport",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Distance to place of study",
     "Nested": "TRUE"
   },
   {
@@ -298,6 +382,8 @@
     "Code": "c5152",
     "Long.Name": "C21515EQ",
     "Associated Theme": "Travel and transport",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Distance to place of study",
     "Nested": "TRUE"
   },
   {
@@ -305,6 +391,8 @@
     "Code": "c5153",
     "Long.Name": "C21515EQ",
     "Associated Theme": "Travel and transport",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Distance to place of study",
     "Nested": "TRUE"
   },
   {
@@ -312,6 +400,8 @@
     "Code": "c5151",
     "Long.Name": "C21515EQ",
     "Associated Theme": "Travel and transport",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Distance to place of study",
     "Nested": "TRUE"
   },
   {
@@ -319,6 +409,8 @@
     "Code": "c5141",
     "Long.Name": "C21514EQ",
     "Associated Theme": "Travel and transport",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Distance to place of work",
     "Nested": "TRUE"
   },
   {
@@ -326,6 +418,8 @@
     "Code": "c5147",
     "Long.Name": "C21514EQ",
     "Associated Theme": "Travel and transport",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Distance to place of work",
     "Nested": "TRUE"
   },
   {
@@ -333,6 +427,8 @@
     "Code": "c5145",
     "Long.Name": "C21514EQ",
     "Associated Theme": "Travel and transport",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Distance to place of work",
     "Nested": "TRUE"
   },
   {
@@ -340,6 +436,8 @@
     "Code": "c5146",
     "Long.Name": "C21514EQ",
     "Associated Theme": "Travel and transport",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Distance to place of work",
     "Nested": "TRUE"
   },
   {
@@ -347,6 +445,8 @@
     "Code": "c5143",
     "Long.Name": "C21514EQ",
     "Associated Theme": "Travel and transport",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Distance to place of work",
     "Nested": "TRUE"
   },
   {
@@ -354,6 +454,8 @@
     "Code": "c5144",
     "Long.Name": "C21514EQ",
     "Associated Theme": "Travel and transport",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Distance to place of work",
     "Nested": "TRUE"
   },
   {
@@ -361,6 +463,8 @@
     "Code": "c5142",
     "Long.Name": "C21514EQ",
     "Associated Theme": "Travel and transport",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Distance to place of work",
     "Nested": "TRUE"
   },
   {
@@ -368,6 +472,8 @@
     "Code": "c5011",
     "Long.Name": "C21501EQ",
     "Associated Theme": "Labour market status",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Economic activity",
     "Nested": "TRUE"
   },
   {
@@ -375,6 +481,8 @@
     "Code": "c5012",
     "Long.Name": "C21501EQ",
     "Associated Theme": "Labour market status",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Economic activity",
     "Nested": "TRUE"
   },
   {
@@ -382,6 +490,8 @@
     "Code": "c5013",
     "Long.Name": "C21501EQ",
     "Associated Theme": "Labour market status",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Economic activity",
     "Nested": "TRUE"
   },
   {
@@ -389,6 +499,8 @@
     "Code": "econ",
     "Long.Name": "ECONINACTEQ",
     "Associated Theme": "Labour market status",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Economic inactivity",
     "Nested": "TRUE"
   },
   {
@@ -396,6 +508,8 @@
     "Code": "empr",
     "Long.Name": "EMPRATEEQ",
     "Associated Theme": "Labour market status",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Employment rate",
     "Nested": "TRUE"
   },
   {
@@ -403,6 +517,8 @@
     "Code": "orgm",
     "Long.Name": "ORGMECEQ",
     "Associated Theme": "Community",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Encourage members of minority ethnic communities to participate in public life",
     "Nested": "TRUE"
   },
   {
@@ -410,6 +526,8 @@
     "Code": "fsi4",
     "Long.Name": "FARMSIZEEQ",
     "Associated Theme": "Agriculture",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Farm size",
     "Nested": "TRUE"
   },
   {
@@ -417,6 +535,8 @@
     "Code": "fsi3",
     "Long.Name": "FARMSIZEEQ",
     "Associated Theme": "Agriculture",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Farm size",
     "Nested": "TRUE"
   },
   {
@@ -424,6 +544,8 @@
     "Code": "fsi2",
     "Long.Name": "FARMSIZEEQ",
     "Associated Theme": "Agriculture",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Farm size",
     "Nested": "TRUE"
   },
   {
@@ -431,6 +553,8 @@
     "Code": "fsi1",
     "Long.Name": "FARMSIZEEQ",
     "Associated Theme": "Agriculture",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Farm size",
     "Nested": "TRUE"
   },
   {
@@ -438,6 +562,8 @@
     "Code": "fty4",
     "Long.Name": "FARMTYPEEQ",
     "Associated Theme": "Agriculture",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Farm type",
     "Nested": "TRUE"
   },
   {
@@ -445,6 +571,8 @@
     "Code": "fty5",
     "Long.Name": "FARMTYPEEQ",
     "Associated Theme": "Agriculture",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Farm type",
     "Nested": "TRUE"
   },
   {
@@ -452,6 +580,8 @@
     "Code": "fty3",
     "Long.Name": "FARMTYPEEQ",
     "Associated Theme": "Agriculture",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Farm type",
     "Nested": "TRUE"
   },
   {
@@ -459,6 +589,8 @@
     "Code": "fty1",
     "Long.Name": "FARMTYPEEQ",
     "Associated Theme": "Agriculture",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Farm type",
     "Nested": "TRUE"
   },
   {
@@ -466,6 +598,8 @@
     "Code": "fty6",
     "Long.Name": "FARMTYPEEQ",
     "Associated Theme": "Agriculture",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Farm type",
     "Nested": "TRUE"
   },
   {
@@ -473,6 +607,8 @@
     "Code": "fty2",
     "Long.Name": "FARMTYPEEQ",
     "Associated Theme": "Agriculture",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Farm type",
     "Nested": "TRUE"
   },
   {
@@ -480,6 +616,8 @@
     "Code": "resp",
     "Long.Name": "RESPECTEQ",
     "Associated Theme": "Community",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Feeling respected",
     "Nested": "TRUE"
   },
   {
@@ -487,6 +625,8 @@
     "Code": "c5083",
     "Long.Name": "C21508EQ",
     "Associated Theme": "Health conditions and disability",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "General health",
     "Nested": "TRUE"
   },
   {
@@ -494,6 +634,8 @@
     "Code": "hsg2",
     "Long.Name": "HSGENHEQ",
     "Associated Theme": "Health conditions and disability",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "General health",
     "Nested": "TRUE"
   },
   {
@@ -501,6 +643,8 @@
     "Code": "c5082",
     "Long.Name": "C21508EQ",
     "Associated Theme": "Health conditions and disability",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "General health",
     "Nested": "TRUE"
   },
   {
@@ -508,6 +652,8 @@
     "Code": "c5081",
     "Long.Name": "C21508EQ",
     "Associated Theme": "Health conditions and disability",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "General health",
     "Nested": "TRUE"
   },
   {
@@ -515,6 +661,8 @@
     "Code": "hsg1",
     "Long.Name": "HSGENHEQ",
     "Associated Theme": "Health conditions and disability",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "General health",
     "Nested": "TRUE"
   },
   {
@@ -522,13 +670,8 @@
     "Code": "good",
     "Long.Name": "GOODJOBSEQ",
     "Associated Theme": "Jobs, redundancies and vacancies",
-    "Nested": "TRUE"
-  },
-  {
-    "Measure_Name": "Higher Level Apprenticeship in further education - Starts",
-    "Code": "sfes",
-    "Long.Name": "SAHLAFESTARTSEQ",
-    "Associated Theme": "Training and apprenticeships",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Good jobs",
     "Nested": "TRUE"
   },
   {
@@ -536,6 +679,8 @@
     "Code": "sfee",
     "Long.Name": "SAHLAFEEQ",
     "Associated Theme": "Training and apprenticeships",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Higher Level Apprenticeships in further education",
     "Nested": "TRUE"
   },
   {
@@ -543,6 +688,8 @@
     "Code": "c5071",
     "Long.Name": "C21507EQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Highest level of qualifications",
     "Nested": "TRUE"
   },
   {
@@ -550,6 +697,8 @@
     "Code": "c5072",
     "Long.Name": "C21507EQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Highest level of qualifications",
     "Nested": "TRUE"
   },
   {
@@ -557,6 +706,8 @@
     "Code": "c5073",
     "Long.Name": "C21507EQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Highest level of qualifications",
     "Nested": "TRUE"
   },
   {
@@ -564,6 +715,8 @@
     "Code": "c5074",
     "Long.Name": "C21507EQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Highest level of qualifications",
     "Nested": "TRUE"
   },
   {
@@ -571,6 +724,8 @@
     "Code": "c5070",
     "Long.Name": "C21507EQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Highest level of qualifications",
     "Nested": "TRUE"
   },
   {
@@ -578,6 +733,8 @@
     "Code": "c5075",
     "Long.Name": "C21507EQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Highest level of qualifications",
     "Nested": "TRUE"
   },
   {
@@ -585,6 +742,8 @@
     "Code": "c5033",
     "Long.Name": "C21503EQ",
     "Associated Theme": "Hours and earnings",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Hours worked",
     "Nested": "TRUE"
   },
   {
@@ -592,6 +751,8 @@
     "Code": "c5034",
     "Long.Name": "C21503EQ",
     "Associated Theme": "Hours and earnings",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Hours worked",
     "Nested": "TRUE"
   },
   {
@@ -599,6 +760,8 @@
     "Code": "c5031",
     "Long.Name": "C21503EQ",
     "Associated Theme": "Hours and earnings",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Hours worked",
     "Nested": "TRUE"
   },
   {
@@ -606,6 +769,8 @@
     "Code": "c5032",
     "Long.Name": "C21503EQ",
     "Associated Theme": "Hours and earnings",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Hours worked",
     "Nested": "TRUE"
   },
   {
@@ -613,6 +778,8 @@
     "Code": "c5021",
     "Long.Name": "C21502EQ",
     "Associated Theme": "Jobs, redundancies and vacancies",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Industry of employment",
     "Nested": "TRUE"
   },
   {
@@ -620,6 +787,8 @@
     "Code": "c5022",
     "Long.Name": "C21502EQ",
     "Associated Theme": "Jobs, redundancies and vacancies",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Industry of employment",
     "Nested": "TRUE"
   },
   {
@@ -627,6 +796,8 @@
     "Code": "c5023",
     "Long.Name": "C21502EQ",
     "Associated Theme": "Jobs, redundancies and vacancies",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Industry of employment",
     "Nested": "TRUE"
   },
   {
@@ -634,6 +805,8 @@
     "Code": "c5024",
     "Long.Name": "C21502EQ",
     "Associated Theme": "Jobs, redundancies and vacancies",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Industry of employment",
     "Nested": "TRUE"
   },
   {
@@ -641,6 +814,8 @@
     "Code": "c5025",
     "Long.Name": "C21502EQ",
     "Associated Theme": "Jobs, redundancies and vacancies",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Industry of employment",
     "Nested": "TRUE"
   },
   {
@@ -648,6 +823,8 @@
     "Code": "c5026",
     "Long.Name": "C21502EQ",
     "Associated Theme": "Jobs, redundancies and vacancies",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Industry of employment",
     "Nested": "TRUE"
   },
   {
@@ -655,6 +832,8 @@
     "Code": "c5027",
     "Long.Name": "C21502EQ",
     "Associated Theme": "Jobs, redundancies and vacancies",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Industry of employment",
     "Nested": "TRUE"
   },
   {
@@ -662,90 +841,116 @@
     "Code": "c5028",
     "Long.Name": "C21502EQ",
     "Associated Theme": "Jobs, redundancies and vacancies",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Industry of employment",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Knowledge of Irish - No ability in Irish (Census 2021)",
     "Code": "c5056",
     "Long.Name": "C21505EQ",
-    "Associated Theme": "Population and migration",
+    "Associated Theme": "Language",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Knowledge of Irish",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Knowledge of Irish - Other combination of skills (Census 2021)",
     "Code": "c5055",
     "Long.Name": "C21505EQ",
-    "Associated Theme": "Population and migration",
+    "Associated Theme": "Language",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Knowledge of Irish",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Knowledge of Irish - Speaks and reads but does not write Irish (Census 2021)",
     "Code": "c5053",
     "Long.Name": "C21505EQ",
-    "Associated Theme": "Population and migration",
+    "Associated Theme": "Language",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Knowledge of Irish",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Knowledge of Irish - Speaks but does not read or write Irish (Census 2021)",
     "Code": "c5052",
     "Long.Name": "C21505EQ",
-    "Associated Theme": "Population and migration",
+    "Associated Theme": "Language",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Knowledge of Irish",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Knowledge of Irish - Speaks, reads, writes and understands Irish (Census 2021)",
     "Code": "c5054",
     "Long.Name": "C21505EQ",
-    "Associated Theme": "Population and migration",
+    "Associated Theme": "Language",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Knowledge of Irish",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Knowledge of Irish - Understands but does not read, write or speak Irish (Census 2021)",
     "Code": "c5051",
     "Long.Name": "C21505EQ",
-    "Associated Theme": "Population and migration",
+    "Associated Theme": "Language",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Knowledge of Irish",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Knowledge of Ulster Scots - No ability in Ulster Scots (Census 2021)",
     "Code": "c5066",
     "Long.Name": "C21506EQ",
-    "Associated Theme": "Population and migration",
+    "Associated Theme": "Language",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Knowledge of Ulster Scots",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Knowledge of Ulster Scots - Other combination of skills (Census 2021)",
     "Code": "c5065",
     "Long.Name": "C21506EQ",
-    "Associated Theme": "Population and migration",
+    "Associated Theme": "Language",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Knowledge of Ulster Scots",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Knowledge of Ulster Scots - Speaks and reads but does not write Ulster Scots (Census 2021)",
     "Code": "c5063",
     "Long.Name": "C21506EQ",
-    "Associated Theme": "Population and migration",
+    "Associated Theme": "Language",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Knowledge of Ulster Scots",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Knowledge of Ulster Scots - Speaks but does not read or write Ulster Scots (Census 2021)",
     "Code": "c5062",
     "Long.Name": "C21506EQ",
-    "Associated Theme": "Population and migration",
+    "Associated Theme": "Language",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Knowledge of Ulster Scots",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Knowledge of Ulster Scots - Speaks, reads, writes and understands Ulster Scots (Census 2021)",
     "Code": "c5064",
     "Long.Name": "C21506EQ",
-    "Associated Theme": "Population and migration",
+    "Associated Theme": "Language",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Knowledge of Ulster Scots",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Knowledge of Ulster Scots - Understands but does not read, write or speak Ulster Scots (Census 2021)",
     "Code": "c5061",
     "Long.Name": "C21506EQ",
-    "Associated Theme": "Population and migration",
+    "Associated Theme": "Language",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Knowledge of Ulster Scots",
     "Nested": "TRUE"
   },
   {
@@ -753,6 +958,8 @@
     "Code": "skil",
     "Long.Name": "SKILLSEQ",
     "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Level 2 qualifications",
     "Nested": "TRUE"
   },
   {
@@ -760,6 +967,8 @@
     "Code": "lone",
     "Long.Name": "LONEEQ",
     "Associated Theme": "Individual wellbeing",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Loneliness",
     "Nested": "TRUE"
   },
   {
@@ -767,6 +976,8 @@
     "Code": "c5091",
     "Long.Name": "C21509EQ",
     "Associated Theme": "Health conditions and disability",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Long-term health problem or disability",
     "Nested": "TRUE"
   },
   {
@@ -774,6 +985,8 @@
     "Code": "c5092",
     "Long.Name": "C21509EQ",
     "Associated Theme": "Health conditions and disability",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Long-term health problem or disability",
     "Nested": "TRUE"
   },
   {
@@ -781,6 +994,8 @@
     "Code": "self",
     "Long.Name": "SELFEFFEQ",
     "Associated Theme": "Individual wellbeing",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Low self-efficacy",
     "Nested": "TRUE"
   },
   {
@@ -788,6 +1003,8 @@
     "Code": "lan2",
     "Long.Name": "LANDDESEQ",
     "Associated Theme": "Agriculture",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Main farmers by land designation",
     "Nested": "TRUE"
   },
   {
@@ -795,6 +1012,8 @@
     "Code": "lan3",
     "Long.Name": "LANDDESEQ",
     "Associated Theme": "Agriculture",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Main farmers by land designation",
     "Nested": "TRUE"
   },
   {
@@ -802,76 +1021,98 @@
     "Code": "lan1",
     "Long.Name": "LANDDESEQ",
     "Associated Theme": "Agriculture",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Main farmers by land designation",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Main language - Arabic (Census 2021)",
     "Code": "c5047",
     "Long.Name": "C21504EQ",
-    "Associated Theme": "Population and migration",
+    "Associated Theme": "Language",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Main language",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Main language - Bulgarian (Census 2021)",
     "Code": "c5048",
     "Long.Name": "C21504EQ",
-    "Associated Theme": "Population and migration",
+    "Associated Theme": "Language",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Main language",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Main language - Chinese (not otherwise specified) (Census 2021)",
     "Code": "c5049",
     "Long.Name": "C21504EQ",
-    "Associated Theme": "Population and migration",
+    "Associated Theme": "Language",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Main language",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Main language - English (Census 2021)",
     "Code": "c5041",
     "Long.Name": "C21504EQ",
-    "Associated Theme": "Population and migration",
+    "Associated Theme": "Language",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Main language",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Main language - Irish (Census 2021)",
     "Code": "c5044",
     "Long.Name": "C21504EQ",
-    "Associated Theme": "Population and migration",
+    "Associated Theme": "Language",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Main language",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Main language - Lithuanian (Census 2021)",
     "Code": "c5043",
     "Long.Name": "C21504EQ",
-    "Associated Theme": "Population and migration",
+    "Associated Theme": "Language",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Main language",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Main language - Other languages (Census 2021)",
     "Code": "c50410",
     "Long.Name": "C21504EQ",
-    "Associated Theme": "Population and migration",
+    "Associated Theme": "Language",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Main language",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Main language - Polish (Census 2021)",
     "Code": "c5042",
     "Long.Name": "C21504EQ",
-    "Associated Theme": "Population and migration",
+    "Associated Theme": "Language",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Main language",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Main language - Portuguese (Census 2021)",
     "Code": "c5046",
     "Long.Name": "C21504EQ",
-    "Associated Theme": "Population and migration",
+    "Associated Theme": "Language",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Main language",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Main language - Romanian (Census 2021)",
     "Code": "c5045",
     "Long.Name": "C21504EQ",
-    "Associated Theme": "Population and migration",
+    "Associated Theme": "Language",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Main language",
     "Nested": "TRUE"
   },
   {
@@ -879,6 +1120,8 @@
     "Code": "c5134",
     "Long.Name": "C21513EQ",
     "Associated Theme": "Travel and transport",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Method of travel to study",
     "Nested": "TRUE"
   },
   {
@@ -886,6 +1129,8 @@
     "Code": "c5132",
     "Long.Name": "C21513EQ",
     "Associated Theme": "Travel and transport",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Method of travel to study",
     "Nested": "TRUE"
   },
   {
@@ -893,6 +1138,8 @@
     "Code": "c5131",
     "Long.Name": "C21513EQ",
     "Associated Theme": "Travel and transport",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Method of travel to study",
     "Nested": "TRUE"
   },
   {
@@ -900,6 +1147,8 @@
     "Code": "c5135",
     "Long.Name": "C21513EQ",
     "Associated Theme": "Travel and transport",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Method of travel to study",
     "Nested": "TRUE"
   },
   {
@@ -907,6 +1156,8 @@
     "Code": "c5136",
     "Long.Name": "C21513EQ",
     "Associated Theme": "Travel and transport",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Method of travel to study",
     "Nested": "TRUE"
   },
   {
@@ -914,6 +1165,8 @@
     "Code": "c5133",
     "Long.Name": "C21513EQ",
     "Associated Theme": "Travel and transport",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Method of travel to study",
     "Nested": "TRUE"
   },
   {
@@ -921,6 +1174,8 @@
     "Code": "c5124",
     "Long.Name": "C21512EQ",
     "Associated Theme": "Travel and transport",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Method of travel to work",
     "Nested": "TRUE"
   },
   {
@@ -928,6 +1183,8 @@
     "Code": "c5122",
     "Long.Name": "C21512EQ",
     "Associated Theme": "Travel and transport",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Method of travel to work",
     "Nested": "TRUE"
   },
   {
@@ -935,6 +1192,8 @@
     "Code": "c5121",
     "Long.Name": "C21512EQ",
     "Associated Theme": "Travel and transport",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Method of travel to work",
     "Nested": "TRUE"
   },
   {
@@ -942,6 +1201,8 @@
     "Code": "c5125",
     "Long.Name": "C21512EQ",
     "Associated Theme": "Travel and transport",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Method of travel to work",
     "Nested": "TRUE"
   },
   {
@@ -949,6 +1210,8 @@
     "Code": "c5126",
     "Long.Name": "C21512EQ",
     "Associated Theme": "Travel and transport",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Method of travel to work",
     "Nested": "TRUE"
   },
   {
@@ -956,6 +1219,8 @@
     "Code": "c5123",
     "Long.Name": "C21512EQ",
     "Associated Theme": "Travel and transport",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Method of travel to work",
     "Nested": "TRUE"
   },
   {
@@ -963,6 +1228,8 @@
     "Code": "hsns",
     "Long.Name": "HSNSMOKEQ",
     "Associated Theme": "Health behaviours",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Never smoked",
     "Nested": "TRUE"
   },
   {
@@ -970,6 +1237,8 @@
     "Code": "c5114",
     "Long.Name": "C21511EQ",
     "Associated Theme": "Jobs, redundancies and vacancies",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Occupation",
     "Nested": "TRUE"
   },
   {
@@ -977,6 +1246,8 @@
     "Code": "c5113",
     "Long.Name": "C21511EQ",
     "Associated Theme": "Jobs, redundancies and vacancies",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Occupation",
     "Nested": "TRUE"
   },
   {
@@ -984,6 +1255,8 @@
     "Code": "c5116",
     "Long.Name": "C21511EQ",
     "Associated Theme": "Jobs, redundancies and vacancies",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Occupation",
     "Nested": "TRUE"
   },
   {
@@ -991,6 +1264,8 @@
     "Code": "c5119",
     "Long.Name": "C21511EQ",
     "Associated Theme": "Jobs, redundancies and vacancies",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Occupation",
     "Nested": "TRUE"
   },
   {
@@ -998,6 +1273,8 @@
     "Code": "c5111",
     "Long.Name": "C21511EQ",
     "Associated Theme": "Jobs, redundancies and vacancies",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Occupation",
     "Nested": "TRUE"
   },
   {
@@ -1005,6 +1282,8 @@
     "Code": "c5118",
     "Long.Name": "C21511EQ",
     "Associated Theme": "Jobs, redundancies and vacancies",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Occupation",
     "Nested": "TRUE"
   },
   {
@@ -1012,6 +1291,8 @@
     "Code": "c5112",
     "Long.Name": "C21511EQ",
     "Associated Theme": "Jobs, redundancies and vacancies",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Occupation",
     "Nested": "TRUE"
   },
   {
@@ -1019,6 +1300,8 @@
     "Code": "c5117",
     "Long.Name": "C21511EQ",
     "Associated Theme": "Jobs, redundancies and vacancies",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Occupation",
     "Nested": "TRUE"
   },
   {
@@ -1026,6 +1309,8 @@
     "Code": "c5115",
     "Long.Name": "C21511EQ",
     "Associated Theme": "Jobs, redundancies and vacancies",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Occupation",
     "Nested": "TRUE"
   },
   {
@@ -1033,6 +1318,8 @@
     "Code": "tper",
     "Long.Name": "TPERSAFETYEQ",
     "Associated Theme": "Experiences and attitudes to crime",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Personal safety",
     "Nested": "TRUE"
   },
   {
@@ -1040,6 +1327,8 @@
     "Code": "tcri",
     "Long.Name": "TCRIMEEQ",
     "Associated Theme": "Experiences and attitudes to crime",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Prevalence of crime",
     "Nested": "TRUE"
   },
   {
@@ -1047,6 +1336,8 @@
     "Code": "desfsme",
     "Long.Name": "DESCEQ",
     "Associated Theme": "School enrolments",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Primary, post primary and special schools",
     "Nested": "TRUE"
   },
   {
@@ -1054,6 +1345,8 @@
     "Code": "desssen",
     "Long.Name": "DESCEQ",
     "Associated Theme": "School enrolments",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Primary, post primary and special schools",
     "Nested": "TRUE"
   },
   {
@@ -1061,6 +1354,8 @@
     "Code": "desnonssen",
     "Long.Name": "DESCEQ",
     "Associated Theme": "School enrolments",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Primary, post primary and special schools",
     "Nested": "TRUE"
   },
   {
@@ -1068,6 +1363,8 @@
     "Code": "deste",
     "Long.Name": "DESCEQ",
     "Associated Theme": "School enrolments",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Primary, post primary and special schools",
     "Nested": "TRUE"
   },
   {
@@ -1075,6 +1372,8 @@
     "Code": "c5102",
     "Long.Name": "C21510EQ",
     "Associated Theme": "Social care",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Provision of unpaid care",
     "Nested": "TRUE"
   },
   {
@@ -1082,6 +1381,8 @@
     "Code": "c5103",
     "Long.Name": "C21510EQ",
     "Associated Theme": "Social care",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Provision of unpaid care",
     "Nested": "TRUE"
   },
   {
@@ -1089,6 +1390,8 @@
     "Code": "c5104",
     "Long.Name": "C21510EQ",
     "Associated Theme": "Social care",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Provision of unpaid care",
     "Nested": "TRUE"
   },
   {
@@ -1096,6 +1399,8 @@
     "Code": "c5101",
     "Long.Name": "C21510EQ",
     "Associated Theme": "Social care",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Provision of unpaid care",
     "Nested": "TRUE"
   },
   {
@@ -1103,6 +1408,8 @@
     "Code": "pubb",
     "Long.Name": "PUBBODEQ",
     "Associated Theme": "Community",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Public bodies take into account the needs of minority ethnic communities",
     "Nested": "TRUE"
   },
   {
@@ -1110,41 +1417,53 @@
     "Code": "pubt",
     "Long.Name": "PUBTRANSEQ",
     "Associated Theme": "Travel and transport",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Public transport use",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Qualifications of school leavers - At least 2 A-levels at grades A*-E (incl. equivalent qualifications)",
     "Code": "sls3",
     "Long.Name": "SLSAEQ",
-    "Associated Theme": "School leavers",
+    "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Qualifications of school leavers",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Qualifications of school leavers - At least 3 A-levels at grades A*-C (incl. equivalent qualifications)",
     "Code": "sls1",
     "Long.Name": "SLSAEQ",
-    "Associated Theme": "School leavers",
+    "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Qualifications of school leavers",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Qualifications of school leavers - At least 3 A-levels at grades A*-E (incl. equivalent qualifications)",
     "Code": "sls2",
     "Long.Name": "SLSAEQ",
-    "Associated Theme": "School leavers",
+    "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Qualifications of school leavers",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Qualifications of school leavers - At least 5 GCSEs at grades A*-C (incl. equivalent qualifications)",
     "Code": "sls4",
     "Long.Name": "SLSAEQ",
-    "Associated Theme": "School leavers",
+    "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Qualifications of school leavers",
     "Nested": "TRUE"
   },
   {
     "Measure_Name": "Qualifications of school leavers - At least 5 GCSEs at grades A*-C (incl. equivalent qualifications) including GCSE English and maths",
     "Code": "sls5",
     "Long.Name": "SLSAEQ",
-    "Associated Theme": "School leavers",
+    "Associated Theme": "Qualifications and skills",
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Qualifications of school leavers",
     "Nested": "TRUE"
   },
   {
@@ -1152,6 +1471,8 @@
     "Code": "racp",
     "Long.Name": "RACPREEQ",
     "Associated Theme": "Community",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Racial prejudice in Northern Ireland",
     "Nested": "TRUE"
   },
   {
@@ -1159,6 +1480,8 @@
     "Code": "refw",
     "Long.Name": "REFWELEQ",
     "Associated Theme": "Community",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Refugee welcome",
     "Nested": "TRUE"
   },
   {
@@ -1166,6 +1489,8 @@
     "Code": "refc",
     "Long.Name": "REFCONEQ",
     "Associated Theme": "Community",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Refugees contribute to society",
     "Nested": "TRUE"
   },
   {
@@ -1173,6 +1498,8 @@
     "Code": "cult",
     "Long.Name": "CULTIDEQ",
     "Associated Theme": "Community",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Respected cultural identity",
     "Nested": "TRUE"
   },
   {
@@ -1180,6 +1507,8 @@
     "Code": "safe",
     "Long.Name": "SAFETOWNEQ",
     "Associated Theme": "Community",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Safe towns and city centres",
     "Nested": "TRUE"
   },
   {
@@ -1187,6 +1516,8 @@
     "Code": "prej",
     "Long.Name": "PREJUDEQ",
     "Associated Theme": "Community",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Self-reported prejudice against minority ethnic communities",
     "Nested": "TRUE"
   },
   {
@@ -1194,6 +1525,8 @@
     "Code": "shar",
     "Long.Name": "SHARCOMEQ",
     "Associated Theme": "Community",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Shared community",
     "Nested": "TRUE"
   },
   {
@@ -1201,6 +1534,8 @@
     "Code": "hssm",
     "Long.Name": "HSSMOKEQ",
     "Associated Theme": "Health behaviours",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Smoking",
     "Nested": "TRUE"
   },
   {
@@ -1208,6 +1543,8 @@
     "Code": "spor",
     "Long.Name": "SPORTSEQ",
     "Associated Theme": "Community",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Sports and physical activity",
     "Nested": "TRUE"
   },
   {
@@ -1215,6 +1552,8 @@
     "Code": "sar2",
     "Long.Name": "SARQL2FEEQ",
     "Associated Theme": "Further education",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Students achieving regulated qualifications at level 2 in further education colleges",
     "Nested": "TRUE"
   },
   {
@@ -1222,6 +1561,8 @@
     "Code": "sar3",
     "Long.Name": "SARQL3FEEQ",
     "Associated Theme": "Further education",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Students achieving regulated qualifications at level 3 in further education colleges",
     "Nested": "TRUE"
   },
   {
@@ -1229,6 +1570,8 @@
     "Code": "hsec",
     "Long.Name": "HSECIGEQ",
     "Associated Theme": "Health behaviours",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Use of e-cigarettes",
     "Nested": "TRUE"
   },
   {
@@ -1236,13 +1579,17 @@
     "Code": "c500",
     "Long.Name": "C21500EQ",
     "Associated Theme": "Population and migration",
-    "Nested": "TRUE"
+    "useSubThemeAccordion": "Yes",
+    "SubTheme": "Usual resident population",
+    "Nested": "FALSE"
   },
   {
     "Measure_Name": "Usual resident population - Rural",
     "Code": "rura",
     "Long.Name": "RURALPOPEQ",
     "Associated Theme": "Agriculture",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Usual resident population - Rural",
     "Nested": "TRUE"
   },
   {
@@ -1250,6 +1597,8 @@
     "Code": "walk",
     "Long.Name": "WALKCYCEQ",
     "Associated Theme": "Travel and transport",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Walking or cycling (active travel)",
     "Nested": "TRUE"
   },
   {
@@ -1257,6 +1606,8 @@
     "Code": "twor",
     "Long.Name": "TWORRYCRIMEEQ",
     "Associated Theme": "Experiences and attitudes to crime",
+    "useSubThemeAccordion": "No",
+    "SubTheme": "Worry about crime",
     "Nested": "TRUE"
   }
 ]

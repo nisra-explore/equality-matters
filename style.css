@@ -23,8 +23,9 @@ html {
 }
 
 body {
-  font-family: Open Sans, -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-  font-size: 12pt;
+  font-family:Roboto, Arial, sans-serif, -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  font-size: 18px;
+  line-height: 1.5;
   background-color: #f2f5f8;
   height: 100%;
   margin: 0;
@@ -58,13 +59,13 @@ main {
   justify-content: space-between;
   display: grid;
   grid-template-columns: repeat(2,1fr);
-  padding: 16px;
+  margin-block: 0;
 }
 
 .nisra-logo-container {
   display: flex;
   justify-content:space-between;
-  align-items: center
+  align-items: center;
 }
 
 #top-menu-nisra-logo {
@@ -153,7 +154,7 @@ h3, h4, h5 {
   display: inline;
 }
 
-#main-content {
+#destination-content {
     padding: 0px;
     width: 100%
 }
@@ -180,8 +181,7 @@ a {
 }
 
 a:hover {
-  color: #b400f0;
-  text-decoration: underline;
+  text-decoration: underline 3px;
 }
 
 .survey-link {
@@ -640,9 +640,9 @@ footer {
     flex-shrink: 0;
 }
 
-#footer-container {
+/* #footer-container {
     width: 1300px;
-}
+} */
 
 #teo-logo-container {
     height: 210px;
@@ -665,6 +665,7 @@ footer {
     display: flex;
     justify-content: center;
 }
+
 
 .canvas-container {
     height: 500px;
@@ -775,6 +776,26 @@ footer a:hover {
     text-decoration-thickness: 2px;
 }
 
+a:focus,
+a:focus-visible {
+  outline: 3px solid #d62828;
+  outline-offset: 2px;
+  text-decoration-thickness: 2px;
+}
+
+.footer-links a:focus,
+.footer-links a:focus-visible {
+  outline: none;
+  border: 2px solid #d62828;
+  border-radius: 2px;
+  display: inline-block;
+  padding: 0 4px;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  position: relative;
+  z-index: 1;
+}
+
 .footer-links { list-style: none; padding-left: 0; }
 .footer-links .list-inline-item { margin: 0 .5rem; }
 
@@ -782,14 +803,41 @@ footer a:hover {
 .footer ul.list-unstyled li { margin-bottom: 0.5rem; }
 
 /* Social icon hover */
-.footer .list-inline-item img {
+footer .list-inline-item img {
+  border: 2px solid transparent;
+  border-radius: 4px;
   transition: box-shadow 0.2s ease, border 0.2s ease;
 }
-.footer .list-inline-item img:hover {
+footer .list-inline-item img:hover {
   border: 2px solid #fff;
   box-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
   border-radius: 4px;
 }
+footer .list-inline-item a:focus,
+footer .list-inline-item a:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+footer .list-inline-item a:focus-visible img,
+footer .list-inline-item a:focus img {
+  border: 2px solid #d62828;
+  box-shadow: 0 0 0 3px rgba(214, 40, 40, 0.35);
+  border-radius: 4px;
+}
+
+/* Space social images evenly to fit full width of columm */
+.footer-social .list-inline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.footer-social .list-inline-item {
+  margin-right: 0;
+}
+
 
 .img-50 { width: 50px; height: 50px; }
 
@@ -1061,19 +1109,20 @@ footer a:hover {
   }
 
   .btn:hover {
-    background-color: #2F65A7;
+    /* background-color: #2F65A7; */
+    background-color: #6c757d;
     color: #fff;
     border: 2px solid #00205B;
   }
 
   .btn:focus,
   #top-buttons-container button:focus,
-  #downloadButton:focus,
-  #copyTextButton:focus,
   #copyTextButton2:focus {
-    border: 2px solid #00205B;
+    /* border: 2px solid #d62828; */
     background-color: #fff;
     color: #000;
+    outline: 3px solid #d62828;
+    outline-offset: 2px;
   }
 
   .btn.inactive {
@@ -1082,11 +1131,12 @@ footer a:hover {
   }
 
   .btn.inactive:hover {
-    background-color: #2F65A7; /* hover color for active state */
+    /* background-color: #2F65A7; hover color for active state */
+    background-color: #6c757d;
   }
 
   .close-on-mobile {
-    background-color: #7767C1;
+    background-color: #732777;
     border: 2px solid #00205B;
     font-weight: bold;
     font-size: 1.2rem;
@@ -1094,7 +1144,7 @@ footer a:hover {
   }
 
   .close-on-mobile:hover {
-    background-color: #614EB7;
+    background-color: #6c757d;
   }
 
 
@@ -1163,6 +1213,8 @@ footer a:hover {
   #chartView.active, #tableView.active {
     display: block;
     width: 100%;
+        margin-bottom:40px
+
   }
 
   .dest-table {
@@ -1256,25 +1308,7 @@ footer a:hover {
     position: relative;
 }
 
-  /* format download button for charts */
-  #downloadButton {
-    position: absolute;
-    top: -53px;
-    right: 0px;
-    /* padding: 8px 12px; */
-    border: 2px solid #00205B;
-    border-radius: 2px;
-    background-color: #3878c5;
-  }
 
-  #downloadButton:hover {
-    background-color: #2F65A7;
-  }
-
-  #downloadButton:active {
-    background-color: #00205B;
-    color: #fff;
-  }
 
   /* table container that allows us to position button relative to table */
 .table-container {
@@ -1286,16 +1320,18 @@ footer a:hover {
 .copy-button, .copy-buttons {
   position: absolute;
   /* top: -33px; */
-  right: 0%;
   z-index: 10; /*ensures button is above table*/
-  border: 2px solid #00205B;
-  background-color: #7767C1;
+  border: 2px solid #732777;
+  background-color: #732777;
   color: #fff;
-  border-radius: 2px;
+  border-radius: 4px;
+    margin-top: 8px;
+
 }
 
 .copy-button:hover {
-  background-color: #614EB7;
+  background-color: #6c757d;
+  border: 2px solid #6c757d
 }
 
 .copy-button:active {
@@ -1306,6 +1342,8 @@ footer a:hover {
 .copy-button:focus {
   background-color: #fff;
   color: #000;
+  outline: 3px solid #d62828;
+  outline-offset: 2px;
 }
 
 .copy-button.inactive {
@@ -1317,12 +1355,14 @@ footer a:hover {
   background-color: #2F65A7; /* hover color for active state */
 }
 
-#copyTextButton, #copyTextButton2 {
-  background-color: #7767C1;
+#copyTextButton2 {
+  background-color: #732777;
+  border: 2px solid #732777;
 }
 
-#copyTextButton:hover, #copyTextButton2:hover {
-  background-color: #614EB7;
+#copyTextButton2:hover {
+  background-color: #6c757d;
+  border: 2px solid #6c757d;
 }
 
 .mtb {
@@ -1346,8 +1386,21 @@ footer a:hover {
   position: relative;
 }
 
-.active, .accordion-button:hover {
-  background-color: #fff;
+.accordion-button .accordion-header {
+  background: transparent;
+  color: #404040;
+  margin: 0;
+}
+
+.accordion-button:hover, 
+.accordion-button:active {
+  background-color: #00205b;
+  color: #fff;
+}
+
+.accordion-button:hover .accordion-header,
+.accordion-button:active .accordion-header {
+  color: #fff;
 }
 
 
@@ -1383,7 +1436,8 @@ footer a:hover {
 }
 
 #selection-form button:hover {
-  background-color: #2F65A7;
+  /* background-color: #2F65A7; */
+  background-color: #6c757d;
   color: #fff;
 }
 
@@ -1586,6 +1640,10 @@ footer a:hover {
   /* No fixed min-height/min-width here → mobile/tablet remain flexible */
 }
 
+.s75-btn:hover {
+  background-color: #6c757d;
+}
+
 #toggle-group-btn {
   background: #2F65A7;
   color: white;
@@ -1679,7 +1737,8 @@ footer a:hover {
 }
 
 #home-btn button:hover {
-  background-color: #2F65A7;
+  /* background-color: #2F65A7; */
+  background-color: #6c757d;
   color: #fff;
 }
 
@@ -1772,12 +1831,16 @@ a.cookiesbarlink {
   margin-bottom: -2.3rem;
 }
 
-.search-container button:hover {
+/* .search-container button:hover {
   background: #3878c5;
-}
+} */
 
 .about-content{
-  padding: 30px;
+  padding-top: 30px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 @keyframes staggerFade {
@@ -1846,9 +1909,32 @@ a.cookiesbarlink {
   padding-right: 2rem; /* room for caret */
 }
 
-.dropdown-toggle::after,
 .btn-accordion::after,
 .accordion-button::after {
+  content: "";
+  position: absolute;
+  right: .55rem;
+  top: 50%;
+  width: 0.8rem;
+  height: 0.8rem;
+  transform: translateY(-50%) rotate(90deg);
+  transition: transform .4s ease;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  /* White-stroke outline arrowhead (URL-encoded #fff) */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpolyline points='8 4 16 12 8 20' fill='none' stroke='%23ffffff' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  opacity: .95;
+  border: none;
+}
+
+@media (max-width: 390px) {
+  .btn-accordion::after{
+    right: .15rem;
+  }
+}
+
+.dropdown-toggle::after{
   content: "";
   position: absolute;
   right: .75rem;
@@ -1879,6 +1965,11 @@ a.cookiesbarlink {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpolyline points='8 4 16 12 8 20' fill='none' stroke='%23000000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 
+/* White chevron on hover and when accordion is open */
+.accordion-button:hover::after,
+.accordion-button.active::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpolyline points='8 4 16 12 8 20' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
 .dropdown-toggle[aria-expanded='true']::after,
 .dropdown-toggle.show::after,
 .dropdown.open > .dropdown-toggle::after,
@@ -2192,14 +2283,16 @@ nav a[target="_blank"]::after {
 
 /* Apply to all buttons */
 button:focus-visible {
-  outline: none;                 /* Remove default outline */
-  box-shadow: 0 0 0 3px #000;    /* Black ring without changing layout */
+  outline: 3px solid #d62828;
+  outline-offset: 2px;
+  box-shadow: none;
 }
 
 /* If using Bootstrap buttons */
 .btn:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px #000;
+  outline: 3px solid #d62828;
+  outline-offset: 2px;
+  box-shadow: none;
 }
 
 /* Keep your existing look, just ensure blocks size naturally */
@@ -2216,10 +2309,6 @@ button:focus-visible {
 #rightCol .home-side > .div-style-bar:first-child,
 #rightCol .home-side > form > .div-style-bar {
   min-height: 147px;
-}
-
-#rightCol .home-side > .div-style-bar:first-child {
-  padding-left: 2rem !important;
 }
 
 /* centre the single button vertically in its container */
@@ -2240,7 +2329,7 @@ button:focus-visible {
 /* Your existing styles for search and utility bars can remain unchanged */
 
 /* --- Search block: unchanged visuals (kept from your existing CSS) --- */
-.search-container {
+/* .search-container {
   background: white;
   padding: 10px 20px;
   border-radius: 2px;
@@ -2249,6 +2338,19 @@ button:focus-visible {
   align-items: center;
   width: 83%;
   border: 2px solid #000;
+} */
+
+.search-container {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  height: 48px;
+  box-sizing: border-box;
+  padding: 0;
+  background: white;
+  border: 2px solid #000;
+  border-radius: 2px;
+  box-shadow: none;
 }
 
 .search-container input[type="text"] {
@@ -2262,26 +2364,52 @@ button:focus-visible {
 }
 
 .search-container button {
-  background: #00205B;
+  background: #732777;
   border: none;
   color: white;
-  padding: 10px 16px;
-  border-radius: 50px;
+  /* padding: 10px 16px; */
+  border-radius: 0px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
   transition: background 0.3s ease;
 }
 
+#search-button {
+  height: 100%;
+}
+
 .search-container button:hover {
-  background: #3878c5;
+  background: #6c757d;
+  border: none;
 }
 
 #search-container {
-  position: relative;
-  width: 300px;
+  /* position: relative;
+  width: 100%; */
+  margin-left: 0;
+  margin-right: 0;
 }
 
-#search-bar {
+
+.search-container:focus-within {
+  outline: 2px solid red;
+  outline-offset: 2px;
+}
+
+#search-bar:focus {
+  outline: none;
+}
+
+
+#search-button:focus,
+#search-button:focus-visible {
+  outline: 2px solid red;
+  outline-offset: 2px;
+  box-shadow: none;
+  border-color: transparent;
+}
+
+/* #search-bar {
   background-color: white;
   color: black;
   padding: 8px;
@@ -2291,6 +2419,24 @@ button:focus-visible {
   outline: none;
   box-sizing: border-box;
   font-size: 20px;
+} */
+
+#search-bar {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  font-size: 14px;
+  color: #000;
+  background: #fff;
+  border: none;
+  outline: none;
+}
+
+#search-bar::placeholder {
+  color: #6c757d;
+  opacity: 1;
 }
 
 /* (You had duplicate #search-bar rules; keeping final visual state) */
@@ -2360,8 +2506,7 @@ button:focus-visible {
   .home-grid,
   #footer-container,
   #top-menu,
-  .nisra-logo-container,
-  .search-container {
+  .nisra-logo-container {
     width: 100% !important;
     max-width: 100% !important;
     margin: 0 auto;
@@ -2410,7 +2555,7 @@ html, body {
 
 #dest-scrn,
 #content-centre,
-.content-wrapper,
+/* .content-wrapper, */
 #main-container {
   width: 100%;
   max-width: 100%;
@@ -2526,19 +2671,43 @@ body.sidebar-open {
 }
 
 /* 1) Root container: fixed max on laptop, fluid on small screens */
-#main-container {
+#main-container,
+#top-menu,
+#footer-container {
   /* Width shrinks to 100% on small screens, but never exceeds the laptop size you already like */
-  inline-size: min(100%, 72rem);  /* 72rem ≈ 1152px – set this to your current laptop width */
-  margin-inline: auto;
+  /* inline-size: min(100%, 72rem);  72rem ≈ 1152px – set this to your current laptop width */
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  /* margin-inline: auto; */
   /* Fluid side padding: tighter on phones, comfortable on larger screens */
-  padding-inline: clamp(0.75rem, 4vw, 1.5rem);
+  /* padding-inline: clamp(0.75rem, 4vw, 1.5rem); */
   box-sizing: border-box;
+}
+
+#footer-container > .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#footer-container > .row > [class*="col-"]:first-child {
+  padding-left: 0;
+}
+
+#footer-container > .row > [class*="col-"]:last-child {
+  padding-right: 0;
+}
+
+#main-container,
+#top-menu,
+#footer-container {
+  padding-inline: 0;
 }
 
 /* 2) Keep nested wrappers from re-introducing fixed widths */
 #content-centre,
 .content-wrapper,
-#main-content {
+#destination-content {
   inline-size: 100%;
   max-inline-size: 100%;
   min-inline-size: 0;
@@ -2742,12 +2911,21 @@ html, body {
   }
 }
 
+/* 'View other equality groups' button at bottom of destination page */
 #open-filters {
   padding: 0.5rem 0.75rem;
   font-size: 1.2rem;
   cursor: pointer;  
   margin-bottom: 1.85rem;   /* adds white space below */
   margin-top: .6rem;
+  background-color: #732777;
+  border: none;
+}
+
+#open-filters:hover,
+#open-filters:focus {
+  background-color: #6c757d;
+  color: #fff
 }
 
 /* Automatically switches between 1 column (narrow) and 2 columns (wide) */
@@ -2810,18 +2988,19 @@ html, body {
 
 .measures-scope button {
   display: flex;
-  justify-content: center;  /* center horizontally */
-  align-items: center;      /* center vertically (helpful if multi-line) */
-  width: 100%; 
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   white-space: normal;
-  overflow-wrap: anywhere;   
-  word-break: normal;         
+  overflow-wrap: break-word;
+  word-break: normal;
 }
 
 .measures-scope button > * {
   margin: 0 auto;
   text-align: center;
 }
+
 
 .btn-accordion {
     /* position: relative; */
@@ -2920,16 +3099,32 @@ aside {display:none}
 
 .all-measures-btn {    
   font-size: 20px;
+  width: 100%;
+  height: 48px;
+  box-sizing: border-box;
+  background-color: #732777;
+  border-color: #732777;
+  /* border-radius: 4px; */
+}
+
+.all-measures-btn:hover {    
+  font-size: 20px;
+  background-color: #6c757d;
+  border-color: #6c757d;
+  /* border-radius: 4px; */
 }
 
 .about-btn {
-  background-color: #7767C1; 
+  background-color: #732777; 
   font-size: 1rem;
+  border-radius: 4px;
+  border-color: #732777;
   padding: 6px 12px;
 }
 
 .about-btn:hover {
-  background-color: #614EB7;
+  background-color: #6c757d;
+  border-color: #6c757d;
 }
 
 .grid {  
@@ -3031,8 +3226,8 @@ nav.warning a:hover {
    Inside the toolbar only, neutralise the absolute positioning from the global rules:
    #downloadButton { position:absolute; top:-53px; right:0 }
    .copy-button   { position:absolute; top:-33px; right:0 }  */
-.button-toolbar-right #downloadButton,
-.button-toolbar-right .copy-button {
+.button-toolbar-right,
+.button-toolbar-right {
   position: static !important;
   top: auto !important;
   right: auto !important;
@@ -3070,20 +3265,11 @@ nav.warning a:hover {
   .button-toolbar-right { flex-basis: 100%; }
 }
 
-#downloadButton {
-  position: absolute;
-  top: -53px;
-  right: 0;
-}
 
-.copy-button {
-  position: absolute;
-  top: -33px;
-  right: 0;
-}
 
-.button-toolbar-right #downloadButton,
-.button-toolbar-right .copy-button {
+
+.button-toolbar-right,
+.button-toolbar-right {
   position: static !important;
 }
 
@@ -3125,8 +3311,8 @@ nav.warning a:hover {
 }
 
 /* Inside the toolbar ONLY, cancel the global absolute positioning */
-.button-toolbar-right #downloadButton,
-.button-toolbar-right .copy-button {
+.button-toolbar-right,
+.button-toolbar-right {
   position: static !important;
   top: auto !important;
   right: auto !important;
@@ -3289,12 +3475,14 @@ td, th {
 }
 
 .multiselect.dropdown-toggle {
-  background-color: #7767C1;  /* default */
+  background-color: #732777;  /* default */
   color: white;
+  border-radius: 4px;
+  border: none;
 }
 
 .multiselect.dropdown-toggle:hover {
-  background-color: #614EB7;  /* hover */
+  background-color: #6c757d;  /* hover */
   }
 
 h3.text-start {
@@ -3471,72 +3659,281 @@ background-color: #00205B;
     }
 }
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
+#skip-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transform: translateY(-100%);
+  background-color: #ffc107;
+  padding: 0.5rem;
+  z-index: 9999;
 }
 
-.cookies-infobar {
-    background: #00205b;
-    color: #ffffff;
+#skip-link:focus-within {
+  transform: translateY(0);
+}
 
-    position: fixed;
-    top: 0;
-    left: 0;
+#skip-link a {
+  color: #212529;
+}
+
+/* Base tab */
+.nav-tabs .nav-link {
+    color: #000;
+    background: #fff;
+    padding: 0.5rem 1rem;
+    border: 2px solid transparent;
+    border-radius: 0;
+}
+
+/* Hover state */
+.nav-tabs .nav-link:hover {
+    color: #00205B;
+    border-top-color: #c4c8cc;
+    border-right-color: #c4c8cc;
+    border-left-color: #c4c8cc;
+    border-bottom-color: transparent;
+}
+
+
+.nav-tabs .nav-link.active {
+    position: relative;
+    z-index: 2;
+    border-top: 2px solid #c4c8cc;
+    border-left: 2px solid #c4c8cc;
+    border-right: 2px solid #c4c8cc;
+    border-bottom: 0px solid #fff;
+    margin-bottom: 3px;
+}
+
+.nav-tabs {
+    border-bottom: none;
+}
+
+.nav-tabs .nav-link {
+    position: relative;
+    z-index: 2;    
+    color: #000;
+    background: #fff;
+    border: 2px solid transparent;
+    padding: 0.5rem 1rem;
+}
+
+/* Hover */
+.nav-tabs .nav-link:hover {
+    color: #00205B;
+    border-color: #c4c8cc;
+    border-bottom-color: #fff;
+}
+
+/* Active */
+.nav-tabs .nav-link.active {
+    color: #00205B;
+    border-color: #c4c8cc;
+    border-bottom-color: #fff;
+}
+
+.button-toolbar-left {
     width: 100%;
-
-    z-index: 9999;
-
-    padding: 14px 0;
-
-    box-sizing: border-box;
-
-    border-bottom: 4px solid #3878c5;
 }
 
-
-.cookies-infobar p {
-    margin: 0 0 10px 0;
-}
-.cookies-infobar a {
-    color: #68a41e;
-    font-weight: bold;
-    text-decoration: underline;
+.nav-tabs {
+    width: 100%;
+    border-bottom: 4px solid #ced1d4;
 }
 
+.nav-tabs .nav-link {
+    border: 2px solid transparent;
+}
 
-.cookies-infobar_btn {
-    background: #68a41e;
-    color: #ffffff;
+.nav-tabs .nav-link.active {
+    background: #fff;
+    border-color: #ced1d4 #ced1d4 #fff;
+}
 
-    border: none;
+/* Remove bottom border on active/hover */
+#previewTabs .nav-link.active {
+    position: relative;
+    z-index: 3;
+    margin-bottom: -3px;
+    border-bottom: 6px solid #fff;
+}
 
+.div-style-bar > #previewToolbar #previewTabs {
+    position: relative;
+    border-bottom: 0;
+}
+
+.div-style-bar > #previewToolbar #previewTabs::after {
+    content: "";
+    position: absolute;
+    right: -1.65rem;
+    bottom: 0;
+    left: -0.45rem;
+    border-bottom: 4px solid #ced1d4;
+    pointer-events: none;
+}
+
+#previewTabs .nav-link:not(.active):not(:hover) {
+    background: transparent;
+    border-color: transparent;
+}
+
+.nav-tabs .nav-link:hover {
+    position: relative;
+    z-index: 3;
+    margin-bottom: -3px;
+    border-bottom: 6px solid #fff;
+}
+
+.nav-tabs .nav-link.hover {
+    position: relative;
+    z-index: 2;
+    border-top: 2px solid #c4c8cc;
+    border-left: 2px solid #c4c8cc;
+    border-right: 2px solid #c4c8cc;
+    border-bottom: 0px solid #fff;
+    margin-bottom: 3px;
+}
+
+#previewToolbar {
+  padding-bottom: 20px;
+}
+
+.table-container {
+    min-height: 270px;
+}
+
+#main-container {
+  inline-size: min(100%, 72rem);  
+  margin-inline: auto;
+  padding-inline: clamp(0.75rem, 4vw, 1.5rem);
+  box-sizing: border-box;
+}
+
+.download-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.menu-toggle {
+    background-color: #732777;
+    color: white;
+    border: 2px solid #732777;
+    border-radius: 4px;
     padding: 8px 12px;
-
-    cursor: pointer;
-
-    font-size: 14px;
 }
 
+.menu-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    min-width: 220px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    z-index: 1000;
+}
 
-.cookies-infobar_btn_reject {
-    background: #6f6f6f;
-    color: #ffffff;
+.download-menu:hover .menu-content {
+    display: block;
+}
 
+.menu-content button {
+    width: 100%;
+    text-align: left;
     border: none;
+    background: white;
+    padding: 10px;
+}
 
+.menu-content button:hover {
+    background: #f5f5f5;
+}
+
+.menu-content {
+    height: 120px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    background-color: #732777;
+    color: white;
+    border: 2px solid #732777;
+    border-radius: 4px;
     padding: 8px 12px;
-
     cursor: pointer;
+    width: 130px;
+    text-align: left;
 
-    font-size: 14px;
 }
 
-.cookiesbarlink {
-    color: #ffffff;
+
+
+.dropdown-menu.show {
+    display: block;
 }
 
-.main-container {
-    max-width: 1200px;
-    margin: 0 auto;
+/* Override your existing button positioning */
+.dropdown-menu button {
+    position: static !important;
+    display: block !important;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background: white;
+    text-align: left;
+    cursor: pointer;
+}
+
+.dropdown-menu button:hover {
+    background-color: #f5f5f5;
+    color: black; 
+    border: none;
+}
+
+.dropdown-menu button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background-color: #0d2c6c;
+  color: white;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1000;
+
+    width: 220px;  /* increase this */
+    padding: 6px;  /* adds white space around buttons */
+}
+
+.copy-button {
+    margin-bottom: 8px;
+}
+
+/* .dropdown {
+    position: relative;
+    top: -60px;
+    right: -10px
+} */
+
+.button-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 10px;
 }
