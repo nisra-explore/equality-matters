@@ -218,6 +218,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function getContextForAbout() {
   const out = { home: null, allmeasures: null, s75: null, key: null };
+  let saved = {};
+  let hasSameOriginReferrer = false;
 
   console.log("🔍 getContextForAbout() called");
 
@@ -228,10 +230,7 @@ function getContextForAbout() {
     if (raw) {
       const obj = JSON.parse(raw);
       console.log("localStorage.parsed:", obj);
-      out.home = out.home ?? obj.home;
-      out.allmeasures = out.allmeasures ?? obj.allmeasures;
-      out.s75 = out.s75 ?? obj.s75;
-      out.key = out.key ?? obj.key;
+      saved = obj;
     }
   } catch (e) { console.warn("localStorage parse error", e); }
 
@@ -240,19 +239,29 @@ function getContextForAbout() {
   try {
     if (document.referrer) {
       const ref = new URL(document.referrer, window.location.origin);
-      console.log("referrer URL parsed:", ref.href, {
-        home: ref.searchParams.get("home"),
-        allmeasures: ref.searchParams.get("allmeasures"),
-        s75: ref.searchParams.get("s75"),
-        key: ref.searchParams.get("key")
-      });
+      if (ref.origin === window.location.origin) {
+        hasSameOriginReferrer = true;
+        console.log("referrer URL parsed:", ref.href, {
+          home: ref.searchParams.get("home"),
+          allmeasures: ref.searchParams.get("allmeasures"),
+          s75: ref.searchParams.get("s75"),
+          key: ref.searchParams.get("key")
+        });
 
-      if (!out.home) out.home = ref.searchParams.get("home");
-      if (!out.allmeasures) out.allmeasures = ref.searchParams.get("allmeasures");
-      if (!out.s75) out.s75 = ref.searchParams.get("s75");
-      if (!out.key) out.key = ref.searchParams.get("key");
+        out.home = ref.searchParams.get("home");
+        out.allmeasures = ref.searchParams.get("allmeasures");
+        out.s75 = ref.searchParams.get("s75");
+        out.key = ref.searchParams.get("key");
+      }
     }
   } catch (e) { console.warn("referrer parse error", e); }
+
+  if (!hasSameOriginReferrer) {
+    out.home = saved.home ?? out.home;
+    out.allmeasures = saved.allmeasures ?? out.allmeasures;
+    out.s75 = saved.s75 ?? out.s75;
+    out.key = saved.key ?? out.key;
+  }
 
   // 3) URL
   try {
@@ -289,9 +298,12 @@ function buildAboutBreadcrumb() {
       const r = new URL(document.referrer, window.location.origin);
       const homePath = new URL('index.html', window.location.href).pathname;
       const appPath = new URL('.', window.location.href).pathname;
+      const hasScreenContext = ['home', 'allmeasures', 's75', 'key']
+        .some((param) => r.searchParams.has(param));
       const cameFromHome =
         r.origin === window.location.origin &&
-        (r.pathname === homePath || r.pathname === appPath);
+        (r.pathname === homePath || r.pathname === appPath) &&
+        !hasScreenContext;
 
       if (cameFromHome) {
         container.innerHTML = '';
