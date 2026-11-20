@@ -2952,7 +2952,7 @@ html, body {
 #chartContainer .div-style-line{
   height: clamp(260px, 35vh, 360px);
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 0px;
   background: #fff;      /* optional */
   overflow: hidden;
 }

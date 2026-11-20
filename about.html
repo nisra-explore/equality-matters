@@ -282,21 +282,21 @@ function buildAboutBreadcrumb() {
   if (!container) return;
 
   // ------------------------------------------------------------
-  // HARD OVERRIDE: if the user came directly from Home (index.html)
-  // WITHOUT any query parameters, always show "Home" only.
+  // When the user came from Home, ignore saved navigation context.
   // ------------------------------------------------------------
   try {
     if (document.referrer) {
       const r = new URL(document.referrer, window.location.origin);
-      const cameFromPureHome =
+      const homePath = new URL('index.html', window.location.href).pathname;
+      const appPath = new URL('.', window.location.href).pathname;
+      const cameFromHome =
         r.origin === window.location.origin &&
-        r.pathname.endsWith('index.html') &&
-        r.search === '';              // <-- no query params
+        (r.pathname === homePath || r.pathname === appPath);
 
-      if (cameFromPureHome) {
+      if (cameFromHome) {
         container.innerHTML = '';
         container.appendChild(homeLink());
-        return; // ⛔ stop — do not build any other crumbs
+        return;
       }
     }
   } catch (e) {
